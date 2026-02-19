@@ -1,33 +1,33 @@
 # FiscalPolicyAnalysis
-Repositorio para el desarrollo del modelo para el análisis de interacciones de Políticas Fiscales y Monetarias.
+Repository for the development of the model for analyzing fiscal and monetary policy interactions.
 
-# Estructura
-Para mantener un orden en el desarrollo del modelo se propone la siguiente estructura de directorios. Se encuentra inspirada en la estructura utilizada en la herramienta de selección de modelos tipo SVAR.
+# Directory structure
+To maintain order in the development of the model, the following directory structure is proposed. It is inspired by the structure used in the SVAR model selection tool.
 
 ```text
-FiscalPolicyAnalysis/             # Carpeta principal del proyecto
-├─ datos/                         # Carpeta principal para almacenar datos
-│  ├─ Modelo 1/                   # Datos del Modelo 1
-│  └─ Estimación/                 # Datos utilizados en la estimación del Modelo 1
-│  └─ Corrimiento/                # Condiciones iniciales para el corrimiento del Modelo 1
+FiscalPolicyAnalysis/             # Project's main folder.
+├─ data/                          # Data's main folder
+│  ├─ model_1/                    # Model 1 data
+│  └─ estimation/                 # Data for estimating the model_1
+│  └─ forecast/                   # Initial conditions for generating the forecast
 │
-├─ LYX/                           # Archivos de Lyx
+├─ lyx/                           # Lyx files
 │
-├─ Manuscritos/                   # Archivos con la estructura del modelo o con cambios al mismo
+├─ manuscripts/                   # files containing the model structure and its modifications
 │
-├─ Resultados/                    # Carpeta que almacena los resultados de cada modelo
-│  └─ Modelo 1/                   # Resultados del Modelo 1
-│      └─ Gráficas/               # Gráficas del Modelo 1
-│      └─ csv o xlsx/             # Archivos csv o xlsx del Modelo 1
+├─ results/                       # Results for each version of the model
+│  └─ model_1/                    # Model_1 results
+│      └─ plots/                  # Forecast plots
+│      └─ csv_files/              # csv of xlsx files of the model_1 forecast
 │
-├─ scripts/                       # Scripts de estimación y corrimientos
-│  ├─ Modelo 1/                   # Scripts del Modelo 1
-│  └─ Estimación/                 # Archivos utilizados para la estimación del modelo (OLS, estimación bayesiana, etc)
-│  └─ Corrimiento/                # Corrimiento Modelo 1
+├─ scripts/                       # Estimation and forecast scripts
+│  ├─ model_1/                    # Model_1 scripts
+│  └─ estimation/                 # Script for estimating the model_1 (OLS, Bayesian estimation, etc.)
+│  └─ forecast/                   # script to generate model_1 forecasts
 │
-├─ src/                           # Código fuente (funciones/módulos)
-├─ helpers/                       # Funciones o scripts auxiliares creadas para propósitos específicos
+├─ src/                           # Source code. Contains functions, structures and modules that are used throughout the project
+├─ helpers/                       # Auxiliary functions or scripts
 │
-├─ README.md                      # Este archivo
-├─ .gitignore                     # Ignora archivos no necesarios dentro del repositorio de github
-└─ Changelog.md                   # Archivo que documenta las distintas versiones del modelo. Cada modificación debe documentarse.
+├─ README.md                      # This file
+├─ .gitignore                     # Ignore unnecessary files to replicate the results.
+└─ Changelog.md                   # File documenting the different versions of the model. Each modification must be documented.
