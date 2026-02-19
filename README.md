@@ -4,6 +4,7 @@ Repositorio para el desarrollo del modelo para el análisis de interacciones de 
 # Estructura
 Para mantener un orden en el desarrollo del modelo se propone la siguiente estructura de directorios. Se encuentra inspirada en la estructura utilizada en la herramienta de selección de modelos tipo SVAR.
 
+```text
 FiscalPolicyAnalysis/             # Carpeta principal del proyecto
 ├─ datos/                         # Carpeta principal para almacenar datos
 │  ├─ Modelo 1/                   # Datos del Modelo 1
