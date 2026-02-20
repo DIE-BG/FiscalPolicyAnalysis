@@ -1,0 +1,1649 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage[spanish]{babel}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children no
+\language spanish
+\language_package default
+\inputencoding utf8
+\fontencoding default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style french
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Modelo para Proyecciones Macroeconómicas
+\end_layout
+
+\begin_layout Date
+Febrero 2026
+\end_layout
+
+\begin_layout Standard
+A continuación se presenta el modelo para proyecciones macroeconómicas que incorpora interacciones entre la política monetaria y fiscal.
+ Para una compresión clara del mismo la estructura se divide en variables exógenas externas e internas,
+ y variables endógenas internas clasificadas en distintos sectores:
+\end_layout
+
+\begin_layout Itemize
+Gobierno
+\end_layout
+
+\begin_layout Itemize
+Banco Central
+\end_layout
+
+\begin_layout Itemize
+Sector Privado
+\end_layout
+
+\begin_layout Standard
+Las variables que constituyen el core del modelo son aquellas tildadas con el símbolo ~,
+ las cuales denominamos como variables 
+\begin_inset Quotes qld
+\end_inset
+
+ola
+\begin_inset Quotes qrd
+\end_inset
+
+ y cuya forma de construcción se detalla en la sección 3.
+ El modelo cuenta con 16 ecuaciones ola y 16 choques estocásticos 
+\begin_inset Formula $(\varepsilon)$
+\end_inset
+
+ que acompañan a cada ecuación.
+\end_layout
+
+\begin_layout Section
+Variables exógenas
+\end_layout
+
+\begin_layout Subsection
+Variables exógenas externas
+\end_layout
+
+\begin_layout Subsubsection*
+Crecimiento económico
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{y}_{t}^{*}=\alpha_{1,1}\widetilde{y}_{t-1}^{*}+\varepsilon_{1,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donde 
+\begin_inset Formula $\alpha_{1,1}$
+\end_inset
+
+ es un parámetro y 
+\begin_inset Formula $\varepsilon_{1,t}$
+\end_inset
+
+ es el choque estocástico.
+\end_layout
+
+\begin_layout Subsubsection*
+Tasa de interés
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{i}_{t}^{*}=\alpha_{2,1}\widetilde{i}_{t-1}^{*}+\varepsilon_{2,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Inflación
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\pi}_{t}^{*}=\alpha_{3,1}\widetilde{\pi}_{t-1}^{*}+\varepsilon_{3,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Variables exógenas Internas
+\end_layout
+
+\begin_layout Standard
+De estas la Inversión Pública,
+ los Ingresos Tributarios y Gasto en Funcionamiento del Gobierno constituyen las palancas de la Política Fiscal.
+\end_layout
+
+\begin_layout Subsubsection*
+Inversión pública
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}=\alpha_{4,1}\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}+\varepsilon_{4,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Ingresos tributarios
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}=\alpha_{5,1}\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}+\varepsilon_{5,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Gasto en funcionamiento del Gobierno
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}=\alpha_{6,1}\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\varepsilon_{6,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Participación de la deuda pública externa en la deuda pública total
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\tau}_{t}=\alpha_{7,1}\widetilde{\tau}_{t-1}+\varepsilon_{7,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Remesas
+\end_layout
+
+\begin_layout Standard
+Proporción del PIB
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{Rem}{PIB}\right)}_{t}=\alpha_{8,1}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}+\varepsilon_{8,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Variables endógenas
+\end_layout
+
+\begin_layout Standard
+Las variables endógenas se clasifican según su sector dentro de la economía doméstica.
+\end_layout
+
+\begin_layout Subsection
+Banco Central
+\end_layout
+
+\begin_layout Subsection*
+Activos externos netos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}=\alpha_{9,1}\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\alpha_{9,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\alpha_{9,3}\widetilde{\pi}_{t-1}^{*}+\alpha_{9,4}\widetilde{e}_{t-1}+\alpha_{9,5}\widetilde{\pi}_{t-1}+\varepsilon_{9,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dependen de su rezago y:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\left(\frac{DPE}{PIB}\right)}$
+\end_inset
+
+= Deuda pública externa
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\pi}^{*}$
+\end_inset
+
+ = Inflación externa
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{e}$
+\end_inset
+
+ = Depreciación nominal
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\pi}$
+\end_inset
+
+ = Inflación doméstica
+\end_layout
+
+\begin_layout Subsubsection*
+Activos internos netos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}=\alpha_{10,1}\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}+\alpha_{10,2}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\alpha_{10,3}\widetilde{i}_{t-1}+\varepsilon_{10,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dependen su rezago y:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\left(\frac{DPI}{PIB}\right)}$
+\end_inset
+
+= Deuda Pública Interna
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{i}$
+\end_inset
+
+ = Tasa de Interés líder de Política Monetaria
+\end_layout
+
+\begin_layout Subsubsection*
+Tasa de interés Líder de Política Monetaria
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{i}_{t}=\alpha_{11,1}\widetilde{i}_{t-1}+\alpha_{11,2}\widetilde{i}_{t-1}^{*}+\alpha_{11,3}\widetilde{\pi}_{t-1}+\alpha_{11,4}\widetilde{y}_{t-1}+\varepsilon_{11,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Depende de su rezago y:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{i}^{*}$
+\end_inset
+
+ = Tasa de interés externa
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\pi}$
+\end_inset
+
+ = Inflación doméstica
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{y}$
+\end_inset
+
+ = Crecimiento económico doméstico 
+\end_layout
+
+\begin_layout Subsection
+Sector privado
+\end_layout
+
+\begin_layout Subsubsection*
+Depreciación nominal
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{e}_{t}=\alpha_{12,1}\widetilde{e}_{t-1}+\alpha_{12,2}\widetilde{\left(\frac{DPEC}{PIB}\right)}_{t-1}+\alpha_{12,3}\left(\widetilde{i}_{t-1}-\widetilde{i}_{t-1}^{*}-\widetilde{\rho}_{t-1}\right)+\varepsilon_{12,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Depende de su rezago y:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\left(\frac{DPEC}{PIB}\right)}$
+\end_inset
+
+= Deuda Pública Externa Consolidada
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{i}$
+\end_inset
+
+ = Tasa de interés líder de Política Monetaria
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{i}^{*}$
+\end_inset
+
+ = Tasa de interés externa
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\rho}$
+\end_inset
+
+ El rezago de la prima por riesgo país
+\end_layout
+
+\begin_layout Subsubsection*
+Prima por Riesgo-País
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\rho}_{t}=\alpha_{13,1}\widetilde{\rho}_{t-1}+\alpha_{13,2}\widetilde{\left(\frac{DPTC}{PIB}\right)}_{t-1}+\varepsilon_{13,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Depende de su rezago y:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\left(\frac{DPTC}{PIB}\right)}$
+\end_inset
+
+= Deuda Pública Total Consolidada
+\end_layout
+
+\begin_layout Subsubsection*
+Inflación (Curva de Phillips)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\pi}_{t}=\alpha_{14,1}\widetilde{\pi}_{t-1}+\alpha_{14,2}\widetilde{y}_{t-1}+\alpha_{14,3}\widetilde{\pi}_{t-1}^{*}+\alpha_{14,4}\widetilde{e}_{t-1}+\alpha_{14,5}\widetilde{\left(\frac{MO}{PIB}\right)}_{t-1}+\varepsilon_{14,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Depende de su rezago y:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{y}$
+\end_inset
+
+ = Crecimiento económico doméstico
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\pi}^{*}$
+\end_inset
+
+ = Tasa de interés externa
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{e}$
+\end_inset
+
+ = Depreciación nominal
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\left(\frac{MO}{PIB}\right)}$
+\end_inset
+
+ = Base monetaria
+\end_layout
+
+\begin_layout Subsubsection*
+Crecimiento económico (curva IS)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\widetilde{y}_{t} & =\alpha_{15,1}\widetilde{y}_{t-1}+\alpha_{15,2}\widetilde{y}_{t-1}^{*}+\alpha_{15,3}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
++\alpha_{15,4}\widetilde{\left(\frac{ITotal}{PIB}\right)}_{t-1}+\alpha_{15,5}\widetilde{\left(\frac{MO}{PIB}\right)}_{t-1}+\varepsilon_{15,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Depende de su rezago y:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{y}^{*}$
+\end_inset
+
+ = Crecimiento económico externo
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\left(\frac{ITotal}{PIB}\right)}$
+\end_inset
+
+ = Inversión total
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\left(\frac{MO}{PIB}\right)}$
+\end_inset
+
+ = Base Monetaria
+\end_layout
+
+\begin_layout Subsubsection*
+Inversión Privada
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}=\alpha_{16,1}\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t-1}+\alpha_{16,2}\widetilde{i}_{t-1}+\alpha_{16,3}\widetilde{\left(\frac{DPIC}{PIB}\right)}_{t-1}+\alpha_{16,4}\widetilde{\rho}_{t-1}+\varepsilon_{16,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Depende de su rezago y:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{i}$
+\end_inset
+
+ = Tasa de interés Líder de Política Monetaria
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\widetilde{\left(\frac{DPIC}{PIB}\right)}$
+\end_inset
+
+ = Deuda pública interna consolidada
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\tilde{\rho}$
+\end_inset
+
+ = Prima por riesgo país
+\end_layout
+
+\begin_layout Section
+Construcción de las variables ola
+\end_layout
+
+\begin_layout Standard
+Una vez expuestas las ecuaciones fundamentales del modelo el siguiente paso es definir como están construidas las variables que las componen.
+ La estructura general de su construcción se detalla a continuación.
+\end_layout
+
+\begin_layout Subsection*
+Definición de variables observables
+\end_layout
+
+\begin_layout Standard
+Estas variables son una reconstrucción a partir de los pronósticos de las variables ola y constituyen las variables observables del modelo.
+ Se definen como la suma de la variable ola en el periodo 
+\begin_inset Formula $t$
+\end_inset
+
+ y el rezago de un promedio móvil a 
+\begin_inset Formula $T$
+\end_inset
+
+ periodos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+x_{t}=\widetilde{x}_{t}+\overline{x}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Definición de variable ola
+\end_layout
+
+\begin_layout Standard
+Se construyen como la diferencia entre la variable observable en el periodo 
+\begin_inset Formula $t$
+\end_inset
+
+ menos el rezago de un promedio móvil a 
+\begin_inset Formula $T$
+\end_inset
+
+ periodos.
+ Estas variables ola son las utilizadas para el proceso de estimación de los parámetros del modelo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{x}_{t}=x_{t}-\overline{x}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Promedio móvil
+\end_layout
+
+\begin_layout Standard
+El promedio móvil de las ecuaciones 
+\begin_inset Formula $(17)$
+\end_inset
+
+ y 
+\begin_inset Formula $(18)$
+\end_inset
+
+ se define de la siguiente manera:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{x}_{t-1}^{*}=\frac{1}{T}\sum_{j=t-T}^{t-1}x_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Variables exógenas externas
+\end_layout
+
+\begin_layout Subsubsection*
+Crecimiento económico
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{t}^{*}=\widetilde{y}_{t}^{*}+\overline{y}_{t-1}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{y}_{t}^{*}=y_{t}^{*}-\overline{y}_{t-1}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{y}_{t-1}^{*}=\frac{1}{T}\sum_{j=t-T}^{t-1}y_{j}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Tasa de interés
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+i_{t}^{*}=\widetilde{i}_{t}^{*}+\overline{i}_{t-1}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{i}_{t}^{*}=i_{t}^{*}-\overline{i}_{t-1}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{i}_{t-1}^{*}=\frac{1}{T}\sum_{j=t-T}^{t-1}i_{j}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Inflación externa
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\pi_{t}^{*}=\widetilde{\pi}_{t}^{*}+\overline{\pi}_{t-1}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\pi}_{t}^{*}=\pi_{t}^{*}-\overline{\pi}_{t-1}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{\pi}_{t-1}^{*}=\frac{1}{T}\sum_{j=t-T}^{t-1}\pi_{j}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Variables exógenas internas
+\end_layout
+
+\begin_layout Subsubsection*
+Inversión Pública
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\left(\frac{IPub}{PIB}\right)_{t}=\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}+\overline{\left(\frac{IPub}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}=\left(\frac{IPub}{PIB}\right)_{t}-\overline{\left(\frac{IPub}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{\left(\frac{IPub}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{IPub}{PIB}\right)_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Ingresos Tributarios
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\left(\frac{IngT}{PIB}\right)_{t}=\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}+\overline{\left(\frac{IngT}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}=\left(\frac{IngT}{PIB}\right)_{t}-\overline{\left(\frac{IngT}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{\left(\frac{IngT}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{IngT}{PIB}\right)_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Gasto en funcionamiento del Gobierno
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\left(\frac{GFun}{PIB}\right)_{t}=\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}+\overline{\left(\frac{GFun}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}=\left(\frac{GFun}{PIB}\right)_{t}-\overline{\left(\frac{GFun}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{\left(\frac{GFun}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{GFun}{PIB}\right)_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Participación de la Deuda Pública Externa en la Deuda Pública Total
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\tau_{t}=\widetilde{\tau}_{t}+\overline{\tau}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\tau}_{t}=\tau_{t}-\overline{\tau}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{\tau}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\tau_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Remesas
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\left(\frac{Rem}{PIB}\right)_{t}=\widetilde{\left(\frac{Rem}{PIB}\right)}_{t}+\overline{\left(\frac{Rem}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{Rem}{PIB}\right)}_{t}=\left(\frac{Rem}{PIB}\right)_{t}-\overline{\left(\frac{Rem}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{\left(\frac{Rem}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{Rem}{PIB}\right)_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Variables endógenas
+\end_layout
+
+\begin_layout Subsubsection
+Banco central
+\end_layout
+
+\begin_layout Subsubsection*
+Activos Externos Netos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\left(\frac{AEN}{PIB}\right)_{t}=\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}+\overline{\left(\frac{AEN}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}=\left(\frac{AEN}{PIB}\right)_{t}-\overline{\left(\frac{AEN}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{\left(\frac{AEN}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{AEN}{PIB}\right)_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Activos Internos Netos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\left(\frac{AIN}{PIB}\right)_{t}=\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}+\overline{\left(\frac{AIN}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}=\left(\frac{AIN}{PIB}\right)_{t}-\overline{\left(\frac{AIN}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{\left(\frac{AEN}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{AEN}{PIB}\right)_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Tasa de Interés Líder de Política Monetaria
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+i_{t}=\widetilde{i}_{t}+\overline{i}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{i}_{t}=i_{t}-\overline{i}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{i}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}i_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Sector privado
+\end_layout
+
+\begin_layout Subsubsection*
+Depreciación Nominal
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+e_{t}=\widetilde{e}_{t}+\overline{e}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{e}_{t}=e_{t}-\overline{e}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{e}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}e_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Prima por Riesgo-País
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\rho_{t}=\widetilde{\rho}_{t}+\overline{\rho}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\rho}_{t}=\rho_{t}-\overline{\rho}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{\rho}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\rho_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Inflación (Curva de Phillips)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\pi_{t}=\widetilde{\pi}_{t}+\overline{\pi}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\pi}_{t}=\pi_{t}-\overline{\pi}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{\pi}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\pi_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Crecimiento económico (curva IS)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{t}=\widetilde{y}_{t}+\overline{y}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{y}_{t}=y_{t}-\overline{y}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{y}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}y_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Inversión Privada
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\left(\frac{IPriv}{PIB}\right)_{t}=\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}+\overline{\left(\frac{IPriv}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}=\left(\frac{IPriv}{PIB}\right)_{t}-\overline{\left(\frac{IPriv}{PIB}\right)}_{t-1}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\overline{\left(\frac{IPriv}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{IPriv}{PIB}\right)_{j}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Definiciones
+\end_layout
+
+\begin_layout Standard
+A continuación se presentan un conjunto de definiciones separadas del core del modelo.
+\end_layout
+
+\begin_layout Subsection*
+Deuda pública externa
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(\frac{DPE}{PIB}\right)_{t}=\widetilde{\tau}_{t}\widetilde{\left(\frac{DPT}{PIB}\right)}_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(\frac{DPE}{PIB}\right)_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}+\overline{\left(\frac{DPE}{PIB}\right)}_{t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}=\left(\frac{DPE}{PIB}\right)_{t}-\overline{\left(\frac{DPE}{PIB}\right)}_{t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\overline{\left(\frac{DPE}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{DPE}{PIB}\right)_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Deuda pública interna
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=\left(1-\widetilde{\tau}\right)\widetilde{\left(\frac{DPT}{PIB}\right)}_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(\frac{DPI}{PIB}\right)_{t}=\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}+\overline{\left(\frac{DPI}{PIB}\right)}_{t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=\left(\frac{DPI}{PIB}\right)_{t}-\overline{\left(\frac{DPI}{PIB}\right)}_{t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\overline{\left(\frac{DPI}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{DPI}{PIB}\right)_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Déficit fiscal
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}=\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(\frac{Def}{PIB}\right)_{t}=\widetilde{\left(\frac{Def}{PIB}\right)}_{t}+\overline{\left(\frac{Def}{PIB}\right)}_{t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}=\left(\frac{Def}{PIB}\right)_{t}-\overline{\left(\frac{Def}{PIB}\right)}_{t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\overline{\left(\frac{Def}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{Def}{PIB}\right)_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Deuda pública total
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{DPT}{PIB}\right)}_{t}=\left(\frac{DPT}{PIB}\right)_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(\frac{DPT}{PIB}\right)_{t}=\widetilde{\left(\frac{DPT}{PIB}\right)}_{t}+\overline{\left(\frac{DPT}{PIB}\right)}_{t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{DPT}{PIB}\right)}_{t}=\left(\frac{DPT}{PIB}\right)_{t}-\overline{\left(\frac{DPT}{PIB}\right)}_{t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\overline{\left(\frac{DPT}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{DPT}{PIB}\right)_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Base monetaria
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{MO}{PIB}\right)}_{t}=\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(\frac{MO}{PIB}\right)_{t}=\widetilde{\left(\frac{MO}{PIB}\right)}_{t}+\overline{\left(\frac{MO}{PIB}\right)}_{t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{MO}{PIB}\right)}_{t}=\left(\frac{MO}{PIB}\right)_{t}-\overline{\left(\frac{MO}{PIB}\right)}_{t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\overline{\left(\frac{MO}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{MO}{PIB}\right)_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Inversión Total
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{ITotal}{PIB}\right)}_{t}+\widetilde{\left(\frac{IPubl}{PIB}\right)}_{t}+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Deuda pública interna consolidada
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{DPIC}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPI}{PIB}\right)}-\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Deuda pública externa consolidada
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{DPEC}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}-\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Deuda pública total consolidada
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\widetilde{\left(\frac{DPTC}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPEC}{PIB}\right)}+\widetilde{\left(\frac{DPIC}{PIB}\right)}_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
