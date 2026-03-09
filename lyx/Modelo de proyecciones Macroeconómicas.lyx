@@ -32,6 +32,9 @@
 % Espaciado
 \setlength{\headsep}{24pt}
 \setlength{\headheight}{36pt}
+
+\usepackage{amsmath}
+\setcounter{MaxMatrixCols}{20}
 \end_preamble
 \use_default_options false
 \begin_modules
@@ -120,6 +123,77 @@ customHeadersFooters
 \begin_body
 
 \begin_layout Standard
+\align center
+
+\size largest
+Banco de Guatemala
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+Departamento de Investigaciones Económicas
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename C:/Users/Lenovo/Downloads/Logo_BG_BW.jpg
+	scale 17
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align center
+
+\size largest
+Modelo para Proyecciones Macroeconómicas
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align center
+
+\size large
+Versión 1:
+ sin meta explicita de inflación
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 3cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align center
+
+\size large
+Guatemala 5 de marzo de 2026
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -127,7 +201,23 @@ status open
 
 
 \backslash
-pagenumbering{roman}
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
 \end_layout
 
 \end_inset
@@ -152,6 +242,22 @@ status open
 
 
 \backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
 lhead{Banco de Guatemala
 \backslash
 
@@ -160,7 +266,7 @@ Departamento de Investigaciones Económicas
 \backslash
 
 \backslash
-Febrero 27,
+Marzo 5,
  2026}
 \end_layout
 
@@ -208,17 +314,9 @@ Modelo para Proyecciones Macroeconómicas
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing double
-\align center
-Versión 1:
- sin meta explícita de inflación
-\end_layout
-
-\begin_layout Standard
 A continuación se presenta el Modelo para Proyecciones Macroeconómicas que incorpora interacciones entre las políticas monetaria y fiscal.
  Para una compresión clara del mismo,
- la estructura se divide en variables exógenas (externas e internas),
- y variables endógenas,
+ la estructura del modelo se divide en variables exógenas (externas e internas) y variables endógenas,
  estas últimas clasificadas en distintos sectores:
 \end_layout
 
@@ -245,8 +343,8 @@ ola
 \end_inset
 
 ,
- y cuya forma de construcción se detalla en la sección 5.
- El modelo cuenta con 17 ecuaciones 
+ y cuya forma de construcción se detalla en la sección 6.
+ El modelo cuenta con 17 ecuaciones para las variables 
 \begin_inset Quotes fls
 \end_inset
 
@@ -294,6 +392,18 @@ Donde
 \end_inset
 
  es el residuo estocástico.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Lo mismo es cierto,
+ de manera análoga,
+ para las demás ecuaciones del modelo.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -332,9 +442,9 @@ Variables exógenas internas
 
 \begin_layout Standard
 En este modelo,
- la Inversión Pública,
- los Ingresos Totales de Gobierno,
- el Gasto de Funcionamiento del Gobierno y el endeudamiento público externo constituyen los instrumentos esenciales de la Política Fiscal.
+ la inversión pública,
+ los ingresos totales de gobierno,
+ el gasto de funcionamiento del gobierno y el endeudamiento público externo constituyen los instrumentos esenciales de la Política Fiscal.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -437,7 +547,7 @@ status open
 La ecuación (9),
  que caracteriza al cociente de la deuda pública interna a PIB,
  es una ecuación de comportamiento.
- Su compatibilidad con la deuda pública se aborda en la sección 4.
+ Su compatibilidad con la definición contable de la deuda pública se aborda en la sección 4.
 \end_layout
 
 \end_inset
@@ -546,14 +656,14 @@ Dependen su rezago y de los rezagos de las variables siguientes:
 \begin_inset Formula $\widetilde{\left(\frac{DPI}{PIB}\right)}$
 \end_inset
 
-= Deuda Pública Interna
+= Deuda pública interna
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $\widetilde{i}$
 \end_inset
 
- = Tasa de Interés Líder de Política Monetaria
+ = Tasa de interés líder de política monetaria
 \end_layout
 
 \begin_layout Itemize
@@ -564,7 +674,7 @@ Dependen su rezago y de los rezagos de las variables siguientes:
 \end_layout
 
 \begin_layout Subsubsection*
-Tasa de interés Líder de Política Monetaria (regla de Política Monetaria)
+Tasa de interés líder de política monetaria (regla de política monetaria)
 \end_layout
 
 \begin_layout Standard
@@ -630,14 +740,14 @@ Depende de su rezago y de los rezagos de las variables siguientes:
 \begin_inset Formula $\widetilde{\left(\frac{DPEC}{PIB}\right)}$
 \end_inset
 
-= Deuda Pública Externa Consolidada
+= Deuda pública externa consolidada
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $\widetilde{i}$
 \end_inset
 
- = Tasa de Interés Líder de Política Monetaria
+ = Tasa de interés líder de política monetaria
 \end_layout
 
 \begin_layout Itemize
@@ -677,11 +787,11 @@ Depende de su rezago y del rezagos de la siguiente variable:
 \begin_inset Formula $\widetilde{\left(\frac{DPTC}{PIB}\right)}$
 \end_inset
 
-= Deuda Pública Total Consolidada
+= Deuda pública total consolidada
 \end_layout
 
 \begin_layout Subsubsection*
-Inflación (Curva de Phillips)
+Inflación (curva de Phillips)
 \end_layout
 
 \begin_layout Standard
@@ -775,7 +885,7 @@ Depende de su rezago y de los rezagos de las variables siguientes:
 \begin_inset Formula $\widetilde{\left(\frac{MO}{PIB}\right)}$
 \end_inset
 
- = Base Monetaria
+ = Base monetaria
 \end_layout
 
 \begin_layout Subsubsection*
@@ -843,6 +953,18 @@ Déficit fiscal
 
 \begin_layout Subsection*
 Deuda pública total
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+La ecuación (19) representa la ley de movimiento de la deuda pública total,
+ en tanto que la ecuación (20) descompone la deuda pública total en un componente externo y otro interno.
+ La compatibilidad de ambas definiciones se explica en la sección 4.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1011,12 +1133,12 @@ Sustituyendo
 status open
 
 \begin_layout Plain Layout
-Secuencialmente y con los rezagos del caso
+Secuencialmente y con los rezagos del caso.
 \end_layout
 
 \end_inset
 
- las ecuación (25) (24) y (23) en la ecuación (14),
+ las ecuaciones (25) (24) y (23) en la ecuación (14),
  se obtiene:
 \end_layout
 
@@ -1728,16 +1850,24 @@ ola
 \end_layout
 
 \begin_layout Standard
-Se construyen como la diferencia entre la variable observable en el periodo 
+Las variables 
+\begin_inset Quotes fls
+\end_inset
+
+ola
+\begin_inset Quotes frs
+\end_inset
+
+ se construyen como la diferencia entre la variable observable en el periodo 
 \begin_inset Formula $t$
 \end_inset
 
- menos el rezago de un promedio móvil a 
+ menos el rezago de un promedio móvil 
 \begin_inset Formula $T$
 \end_inset
 
  periodos.
- Estas variables son las que forman parte del modelo propiamente tal.
+ Estas variables son las que forman parte del modelo propiamente tal que:
 \end_layout
 
 \begin_layout Standard
@@ -1756,7 +1886,7 @@ Recuperación de variables observables
 \end_layout
 
 \begin_layout Standard
-Por una parte,
+Por su parte,
  las variables observables son una reconstrucción a partir de los pronósticos de las variables 
 \begin_inset Quotes fls
 \end_inset
@@ -1766,7 +1896,7 @@ ola
 \end_inset
 
  y constituyen las variables originales de la economía representada por el modelo.
- Se definen como la suma de la variable 
+ Se definen como la suma de la correspondiente variable 
 \begin_inset Quotes fls
 \end_inset
 
@@ -1778,11 +1908,11 @@ ola
 \begin_inset Formula $t$
 \end_inset
 
- y el rezago de un promedio móvil a 
+ y el respectivo rezago de un promedio móvil de 
 \begin_inset Formula $T$
 \end_inset
 
- periodos.
+ periodos:
 \end_layout
 
 \begin_layout Standard
@@ -1801,7 +1931,7 @@ Promedio móvil
 \end_layout
 
 \begin_layout Standard
-El promedio móvil de las ecuaciones 
+El promedio móvil que aparece en las ecuaciones 
 \begin_inset Formula $(56)$
 \end_inset
 
@@ -1827,7 +1957,7 @@ El promedio móvil de las ecuaciones
 \noindent
 \align block
 A continuación,
- se aplican estas definiciones a todas las variables del modelo
+ se aplican estas definiciones a todas las variables del modelo:
 \end_layout
 
 \begin_layout Standard
@@ -2200,7 +2330,7 @@ Banco central
 \end_layout
 
 \begin_layout Subsubsection*
-Activos Externos Netos
+Activos externos netos
 \end_layout
 
 \begin_layout Standard
@@ -2237,7 +2367,7 @@ Activos Externos Netos
 \end_layout
 
 \begin_layout Subsubsection*
-Activos Internos Netos
+Activos internos netos
 \end_layout
 
 \begin_layout Standard
@@ -2274,7 +2404,7 @@ Activos Internos Netos
 \end_layout
 
 \begin_layout Subsubsection*
-Tasa de Interés Líder de Política Monetaria
+Tasa de interés líder de política monetaria
 \end_layout
 
 \begin_layout Standard
@@ -2315,7 +2445,7 @@ Sector privado
 \end_layout
 
 \begin_layout Subsubsection*
-Depreciación Nominal
+Depreciación nominal
 \end_layout
 
 \begin_layout Standard
@@ -2352,7 +2482,7 @@ e_{t}=\widetilde{e}_{t}+\overline{e}_{t-1}
 \end_layout
 
 \begin_layout Subsubsection*
-Prima por Riesgo-País
+Prima por riesgo-país
 \end_layout
 
 \begin_layout Standard
@@ -2389,7 +2519,7 @@ Prima por Riesgo-País
 \end_layout
 
 \begin_layout Subsubsection*
-Inflación (Curva de Phillips)
+Inflación (curva de Phillips)
 \end_layout
 
 \begin_layout Standard
@@ -2463,7 +2593,7 @@ y_{t}=\widetilde{y}_{t}+\overline{y}_{t-1}
 \end_layout
 
 \begin_layout Subsubsection*
-Inversión Privada
+Inversión privada
 \end_layout
 
 \begin_layout Standard
@@ -2676,6 +2806,580 @@ Tasas de crecimiento económico
 
 \begin_layout Standard
 Esta variable se define como la variación interanual de la suma móvil de 4 trimestres del PIB.
+\end_layout
+
+\begin_layout Section
+Simplificación notacional
+\end_layout
+
+\begin_layout Standard
+Para simplificar la notación del modelo,
+ se introducen las definiciones siguientes:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{1,t}=\widetilde{y}_{t}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{2,t}=\widetilde{i}_{t}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{3,t}=\widetilde{\pi}_{t}^{*}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{4,t}=\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{5,t}=\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{6,t}=\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{7,t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{8,t}=\widetilde{\left(\frac{Rem}{PIB}\right)}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{9,t}=\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{10,t}=\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{11,t}=\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{12,t}=\widetilde{i}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{13,t}=\widetilde{e}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{14,t}=\widetilde{\rho}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{15,t}=\widetilde{\pi}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{16,t}=\widetilde{y}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{17,t}=\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Representación compacta y simplificada del modelo
+\end_layout
+
+\begin_layout Standard
+Sustituyendo las ecuaciones (121) a (137) en el modelo compacto (ecuaciones (38) a (55)),
+ se obtiene la versión compacta y simplificada del modelo,
+ como sigue:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{1,t}=\alpha_{1,1}y_{1,t-1}+u_{1,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{2,t}=\alpha_{2,1}y_{2,t-1}+u_{2,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{3,t}=\alpha_{3,1}y_{3,t-1}+u_{3,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{4,t}=\alpha_{4,1}y_{4,t-1}+u_{4,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{5,t}=\alpha_{5,1}y_{5,t-1}+u_{5,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{6,t}=\alpha_{6,1}y_{6,t-1}+u_{6,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{7,t}=\alpha_{7,1}y_{7,t-1}+u_{7,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{8,t}=\alpha_{8,1}y_{8,t-1}+u_{8,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{9,t}=\alpha_{9,1}y_{9,t-1}+\alpha_{9,2}y_{7,t-1}+\alpha_{9,3}\left(y_{6,t-1}+y_{4,t-1}-y_{5,t-1}\right)+u_{9,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{10,t}=\alpha_{10,1}y_{10,t-1}+\alpha_{10,2}y_{7,t-1}+\alpha_{10,3}y_{3,t-1}+\alpha_{10,4}y_{13,t-1}+\alpha_{10,5}y_{15,t-1}+u_{10,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{11,t}=\alpha_{11,1}y_{11,t-1}+\alpha_{11,2}y_{9,t-1}+\alpha_{11,3}y_{12,t-1}+\alpha_{11,4}y_{15,t-1}+u_{11,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{12,t}=\alpha_{12,1}y_{12,t-1}+\alpha_{12,2}y_{2,t-1}+\alpha_{12,3}y_{15,t-1}+\alpha_{12,4}y_{16,t-1}+u_{12,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{13,t}=\alpha_{13,1}y_{13,t-1}+\alpha_{13,2}\left(y_{7,t-1}-y_{10,t-1}\right)+\alpha_{13,3}\left(y_{12,t-1}-y_{2,t-1}-y_{14,t-1}\right)+u_{13,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{14,t}=\alpha_{14,1}y_{14,t-1}+\alpha_{14,2}\left(y_{9,t-1}-y_{11,t-1}+y_{7,t-1}-y_{10,t-1}\right)+u_{14,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{15,t}=\alpha_{15,1}y_{15,t-1}+\alpha_{15,2}y_{16,t-1}+\alpha_{15,3}y_{3,t-1}+\alpha_{15,4}y_{13,t-1}+\alpha_{15,5}\left(y_{10,t-1}+y_{11,t-1}\right)+u_{15,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{16,t}=\alpha_{16,1}y_{16,t-1}+\alpha_{16,2}y_{1,t-1}+\alpha_{16,3}y_{8,t-1}+\alpha_{16,4}\left(y_{4,t-1}+y_{17,t-1}\right)+\alpha_{16,5}\left(y_{10,t-1}+y_{11,t-1}\right)+u_{16,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+y_{17,t}=\alpha_{17,1}y_{17,t-1}+\alpha_{17,2}y_{12,t-1}+\alpha_{17,3}\left(y_{9,t-1}-y_{11,t-1}\right)+\alpha_{17,4}y_{14,t-1}+u_{17,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+u_{9,t}=\left(1-\alpha_{9,1}\right)y_{9,t-1}+\left(1-\alpha_{7,1}-\alpha_{9,2}\right)y_{7,t-1}+\left(\alpha_{6,1}-\alpha_{9,3}\right)y_{6,t-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
++\left(\alpha_{4,1}-\alpha_{9,3}\right)y_{4,t-1}-\left(\alpha_{5,1}+\alpha_{9,3}\right)y_{5,t-1}+u_{4,t}+u_{6,t}-u_{5,t}-u_{7,t}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Representación matricial del modelo
+\end_layout
+
+\begin_layout Standard
+Partiendo de las ecuaciones presentadas en la sección 9,
+ a continuación se representa el modelo en forma matricial.
+\end_layout
+
+\begin_layout Subsection*
+Matriz de variables del modelo en forma compacta y simplificada
+\end_layout
+
+\begin_layout Standard
+Donde 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ es una matriz de 17
+\begin_inset Formula $\times$
+\end_inset
+
+1,
+ conteniendo las variables definidas en la sección anterior.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+Y_{t}=\begin{bmatrix}y_{1,t}\\
+y_{2,t}\\
+\vdots\\
+y_{4,t}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Matriz de coeficientes
+\end_layout
+
+\begin_layout Standard
+La matriz 
+\begin_inset Formula $A_{1}$
+\end_inset
+
+ es de dimensiones 17
+\begin_inset Formula $\times$
+\end_inset
+
+17 y contiene los coeficientes del modelo.
+ Es importante hacer notar que el modelo tiene expresiones del tipo 
+\begin_inset Formula $\alpha_{9,3}\left(y_{6,t-1}+y_{4,t-1}-y_{5,t-1}\right)$
+\end_inset
+
+ (ecuación 145) e indica que las variables 
+\begin_inset Formula $y_{6,t}$
+\end_inset
+
+,
+ 
+\begin_inset Formula $y_{4,t}$
+\end_inset
+
+,
+ y 
+\begin_inset Formula $y_{5,t}$
+\end_inset
+
+ comparten el mismo coeficiente y en el caso de 
+\begin_inset Formula $y_{5,t}$
+\end_inset
+
+ este se encuentra con el signo negativo.
+ Este tipo de expresiones se puede representar de forma apropiada en la matriz de coeficientes mostrada a continuación:
+ 
+\end_layout
+
+\begin_layout Standard
+\align left
+
+\size tiny
+\begin_inset Formula 
+\begin{equation}
+\hspace*{-2cm}A_{1}=\setlength{\arraycolsep}{3pt}\begin{bmatrix}\alpha_{1,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & \alpha_{2,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & \alpha_{3,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & \alpha_{4,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & \alpha_{5,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & \alpha_{6,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & \alpha_{7,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{8,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & \alpha_{9,3} & -\alpha_{9,3} & \alpha_{9,3} & \alpha_{9,2} & 0 & \alpha_{9,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & \alpha_{10,3} & 0 & 0 & 0 & \alpha_{10,2} & 0 & 0 & \alpha_{10,1} & 0 & 0 & 0 & 0 & \alpha_{10,5} & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{11,2} & 0 & \alpha_{11,1} & \alpha_{11.3} & 0 & 0 & \alpha_{11,4} & 0 & 0\\
+0 & \alpha_{12,2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{12,1} & 0 & 0 & \alpha_{12,3} & \alpha_{12,4} & 0\\
+0 & -\alpha_{13,3} & 0 & 0 & 0 & 0 & \alpha_{13,2} & 0 & 0 & \alpha_{13,2} & 0 & \alpha_{13,3} & \alpha_{13,1} & -\alpha_{13,3} & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & \alpha_{14,2} & 0 & \alpha_{14,2} & -\alpha_{14,2} & -\alpha_{14,2} & 0 & 0 & \alpha_{14,1} & 0 & 0 & 0\\
+0 & 0 & \alpha_{15,3} & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{15,5} & \alpha_{15,5} & 0 & 0 & 0 & \alpha_{15,1} & \alpha_{15,2} & 0\\
+\alpha_{16,1} & 0 & 0 & \alpha_{16,4} & 0 & 0 & 0 & \alpha_{16,3} & 0 & \alpha_{16,5} & \alpha_{16,5} & 0 & 0 & 0 & 0 & \alpha_{16,1} & \alpha_{16,4}\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{17,3} & 0 & -\alpha_{17,3} & \alpha_{17,2} & 0 & \alpha_{17,4} & 0 & 0 & \alpha_{17,1}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Matriz de residuos
+\end_layout
+
+\begin_layout Standard
+La matriz 
+\begin_inset Formula $u_{t}$
+\end_inset
+
+es de dimensiones 17
+\begin_inset Formula $\times$
+\end_inset
+
+1 y contiene los residuos del modelo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+U_{t}=\begin{bmatrix}u_{1,t}\\
+u_{2,t}\\
+\vdots\\
+u_{17,t}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finalmente el modelo se presenta mediante de forma matricial de la siguiente manera:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+Y_{t}=AY_{t-1}+U_{t}
+\end{equation}
+
+\end_inset
+
+
 \end_layout
 
 \end_body
