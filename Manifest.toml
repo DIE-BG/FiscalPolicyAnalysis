@@ -2,7 +2,7 @@
 
 julia_version = "1.12.4"
 manifest_format = "2.0"
-project_hash = "7402a0db7adb246da556b70ebc6f35aa9f9253ae"
+project_hash = "655cb284050cfeca9c5a0203de37fe9273522703"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -452,6 +452,12 @@ version = "2.17.1+0"
 git-tree-sha1 = "9c68794ef81b08086aeb32eeaf33531668d5f5fc"
 uuid = "1fa38f19-a742-5d3f-a2b9-30dd87b9d5f8"
 version = "1.3.7"
+
+[[deps.Formatting]]
+deps = ["Logging", "Printf"]
+git-tree-sha1 = "fb409abab2caf118986fc597ba84b50cbaf00b87"
+uuid = "59287772-0a20-5a39-b81b-1366585eb4c0"
+version = "0.4.3"
 
 [[deps.FreeType]]
 deps = ["CEnum", "FreeType2_jll"]
