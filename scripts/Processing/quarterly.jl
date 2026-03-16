@@ -64,7 +64,7 @@ data_dict["Rem"] = Rem_df
 
 ##### Load data from FRED #####
 # GDP, core inflation and federal fund effective rate comes from FRED as a quarterly data.
-FRED = CSV.read(datadir("processing", "FRED", "data.csv"), DataFrame)
+FRED = CSV.read(datadir("processing", "FRED", "Qdata.csv"), DataFrame)
 FRED.date = Date.(FRED.date, "dd/mm/yyyy")
 
 ##### Quarterly data #####
