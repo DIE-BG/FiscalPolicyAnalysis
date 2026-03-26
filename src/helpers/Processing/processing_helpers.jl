@@ -1,6 +1,7 @@
 using DataFrames
 using Dates
 using Statistics
+
 """
     This function takes a DataFrame and vectorizes the data. It is applied to data that have the following structure:
 
@@ -86,13 +87,15 @@ end
 
         - df is a dataframe
 """
+
+
 function Quarterly(df::DataFrame; method::Symbol = :mean)
     date_col = names(df)[1]
     value_col = names(df)[2]
 
     @assert ncol(df) == 2 "The DataFrame must have exactly two columns."
     @assert eltype(df[!, date_col]) <: Date "First column must contain Date values."
-    @assert method in (:mean, :last) "method must be :mean or :last"
+    @assert method in (:mean, :last, :sum) "method must be :mean, :last, or :sum"
 
     df_sorted = sort(copy(df), date_col)
 
@@ -110,7 +113,13 @@ function Quarterly(df::DataFrame; method::Symbol = :mean)
             return DataFrame()
         end
 
-        val = method == :mean ? mean(skipmissing(sdf[!, value_col])) : sdf[end, value_col]
+        val = if method == :mean
+            mean(skipmissing(sdf[!, value_col]))
+        elseif method == :sum
+            sum(skipmissing(sdf[!, value_col]))
+        else
+            sdf[end, value_col]
+        end
 
         DataFrame(
             date_col => [sdf[end, date_col]],
@@ -140,7 +149,7 @@ end
 
     - data_dict must be a Dictionary
 
-    Create a single data frame from a Dictionary. The Dictionary must contain many dataframes and each ones shoud conten two columns.
+    Create a single data frame from a Dictionary. The Dictionary must contain many dataframes and each ones should contain two columns.
     The first one is a Dates column, the second the observed data of the variable.
 
     Return a data framen containing al variables from each data frame. The column date will be a column with Dates based on the intersection

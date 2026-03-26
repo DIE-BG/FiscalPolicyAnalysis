@@ -5,7 +5,7 @@ using DrWatson
 using CSV, DataFrames, DataFramesMeta
 using Statistics, Dates
 
-include(srcdir("helpers", "processing_helpers.jl"))
+include(srcdir("helpers", "Processing", "processing_helpers.jl"))
 
 ##### Load FRED data #####
 dataFRED = CSV.read(datadir("processing", "FRED", "Mdata.csv"), DataFrame)
@@ -40,11 +40,8 @@ e = combine(groupby(e, :date), last)
 
 ##### load core inflation, nominal and real GDP, ITotal and interest rate #####
 # inflation
-core_infl = CSV.read(datadir("processing", "BG", "core_inflation.csv"), DataFrame)
-core_infl.date = Date.(core_infl.date, "dd/mm/yyyy")
-# i
-i = CSV.read(datadir("processing", "BG", "i.csv"), DataFrame)
-i.date = Date.(i.date, "dd/mm/yyyy")
+monthly_BG = CSV.read(datadir("processing", "BG", "Monthly_BG.csv"), DataFrame)
+monthly_BG.date = Date.(monthly_BG.date, "dd/mm/yyyy")
 
 ##### Express DPE and Rem in local currency #####
 # DPE
@@ -61,9 +58,11 @@ data_dict["Rem"] = Rem_df
 
 ##### Create a new data frame
 data_dict["e"] = DataFrame(date = e.date, value = e.e)
-data_dict["core_cpi"] = DataFrame(date = core_infl.date, value = core_infl.core_inflation)
-data_dict["i"] = DataFrame(date = i.date, value = i.i)
-data_dict["core_cpi_star"] = dataFRED
+data_dict["core_cpi"] = DataFrame(date = monthly_BG.date, value = monthly_BG.core_inflation)
+data_dict["i"] = DataFrame(date = monthly_BG.date, value = monthly_BG.i)
+data_dict["PREM"] = DataFrame(date = monthly_BG.date, value = monthly_BG.PREM)
+data_dict["core_cpi_star"] = DataFrame(date = dataFRED.date, value = dataFRED.core_cpi_star)
+data_dict["i_star"] = DataFrame(date = dataFRED.date, value = dataFRED.i_star)
 
 data_df_monthly = dict_to_dataframe(data_dict)
 
