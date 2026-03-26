@@ -1,6 +1,7 @@
 using Statistics
 using DataFrames
 using Mudie
+using Formatting
 include(srcdir("helpers", "Plots", "ola_helpers.jl"))
 
 """
@@ -78,7 +79,7 @@ function PlotRatioFlowVariable(
                     subtitle = "Millones de quetzales \nFrecuencia mensual",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}",
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 mdf.date,
                 mdf[:, var],
@@ -93,7 +94,7 @@ function PlotRatioFlowVariable(
                     subtitle = "Millones de quetzales \nFrecuencia trimestral",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 qdf.date,
                 qdf[:, var],
@@ -109,7 +110,7 @@ function PlotRatioFlowVariable(
                     subtitle = "Millones de quezales",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 var_SM.date,
                 var_SM.value,
@@ -124,7 +125,7 @@ function PlotRatioFlowVariable(
                     subtitle = "Millones de quetzales \nFrecuencia trimestral",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 qdf.date,
                 qdf.GDP_nom,
@@ -140,7 +141,7 @@ function PlotRatioFlowVariable(
                     subtitle = "Millones de quezales",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 GDP_SM.date,
                 GDP_SM.value,
@@ -154,7 +155,7 @@ function PlotRatioFlowVariable(
                 subtitle = "$var_name y PIB",
                 xticklabelsize = 17,
                 yticklabelsize = 25,
-                ytickformat = "{:.0f}"
+                ytickformat = v -> format.(v, commas=true, precision=0)
             )
 
             l1 = lines!(
@@ -168,7 +169,7 @@ function PlotRatioFlowVariable(
                 yticklabelcolor = :red, 
                 yaxisposition = :right, 
                 yticklabelsize = 25,
-                ytickformat = "{:.0f}",
+                ytickformat = v -> format.(v, commas=true, precision=0),
                 xgridvisible = false,
                 ygridvisible = false
                 )
@@ -198,11 +199,11 @@ function PlotRatioFlowVariable(
                 )
 
             # Plot 7
-            var_GDP_Mavg = moving_avg(var_SM.date, var_SM.value./GDP_SM.value, T)
+            var_GDP_Mavg = moving_avg(var_SM.date, (var_SM.value./GDP_SM.value).*100, T)
 
             ax = Axis(
                 fig[5,1],
-                title ="Cocientre de la suma móvil de $T trimestres",
+                title ="Cociente de la suma móvil de $T trimestres",
                 subtitle = "Numerador: $var_name\nDenominador: PIB nominal",
                 xticklabelsize = 20,
                 yticklabelsize = 25
@@ -211,7 +212,7 @@ function PlotRatioFlowVariable(
             l1 = lines!(
                 ax,
                 datetime2rata.(var_GDP_Mavg.date),
-                var_SM.value[T+1:end]./GDP_SM.value[T+1:end]
+                (var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100
                 )
 
             
@@ -228,7 +229,7 @@ function PlotRatioFlowVariable(
             # Mean
             h1 = hlines!(
                 ax,
-                mean(var_SM.value[T+1:end]./GDP_SM.value[T+1:end]),
+                mean((var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100),
                 color = :black, 
                 linestyle = :dash
             )
@@ -236,7 +237,7 @@ function PlotRatioFlowVariable(
             # Median
             h2 = hlines!(
                 ax,
-                median(var_SM.value[T+1:end]./GDP_SM.value[T+1:end]),
+                median((var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100),
                 color = :black, 
                 linestyle = :dot
             )
@@ -259,7 +260,7 @@ function PlotRatioFlowVariable(
 
             Label(
                 fig[7,1], 
-                "Desviación estándar $(round(std(var_SM.value[T+1:end]./GDP_SM.value[T+1:end]), digits=4)) \t \t \t \t media $(round(mean(var_SM.value[T+1:end]./GDP_SM.value[T+1:end]), digits=4)) \t \t \t \t $(round(median(var_SM.value[T+1:end]./GDP_SM.value[T+1:end]), digits=4))",
+                "Desviación estándar $(round(std((var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4)) \t \t \t \t media $(round(mean((var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4)) \t \t \t \t $(round(median((var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4))",
                 fontsize = 18,
                 tellwidth = false,
                 halign = :center
@@ -267,7 +268,7 @@ function PlotRatioFlowVariable(
 
             # Plot 8
 
-            var_ola = ola_var(var_SM.date, var_SM.value./GDP_SM.value, T)
+            var_ola = ola_var(var_SM.date, (var_SM.value./GDP_SM.value).*100, T)
 
             tslines!(
                 Axis(
@@ -350,7 +351,7 @@ function PlotRatioStockVariable(
                     subtitle = "Millones de quetzales \nFrecuencia mensual",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}",
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 mdf.date,
                 mdf[:, var],
@@ -365,7 +366,7 @@ function PlotRatioStockVariable(
                     subtitle = "Millones de quetzales \nFrecuencia trimestral",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 qdf.date,
                 qdf[:, var],
@@ -381,7 +382,7 @@ function PlotRatioStockVariable(
                     subtitle = "Millones de quezales",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 var_Mavg.date,
                 var_Mavg.value,
@@ -396,7 +397,7 @@ function PlotRatioStockVariable(
                     subtitle = "Millones de quetzales \nFrecuencia trimestral",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 qdf.date,
                 qdf.GDP_nom,
@@ -412,7 +413,7 @@ function PlotRatioStockVariable(
                     subtitle = "Millones de quezales",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 GDP_SM.date,
                 GDP_SM.value,
@@ -426,7 +427,7 @@ function PlotRatioStockVariable(
                 subtitle = "Promedio móvil de $var_name y suma móvil PIB",
                 xticklabelsize = 17,
                 yticklabelsize = 25,
-                ytickformat = "{:.0f}"
+                ytickformat = v -> format.(v, commas=true, precision=0)
             )
 
             l1 = lines!(
@@ -440,7 +441,7 @@ function PlotRatioStockVariable(
                 yticklabelcolor = :red, 
                 yaxisposition = :right, 
                 yticklabelsize = 25,
-                ytickformat = "{:.0f}",
+                ytickformat = v -> format.(v, commas=true, precision=0),
                 xgridvisible = false,
                 ygridvisible = false
                 )
@@ -470,11 +471,11 @@ function PlotRatioStockVariable(
                 )
 
             # Plot 7
-            var_GDP_Mavg = moving_avg(var_Mavg.date, var_Mavg.value./GDP_SM.value, T)
+            var_GDP_Mavg = moving_avg(var_Mavg.date, (var_Mavg.value./GDP_SM.value).*100, T)
 
             ax = Axis(
                 fig[5,1],
-                title ="Cocientre",
+                title ="Cociente",
                 subtitle = "Numerador: Promedio móvil de $var_name\nDenominador: Suma móvil del PIB nominal",
                 xticklabelsize = 20,
                 yticklabelsize = 25
@@ -483,7 +484,7 @@ function PlotRatioStockVariable(
             l1 = lines!(
                 ax,
                 datetime2rata.(var_GDP_Mavg.date),
-                var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]
+                (var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100
                 )
 
             
@@ -500,7 +501,7 @@ function PlotRatioStockVariable(
             # Mean
             h1 = hlines!(
                 ax,
-                mean(var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]),
+                mean((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100),
                 color = :black, 
                 linestyle = :dash
             )
@@ -508,7 +509,7 @@ function PlotRatioStockVariable(
             # Median
             h2 = hlines!(
                 ax,
-                median(var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]),
+                median((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100),
                 color = :black, 
                 linestyle = :dot
             )
@@ -531,7 +532,7 @@ function PlotRatioStockVariable(
 
             Label(
                 fig[7,1],
-                "Desviación estándar $(round(std(var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]), digits=4)) \t \t \t \t media $(round(mean(var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]), digits=4)) \t \t \t \t mediana $(round(median(var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]), digits=4))", 
+                "Desviación estándar $(round(std((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4)) \t \t \t \t media $(round(mean((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4)) \t \t \t \t mediana $(round(median((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4))", 
                 fontsize = 18,
                 tellwidth = false,
                 halign = :center
@@ -539,7 +540,7 @@ function PlotRatioStockVariable(
 
             # Plot 8
 
-            var_ola = ola_var(var_Mavg.date, var_Mavg.value./GDP_SM.value, T)
+            var_ola = ola_var(var_Mavg.date, (var_Mavg.value./GDP_SM.value).*100, T)
 
             tslines!(
                 Axis(
@@ -621,7 +622,8 @@ function PlotGrowthVariable(
                 fig[1,1], 
                 title = var_name,
                 subtitle = sub_title,
-                xticklabelsize = 17
+                xticklabelsize = 17,
+                ytickformat = v -> format.(v, commas=true, precision=0)
                 ),
             qdf.date,
             qdf[:, var],
@@ -636,7 +638,7 @@ function PlotGrowthVariable(
                 title = "Suma móvil de $T trimestres del $var_name",
                 subtitle = sub_title,
                 xticklabelsize = 17,
-                ytickformat = "{:.0f}"
+                ytickformat = v -> format.(v, commas=true, precision=0)
                 ),
             GDPVariableSM.date,
             GDPVariableSM.value,
@@ -1124,7 +1126,7 @@ function PlotRatioFlowIPriv(
                     subtitle = "Millones de quetzales \nFrecuencia trimestral",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 qdf.date,
                 qdf[:, var],
@@ -1140,7 +1142,7 @@ function PlotRatioFlowIPriv(
                     subtitle = "Millones de quezales",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 var_Mavg.date,
                 var_Mavg.value,
@@ -1155,7 +1157,7 @@ function PlotRatioFlowIPriv(
                     subtitle = "Millones de quetzales \nFrecuencia trimestral",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 qdf.date,
                 qdf.GDP_nom,
@@ -1171,7 +1173,7 @@ function PlotRatioFlowIPriv(
                     subtitle = "Millones de quezales",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
-                    ytickformat = "{:.0f}"
+                    ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
                 GDP_SM.date,
                 GDP_SM.value,
@@ -1185,7 +1187,7 @@ function PlotRatioFlowIPriv(
                 subtitle = "Suma móvil de $var_name y suma móvil PIB",
                 xticklabelsize = 17,
                 yticklabelsize = 25,
-                ytickformat = "{:.0f}"
+                ytickformat = v -> format.(v, commas=true, precision=0)
             )
 
             l1 = lines!(
@@ -1199,7 +1201,7 @@ function PlotRatioFlowIPriv(
                 yticklabelcolor = :red, 
                 yaxisposition = :right, 
                 yticklabelsize = 25,
-                ytickformat = "{:.0f}",
+                ytickformat = v -> format.(v, commas=true, precision=0),
                 xgridvisible = false,
                 ygridvisible = false
                 )
@@ -1229,12 +1231,12 @@ function PlotRatioFlowIPriv(
                 )
 
             # Plot 7
-            var_GDP_Mavg = moving_avg(var_Mavg.date, var_Mavg.value./GDP_SM.value, T)
+            var_GDP_Mavg = moving_avg(var_Mavg.date, (var_Mavg.value./GDP_SM.value).*100, T)
 
             ax = Axis(
                 fig[3,2],
-                title ="Cocientre",
-                subtitle = "Numerador: Suma móvil de $var_name\nDenominador: Suma móvil del PIB nominal",
+                title ="Cociente de la suma móvil de $T trimestres",
+                subtitle = "Numerador: $var_name\nDenominador: PIB nominal",
                 xticklabelsize = 20,
                 yticklabelsize = 25
             )
@@ -1242,7 +1244,7 @@ function PlotRatioFlowIPriv(
             l1 = lines!(
                 ax,
                 datetime2rata.(var_GDP_Mavg.date),
-                var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]
+                (var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100
                 )
 
             
@@ -1259,7 +1261,7 @@ function PlotRatioFlowIPriv(
             # Mean
             h1 = hlines!(
                 ax,
-                mean(var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]),
+                mean((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100),
                 color = :black, 
                 linestyle = :dash
             )
@@ -1267,7 +1269,7 @@ function PlotRatioFlowIPriv(
             # Median
             h2 = hlines!(
                 ax,
-                median(var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]),
+                median((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100),
                 color = :black, 
                 linestyle = :dot
             )
@@ -1290,7 +1292,7 @@ function PlotRatioFlowIPriv(
 
             Label(
                 fig[5,2],
-                "Desviación estándar $(round(std(var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]), digits=4)) \t \t \t \t media $(round(mean(var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]), digits=4)) \t \t \t \t mediana $(round(median(var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]), digits=4))", 
+                "Desviación estándar $(round(std((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4)) \t \t \t \t media $(round(mean((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4)) \t \t \t \t mediana $(round(median((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4))", 
                 fontsize = 18,
                 tellwidth = false,
                 halign = :center
@@ -1298,7 +1300,7 @@ function PlotRatioFlowIPriv(
 
             # Plot 8
 
-            var_ola = ola_var(var_Mavg.date, var_Mavg.value./GDP_SM.value, T)
+            var_ola = ola_var(var_Mavg.date, (var_Mavg.value./GDP_SM.value).*100, T)
 
             tslines!(
                 Axis(

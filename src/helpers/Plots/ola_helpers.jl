@@ -23,7 +23,7 @@ end
 """
     Mavg(d::Vector{Date}, x::Vector)
     
-    Provde the simple moving average for a some variable.
+    Provde the simple moving average for a variable.
 """
 function SimpleMavg(d::Vector{Date}, x::Vector, T::Int)
 
@@ -133,7 +133,7 @@ function OlaRatiosFlowDict(qdf::DataFrame, variables::Vector{String}; T::Int = 4
             GDP_SM = SM(qdf.date, qdf.GDP_nom, T)
 
             # Ola variable
-            var_ola = ola_var(var_SM.date, var_SM.value./GDP_SM.value,  T)
+            var_ola = ola_var(var_SM.date, (var_SM.value./GDP_SM.value).*100,  T)
 
             Dict_ola[var] = var_ola
     end
@@ -168,7 +168,7 @@ function OlaRatiosStockDict(qdf::DataFrame, variables::Vector{String}; T::Int = 
             GDP_SM = SM(qdf.date, qdf.GDP_nom, T)
 
             # Ola variable
-            var_ola = ola_var(var_Stock.date, var_Stock.value./GDP_SM.value, T)
+            var_ola = ola_var(var_Stock.date, (var_Stock.value./GDP_SM.value).*100, T)
 
             Dict_ola[var] = var_ola
     end
