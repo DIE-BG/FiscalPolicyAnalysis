@@ -1,0 +1,185 @@
+---
+title: "Modelo Versión 1.1"
+subtitle: "Modelo inestable"
+format:
+  docx:
+    reference-doc: custom-reference.docx
+    toc: false
+    number-sections: false
+    lang: es
+---
+
+# Generalidades del modelo {#sec-generalidades}
+El modelo es de tipo VAR y cuenta con 17 varialbes y 17 ecuaciones, cada una de ellas estimadas de forma independiente mediante OLS. La @tbl-variables lista las variables que forman parte del modelo 
+
+|                       Variable                         |             Nombre                               |
+| ------------------------------------------------------ | ------------------------------------------------ |
+|   $\widetilde{y}^*$                                    | Crecimiento económico externo                    |
+|   $\widetilde{i}^{*}$                                  | Tasa de interés externa                          |
+|   $\widetilde{\pi}^{*}$                                | Inflación externa                                |
+|   $\widetilde{\left(\frac{IPub}{PIB}\right)}$          | Inversión pública                                |
+|   $\widetilde{\left(\frac{IngT}{PIB}\right)}$          | Ingresos Totales                                 |
+|   $\widetilde{\left(\frac{GFun}{PIB}\right)}$          | Gasto de funcionamiento                          |
+|   $\widetilde{\left(\frac{DPE}{PIB}\right)}$           | Deuda pública externa                            |
+|   $\widetilde{\left(\frac{Rem}{PIB}\right)}$           | Remesas                                          |
+|   $\widetilde{\left(\frac{DPI}{PIB}\right)}$           | Deuda pública interna                            |
+|   $\widetilde{\left(\frac{AEN}{PIB}\right)}$           | Activos externos netos                           |
+|   $\widetilde{\left(\frac{AIN}{PIB}\right)}$           | Activos internos netos                           |
+|   $\widetilde{i}$                                      | Tasa de interés líder de política monetaria      |
+|   $\widetilde{e}$                                      | Depreciación nominal                             |
+|   $\widetilde{\rho}$                                   | Prima por Riesgo-País                            |
+|   $\widetilde{\pi}$                                    | Inflación (curva de Phillips)                    |
+|   $\widetilde{y}$                                      | Crecimiento económico (curva IS)                 |
+|   $\widetilde{\left(\frac{IPriv}{PIB}\right)}$         | Inversión privada                                |
+: Lista de variables del modelo {#tbl-variables}
+
+Finalmente, el modelo cuenta con 53 parámetros $\alpha_{i,j}$ donde $i$ representa el número de ecuación y $j$ el número del parámetro dentro de la ecuación $i$.
+
+{{< pagebreak >}}
+
+# Resultados de la estimación {#sec-resultados}
+En esta sección se presentación los resultados de la estimación por OLS ecuación por ecuación. Los parámetros se encuentran en la siguiente matriz:
+
+| Variable | GDP_star_t-1 | i_star_t-1 | pi_star_t-1 | IPub_t-1 | IngT_t-1 | GFun_t-1 | DPE_t-1 | Rem_t-1 | DPI_t-1 | AEN_t-1 | AIN_t-1 | i_t-1 | e_t-1 | PREM_t-1 | pi_t-1 | GDP_t-1 | IPriv_t-1 |
+|:--|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+| GDP_star_t | 0.7544 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| i_star_t | 0.0 | 0.8661 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| pi_star_t | 0.0 | 0.0 | 0.8179 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| IPub_t | 0.0 | 0.0 | 0.0 | 0.7765 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| IngT_t | 0.0 | 0.0 | 0.0 | 0.0 | 0.8282 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| GFun_t | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.7678 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| DPE_t | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.8565 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| Rem_t | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.9598 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| DPI_t | 0.0 | 0.0 | 0.0 | 0.0934 | -0.0934 | 0.0934 | 0.0237 | 0.0 | 0.9103 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| AEN_t | 0.0 | 0.0 | -0.000305625 | 0.0 | 0.0 | 0.0 | -0.2378 | 0.0 | 0.0 | 0.9868 | 0.0 | 0.0 | -0.02306 | 0.0 | -0.1059 | 0.0 | 0.0 |
+| AIN_t | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.09169 | 0.0 | 0.8166 | 0.07519 | 0.0 | 0.0 | -0.01224 | 0.0 | 0.0 |
+| i_t | 0.0 | 0.2423 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.4887 | 0.0 | 0.0 | 0.1586 | -0.0005786 | 0.0 |
+| e_t | 0.0 | -0.2547 | 0.0 | 0.0 | 0.0 | 0.0 | -1.4362 | 0.0 | 0.0 | 1.4362 | 0.0 | 0.2547 | 0.7782 | -0.2547 | 0.0 | 0.0 | 0.0 |
+| PREM_t | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | -0.1502 | 0.0 | -0.1502 | 0.1501 | 0.1501 | 0.0 | 0.0 | 0.5235 | 0.0 | 0.0 | 0.0 |
+| pi_t | 0.0 | 0.0 | 0.9163 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | -0.2092 | -0.2091 | 0.0 | -0.1168 | 0.0 | 0.6716 | -0.1855 | 0.0 |
+| GDP_t | -0.351 | 0.0 | 0.0 | 0.2645 | 0.0 | 0.0 | 0.0 | -0.6066 | 0.0 | 1.7789 | 1.7789 | 0.0 | 0.0 | 0.0 | 0.0 | 1.1765 | 0.2645 |
+| IPriv_t | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.1316 | 0.0 | -0.1316 | 0.005417 | 0.0 | -0.1712 | 0.0 | 0.0 | 0.8419 |
+
+{{< pagebreak >}}
+
+# Estabilidad del modelo {#sec-estabilidad}
+Partiendo de la matriz presentada en la sección anterior se procedió a graficar sus eigen valores con el propósito de verificar que estos se encuentren dentro del círculo unitario. Cómo se puede observar en la @fig-eigen1 uno de los eigen valores se encuentra por fuera del círculo unitario, por lo cual el VAR es inestable.
+
+![](plots/unstable/eigenvalues.png){#fig-eigen1}
+
+En consecuencia los multiplicadores dinámicos resultaron ser explosivos para la mayoría de las variables. Los resultados se muestran en la @sec-anexo
+
+{{< pagebreak >}}
+
+# Solución mediante un factor de contracción
+Como resultado de la inestabilidad del sistema se trabajó en dos soluciones tentativas basadas en multiplicar la diagonal principal de la matriz de coeficientes.
+
+## Propuesta 1 {#sec-propuesta1}
+Se aplica un factor de contracción a la diagonal principal de la matriz de coeficientes de forma iterativa hasta que los eigen valores de dicha matriz sean menores a uno. Esta es la solución que actualmente se implementa en la herramienta de selección de modelos tipo SVAR.
+
+::: {custom-style="AlgorithmBlock"}
+| |
+|:---|
+| **Descripción del algoritmo:** Multiplicación iterativa de un factor de contracción. |
+| *iteracion 1* $A = 0.99 * A$ |
+| *iteracion 2* $A = 0.99 * A$ |
+| $\dots$ |
+| *iteracion n* $A = 0.99 * A$ |
+| _Nota:_ |El proceso finaliza cuando todos los eigen valores están dentro del cículo unitario. |
+:::
+
+## Propuesta 2 {#sec-propuesta2}
+Al igual que la *propuesta 1* se aplica un factor de contracción a la diagonal principal, pero este factor deae exponencialmente iteración a iteración.
+
+::: {custom-style="AlgorithmBlock"}
+| |
+|:---|
+| **Descripción del algoritmo:** Multiplicación iterativa de un factor de contracción. |
+| *iteracion 1* $A = 0.99 * A$ |
+| *iteracion 2* $A = 0.99 * A$ |
+| $\dots$ |
+| *iteracion n* $A = 0.99 * A$ |
+| _Nota:_ |El proceso finaliza cuando todos los eigen valores están dentro del cículo unitario. |
+:::
+
+La razón de aplicar el decaimiento exponencial se debe a que la *propuesta 1*, aunque se logra la estabilidad del sistema, sus multiplicadores dinámicos muestran una alta persistencia incluso en periodos tan largos como 30 años. Podrá observar el comportamiento de ambas soluciones en el @sec-anexo
+
+{{< pagebreak >}}
+
+# Anexo {#sec-anexo}
+
+# Estimación inicial
+
+![](plots/unstable/1_GDP_star.png)
+![](plots/unstable/2_i_star.png)
+![](plots/unstable/3_pi_star.png)
+![](plots/unstable/4_IPub.png)
+![](plots/unstable/5_IngT.png)
+![](plots/unstable/6_GFun.png)
+![](plots/unstable/7_DPE.png)
+![](plots/unstable/8_Rem.png)
+![](plots/unstable/9_DPI.png)
+![](plots/unstable/10_AEN.png)
+![](plots/unstable/11_AIN.png)
+![](plots/unstable/12_i.png)
+![](plots/unstable/13_e.png)
+![](plots/unstable/14_PREM.png)
+![](plots/unstable/15_pi.png)
+![](plots/unstable/16_GDP.png)
+![](plots/unstable/17_IPriv.png)
+
+# Propuesta 1
+![](plots/stable_shrking_1/1_GDP_star.png)
+![](plots/stable_shrking_1/2_i_star.png)
+![](plots/stable_shrking_1/3_pi_star.png)
+![](plots/stable_shrking_1/4_IPub.png)
+![](plots/stable_shrking_1/5_IngT.png)
+![](plots/stable_shrking_1/6_GFun.png)
+![](plots/stable_shrking_1/7_DPE.png)
+![](plots/stable_shrking_1/8_Rem.png)
+![](plots/stable_shrking_1/9_DPI.png)
+![](plots/stable_shrking_1/10_AEN.png)
+![](plots/stable_shrking_1/11_AIN.png)
+![](plots/stable_shrking_1/12_i.png)
+![](plots/stable_shrking_1/13_e.png)
+![](plots/stable_shrking_1/14_PREM.png)
+![](plots/stable_shrking_1/15_pi.png)
+![](plots/stable_shrking_1/16_GDP.png)
+![](plots/stable_shrking_1/17_IPriv.png)
+
+
+# Propuesta 2
+![](plots/stable_shrking_2/1_GDP_star.png)
+![](plots/stable_shrking_2/2_i_star.png)
+![](plots/stable_shrking_2/3_pi_star.png)
+![](plots/stable_shrking_2/4_IPub.png)
+![](plots/stable_shrking_2/5_IngT.png)
+![](plots/stable_shrking_2/6_GFun.png)
+![](plots/stable_shrking_2/7_DPE.png)
+![](plots/stable_shrking_2/8_Rem.png)
+![](plots/stable_shrking_2/9_DPI.png)
+![](plots/stable_shrking_2/10_AEN.png)
+![](plots/stable_shrking_2/11_AIN.png)
+![](plots/stable_shrking_2/12_i.png)
+![](plots/stable_shrking_2/13_e.png)
+![](plots/stable_shrking_2/14_PREM.png)
+![](plots/stable_shrking_2/15_pi.png)
+![](plots/stable_shrking_2/16_GDP.png)
+![](plots/stable_shrking_2/17_IPriv.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
