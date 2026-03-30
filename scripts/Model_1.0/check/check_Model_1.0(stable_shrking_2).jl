@@ -14,12 +14,13 @@ using DrWatson
 @quickactivate "FiscalPolicyAnalysis"
 
 using CairoMakie
+using DataFrames
 
 include(srcdir("helpers", "VAR_check", "VAR_check.jl"))
 include(srcdir("helpers", "VAR_check", "VAR_plots.jl"))
 
-##### Define the coefficients matrix
 
+##### Define the coefficients matrix
 A = 
     [
     0.7544   0.0      0.0          0.0      0.0     0.0      0.0      0.0      0.0       0.0      0.0     0.0        0.0       0.0      0.0       0.0        0.0;
@@ -48,7 +49,7 @@ A_Comp = companion(A; K = 17, P = 1)
 any(x -> x > 1, real.(eigvals(A_Comp))) # We can see that at least one eigenvalue is greater than 1
 
 # We ensured the stability of the system by multiplying the coefficients matrix by 0.99 as many times as necessary
-A_Forced = ForceStabilityExpDecrease(A; K = 17, P = 1, shrinking_type = "diagonal")
+A_Forced = ForceStabilityExpDecrease(A; K = 17, P = 1, shrinking_type = "all")
 
 # Check the stability of the system again
 # companion matrix
@@ -75,4 +76,4 @@ var_names = [
 DynamicMultipliersPlots(DM_model, var_names, save_path = plotsdir("Model_1.0", "stable_shrking_2"))
 
 # Export the coefficients matrix of the VAR system
-CSV.write(joinpath("results", "Model_1.0", "stable_shrking_2", "A_forced_shrking_2.csv"), Tables.table(A_Forced))
+CSV.write(joinpath("results", "Model_1.0", "stable_shrking_2", "A_forced_shrking_2.csv"), Tables.table(A_Forced)) 

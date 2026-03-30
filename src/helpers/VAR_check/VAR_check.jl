@@ -92,25 +92,31 @@ function ForceStability(A::Matrix; K::Int, P::Int, shrinking_type::String = "dia
 
     factor = 0.99
 
+    A_shrinking = copy(A)
+
+
     while any(x -> x > 1, real_eigenvalues)
 
         if shrinking_type == "diagonal"
 
-            A = factor * Matrix(I, 17, 17) * A
+            for i in 1:K
+
+                A_shrinking[i, i] = factor * A_shrinking[i, i]
+            end
 
         elseif shrinking_type == "all"
 
-            A = factor * A
+            A_shrinking = factor * A_shrinking
 
         end
 
-        A_comp = companion(A; K = K, P = P)
+        A_comp = companion(A_shrinking; K = K, P = P)
         
         real_eigenvalues = real.(eigvals(A_comp))
 
     end
 
-    return A
+    return A_shrinking
 end
 
 function ForceStabilityExpDecrease(A::Matrix; K::Int, P::Int, shrinking_type::String = "diagonal")
@@ -121,31 +127,35 @@ function ForceStabilityExpDecrease(A::Matrix; K::Int, P::Int, shrinking_type::St
 
     factor = 0.99
 
+    A_shrinking = copy(A)
+
     i = 1
 
     while any(x -> x > 1, real_eigenvalues)
 
         if shrinking_type == "diagonal"
 
-            A = factor^i * Matrix(I, 17, 17) * A
+            for j in 1:K
 
+                A_shrinking[j, j] = factor * A_shrinking[j, j]
+
+            end
             i += 1
-
         elseif shrinking_type == "all"
 
-            A = factor^i * A
+            A_shrinking = factor^i * A_shrinking
             
             i += 1
 
         end
 
-        A_comp = companion(A; K = K, P = P)
+        A_comp = companion(A_shrinking; K = K, P = P)
         
         real_eigenvalues = real.(eigvals(A_comp))
 
     end
 
-    return A
+    return A_shrinking
 
 
 end
