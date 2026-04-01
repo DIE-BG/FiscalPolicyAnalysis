@@ -28,7 +28,7 @@ function EigenPlot(λ::Vector; save_path::String)
     vlines!(ax, [0], linestyle=:dash)
 
 
-    save(plotsdir(save_path), fig, px_per_unit = 2.0)
+    save(save_path, fig, px_per_unit = 2.0)
 end
 
 """
@@ -70,6 +70,6 @@ function DynamicMultipliersPlots(Responses::Array, var_names::Vector; save_path:
 
         # Display or save the figure
         
-        save(plotsdir(save_path, "$j"*"_"*"$(var_names[j]).png"), fig, px_per_unit = 2.0)
+        save(joinpath(save_path, "$j"*"_"*"$(var_names[j]).png"), fig, px_per_unit = 2.0)
     end
 end

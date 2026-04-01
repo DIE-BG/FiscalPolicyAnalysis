@@ -1,0 +1,196 @@
+---
+Title: "Modelo Versión 1.1"
+format:
+  docx:
+    toc: false
+    number-sections: false
+    lang: es
+---
+
+# Generalidades del modelo
+El modelo es del tipo VAR y cuenta con 17 varialbes y 17 ecuaciones^[provisionalmente no se incluye la prima de riesgo país puesto que aún no se dispone de los datos], cada una de ellas estimadas de forma independiente mediante OLS.
+
+La @tbl-variables lista las variables que forman parte del modelo 
+
+|                       Variable                         |             Nombre                               |
+| ------------------------------------------------------ | ------------------------------------------------ |
+|   $\widetilde{y}^*$                                    | Crecimiento económico externo                    |
+|   $\widetilde{i}^{*}$                                  | Tasa de interés externa                          |
+|   $\widetilde{\pi}^{*}$                                | Inflación externa                                |
+|   $\widetilde{\left(\frac{IPub}{PIB}\right)}$          | Inversión pública                                |
+|   $\widetilde{\left(\frac{IngT}{PIB}\right)}$          | Ingresos Totales                                 |
+|   $\widetilde{\left(\frac{GFun}{PIB}\right)}$          | Gasto de funcionamiento                          |
+|   $\widetilde{\left(\frac{DPE}{PIB}\right)}$           | Deuda pública externa                            |
+|   $\widetilde{\left(\frac{Rem}{PIB}\right)}$           | Remesas                                          |
+|   $\widetilde{\left(\frac{DPI}{PIB}\right)}$           | Deuda pública interna                            |
+|   $\widetilde{\left(\frac{AEN}{PIB}\right)}$           | Activos externos netos                           |
+|   $\widetilde{\left(\frac{AIN}{PIB}\right)}$           | Activos internos netos                           |
+|   $\widetilde{i}$                                      | Tasa de interés líder de política monetaria      |
+|   $\widetilde{e}$                                      | Depreciación nominal                             |
+|   $\widetilde{\rho}$                                   | Prima por Riesgo-País                            |
+|   $\widetilde{\pi}$                                    | Inflación (curva de Phillips)                    |
+|   $\widetilde{y}$                                      | Crecimiento económico (curva IS)                 |
+|   $\widetilde{\left(\frac{IPriv}{PIB}\right)}$         | Inversión privada                                |
+: Lista de variables del modelo {#tbl-variables}
+
+Además, dada la estructura que se mostrará en la siguiente sección, el modelo cuenta con 53 parámetros $\alpha_{i,j}$ donde $i$ representa el número de ecuación y $j$ el número del parámetro dentro de la ecuación $i$.
+
+# Resultados de la estimación
+En esta sección se presentación los resultados de la estimación por OLS ecuación por ecuación. Con el propósito de tener una claridad respecto de la información que se presentará, primero se muestra la ecuación antes de la estimación e inmediatamente después la misma ecuación, pero se sustituyen los parámetros $\alpha_{i,j}$ por sus valores estimados.
+
+## Crecimiento económico externo
+$$
+\widetilde{y}_{t}^{*}=\alpha_{1,1}\widetilde{y}_{t-1}^{*}+u_{1,t}
+$$
+
+$$
+\widetilde{y}_{t}^{*}=0.7694\widetilde{y}_{t-1}^{*}+u_{1,t}
+$$
+
+## Tasa de interés externa
+$$
+\widetilde{i}_{t}^{*}=\alpha_{2,1}\widetilde{i}_{t-1}^{*}+u_{2,t}
+$$
+
+$$
+\widetilde{i}_{t}^{*}=0.9117\widetilde{i}_{t-1}^{*}+u_{2,t}
+$$
+
+## Inflación externa
+$$
+\widetilde{\pi}_{t}^{*}=\alpha_{3,1}\widetilde{\pi}_{t-1}^{*}+u_{3,t}
+$$
+
+$$
+\widetilde{\pi}_{t}^{*}=0.8207\widetilde{\pi}_{t-1}^{*}+u_{3,t}
+$$
+
+## Inversión pública
+$$
+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}=\alpha_{4,1}\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}+u_{4,t}
+$$
+
+$$
+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}=0.7475\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}+u_{4,t}
+$$
+
+## Ingresos totales
+
+$$
+\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}=\alpha_{5,1}\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}+u_{5,t}
+$$
+
+$$
+\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}=0.8291\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}+u_{5,t}
+$$
+
+## Gasto de funcionamiento
+
+$$
+\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}=\alpha_{6,1}\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+u_{6,t}
+$$
+
+$$
+\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}=0.7610\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+u_{6,t}
+$$
+
+## Deuda pública externa
+
+$$
+\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}=\alpha_{7,1}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+u_{7,t}
+$$
+
+$$
+\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}=0.8680\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+u_{7,t}
+$$
+
+
+## Remesas
+
+$$
+\widetilde{\left(\frac{Rem}{PIB}\right)}_{t}=\alpha_{8,1}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}+u_{8,t}
+$$
+
+$$
+\widetilde{\left(\frac{Rem}{PIB}\right)}_{t}=0.9558\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}+u_{8,t}
+$$
+
+## Deuda publica interna
+
+$$
+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=\alpha_{9,1}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\alpha_{9,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\alpha_{9,3}\left[\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}\right]+u_{9,t}
+$$
+
+$$
+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=0.91491\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+0.0206\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+0.2797\left[\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}\right]+u_{9,t}
+$$
+
+## Activos externos netos
+
+$$
+\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}=\alpha_{10,1}\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\alpha_{10,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\alpha_{10,3}\widetilde{\pi}_{t-1}^{*}+\alpha_{10,4}\widetilde{e}_{t-1}+\alpha_{10,5}\widetilde{\pi}_{t-1}+u_{10,t}
+$$
+
+$$
+\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}=0.9559\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+-0.1801\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-0.000006626\widetilde{\pi}_{t-1}^{*}-0.0002658\widetilde{e}_{t-1}-0.0009240\widetilde{\pi}_{t-1}+u_{10,t}
+$$
+
+## Activos internos netos
+
+$$
+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}=\alpha_{11,1}\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}+\alpha_{11,2}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\alpha_{11,3}\widetilde{i}_{t-1}+\alpha_{11,4}\widetilde{\pi}_{t-1}+u_{11,t}
+$$
+
+$$
+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}=0.8253\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}+0.0751\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+0.0006638\widetilde{i}_{t-1}-0.0001662\widetilde{\pi}_{t-1}+u_{11,t}
+$$
+
+## Tasa de interés líder de política monetaria
+
+$$
+\widetilde{i}_{t}=\alpha_{12,1}\widetilde{i}_{t-1}+\alpha_{12,2}\widetilde{i}_{t-1}^{*}+\alpha_{12,3}\widetilde{\pi}_{t-1}+\alpha_{12,4}\widetilde{y}_{t-1}+u_{12,t}
+$$
+
+$$
+\widetilde{i}_{t}=0.6429\widetilde{i}_{t-1}+0.1639\widetilde{i}_{t-1}^{*}+0.1391\widetilde{\pi}_{t-1}+0.0002521\widetilde{y}_{t-1}+u_{12,t}
+$$
+
+## Depreciación nominal
+
+$$
+\widetilde{e}_{t}=\alpha_{13,1}\widetilde{e}_{t-1}+\alpha_{13,2}\left[\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}\right]+\alpha_{13,3}\left(\widetilde{i}_{t-1}-\widetilde{i}_{t-1}^{*}-\widetilde{\rho}_{t-1}\right)+u_{13,t}
+$$
+
+$$
+\widetilde{e}_{t}=0.7699\widetilde{e}_{t-1}-131.97751\left[\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}\right]+0.67724\left(\widetilde{i}_{t-1}-\widetilde{i}_{t-1}^{*}-\widetilde{\rho}_{t-1}\right)+u_{13,t}
+$$
+
+## Inflación (curva de Phillips)
+
+$$
+\widetilde{\pi}_{t}=\alpha_{15,1}\widetilde{\pi}_{t-1}+\alpha_{15,2}\widetilde{y}_{t-1}+\alpha_{15,3}\widetilde{\pi}_{t-1}^{*}+\alpha_{15,4}\widetilde{e}_{t-1}+\alpha_{15,5}\left[\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+u_{15,t}
+$$
+
+$$
+\widetilde{\pi}_{t}=0.6816\widetilde{\pi}_{t-1}-0.1112\widetilde{y}_{t-1}+0.7532\widetilde{\pi}_{t-1}^{*}-0.1028\widetilde{e}_{t-1}+2.7686\left[\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+u_{15,t}
+$$
+
+## Crecimiento económico (curva IS)
+
+$$
+\widetilde{y}_{t}	=\alpha_{16,1}\widetilde{y}_{t-1}+\alpha_{16,2}\widetilde{y}_{t-1}^{*}+\alpha_{16,3}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}+\alpha_{16,4}\left[\widetilde{\left(\frac{IPubl}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t-1}\right]+\alpha_{16,5}\left[\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+u_{16,t}
+$$
+
+$$
+\widetilde{y}_{t}	=0.9483\widetilde{y}_{t-1}-0.1801\widetilde{y}_{t-1}^{*}-119.7506\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}+15.0995\left[\widetilde{\left(\frac{IPubl}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t-1}\right]+135.5846\left[\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+u_{16,t}
+$$
+
+## Inversión privada
+
+$$
+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}=\alpha_{17,1}\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t-1}+\alpha_{17,2}\widetilde{i}_{t-1}+\alpha_{17,3}\left[\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+\alpha_{17,4}\widetilde{\rho}_{t-1}+u_{17,t}
+$$
+
+$$
+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}=0.9117\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t-1}-0.0004785\widetilde{i}_{t-1}+0.1206\left[\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+\alpha_{17,4}\widetilde{\rho}_{t-1}+u_{17,t}
+$$

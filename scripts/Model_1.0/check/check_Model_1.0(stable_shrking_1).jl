@@ -5,10 +5,10 @@
 # For ensure stability of the VAR system we applied a shriking factor to the coefficients matrix.
 # The shriking algorithm is describe below:
 
-# A₂ = 0.99 * I * A₁ # For the first iteration and then the eigenvalues of A₂ are chicking
-# A₂ = 0.99 * I * A₁ # If the eivenvalues are outside the unite circle the process continues
+# A₂ = 0.99 * A₁ # For the first iteration and then the eigenvalues of A₂ are chicking
+# A₂ = 0.99 * A₁ # If the eivenvalues are outside the unite circle the process continues
 # ...
-# Aₙ = 0.99 * I * Aₙ₋₁ # The process ends untill all eigenvalues are inside the unit circle
+# Aₙ = 0.99 * Aₙ₋₁ # The process ends untill all eigenvalues are inside the unit circle
 
 using DrWatson
 @quickactivate "FiscalPolicyAnalysis"
@@ -58,7 +58,7 @@ A_Comp_Forced = companion(A_Forced; K = 17, P = 1)
 any(x -> x > 1, real.(eigvals(A_Comp_Forced))) # Any of the eigenvalues is greater than 1
 
 # Make the eigenvalues plot
-EigenPlot(eigvals(A_Forced); save_path = plotsdir("Model_1.0", "stable_shrking_1", "eigenvalues.png"))
+EigenPlot(eigvals(A_Forced); save_path = joinpath("Models", "Model_1.0", "plots", "Dynamic_multipliers_shrinking_1_proposal", "eigenvalues.png"))
 
 # Make the Dynamic Multipliers of the VAR system
 DM_model = DynamicMultipliers(A_Forced; K = 17, P = 1, T = 30*4, structural = false)
@@ -68,12 +68,12 @@ DM_model = DynamicMultipliers(A_Forced; K = 17, P = 1, T = 30*4, structural = fa
 var_names = [
     "GDP_star", "i_star", "pi_star", "IPub", "IngT", 
     "GFun", "DPE", "Rem", "DPI", "AEN", 
-    "AIN", "i", "e", "PREM", "pi", 
+    "AIN", "i", "e", "PREM", "pi",
     "GDP", "IPriv"
 ]
 
 # Plot the responses
-DynamicMultipliersPlots(DM_model, var_names, save_path = plotsdir("Model_1.0", "stable_shrking_1"))
+DynamicMultipliersPlots(DM_model, var_names, save_path = joinpath("Models", "Model_1.0", "plots", "Dynamic_multipliers_shrinking_1_proposal"))
 
 # Export the coefficients matrix of the VAR system
-CSV.write(joinpath("results", "Model_1.0", "stable_shrking_1", "A_forced_shrking_1.csv"), Tables.table(A_Forced))
+CSV.write(joinpath("Models", "Model_1.0", "A_matrix_shrinking_proposal_1", "A_matrix.csv"), Tables.table(A_Forced))

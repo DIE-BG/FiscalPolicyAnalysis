@@ -37,7 +37,7 @@ A =
 A_Comp = companion(A; K = 17, P = 1)
 
 # Plot the eigenvalues of the companion matrix
-EigenPlot(eigvals(A_Comp); save_path = plotsdir("Model_1.0", "unstable", "eigenvalues.png"))
+EigenPlot(eigvals(A_Comp); save_path = joinpath("Models", "Model_1.0", "plots", "Dynamic_multipliers_unstable", "eigenvalues.png"))
 
 # Make the Dynamic Multipliers of the VAR system
 DM_model = DynamicMultipliers(A; K = 17, P = 1, T = 30*4, structural = false)
@@ -52,4 +52,4 @@ var_names = [
 ]
 
 # Plot the responses
-DynamicMultipliersPlots(DM_model, var_names, save_path = plotsdir("Model_1.0", "unstable"))
+DynamicMultipliersPlots(DM_model, var_names, save_path = joinpath("Models", "Model_1.0", "plots", "Dynamic_multipliers_unstable"))

@@ -1,0 +1,146 @@
+---
+title: "Pronósticos según propuestas de factores de contracción"
+author: "Jorge Orenos"
+format: pptx
+---
+
+# Introducción
+
+A continuación se muestran los pronósticos de las 17 variables ola del modelo más el residuo número 9.
+
+# Propuesta 1 factor de contracción
+
+Se aplica un factor de contracción a la matriz de coeficientes de forma iterativa hasta que los eigen valores de dicha matriz sean menores a uno.
+
+| Algoritmo |
+|---|
+| **Descripción del algoritmo:** Multiplicación iterativa de un factor de contracción. |
+| *iteración 1:* \(A = 0.99 A\) |
+| *iteración 2:* \(A = 0.99 A\) |
+| \(\dots\) |
+| *iteración n:* \(A = 0.99 A\) |
+| *Nota:* El proceso finaliza cuando todos los eigenvalores están dentro del círculo unitario. |
+
+# Producto Externo
+![](plots_proposal_1/1GDP_star.png)
+
+# Tasa de interés externa
+![](plots_proposal_1/2i_star.png)
+
+# Inflación externa
+![](plots_proposal_1/3pi_star.png)
+
+# Inversión pública
+![](plots_proposal_1/4IPub.png)
+
+# Ingresos totales
+![](plots_proposal_1/5IngT.png)
+
+# Gasto de funcionamiento
+![](plots_proposal_1/6GFun.png)
+
+# Deuda pública externa
+![](plots_proposal_1/7DPE.png)
+
+# Remesas
+![](plots_proposal_1/8Rem.png)
+
+# Deuda pública interna
+![](plots_proposal_1/9DPI.png)
+
+# Activos externos netos
+![](plots_proposal_1/10AEN.png)
+
+# Activos internos netos
+![](plots_proposal_1/11AIN.png)
+
+# Tasa de interés de política monetaria
+![](plots_proposal_1/12i.png)
+
+# Depreciación cambiaria
+![](plots_proposal_1/13e.png)
+
+# Prima por riesgo país
+![](plots_proposal_1/14PREM.png)
+
+# Inflación doméstica
+![](plots_proposal_1/15pi.png)
+
+# Producto doméstico
+![](plots_proposal_1/16GDP.png)
+
+# Inversión Privada
+![](plots_proposal_1/17IPriv.png)
+
+# Resdiuo de deuda pública interna
+![](plots_proposal_1/18u_9.png)
+
+
+# Propuesta 2 factor de contracción
+
+Al igual que la *propuesta 1* se aplica un factor de contracción a la diagonal principal, pero este factor deae exponencialmente iteración a iteración.
+
+| Algoritmo |
+|---|
+| **Descripción del algoritmo:** Multiplicación iterativa de un factor de contracción. |
+| *iteración 1:* \(A = 0.99^1 A\) |
+| *iteración 2:* \(A = 0.99^2 A\) |
+| \(\dots\) |
+| *iteración n:* \(A = 0.99^n A\) |
+| *Nota:* El proceso finaliza cuando todos los eigenvalores están dentro del círculo unitario. |
+
+La razón de aplicar el decaimiento exponencial se debe a que la *propuesta 1*, aunque se logra la estabilidad del sistema, sus multiplicadores dinámicos muestran una alta persistencia incluso en periodos tan largos como 30 años. Podrá observar el comportamiento de ambas soluciones en el @sec-anexo
+
+# Producto Externo
+![](plots_proposal_2/1GDP_star.png)
+
+# Tasa de interés externa
+![](plots_proposal_2/2i_star.png)
+
+# Inflación externa
+![](plots_proposal_2/3pi_star.png)
+
+# Inversión pública
+![](plots_proposal_2/4IPub.png)
+
+# Ingresos totales
+![](plots_proposal_2/5IngT.png)
+
+# Gasto de funcionamiento
+![](plots_proposal_2/6GFun.png)
+
+# Deuda pública externa
+![](plots_proposal_2/7DPE.png)
+
+# Remesas
+![](plots_proposal_2/8Rem.png)
+
+# Deuda pública interna
+![](plots_proposal_2/9DPI.png)
+
+# Activos externos netos
+![](plots_proposal_2/10AEN.png)
+
+# Activos internos netos
+![](plots_proposal_2/11AIN.png)
+
+# Tasa de interés de política monetaria
+![](plots_proposal_2/12i.png)
+
+# Depreciación cambiaria
+![](plots_proposal_2/13e.png)
+
+# Prima por riesgo país
+![](plots_proposal_2/14PREM.png)
+
+# Inflación doméstica
+![](plots_proposal_2/15pi.png)
+
+# Producto doméstico
+![](plots_proposal_2/16GDP.png)
+
+# Inversión Privada
+![](plots_proposal_2/17IPriv.png)
+
+# Resdiuo de deuda pública interna
+![](plots_proposal_2/18u_9.png)

@@ -4,7 +4,7 @@ OLS
  %}
 
 % Load the "ola" variable
-data = databank.fromCSV('data/model_1/ola_variables.csv');
+data = databank.fromCSV('data/model_1.0/ola_variables.csv');
 
 % We will not create a function to estimate each equation; insted we,
 % will estimate the equation by building its table and then estimate the
