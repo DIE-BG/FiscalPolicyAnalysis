@@ -18,7 +18,7 @@ MODEL = solve(MODEL,'error=',true);
 get(MODEL, 'sstateLevel')
 
 %% Load the historical data
-d = databank.fromCSV(fullfile('data', 'model_1.0', 'initial_conditions.csv'));
+d = databank.fromCSV(fullfile('Models', 'Model_1.0', 'data', 'initial_conditions.csv'));
 
 %% Forecast
 % We define the start and end dates for forecast.
