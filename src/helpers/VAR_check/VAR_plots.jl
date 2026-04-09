@@ -42,23 +42,23 @@ end
     - save_path is the path to save the figures
 """
 
-function DynamicMultipliersPlots(Responses::Array, var_names::Vector; save_path::String)
+function DynamicMultipliersPlots(Responses::Array, shock_names::Vector, var_names::Vector; save_path::String)
 
-    for j in 1:17 # Create 17 separate figures, one per shock
+    for j in 1:length(shock_names) # Create 17 separate figures, one per shock
         fig = Figure(size = (1200, 1400))
         
         # Title for the specific shock
-        Label(fig[0, 1:3], "Respuestas al choque de $(var_names[j])", 
+        Label(fig[0, 1:4], "Respuestas al choque de $(var_names[j])", 
             fontsize = 32, font = :bold)
 
-        for i in 1:17 # Subplots for each responding variable
-            # Arrange in a 6x3 grid
-            row = (i - 1) ÷ 3 + 1
-            col = (i - 1) % 3 + 1
+        for i in 1:length(var_names) # Subplots for each responding variable
+            # Arrange in a 6x4 grid
+            row = (i - 1) ÷ 4 + 1
+            col = (i - 1) % 4 + 1
             
             ax = Axis(
                 fig[row, col], 
-                title = var_names[i], 
+                title = var_names[i],
                 titlesize = 20,
                 xlabelsize = 19,
                 ylabelsize = 19
