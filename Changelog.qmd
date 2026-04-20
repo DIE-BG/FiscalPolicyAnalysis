@@ -1,0 +1,18 @@
+# Changelog
+All versions of the model are documented in this file.
+
+# Version 1.1
+Model estimated as a VAR model. This doesn't incorporate an inflation target.
+
+## Variables used for estimating the model
+
+|"ola" variable                 |"ola" variable                 |"ola" variable             |
+|-------------------------------|-------------------------------|---------------------------|
+|Foreing economic growth        |External public debt           |Exchange rate              | 
+|Foreing policy interest rate   |Remittances                    |Country risk premium       |
+|Foreing core inflation         |Internal public debt           |Domestic core inflation    |
+|Public investment              |Net foreing assets             |Domestic economic growth   |
+|Total government revenue       |Net domestic assets            |Private investment         |
+|Government operating expenses  |Domestic policy interest rate  |                           |
+
+Due to the VAR system was resulted unstable, the stability of the model was improved by shrinking the coefficients matrix by multiplying that matrix by 0.99^2 until the model was stable.
