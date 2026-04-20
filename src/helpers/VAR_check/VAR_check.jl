@@ -155,7 +155,7 @@ function ForceStabilityExpDecrease(A::Matrix; K::Int, P::Int, shrinking_type::St
 
     end
 
-    return A_shrinking
+    return A_shrinking, i
 
 
 end
