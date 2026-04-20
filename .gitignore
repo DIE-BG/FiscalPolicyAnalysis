@@ -1,1 +1,2 @@
 *.png
+Models/Model_*/forecast/*.csv
