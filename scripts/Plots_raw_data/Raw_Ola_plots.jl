@@ -68,7 +68,7 @@ PlotGrowthVariable(
     Qdata, 
     ["GDP", "GDP_star"]; 
     varnames = ["PIB doméstico", "PIB de Estados Unidos"],
-    subtitles = ["Millones de quetzales", "Millones de dólares"], 
+    subtitles = ["Millones de quetzales \nAño de referencia 2013", "Miles de millones de dólares \nAño de referencia 2017"], 
     savepath = joinpath("ola", "growth"),
     T = 4
 )
