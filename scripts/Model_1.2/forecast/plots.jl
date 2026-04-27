@@ -1,3 +1,4 @@
+
 # Script that checks the stability of a proposed VAR system 
 # The VAR is assessed based on its eigenvalues and the 
 # behavior of the dynamic multipliers.

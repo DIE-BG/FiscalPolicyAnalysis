@@ -90,7 +90,7 @@ EigenPlot(eigvals(A_Comp); save_path = joinpath("Models", "Model_1.2", "plots", 
 DM_raw = DynamicMultipliers(A; K = 17, P = 1, T = 30*4, structural = false)
 
 # Pre-allocate a larger array to hold calculated variables (17 original + 6 new = 23)
-DM_model = zeros(23, 17, size(DM_raw, 3))
+DM_model = zeros(24, 17, size(DM_raw, 3))
 DM_model[1:17, :, :] .= DM_raw
 
 # Calculate the response of the Monetary base 
@@ -118,9 +118,14 @@ for i in 1:17
     DM_model[22, i, :] = DM_model[7, i, :] .- DM_model[10, i, :] .+ DM_model[9, i, :] .- DM_model[11, i, :]
 end
 
+# Calculate the response of DPT consolidated
+for i in 1:17
+    DM_model[23, i, :] = DM_model[7, i, :] .+ DM_model[9, i, :]
+end
+
 # Calculate the response of Total investment
 for i in 1:17
-    DM_model[23, i, :] = DM_model[4, i, :] + DM_model[17, i, :] 
+    DM_model[24, i, :] = DM_model[4, i, :] + DM_model[17, i, :] 
 end
 
 # ==== Plots =====
@@ -130,7 +135,7 @@ var_names = [
     "GFun", "DPE", "Rem", "DPI", "AEN", 
     "AIN", "i", "e", "PREM", "pi", 
     "GDP", "IPriv", L"M_{0}Ampliada", "z", "DPEC", 
-    "DPIC", "DPTC", "ITotal"
+    "DPIC", "DPTC", "DPT", "ITotal"
 ]
 
 # Define the names of the shocks (the original 17 variables)
