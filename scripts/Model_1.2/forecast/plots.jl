@@ -88,7 +88,7 @@ for i in 1:length(vars)
         ax,
         datetime2rata.(ForecastWithU9andU5Data.date),
         ForecastWithU9andU5Data[:, var],
-        label = "Escenario con efecto de u9 y correcció por u5",
+        label = "Escenario con efecto de u9 y corrección por u5",
         color = :green
     )
 
@@ -110,12 +110,14 @@ for i in 1:length(vars)
         label = "Fin de historia"
     )
 
-    hlines!(
-        ax,
-        0.0,
-        color = :black,
-        linewidth = 1
-    )
+    if occursin(r"\(ola\)", name)
+        hlines!(
+            ax,
+            0.0,
+            color = :black,
+            linewidth = 1
+        )
+    end
 
     Mudie.dateticks!(ax, first(FreeForecastData.date):last(FreeForecastData.date), step = Month(28))
 
