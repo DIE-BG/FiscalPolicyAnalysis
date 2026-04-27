@@ -11,7 +11,7 @@ using GLM
 
 # Load the "ola" variable
 # Assuming the path is relative to the project root as in the original script
-data = CSV.read("Models/Model_1.2/data/initial_conditions.csv", DataFrame)
+data = CSV.read("Models/Model_1.2/data/ola_variables.csv", DataFrame)
 
 # All equations are estimated from 2009Q1 to 2025Q3 (implied by the data slices)
 
@@ -39,8 +39,8 @@ coef(Eq_i_star)
 
 ## 3) Foreing core inflation
 FCoreCPITbl = DataFrame(
-    core_cpi_star = data.pi_star[2:end],
-    core_cpi_star_lag = data.pi_star[1:end-1]
+    core_cpi_star = data.core_cpi_star[2:end],
+    core_cpi_star_lag = data.core_cpi_star[1:end-1]
 )
 
 Eq_core_CPI_star = lm(@formula(core_cpi_star ~ 0 + core_cpi_star_lag), FCoreCPITbl)
@@ -116,7 +116,7 @@ AENTbl = DataFrame(
     AEN = data.AEN[2:end],
     AEN_lag = data.AEN[1:end-1],
     DPE_lag = data.DPE[1:end-1],
-    z = data.pi_star[1:end-1] + data.e[1:end-1] - data.pi[1:end-1],
+    z = data.core_cpi_star[1:end-1] + data.e[1:end-1] - data.core_cpi[1:end-1],
 )
 
 Eq_AEN = lm(@formula(AEN ~ 0 + AEN_lag + DPE_lag + z), AENTbl)
@@ -131,7 +131,7 @@ AINTbl = DataFrame(
     AIN_lag = data.AIN[1:end-1],
     DPI_lag = data.DPI[1:end-1],
     i_lag = data.i[1:end-1],
-    core_CPI_lag = data.pi[1:end-1]
+    core_CPI_lag = data.core_cpi[1:end-1]
 )
 
 Eq_AIN = lm(@formula(AIN ~ 0 + AIN_lag + DPI_lag + i_lag + core_CPI_lag), AINTbl)
@@ -146,7 +146,7 @@ iTbl = DataFrame(
     i = data.i[2:end],
     i_lag = data.i[1:end-1],
     i_star_lag = data.i_star[1:end-1],
-    core_cpi_lag = data.pi[1:end-1],
+    core_cpi_lag = data.core_cpi[1:end-1],
     GDP_lag = data.GDP[1:end-1]
 )
 
@@ -185,10 +185,10 @@ coef(Eq_PREM)
 
 ## 15) Domestic core inflation
 core_CPITbl = DataFrame(
-    core_CPI = data.pi[2:end],
-    core_CPI_lag = data.pi[1:end-1],
+    core_CPI = data.core_cpi[2:end],
+    core_CPI_lag = data.core_cpi[1:end-1],
     GDP_lag = data.GDP[1:end-1],
-    core_CPI_star_lag = data.pi_star[1:end-1],
+    core_CPI_star_lag = data.core_cpi_star[1:end-1],
     e_lag = data.e[1:end-1],
     MB_lag = data.AEN[1:end-1] .+ data.AIN[1:end-1]
 )
