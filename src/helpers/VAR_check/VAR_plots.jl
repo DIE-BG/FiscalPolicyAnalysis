@@ -64,9 +64,17 @@ function DynamicMultipliersPlots(Responses::Array, shock_names::Vector, var_name
                 ylabelsize = 19
                 )
             
-            lines!(ax, Responses[i, j, :], color = :blue, linewidth = 2)
+            i == j ? lines!(ax, Responses[i, j, :], color = :firebrick, linewidth = 2) : lines!(ax, Responses[i, j, :], color = :blue, linewidth = 2)
             hlines!(ax, [0], color = :black, linestyle = :dash) # Baseline
         end
+
+        note = (length(var_names) - 1) ÷ 4 + 1
+
+        Label(
+            fig[note + 1, 1:4], 
+            "*La respuesta dinámica en rojo representa la variable que recibe el choque",
+            fontsize = 15, font = :bold, halign = :left, color = :firebrick
+        )
 
         # Display or save the figure
         
