@@ -69,8 +69,12 @@ data_df_quarterly = dict_to_dataframe(data_dict_quarterly)
 #### Transform the data #####
 # the dataframe doen't have AEN and IPriv variables
 Data_df_quarterly_complete = @chain data_df_quarterly begin
-    @transform(:AEN = :BM -:AIN)
-    @transform(:IPriv = :ITotal -:IPub)
+    @transform(:AEN = :BM -:AIN) # External public debt
+    @transform(:DPEC = :DPE - :AEN) # Consolidating external public debt
+    @transform(:DPIC = :DPI - :AIN) # Consolidating internal public debt
+    @transform(:DPTC = :DPEC + :DPIC) # Total consolidationg public debt 
+    @transform(:DPT = :DPE + :DPI) # Total public debt
+    @transform(:IPriv = :ITotal - :IPub) # Total investment
     
 end
 

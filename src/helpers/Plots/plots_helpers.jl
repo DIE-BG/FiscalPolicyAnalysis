@@ -152,7 +152,7 @@ function PlotRatioFlowVariable(
             ax = Axis(
                 fig[3,2],
                 title = "Evolución conjunta de la suma móvil de $T trimestres",
-                subtitle = "$var_name y PIB",
+                subtitle = "$var_name y PIB (Millones de Q)",
                 xticklabelsize = 17,
                 yticklabelsize = 25,
                 ytickformat = v -> format.(v, commas=true, precision=0)
@@ -203,7 +203,7 @@ function PlotRatioFlowVariable(
 
             ax = Axis(
                 fig[5,1],
-                title ="Cociente de la suma móvil de $T trimestres",
+                title ="Cociente de la suma móvil de $T trimestres (%)",
                 subtitle = "Numerador: $var_name\nDenominador: PIB nominal",
                 xticklabelsize = 20,
                 yticklabelsize = 25
@@ -270,11 +270,14 @@ function PlotRatioFlowVariable(
 
             var_ola = ola_var(var_SM.date, (var_SM.value./GDP_SM.value).*100, T)
 
+            # We use this becaouse to ensure that the range of the plots is the same of the data used to estimate the model.
+            var_ola = @subset(var_ola, :date .>= Date(2009, 03, 01))
+
             tslines!(
                 Axis(
                     fig[5,2],
                     title = var_name,
-                    subtitle = "Representación \"ola\" de la variable",
+                    subtitle = "Representación \"ola\" de la variable (%)",
                     xticklabelsize = 20,
                     yticklabelsize = 25
                     ),
@@ -378,7 +381,7 @@ function PlotRatioStockVariable(
             tslines!(
                 Axis(
                     fig[2,1],
-                    title = "Promedio móvil de $T trimestres de $var_name",
+                    title = "Promedio móvil de $T trimestres \nde $var_name",
                     subtitle = "Millones de quezales",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
@@ -424,7 +427,7 @@ function PlotRatioStockVariable(
             ax = Axis(
                 fig[3,2],
                 title = "Evolución conjunta",
-                subtitle = "Promedio móvil de $var_name y suma móvil PIB",
+                subtitle = "Promedio móvil de $var_name y \nsuma móvil PIB (Millones de Q)",
                 xticklabelsize = 17,
                 yticklabelsize = 25,
                 ytickformat = v -> format.(v, commas=true, precision=0)
@@ -475,7 +478,7 @@ function PlotRatioStockVariable(
 
             ax = Axis(
                 fig[5,1],
-                title ="Cociente",
+                title ="Cociente (%)",
                 subtitle = "Numerador: Promedio móvil de $var_name\nDenominador: Suma móvil del PIB nominal",
                 xticklabelsize = 20,
                 yticklabelsize = 25
@@ -542,11 +545,14 @@ function PlotRatioStockVariable(
 
             var_ola = ola_var(var_Mavg.date, (var_Mavg.value./GDP_SM.value).*100, T)
 
+            # We use this becaouse to ensure that the range of the plots is the same of the data used to estimate the model.
+            var_ola = @subset(var_ola, :date .>= Date(2009, 03, 01))
+
             tslines!(
                 Axis(
                     fig[5,2],
                     title = var_name,
-                    subtitle = "Representación \"ola\" de la variable",
+                    subtitle = "Representación \"ola\" de la variable (%)",
                     xticklabelsize = 20,
                     yticklabelsize = 25
                     ),
@@ -597,7 +603,8 @@ function PlotGrowthVariable(
     qdf::DataFrame, 
     variables::Vector{String}; 
     varnames::Vector{String},
-    subtitles::Vector{String}, 
+    subtitles::Vector{String},
+    olatitles::Vector{String},
     savepath::String,
     T = 4
     )
@@ -606,6 +613,7 @@ function PlotGrowthVariable(
         var = variables[i]
         var_name = varnames[i]
         sub_title = subtitles[i]
+        ola_title = olatitles[i]
 
         fig = Figure(size = (1600, 1100), fontsize = 20)
 
@@ -652,7 +660,7 @@ function PlotGrowthVariable(
         ax = Axis(
             fig[2,1],
             title = "Suma móvil de $T trimestres del $var_name",
-            subtitle = "Tasa de variación interanual"
+            subtitle = "Tasa de variación interanual (%)"
         )
 
         l1 = lines!(ax, datetime2rata.(GDPGrowth_Mavg.date), GDPGrowth.value[T+1:end])
@@ -694,8 +702,8 @@ function PlotGrowthVariable(
         tslines!(
             Axis(
                 fig[2,2],
-                title = "Suma móvil de $T trimestres del $var_name",
-                subtitle = "Representación \"ola\" de la variable",
+                title = ola_title,
+                subtitle = "Representación \"ola\" de la variable (%)",
                 xticklabelsize = 17,
                 ),
             GDPOla.date,
@@ -740,7 +748,8 @@ function PlotPercentageRateVariable(
     mdf::DataFrame,  
     qdf::DataFrame, 
     variables::Vector{String}; 
-    varnames::Vector{String}, 
+    varnames::Vector{String},
+    olatitles::Vector{String},
     savepath::String, 
     T::Int
     )
@@ -748,13 +757,14 @@ function PlotPercentageRateVariable(
     for i in 1:length(variables)
         var = variables[i]
         var_name = varnames[i]
+        ola_title = olatitles[i]
 
             fig = Figure(size = (1800, 2500), fontsize = 30)
 
             Label(
                 fig[0,1:2], 
                 "Construcción de la variable \"ola\" para $var_name", 
-                fontsize = 45,
+                fontsize = 40,
                 font = :bold
                 )
 
@@ -794,7 +804,7 @@ function PlotPercentageRateVariable(
                 Axis(
                     fig[2,1],
                     title = var_name,
-                    subtitle = "variación interanual",
+                    subtitle = "Variación interanual (%)",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
                     ytickformat = "{:.0f}"
@@ -810,7 +820,7 @@ function PlotPercentageRateVariable(
             ax = Axis(
                 fig[2,2],
                 title = var_name,
-                subtitle = "Variación interanual",
+                subtitle = "Variación interanual (%)",
                 xticklabelsize = 20,
                 yticklabelsize = 25
             )
@@ -875,11 +885,14 @@ function PlotPercentageRateVariable(
 
             var_ola = ola_var(CPIyoy.date, CPIyoy.value, T)
 
+            # We use this becaouse to ensure that the range of the plots is the same of the data used to estimate the model.
+            var_ola = @subset(var_ola, :date .>= Date(2009, 03, 01))
+
             tslines!(
                 Axis(
                     fig[5,1:2],
-                    title = var_name,
-                    subtitle = "Representación \"ola\" de la variable",
+                    title = ola_title,
+                    subtitle = "Representación \"ola\" de la variable (%)",
                     xticklabelsize = 20,
                     yticklabelsize = 25
                     ),
@@ -929,7 +942,8 @@ function SimpleVariables(
     mdf::DataFrame,  
     qdf::DataFrame, 
     variables::Vector{String}; 
-    varnames::Vector{String}, 
+    varnames::Vector{String},
+    olatitles::Vector{String}, 
     savepath::String, 
     T::Int
     )
@@ -937,13 +951,14 @@ function SimpleVariables(
     for i in 1:length(variables)
         var = variables[i]
         var_name = varnames[i]
+        ola_title = olatitles[i]
 
-            fig = Figure(size = (1500, 900), fontsize = 30)
+            fig = Figure(size = (1500, 900), fontsize = 22)
 
             Label(
                 fig[0,1:2], 
                 "Construcción de la variable \"ola\" para $var_name", 
-                fontsize = 45,
+                fontsize = 30,
                 font = :bold
                 )
 
@@ -952,7 +967,7 @@ function SimpleVariables(
                 Axis(
                     fig[1,1], 
                     title = var_name,
-                    subtitle = "Frecuencia mensual",
+                    subtitle = "Frecuencia mensual (%)",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
                     ytickformat = "{:.0f}",
@@ -967,7 +982,7 @@ function SimpleVariables(
                 Axis(
                     fig[1,2],
                     title = var_name,
-                    subtitle = "Frecuencia trimestral",
+                    subtitle = "Frecuencia trimestral (%)",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
                     ytickformat = "{:.0f}"
@@ -977,12 +992,12 @@ function SimpleVariables(
                 figure = (; size = (400, 200)),
             )
 
-            # Plot 4
+            # Plot 3
             var_Mavg = moving_avg(qdf.date, qdf[:, var], T)
 
             ax = Axis(
                 fig[2,1],
-                title = var_name,
+                title = var_name * " (%)",
                 xticklabelsize = 20,
                 yticklabelsize = 25
             )
@@ -1043,15 +1058,18 @@ function SimpleVariables(
                 halign = :center
                 )
 
-            # Plot 5
+            # Plot 4
 
             var_ola = ola_var(qdf.date, qdf[:, var], T)
+
+            # We use this becaouse to ensure that the range of the plots is the same of the data used to estimate the model.
+            var_ola = @subset(var_ola, :date .>= Date(2009, 03, 01))
 
             tslines!(
                 Axis(
                     fig[2,2],
-                    title = var_name,
-                    subtitle = "Representación \"ola\" de la variable",
+                    title = ola_title,
+                    subtitle = "Representación \"ola\" de la variable (%)",
                     xticklabelsize = 20,
                     yticklabelsize = 25
                     ),
@@ -1134,7 +1152,7 @@ function PlotRatioFlowIPriv(
             )
 
             # Plot 2
-            var_Mavg = SM(qdf.date, qdf[:, var], T)
+            var_SM = SM(qdf.date, qdf[:, var], T)
             tslines!(
                 Axis(
                     fig[1,2],
@@ -1144,12 +1162,12 @@ function PlotRatioFlowIPriv(
                     yticklabelsize = 25,
                     ytickformat = v -> format.(v, commas=true, precision=0)
                     ),
-                var_Mavg.date,
-                var_Mavg.value,
+                var_SM.date,
+                var_SM.value,
                 figure = (; size = (400, 200)),
             )
 
-            # Plot 4
+            # Plot 3
             tslines!(
                 Axis(
                     fig[2,1],
@@ -1164,12 +1182,12 @@ function PlotRatioFlowIPriv(
                 figure = (; size = (400, 200)),
             )
 
-            # Plot 5
+            # Plot 4 
             GDP_SM = SM(qdf.date, qdf.GDP_nom, T)
             tslines!(
                 Axis(
                     fig[2,2],
-                    title = "Suma móvil de $T trimestres del PIB nominal de Guatemala",
+                    title = "Suma móvil de $T trimestres \ndel PIB nominal de Guatemala",
                     subtitle = "Millones de quezales",
                     xticklabelsize = 17,
                     yticklabelsize = 25,
@@ -1180,11 +1198,11 @@ function PlotRatioFlowIPriv(
                 figure = (; size = (400, 200)),
             )
 
-            # Plot 6
+            # Plot 5
             ax = Axis(
                 fig[3,1],
                 title = "Evolución conjunta",
-                subtitle = "Suma móvil de $var_name y suma móvil PIB",
+                subtitle = "Suma móvil de $var_name y \nsuma móvil PIB (Millones de Q)",
                 xticklabelsize = 17,
                 yticklabelsize = 25,
                 ytickformat = v -> format.(v, commas=true, precision=0)
@@ -1192,8 +1210,8 @@ function PlotRatioFlowIPriv(
 
             l1 = lines!(
                 ax,
-                datetime2rata.(var_Mavg.date),
-                var_Mavg.value
+                datetime2rata.(var_SM.date),
+                var_SM.value
             )
 
             ax2 = Axis(
@@ -1218,7 +1236,7 @@ function PlotRatioFlowIPriv(
 
             linkxaxes!(ax, ax2)
 
-            Mudie.dateticks!(ax, first(var_Mavg.date):last(var_Mavg.date))
+            Mudie.dateticks!(ax, first(var_SM.date):last(var_SM.date))
 
             Legend(
                 fig[4,1], 
@@ -1230,12 +1248,12 @@ function PlotRatioFlowIPriv(
                 labelsize = 18
                 )
 
-            # Plot 7
-            var_GDP_Mavg = moving_avg(var_Mavg.date, (var_Mavg.value./GDP_SM.value).*100, T)
+            # Plot 6
+            var_GDP_Mavg = moving_avg(var_SM.date, (var_SM.value./GDP_SM.value).*100, T)
 
             ax = Axis(
                 fig[3,2],
-                title ="Cociente de la suma móvil de $T trimestres",
+                title ="Cociente (%)",
                 subtitle = "Numerador: $var_name\nDenominador: PIB nominal",
                 xticklabelsize = 20,
                 yticklabelsize = 25
@@ -1244,7 +1262,7 @@ function PlotRatioFlowIPriv(
             l1 = lines!(
                 ax,
                 datetime2rata.(var_GDP_Mavg.date),
-                (var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100
+                (var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100
                 )
 
             
@@ -1256,12 +1274,12 @@ function PlotRatioFlowIPriv(
                 color = :red
                 )
 
-            Mudie.dateticks!(ax, first(var_Mavg.date):last(var_Mavg.date))
+            Mudie.dateticks!(ax, first(var_SM.date):last(var_SM.date))
 
             # Mean
             h1 = hlines!(
                 ax,
-                mean((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100),
+                mean((var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100),
                 color = :black, 
                 linestyle = :dash
             )
@@ -1269,7 +1287,7 @@ function PlotRatioFlowIPriv(
             # Median
             h2 = hlines!(
                 ax,
-                median((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100),
+                median((var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100),
                 color = :black, 
                 linestyle = :dot
             )
@@ -1292,7 +1310,7 @@ function PlotRatioFlowIPriv(
 
             Label(
                 fig[5,2],
-                "Desviación estándar $(round(std((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4)) \t \t \t \t media $(round(mean((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4)) \t \t \t \t mediana $(round(median((var_Mavg.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4))", 
+                "Desviación estándar $(round(std((var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4)) \t \t \t \t media $(round(mean((var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4)) \t \t \t \t mediana $(round(median((var_SM.value[T+1:end]./GDP_SM.value[T+1:end]).*100), digits=4))", 
                 fontsize = 18,
                 tellwidth = false,
                 halign = :center
@@ -1300,7 +1318,10 @@ function PlotRatioFlowIPriv(
 
             # Plot 8
 
-            var_ola = ola_var(var_Mavg.date, (var_Mavg.value./GDP_SM.value).*100, T)
+            var_ola = ola_var(var_SM.date, (var_SM.value./GDP_SM.value).*100, T)
+
+            # We use this becaouse to ensure that the range of the plots is the same of the data used to estimate the model.
+            var_ola = @subset(var_ola, :date .>= Date(2009, 03, 01))
 
             tslines!(
                 Axis(

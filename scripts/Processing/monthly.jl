@@ -1,17 +1,17 @@
 using DrWatson
 @quickactivate "FiscalPolicyAnalysis"
 
-##### Load the packages #####
+# ===== Load the packages =====
 using CSV, DataFrames, DataFramesMeta
 using Statistics, Dates
 
 include(srcdir("helpers", "Processing", "processing_helpers.jl"))
 
-##### Load FRED data #####
+# ===== Load FRED data =====
 dataFRED = CSV.read(datadir("processing", "FRED", "Mdata.csv"), DataFrame)
 dataFRED.date = Date.(dataFRED.date, "dd/mm/yyyy")
 
-##### Load BG data (data comes from the Banguat website) #####
+# ===== Load BG data (data comes from the Banguat website) =====
 # The data will be loaded as a dictionary, and then vectorized
 data_dir = datadir("processing", "BG", "matrix_data")
 data_dict = Dict(
@@ -21,7 +21,7 @@ data_dict = Dict(
 # We will vectorize the data, since it comes from the source in matrix form.
 data_dict = vectorize_data(data_dict)
 
-##### load exchange rate data #####
+# ===== load exchange rate data =====
 # Before 2006-12-2 there are no values for the reference exchance rate TCR. We define the TCR as a average
 # between the buy and sell exchange rate. See the JM 126-2006 legal resolution.
 # I define the exchange rate as the last value observed within the month.
@@ -38,12 +38,12 @@ end
 e = combine(groupby(e, :date), last)
 # e dataframe contains the data in monthly frequency and we use it to express the DPE and Rem in local currency. 
 
-##### load core inflation, nominal and real GDP, ITotal and interest rate #####
+# ===== load core inflation, nominal and real GDP, ITotal and interest rate =====
 # inflation
 monthly_BG = CSV.read(datadir("processing", "BG", "Monthly_BG.csv"), DataFrame)
 monthly_BG.date = Date.(monthly_BG.date, "dd/mm/yyyy")
 
-##### Express DPE and Rem in local currency #####
+# ===== Express DPE and Rem in local currency =====
 # DPE
 DPE_df = data_dict["DPE"]
 DPE_df.value = e[(e.date .>= DPE_df.date[begin]) .& (e.date .<= DPE_df.date[end]), :e] .* DPE_df.value
@@ -56,7 +56,7 @@ Rem_df.value = e[(e.date .>= Rem_df.date[begin]) .& (e.date .<= Rem_df.date[end]
 Rem_df.value = round.(Rem_df.value; digits = 2)
 data_dict["Rem"] = Rem_df
 
-##### Create a new data frame
+# ===== Create a new data frame
 data_dict["e"] = DataFrame(date = e.date, value = e.e)
 data_dict["core_cpi"] = DataFrame(date = monthly_BG.date, value = monthly_BG.core_inflation)
 data_dict["i"] = DataFrame(date = monthly_BG.date, value = monthly_BG.i)
@@ -68,8 +68,13 @@ data_df_monthly = dict_to_dataframe(data_dict)
 
 #### Transform the data #####
 # the dataframe doen't have AEN and IPriv variables
+# We create the AEN variable
 Data_df_monthly_complete = @chain data_df_monthly begin
-    @transform(:AEN = :BM -:AIN)
+    @transform(:AEN = :BM -:AIN) # External net assets
+    @transform(:DPEC = :DPE - :AEN) # Consolidating external public debt
+    @transform(:DPIC = :DPI - :AIN) # Consolidating internal public debt
+    @transform(:DPTC = :DPEC + :DPIC) # Total consolidationg public debt
+    @transform(:DPT = :DPE + :DPI) # Total public debt
 end
 
 # export the data
