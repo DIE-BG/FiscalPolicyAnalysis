@@ -67,8 +67,8 @@ u5_path = [];
 U16_path = [];
 
 % We define the start and end dates for forecast.
-StartPred = qq(2025,4);
-EndPred = qq(2025,4)+124;
+StartPred = qq(2026,1);
+EndPred = StartPred+123;
 
 for i = 1:length(StartPred:EndPred)
     
@@ -79,7 +79,7 @@ for i = 1:length(StartPred:EndPred)
     end
     
     if i == 1
-       u16 = -0.45;
+       u16 = -0.7186;
     else
        u16 = 0;
     end
@@ -134,11 +134,11 @@ for i = 1:length(StartPred:EndPred)
 end
 
 Forecast.u9(qq(2009, 1):StartPred) = F.u9;
-Forecast.u9(qq(2025, 4):EndPred) = u9_path;
+Forecast.u9(StartPred:EndPred) = u9_path;
 Forecast.u5(qq(2009, 1):StartPred) = F.u5;
-Forecast.u5(qq(2025, 4):EndPred) = u5_path;
+Forecast.u5(StartPred:EndPred) = u5_path;
 Forecast.u16(qq(2009, 1):StartPred) = F.u16;
-Forecast.u16(qq(2025, 4):EndPred) = u16_path;
+Forecast.u16(StartPred:EndPred) = u16_path;
 
 % Export the data
-databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_base.csv'), Inf);
+%databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_base.csv'), Inf);

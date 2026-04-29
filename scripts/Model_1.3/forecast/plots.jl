@@ -1,7 +1,6 @@
-# Script that checks the stability of a proposed VAR system 
-# The VAR is assessed based on its eigenvalues and the 
-# behavior of the dynamic multipliers.
-
+#=
+    Scritp to plots the forecast of the model
+=#
 using DrWatson
 @quickactivate "FiscalPolicyAnalysis"
 
@@ -10,37 +9,31 @@ using CSV, DataFrames, DataFramesMeta, Dates
 using Mudie
 using TerminalPager
 
+ModelPath = "Model_1.3"
+
 # ===== Check if the forecast plots folder exists, if not, create it =====
-    if !isdir(joinpath("Models", "Model_1.2", "plots", "forecast"))
+if !isdir(joinpath("Models", ModelPath, "plots", "forecast"))
 
-        mkdir(joinpath("Models", "Model_1.2", "plots", "forecast"))
-            println("The folder for the forecast plots has been created.")
+    mkdir(joinpath("Models", ModelPath, "plots", "forecast"))
+        println("The folder for the forecast plots has been created.")
 
-    else
-        println("The folder for the forecast plots already exists.")
-    end
+else
+    println("The folder for the forecast plots already exists.")
+end
 
 
 ##### We will plot the series for the model only exogenize the variable u9
 # Load free forecast data
-FreeForecastData = CSV.read(joinpath("Models", "Model_1.2", "forecast", "free_forecast.csv"), DataFrame; skipto = 12, select = 2:51)
-FreeForecastData.date = collect(Date(2009, 3):Month(3):Date(2056, 12))
+base_escenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_base.csv"), DataFrame; skipto = 12, select = 2:52)
+base_escenario.date = collect(Date(2009, 3):Month(3):Date(2056, 12))
 
 # load variables names
-var_names = CSV.read(joinpath("Models", "Model_1.2", "forecast", "free_forecast.csv"), DataFrame; limit = 1, select = 2:51)
-vars = names(FreeForecastData)[1:end-1]
-
-# Load forecast with u9 path
-ForecastWithU9Data = CSV.read(joinpath("Models", "Model_1.2", "forecast", "forecast_with_u9_path.csv"), DataFrame; skipto = 12, select = 2:51)
-ForecastWithU9Data.date = collect(Date(2009, 3):Month(3):Date(2056, 12))
-
-# Load forecast with u5 and u9 paths
-ForecastWithU9andU5Data = CSV.read(joinpath("Models", "Model_1.2", "forecast", "forecast_with_u9_and_u5_path.csv"), DataFrame; skipto = 12, select = 2:51)
-ForecastWithU9andU5Data.date = collect(Date(2009, 3):Month(3):Date(2056, 12))
+var_names = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_base.csv"), DataFrame; limit = 1, select = 2:52)
+vars = names(base_escenario)[1:end-1]
 
 # Create the data frame only with historical data
-HistoricalData = @chain FreeForecastData begin
-    @subset :date .<= Date(2025, 9)
+HistoricalData = @chain base_escenario begin
+    @subset :date .<= Date(2025, 12)
 end
 
 # ===== Plot the series =====
@@ -67,28 +60,10 @@ for i in 1:length(vars)
     # Forecast from free scenario
     lines!(
         ax,
-        datetime2rata.(FreeForecastData.date),
-        FreeForecastData[:, var],
-        label = "VAR libre",
+        datetime2rata.(base_escenario.date),
+        base_escenario[:, var],
+        label = "Escenario base",
         color = :blue
-    )
-
-    # Forecast With u9 path
-    lines!(
-        ax,
-        datetime2rata.(ForecastWithU9Data.date),
-        ForecastWithU9Data[:, var],
-        label = "Escenario con efecto de u9",
-        color = :red
-    )
-
-    # Forecast With u5 and u9 paths
-    lines!(
-        ax,
-        datetime2rata.(ForecastWithU9andU5Data.date),
-        ForecastWithU9andU5Data[:, var],
-        label = "Escenario con efecto de u9 y corrección por u5",
-        color = :green
     )
 
     # Historial data
@@ -102,7 +77,7 @@ for i in 1:length(vars)
 
     vlines!(
         ax,
-        datetime2rata.(Date(2025, 9)),
+        datetime2rata.(Date(2025, 12)),
         linestyle = :dash,
         color = :black,
         linewidth = 0.75,
@@ -118,52 +93,25 @@ for i in 1:length(vars)
         )
     end
 
-    Mudie.dateticks!(ax, first(FreeForecastData.date):last(FreeForecastData.date), step = Month(28))
+    Mudie.dateticks!(ax, first(base_escenario.date):last(base_escenario.date), step = Month(28))
 
     Legend(fig[2,1], ax, orientation = :horizontal, framevisible = false, padding = (10, 10, 10, 10), spacing = 20, labelsize = 18)
 
     # ===== table =====
     tbl = fig[3, 1] = GridLayout()
 
-    headers = ["Escenario", "2025Q3", "2025Q4", "2026Q1", "2026Q2", "2026Q3", "2026Q4", "2036Q4", "2046Q4", "2056Q1"]
+    headers = ["Escenario", "2025Q4", "2026Q1", "2026Q2", "2026Q3", "2026Q4", "2036Q4", "2046Q4", "2056Q1"]
     data = [
             (
-                "VAR libre", 
-                FreeForecastData[FreeForecastData.date .== Date(2025, 9, 1), var], 
-                FreeForecastData[FreeForecastData.date .== Date(2025, 12, 1), var],
-                FreeForecastData[FreeForecastData.date .== Date(2026, 3, 1), var],
-                FreeForecastData[FreeForecastData.date .== Date(2026, 6, 1), var],
-                FreeForecastData[FreeForecastData.date .== Date(2026, 9, 1), var],
-                FreeForecastData[FreeForecastData.date .== Date(2025, 12, 1), var],
-                FreeForecastData[FreeForecastData.date .== Date(2036, 12, 1), var],
-                FreeForecastData[FreeForecastData.date .== Date(2046, 12, 1), var],
-                FreeForecastData[FreeForecastData.date .== Date(2056, 12, 1), var]
-            ),
-
-            (
-                "Escenario con \nefecto de u9", 
-                ForecastWithU9Data[ForecastWithU9Data.date .== Date(2025, 9, 1), var], 
-                ForecastWithU9Data[ForecastWithU9Data.date .== Date(2025, 12, 1), var],
-                ForecastWithU9Data[ForecastWithU9Data.date .== Date(2026, 3, 1), var],
-                ForecastWithU9Data[ForecastWithU9Data.date .== Date(2026, 6, 1), var],
-                ForecastWithU9Data[ForecastWithU9Data.date .== Date(2026, 9, 1), var],
-                ForecastWithU9Data[ForecastWithU9Data.date .== Date(2025, 12, 1), var],
-                ForecastWithU9Data[ForecastWithU9Data.date .== Date(2036, 12, 1), var],
-                ForecastWithU9Data[ForecastWithU9Data.date .== Date(2046, 12, 1), var],
-                ForecastWithU9Data[ForecastWithU9Data.date .== Date(2056, 12, 1), var]
-            ),
-
-            (
-                "Escenario con \nefecto de u9 y \ncorrecció por u5", 
-                ForecastWithU9andU5Data[ForecastWithU9andU5Data.date .== Date(2025, 9, 1), var], 
-                ForecastWithU9andU5Data[ForecastWithU9andU5Data.date .== Date(2025, 12, 1), var],
-                ForecastWithU9andU5Data[ForecastWithU9andU5Data.date .== Date(2026, 3, 1), var],
-                ForecastWithU9andU5Data[ForecastWithU9andU5Data.date .== Date(2026, 6, 1), var],
-                ForecastWithU9andU5Data[ForecastWithU9andU5Data.date .== Date(2026, 9, 1), var],
-                ForecastWithU9andU5Data[ForecastWithU9andU5Data.date .== Date(2025, 12, 1), var],
-                ForecastWithU9andU5Data[ForecastWithU9andU5Data.date .== Date(2036, 12, 1), var],
-                ForecastWithU9andU5Data[ForecastWithU9andU5Data.date .== Date(2046, 12, 1), var],
-                ForecastWithU9andU5Data[ForecastWithU9andU5Data.date .== Date(2056, 12, 1), var]
+                "Escenario base", 
+                base_escenario[base_escenario.date .== Date(2025, 12, 1), var],
+                base_escenario[base_escenario.date .== Date(2026, 3, 1), var],
+                base_escenario[base_escenario.date .== Date(2026, 6, 1), var],
+                base_escenario[base_escenario.date .== Date(2026, 9, 1), var],
+                base_escenario[base_escenario.date .== Date(2025, 12, 1), var],
+                base_escenario[base_escenario.date .== Date(2036, 12, 1), var],
+                base_escenario[base_escenario.date .== Date(2046, 12, 1), var],
+                base_escenario[base_escenario.date .== Date(2056, 12, 1), var]
             ),
     ]
 
@@ -189,6 +137,6 @@ for i in 1:length(vars)
 
     resize_to_layout!(fig)
 
-    save(joinpath("Models","Model_1.2", "plots", "forecast", string(i)*"_"*var*".png"), fig, px_per_unit = 2)
+    save(joinpath("Models",ModelPath, "plots", "forecast", string(i)*"_"*var*".png"), fig, px_per_unit = 2)
 
 end
