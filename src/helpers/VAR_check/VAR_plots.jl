@@ -107,19 +107,25 @@ function DynamicMultipliersPlots(Responses_dict::Dict, shock_names::Vector, var_
             for d in keys(Responses_dict)
                 Responses = Responses_dict[d]
 
-                i == j ? lines!(ax, Responses[i, j, :], color = :firebrick, linewidth = 2) : lines!(ax, Responses[i, j, :], color = :blue, linewidth = 2)
+                i == j ? lines!(ax, Responses[i, j, :], color = :firebrick, linewidth = 2, label = d) : lines!(ax, Responses[i, j, :], linewidth = 2, label = d)
                 hlines!(ax, [0], color = :black, linestyle = :dash) # Baseline
+
             end
+
+            if i == length(var_names)
+                Legend(fig[row + 1, 1:4], ax, framevisible = false, orientation  = :horizontal, tellwidth = false)
+            end
+
         end
 
         note = (length(var_names) - 1) ÷ 4 + 1
 
         Label(
-            fig[note + 1, 1:4], 
+            fig[note + 2, 1:4], 
             "*La respuesta dinámica en rojo representa la variable que recibe el choque",
             fontsize = 15, font = :bold, halign = :left, color = :firebrick
         )
-
+        
         # Display or save the figure
         
         save(joinpath(save_path, "$j"*"_"*"$(var_names[j]).png"), fig, px_per_unit = 2.0)
