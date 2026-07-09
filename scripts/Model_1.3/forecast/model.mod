@@ -49,44 +49,46 @@ m_IPriv_ratio = IPriv_ratio;
 'Cociente de Remesas a PIB nominal doméstico (%)'                                               Rem_ratio,
 'Cociente de Deuda pública interna a PIB nominal doméstico (%)'                                 DPI_ratio,
 'Cociente de Activos externos netos a PIB nominal doméstico (%)'                                AEN_ratio,
-'Cociente de Activos internos netos a PIb nominal doméstico (%)'                                AIN_ratio,
+'Cociente de Activos internos netos a PIB nominal doméstico (%)'                                AIN_ratio,
 'Tasa de interés de política monetaria (%)'                                                     i,
 'Tasa de depreciación cambiaria (%)'                                                            e_yoy,
 'Prima por riesgo país (%)'                                                                     PREM,
 'Inflación doméstica (%)'                                                                       pi_yoy,
 'Tasa de crecimiento interanual de la suma movil de 4T del PIB doméstico (%)'                   GDP_SM_yoy,
 'Cociente de Inversión privada a PIB nominal doméstico (%)'                                     IPriv_ratio,
-'Crecimiento económico externo (ola)'                                                       GDP_star_ola,
-'Tasa de interés externa (ola)'                                                             i_star_ola,
-'Inflación externa (ola)'                                                                   pi_star_ola,
-'Inversió pública (ola)'                                                                    IPub_ola,
-'Ingresos totales (ola)'                                                                    IngT_ola,
-'Gasto de funcionamiento (ola)'                                                             GFun_ola,
-'Deuda pública externa (ola)'                                                               DPE_ola,
-'Remesas (ola)'                                                                             Rem_ola,
-'Deuda pública interna (ola)'                                                               DPI_ola,
-'Activos externos netos (ola)'                                                              AEN_ola,
-'Activos internos netos (ola)'                                                              AIN_ola,
-'Tasa de interés líder de política monetaria (ola)'                                         i_ola,
-'Depreciación monetaria (ola)'                                                              e_ola,
-'Prima por riesgo país (ola)'                                                               PREM_ola,
-'Inflación domésticoa (ola)'                                                                pi_ola,
-'Crecimiento económico (ola)'                                                               GDP_ola,
-'Inversió privada (ola)'                                                                    IPriv_ola,
-'Base monetaria ampliada (ola)'                                                             AMB_ola,
-'Tipo de cambio real (ola)'                                                                 z_ola,
-'Deuda pública externa consolidada (ola)'                                                   DPEC_ola,
-'Deuda pública interna consolidada (ola)'                                                   DPIC_ola,
-'Deuda pública total consolidada (ola)'                                                     DPTC_ola,
-'Deuda pública total (ola)'                                                                 DPT_ola,
-'Inversion total (ola)'                                                                     ITotal_ola,
+'Crecimiento económico externo (ola)'                                                           GDP_star_ola,
+'Tasa de interés externa (ola)'                                                                 i_star_ola,
+'Inflación externa (ola)'                                                                       pi_star_ola,
+'Inversió pública (ola)'                                                                        IPub_ola,
+'Ingresos totales (ola)'                                                                        IngT_ola,
+'Gasto de funcionamiento (ola)'                                                                 GFun_ola,
+'Deuda pública externa (ola)'                                                                   DPE_ola,
+'Remesas (ola)'                                                                                 Rem_ola,
+'Deuda pública interna (ola)'                                                                   DPI_ola,
+'Activos externos netos (ola)'                                                                  AEN_ola,
+'Activos internos netos (ola)'                                                                  AIN_ola,
+'Tasa de interés líder de política monetaria (ola)'                                             i_ola,
+'Depreciación monetaria (ola)'                                                                  e_ola,
+'Prima por riesgo país (ola)'                                                                   PREM_ola,
+'Inflación domésticoa (ola)'                                                                    pi_ola,
+'Crecimiento económico (ola)'                                                                   GDP_ola,
+'Inversió privada (ola)'                                                                        IPriv_ola,
+'Base monetaria ampliada (ola)'                                                                 AMB_ola,
+'Tipo de cambio real (ola)'                                                                     z_ola,
+'Deuda pública externa consolidada (ola)'                                                       DPEC_ola,
+'Deuda pública interna consolidada (ola)'                                                       DPIC_ola,
+'Deuda pública total consolidada (ola)'                                                         DPTC_ola,
+'Deuda pública total (ola)'                                                                     DPT_ola,
+'Inversion total (ola)'                                                                         ITotal_ola,
+'Déficit (ola)'                                                                                 Def_ola,
 'Cociente Base monetaria ampliada a PIB nominal doméstico (%)'                                  AMB_ratio,
 'Tasa de depreciación del tipo de cambio real (%)'                                              z,
 'Cociente de Deuda pública externa consolidada a PIB nominal doméstico (%)'                     DPEC_ratio,
 'Cociente de Deuda pública interna consolidada a PIB nominal doméstico (%)'                     DPIC_ratio,
 'Cociente de Deuda pública total consolidada a PIB nominal doméstico (%)'                       DPTC_ratio,
 'Cociente de Deuda pública total a PIB nominal doméstico (%)'                                   DPT_ratio,
-'Cociente de Inversión total a PIB nominal doméstico (%)'                                       ITotal_ratio
+'Cociente de Inversión total a PIB nominal doméstico (%)'                                       ITotal_ratio,
+'Cociente de Déficit a PIB nominal doméstico (%)'                                               Def_ratio
 
 %% 2. Shocks
 !transition-shocks
@@ -270,4 +272,11 @@ m_IPriv_ratio = IPriv_ratio;
     ITotal_ratio = IPub_ratio + IPriv_ratio;
     % (ola)
     ITotal_ola = IPub_ola + IPriv_ola;
+    
+    % deficit
+    % ratio
+    Def_ratio = IPub_ratio + Gfun_ratio - IngT_ratio;
+    % ola
+    Def_ola = IPub_ola + GFun_ola - IngT_ola;
+    
     

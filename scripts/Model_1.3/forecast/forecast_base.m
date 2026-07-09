@@ -2,6 +2,9 @@
 clc;
 clear all;
 
+% add necesary functions to make the series of errors
+addpath('src/helpers/forecast');
+
 ModelPath = 'Model_1.3';
 
 % Check if forecas folder exists
@@ -43,9 +46,11 @@ end
 
 [~,F] = filter(MODEL, DataFilter, DataFilter.m_GDP_star_SM_yoy.Range);
 
-F = F.mean;
+F = F.mean * get(MODEL, 'xlist');
 
-Vars = [get(MODEL, 'xlist'),  [{'u5'}, {'u9'}, {'u16'}]];
+% using the makeErrros function to get the errors by difference
+F = makeErrors(F, MODEL);
+
 %% Forecast with a shock in u9 period by period and a u5 one period shock
 %{
     We will make forecast one step ahead. For each period, we force the
@@ -73,15 +78,15 @@ EndPred = StartPred+123;
 for i = 1:length(StartPred:EndPred)
     
     if i == 1
-       u5 = 0.35083;
+        u5 = 0.35199;
+        u16 = -0.733;
+        u4 = 0;
+        u7=0;
     else
-        u5 = 0;       
-    end
-    
-    if i == 1
-       u16 = -0.7186;
-    else
-       u16 = 0;
+        u5 = 0; 
+        u16 = 0;
+        u4 = 0;
+        u7=0;
     end
     
     
@@ -90,12 +95,12 @@ for i = 1:length(StartPred:EndPred)
          + (p.a6_1 - p.a9_3)*Forecast.GFun_ola(end) + (p.a4_1 - p.a9_3)*Forecast.IPub_ola(end) ...
          - (p.a5_1 + p.a9_3)*Forecast.IngT_ola(end) ...
          - u5;
-
+     
     % Quarters that will be exogenized
     SPred = Forecast.GDP_star_ola.Range(end) + 1;
 
     % zero data base of shocks
-    shocks = zerodb(MODEL, Forecast.GDP_star_ola.Range(1):Forecast.GDP_star_ola.Range(end))*{'u9', 'u5'};
+    shocks = zerodb(MODEL, Forecast.GDP_star_ola.Range(1):Forecast.GDP_star_ola.Range(end))*{'u9', 'u5', 'u16'};
 
     % Combine the data base with intial conditions and shocks
     Forecast = dboverlay(Forecast,shocks);
@@ -127,18 +132,27 @@ for i = 1:length(StartPred:EndPred)
                   
     Forecast = Forecast_OSAH;
     
-    u9_path(i) = u9;
+    u4_path(i) = u4;
     u5_path(i) = u5;
+    u7_path(i) = u7;
+    u9_path(i) = u9;
     u16_path(i) = u16;
 
 end
 
-Forecast.u9(qq(2009, 1):StartPred) = F.u9;
-Forecast.u9(StartPred:EndPred) = u9_path;
+Forecast.u4(qq(2009, 1):StartPred) = F.u4;
+Forecast.u4(StartPred:EndPred) = u4_path;
 Forecast.u5(qq(2009, 1):StartPred) = F.u5;
 Forecast.u5(StartPred:EndPred) = u5_path;
+Forecast.u9(qq(2009, 1):StartPred) = F.u9;
+Forecast.u9(StartPred:EndPred) = u9_path;
+Forecast.u7(qq(2009, 1):StartPred) = F.u7;
+Forecast.u7(StartPred:EndPred) = u7_path;
 Forecast.u16(qq(2009, 1):StartPred) = F.u16;
 Forecast.u16(StartPred:EndPred) = u16_path;
+
+% Variables have to be including into the forecast csv
+Vars = [get(MODEL, 'xlist'),  [{'u4'}, {'u5'}, {'u7'}, {'u9'}, {'u16'}]];
 
 % Export the data
 %databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_base.csv'), Inf);
