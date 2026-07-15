@@ -21,19 +21,37 @@ else
     println("The folder for the forecast plots already exists.")
 end
 
+# Create the folder for the base scenario
+mkdir(joinpath("Models", ModelPath, "plots", "forecast", "scenarios"))
 
-##### We will plot the series for the model only exogenize the variable u9
+# ====== We will plot the series for the model ======
 # Load free forecast data
-base_escenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_base.csv"), DataFrame; skipto = 12, select = 2:52)
-base_escenario.date = collect(Date(2009, 3):Month(3):Date(2056, 12))
+base_scenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_base.csv"), DataFrame; skipto = 12, select = 2:56)
+base_scenario.date = collect(Date(2009, 3):Month(3):Date(2056, 12))
 
 # load variables names
-var_names = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_base.csv"), DataFrame; limit = 1, select = 2:52)
-vars = names(base_escenario)[1:end-1]
+var_names = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_base.csv"), DataFrame; limit = 1, select = 2:56)
+vars = names(base_scenario)[1:end-1]
+
+# Load moderate scenario data
+moderate_scenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_moderate.csv"), DataFrame; skipto = 12, select = 2:56)
+moderate_scenario.date = collect(Date(2009, 3):Month(3):Date(2056, 12))
+
+# Load optimistic scenario data
+optimistic_scenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_optimistic.csv"), DataFrame; skipto = 12, select = 2:56)
+optimistic_scenario.date = collect(Date(2009, 3):Month(3):Date(2056, 12))
 
 # Create the data frame only with historical data
-HistoricalData = @chain base_escenario begin
+HistoricalData = @chain base_scenario begin
     @subset :date .<= Date(2025, 12)
+end
+
+forecastmoderate = @chain moderate_scenario begin
+    @subset :date .>= Date(2025, 12)
+end
+
+forecastoptimistic = @chain optimistic_scenario begin
+    @subset :date .>= Date(2025, 12)
 end
 
 # ===== Plot the series =====
@@ -57,11 +75,30 @@ for i in 1:length(vars)
         ygridvisible = false
     )
 
-    # Forecast from free scenario
+
+    # Forecast from base scenario
     lines!(
         ax,
-        datetime2rata.(base_escenario.date),
-        base_escenario[:, var],
+        datetime2rata.(moderate_scenario.date),
+        moderate_scenario[:, var],
+        label = "Escenario moderado",
+        color = "#bd5e5e"
+    )
+
+    # Forecast from base scenario
+    lines!(
+        ax,
+        datetime2rata.(optimistic_scenario.date),
+        optimistic_scenario[:, var],
+        label = "Escenario optimista",
+        color = "#7acf74"
+    )
+
+    # Forecast from base scenario
+    lines!(
+        ax,
+        datetime2rata.(base_scenario.date),
+        base_scenario[:, var],
         label = "Escenario base",
         color = :blue
     )
@@ -103,15 +140,39 @@ for i in 1:length(vars)
     headers = ["Escenario", "2025Q4", "2026Q1", "2026Q2", "2026Q3", "2026Q4", "2036Q4", "2046Q4", "2056Q1"]
     data = [
             (
-                "Escenario base", 
-                base_escenario[base_escenario.date .== Date(2025, 12, 1), var],
-                base_escenario[base_escenario.date .== Date(2026, 3, 1), var],
-                base_escenario[base_escenario.date .== Date(2026, 6, 1), var],
-                base_escenario[base_escenario.date .== Date(2026, 9, 1), var],
-                base_escenario[base_escenario.date .== Date(2025, 12, 1), var],
-                base_escenario[base_escenario.date .== Date(2036, 12, 1), var],
-                base_escenario[base_escenario.date .== Date(2046, 12, 1), var],
-                base_escenario[base_escenario.date .== Date(2056, 12, 1), var]
+                "base", 
+                base_scenario[base_scenario.date .== Date(2025, 12, 1), var],
+                base_scenario[base_scenario.date .== Date(2026, 3, 1), var],
+                base_scenario[base_scenario.date .== Date(2026, 6, 1), var],
+                base_scenario[base_scenario.date .== Date(2026, 9, 1), var],
+                base_scenario[base_scenario.date .== Date(2026, 12, 1), var],
+                base_scenario[base_scenario.date .== Date(2036, 12, 1), var],
+                base_scenario[base_scenario.date .== Date(2046, 12, 1), var],
+                base_scenario[base_scenario.date .== Date(2056, 12, 1), var]
+            ),
+
+            (
+                "moderado", 
+                moderate_scenario[moderate_scenario.date .== Date(2025, 12, 1), var],
+                moderate_scenario[moderate_scenario.date .== Date(2026, 3, 1), var],
+                moderate_scenario[moderate_scenario.date .== Date(2026, 6, 1), var],
+                moderate_scenario[moderate_scenario.date .== Date(2026, 9, 1), var],
+                moderate_scenario[moderate_scenario.date .== Date(2026, 12, 1), var],
+                moderate_scenario[moderate_scenario.date .== Date(2036, 12, 1), var],
+                moderate_scenario[moderate_scenario.date .== Date(2046, 12, 1), var],
+                moderate_scenario[moderate_scenario.date .== Date(2056, 12, 1), var]
+            ),
+            
+            (
+                "optimista", 
+                optimistic_scenario[optimistic_scenario.date .== Date(2025, 12, 1), var],
+                optimistic_scenario[optimistic_scenario.date .== Date(2026, 3, 1), var],
+                optimistic_scenario[optimistic_scenario.date .== Date(2026, 6, 1), var],
+                optimistic_scenario[optimistic_scenario.date .== Date(2026, 9, 1), var],
+                optimistic_scenario[optimistic_scenario.date .== Date(2026, 12, 1), var],
+                optimistic_scenario[optimistic_scenario.date .== Date(2036, 12, 1), var],
+                optimistic_scenario[optimistic_scenario.date .== Date(2046, 12, 1), var],
+                optimistic_scenario[optimistic_scenario.date .== Date(2056, 12, 1), var]
             ),
     ]
 
@@ -137,6 +198,6 @@ for i in 1:length(vars)
 
     resize_to_layout!(fig)
 
-    save(joinpath("Models",ModelPath, "plots", "forecast", string(i)*"_"*var*".png"), fig, px_per_unit = 2)
+    save(joinpath("Models",ModelPath, "plots", "forecast", "scenarios", string(i)*"_"*var*".png"), fig, px_per_unit = 2)
 
 end
