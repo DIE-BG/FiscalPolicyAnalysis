@@ -130,7 +130,7 @@ for i in 1:length(vars)
         )
     end
 
-    Mudie.dateticks!(ax, first(base_escenario.date):last(base_escenario.date), step = Month(28))
+    Mudie.dateticks!(ax, first(base_scenario.date):last(base_scenario.date), step = Month(28))
 
     Legend(fig[2,1], ax, orientation = :horizontal, framevisible = false, padding = (10, 10, 10, 10), spacing = 20, labelsize = 18)
 

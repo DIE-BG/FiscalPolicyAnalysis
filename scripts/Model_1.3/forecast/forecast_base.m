@@ -155,4 +155,4 @@ Forecast.u16(StartPred:EndPred) = u16_path;
 Vars = [get(MODEL, 'xlist'),  [{'u4'}, {'u5'}, {'u7'}, {'u9'}, {'u16'}]];
 
 % Export the data
-%databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_base.csv'), Inf);
+databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_base.csv'), Inf);

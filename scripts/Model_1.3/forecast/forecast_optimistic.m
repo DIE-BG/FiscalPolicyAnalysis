@@ -99,53 +99,89 @@ for i = 1:length(StartPred:EndPred)
         u4 = 0.15;
         
     elseif i == 14 % 2029Q2
-        u7 = 0.51;
+        u7 = 0.50;
         
     elseif i == 16 % 2029Q4
         u4 = 0.35;
         
     elseif i == 17 % 2030Q1
         u5 = 0.14;
+        u4 = 0.35;
         
     elseif i == 18 % 2030Q2
-        u5 = 0.1902;
-        u7 = 0.48;
+        u5 = 0.16;
+        u7 = 0.38;
+        u4 = 0.35;
         
     elseif i == 19 % 2030Q3
-        u5 = 0.21;
+        u5 = 0.16;
+        u7 = 0.38;
+        u4 = 0.35;
         
     elseif i == 20 % 2030Q4
-        u5 = 0.25;
+        u5 = 0.18;
         u4 = 0.22;
+        u7 = 0.38;
         
     elseif i == 21 % 2031Q1
-        u5 = 0.29;
+        u5 = 0.23;
+        u4 = 0.22;
+        u7 = 0.38;
         
     elseif i == 22 % 2031Q2
-        u5 = 0.312;
-        u7 = 0.48;
+        u5 = 0.25;
+        u4 = 0.22;
+        u7 = 0.27;
         
     elseif i == 23 % 2031Q3
-        u5 = 0.27;
+        u5 = 0.29;
+        u4 = 0.22;
+        u7 = 0.27;
         
     elseif i == 24 % 2031Q4
-        u5 = 0.255;
-        u4 = 0.14;
+        u5 = 0.32;
+        u4 = 0.19;
+        u7 = 0.27;
         
     elseif i == 25 % 2032Q1
-        u5 = 0.22;
+        u5 = 0.27;
+        u4 = 0.19;
+        u7 = 0.27;
         
     elseif i == 26 % 2032Q2
-        u5 = 0.19;
-        u7 = 0.463;
+        u5 = 0.24;
+        u4 = 0.19;
+        u7 = 0.25;
         
     elseif i == 27 % 2032Q3
-        u5 = 0.151;
+        u5 = 0.21;
+        u4 = 0.19;
+        u7 = 0.25;
         
     elseif i == 28 % 2032Q4
-        u5 = 0.1315;
-        u4 = 0.11;
+        u5 = 0.20;
+        u4 = 0.17;
+        u7 = 0.25;
         
+    elseif i == 29 % 2033Q1
+        u5 = 0.19;
+        u4 = 0.17;
+        u7 = 0.25;
+        
+    elseif i == 30 % 2033Q2
+        u5 = 0.19;
+        u4 = 0.17;
+        u7 = 0.15;
+        
+    elseif i == 31 % 2033Q3
+        u5 = 0.15449;
+        u4 = 0.17;
+        u7 = 0.15;
+        
+    elseif i == 32 % 2033Q4
+        u5 = 0.13449;
+        u4 = 0.10;
+        u7 = 0.15;
         
     else
         u4 = 0;
@@ -226,4 +262,4 @@ Forecast.u16(StartPred:EndPred) = u16_path;
 Vars = [get(MODEL, 'xlist'),  [{'u4'}, {'u5'}, {'u7'}, {'u9'}, {'u16'}]];
 
 % Export the data
-%databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_optimistic.csv'), Inf);
+databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_optimistic.csv'), Inf);

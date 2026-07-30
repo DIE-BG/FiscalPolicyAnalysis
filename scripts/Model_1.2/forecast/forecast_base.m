@@ -4,6 +4,9 @@ clear all;
 
 ModelPath = 'Model_1.2';
 
+% add necesary functions to make the series of errors
+addpath('src/helpers/forecast');
+
 % Check if forecas folder exists
 if ~isfolder(fullfile('Models', ModelPath, 'forecast'))
     mkdir(fullfile('Models', ModelPath, 'forecast'));
@@ -43,9 +46,10 @@ end
 
 [~,F] = filter(MODEL, DataFilter, DataFilter.m_GDP_star_SM_yoy.Range);
 
-F = F.mean;
+F = F.mean * get(MODEL, 'xlist');
 
-Vars = [get(MODEL, 'xlist'),  [{'u5'}, {'u9'}, {'u16'}]];
+% using the makeErrros function to get the errors by difference
+F = makeErrors(F, MODEL);
 %% Forecast with a shock in u9 period by period and a u5 one period shock
 %{
     We will make forecast one step ahead. For each period, we force the
@@ -67,8 +71,8 @@ u5_path = [];
 U16_path = [];
 
 % We define the start and end dates for forecast.
-StartPred = qq(2025,4);
-EndPred = qq(2025,4)+124;
+StartPred = qq(2026,1);
+EndPred = StartPred+123;
 
 for i = 1:length(StartPred:EndPred)
     
@@ -80,7 +84,7 @@ for i = 1:length(StartPred:EndPred)
     end
     
     if i == 1
-        u16 = -0.95;
+        u16 = -0.91;
     elseif i == 2
         u16 = -0.6;
     elseif i == 3
@@ -142,11 +146,14 @@ for i = 1:length(StartPred:EndPred)
 end
 
 Forecast.u9(qq(2009, 1):StartPred) = F.u9;
-Forecast.u9(qq(2025, 4):EndPred) = u9_path;
+Forecast.u9(StartPred:EndPred) = u9_path;
 Forecast.u5(qq(2009, 1):StartPred) = F.u5;
-Forecast.u5(qq(2025, 4):EndPred) = u5_path;
+Forecast.u5(StartPred:EndPred) = u5_path;
 Forecast.u16(qq(2009, 1):StartPred) = F.u16;
-Forecast.u16(qq(2025, 4):EndPred) = u16_path;
+Forecast.u16(StartPred:EndPred) = u16_path;
+
+% Variables have to be including into the forecast csv
+Vars = [get(MODEL, 'xlist'),  [{'u4'}, {'u5'}, {'u7'}, {'u9'}, {'u16'}]];
 
 % Export the data
 databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_base.csv'), Inf);
