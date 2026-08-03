@@ -86,16 +86,16 @@ for i = 1:length(StartPred:EndPred)
         u4 = 0;
         u7=0;
         
-    elseif i == 6
+    elseif i == 6 % 2027Q2
         u7 = 0.15;
         
-    elseif i == 8
+    elseif i == 8 % 2027Q4
         u4 = 0.10;
         
-    elseif i == 10
+    elseif i == 10 % 2028Q2
         u7 = 0.25;
         
-    elseif i == 12
+    elseif i == 12 % 2028Q4
         u4 = 0.15;
         
     elseif i == 14 % 2029Q2
