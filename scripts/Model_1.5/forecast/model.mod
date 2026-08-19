@@ -152,7 +152,8 @@ m_IPriv_ratio = IPriv_ratio;
     a17_1,
     a17_2,
     a17_3,
-    a17_4
+    a17_4,
+    gamma
 
 !transition-equations
 
@@ -222,7 +223,7 @@ m_IPriv_ratio = IPriv_ratio;
     DPI_ola = a9_1*DPI_ola{-1} + a9_2*DPE_ola{-1} + a9_3*(GFun_ola{-1} + IPub_ola{-1} - IngT_ola{-1}) + u9;
 
     AEN_ola = a10_1*AEN_ola{-1} + a10_2*DPE_ola{-1} + a10_3*(pi_star_ola{-1} + e_ola{-1} - pi_ola{-1}) + u10 + u7;
-    AIN_ola = a11_1*AIN_ola{-1} + a11_2*DPI_ola{-1} + a11_3*i_ola{-1} + a11_4*pi_ola{-1} + u11 - u7;
+    AIN_ola = a11_1*AIN_ola{-1} + a11_2*DPI_ola{-1} + a11_3*i_ola{-1} + a11_4*pi_ola{-1} + u11 + gamma*u7;
     i_ola = a12_1*i_ola{-1} + a12_2*i_star_ola{-1} + a12_3*pi_ola{-1} + a12_4*GDP_ola{-1} + u12;
     e_ola = a13_1*e_ola{-1} + a13_2*(DPE_ola{-1} - AEN_ola{-1}) + a13_3*(i_ola{-1} - i_star_ola{-1} - PREM_ola{-1}) + u13;
     PREM_ola = a14_1*PREM_ola{-1} + a14_2*(DPI_ola{-1} - AIN_ola{-1} + DPE_ola{-1} - AEN_ola{-1}) + u14;
