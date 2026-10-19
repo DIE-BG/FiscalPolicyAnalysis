@@ -82,7 +82,7 @@ for i in 1:length(vars)
 
     vlines!(
         ax,
-        datetime2rata.(Date(2025, 12)),
+        datetime2rata.(Date(2026, 6)),
         linestyle = :dash,
         color = :black,
         linewidth = 0.75,
@@ -105,15 +105,16 @@ for i in 1:length(vars)
     # ===== table =====
     tbl = fig[3, 1] = GridLayout()
 
-    headers = ["Escenario", "2025Q4", "2026Q1", "2026Q2", "2026Q3", "2026Q4", "2027Q4", "2029Q4", "2031Q4"]
+    headers = ["Escenario", "2026Q2", "2026Q3", "2026Q4", "2027Q1", "2027Q2", "2027Q3", "2027Q4", "2029Q4", "2031Q4"]
     data = [
             (
                 "Pronóstico\ndatos MINFIN", 
-                base_escenario[base_escenario.date .== Date(2025, 12, 1), var],
-                base_escenario[base_escenario.date .== Date(2026, 3, 1), var],
                 base_escenario[base_escenario.date .== Date(2026, 6, 1), var],
                 base_escenario[base_escenario.date .== Date(2026, 9, 1), var],
                 base_escenario[base_escenario.date .== Date(2026, 12, 1), var],
+                base_escenario[base_escenario.date .== Date(2027, 3, 1), var],
+                base_escenario[base_escenario.date .== Date(2027, 6, 1), var],
+                base_escenario[base_escenario.date .== Date(2027, 9, 1), var],
                 base_escenario[base_escenario.date .== Date(2027, 12, 1), var],
                 base_escenario[base_escenario.date .== Date(2029, 12, 1), var],
                 base_escenario[base_escenario.date .== Date(2031, 12, 1), var]
