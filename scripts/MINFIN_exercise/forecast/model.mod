@@ -220,7 +220,7 @@ m_IPriv_ratio = IPriv_ratio;
     Rem_ola = a8_1*Rem_ola{-1} + u8;
 
     % DPI_ola
-    DPI_ola = a9_1*DPI_ola{-1} + a9_2*DPE_ola{-1} + a9_3*(GFun_ola{-1} + IPub_ola{-1} - IngT_ola{-1}) + u9;
+    DPI_ola = a9_1*DPI_ola{-1} + a9_2*DPE_ola{-1} + a9_3*(GFun_ola{-1} + IPub_ola{-1} - IngT_ola{-1}) + 0.10*u9;
 
     AEN_ola = a10_1*AEN_ola{-1} + a10_2*DPE_ola{-1} + a10_3*(pi_star_ola{-1} + e_ola{-1} - pi_ola{-1}) + u10 + u7;
     AIN_ola = a11_1*AIN_ola{-1} + a11_2*DPI_ola{-1} + a11_3*i_ola{-1} + a11_4*pi_ola{-1} + u11 + gamma*u7;
