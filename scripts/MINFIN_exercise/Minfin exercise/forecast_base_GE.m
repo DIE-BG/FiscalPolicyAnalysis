@@ -83,72 +83,58 @@ u7_path = [];
 u16_path = [];
 
 % We define the start and end dates for forecast.
-StartPred = qq(2026,1);
-EndPred = StartPred+23;
+StartPred = qq(2026,3);
+EndPred = StartPred+21;
 
 for i = 1:length(StartPred:EndPred)
     
-    if i == 1 % 2026Q1
-        u4 = 0;
-        u5 = 0;
-        u6 = 0;
-        u7 = 0;
-        u16 = 0;
+    if i == 1 % 2026Q3
+        u4 = -0.04236;
+        u5 = -0.08;
+        u6 = 0.1714;
+        u7 = -0.4837;
+        u16 = -0.45;
 
-    elseif i == 2 %2026Q2
+    elseif i == 2 % 2026Q4
         u4 = 0;
-        u5 = 0;
-        u6 = 0;
-        u7 = 0;
-        u16 = 0;
+        u5 = -0.0424;
+        u6 = 0.1082;
+        u7 = -0.2683;
+        u16 = -0.25;
 
-    elseif i == 3 %2026Q3
-        u4 = 0;
-        u5 = 0;
-        u6 = 0;
-        u7 = 0;
-        u16 = 0;
+    elseif i == 3 % 2027Q1
+        u4 = 0.156;
+        u5 = 0.1403;
+        u6 = 0.65;
+        u7 = -0.35;
+        u16 = -0.15;
 
-    elseif i == 4 %2026Q4
-        u4 = 0;
+    elseif i == 4 % 2027Q2
+        u4 = 0.20;
         u5 = 0;
-        u6 = 0;
-        u7 = 0;
-        u16 = 0;
+        u6 = 0.5967;
+        u7 = -0.35;
+        u16 = -0.15;
 
-    elseif i == 5 %2027Q1
-        u4 = 0;
+    elseif i == 5 % 2027Q3
+        u4 = 0.29721;
         u5 = 0;
-        u6 = 0;
-        u7 = 0;
-        u16 = 0;
+        u6 = 0.50;
+        u7 = -0.1329;
+        u16 = -0.08;
 
-    elseif i == 6 %2027Q2
+    elseif i == 6 % 2027Q4
         u4 = 0;
         u5 = 0;
-        u6 = 0;
-        u7 = 0;
-        u16 = ;
-
-    elseif i == 7 %2027Q3
-        u4 = 0;
-        u5 = 0;
-        u6 = 0;
-        u7 = 0;
-        u16 = 0;
-
-    elseif i == 8 %2027Q4
-        u4 = 0;
-        u5 = 0;
-        u6 = 0;
-        u7 = 0;
-        u16 = 0;
+        u6 = 0.35;
+        u7 = -0.0817;
+        u16 = -0.10;
 
     else
         u4 = 0;
         u5 = 0;
         u6 = 0;
-        u7 = 0; 
+        u7 = 0;
         u16 = 0;
     end
     
@@ -239,7 +225,7 @@ databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecas
 
 %Forecast.u9.plot
 %Forecast.IngT_ratio.plot
-%{
+
 table(...
     Forecast.GDP_nom_SM_yoy([qq(2026, 4); qq(2027, 4)]).*100,...
     Forecast.GDP_SM_yoy([qq(2026, 4); qq(2027, 4)]),...
@@ -253,4 +239,5 @@ Forecast.ITotal_ratio.plot
 
 Forecast.DPI_ratio.plot
 Forecast.GDP_SM_yoy.plot
-%}
+
+
