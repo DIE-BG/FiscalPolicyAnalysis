@@ -2,7 +2,7 @@
 
 julia_version = "1.13.1"
 manifest_format = "2.1"
-project_hash = "2d1025cb7465eb76c89d2cc74ed02b2e6a65a1f7"
+project_hash = "02bb20b44214443a6d832af614a5f5ae31a262f3"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -1742,6 +1742,19 @@ git-tree-sha1 = "1feb45f88d133a655e001435632f019a9a1bcdb6"
 registries = "General"
 uuid = "62fd8b95-f654-4bbd-a8a5-9c27f68ccd50"
 version = "0.1.1"
+
+[[deps.TerminalPager]]
+deps = ["Crayons", "InteractiveUtils", "Markdown", "PrecompileTools", "Preferences", "REPL", "StringManipulation"]
+git-tree-sha1 = "0c75d8062c3b731f030fcc3584aba9ab433d697f"
+registries = "General"
+uuid = "0c614874-6106-40ed-a7c2-2f1cd0bff883"
+version = "0.6.14"
+
+    [deps.TerminalPager.extensions]
+    TerminalPagerAboutExt = "About"
+
+    [deps.TerminalPager.weakdeps]
+    About = "69d22d85-9f48-4c46-bbbe-7ad8341ff72a"
 
 [[deps.TiffImages]]
 deps = ["ColorTypes", "DataStructures", "DocStringExtensions", "FileIO", "FixedPointNumbers", "IndirectArrays", "Inflate", "Mmap", "OffsetArrays", "PkgVersion", "PrecompileTools", "ProgressMeter", "SIMD", "UUIDs"]

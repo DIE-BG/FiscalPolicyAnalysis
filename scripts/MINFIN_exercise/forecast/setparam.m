@@ -63,7 +63,7 @@ p.a16_5 = 0.023884947358838;
 
 p.a17_1 = 0.586310288275935;
 p.a17_2 = -0.00377247040217453;
-p.a17_3 = -0.0916479794953238;%-0.0916479794953238; Para que no explote por deuda interna 
-p.a17_4 = -0.119225942930086;%-0.119225942930086; Para que no explote por prima por riesgo
+p.a17_3 = -0.00916479794953238;%-0.0916479794953238; Para que no explote por deuda interna 
+p.a17_4 = -0.0119225942930086;%-0.119225942930086; Para que no explote por prima por riesgo
 
 p.gamma = -0.61;

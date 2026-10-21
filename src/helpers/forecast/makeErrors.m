@@ -13,7 +13,7 @@ errors that have been added.
 function F_errors = makeErrors(F_struct, MODEL)
 
     startForecast = qq(2009, 4);
-    numPeriods = 65;
+    numPeriods = 67;
 
     namesToSave = get(MODEL, 'xlist');  % List of variables we will get the one stpet ahead forecast
 

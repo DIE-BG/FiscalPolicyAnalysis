@@ -89,46 +89,52 @@ EndPred = StartPred+21;
 for i = 1:length(StartPred:EndPred)
     
     if i == 1 % 2026Q3
-        u4 = -0.04236;
+        u4 = -0.04216;
         u5 = -0.08;
-        u6 = 0.1714;
-        u7 = -0.4837;
+        u6 = 0.1726;
+        u7 = -0.4827;
         u16 = -0.45;
+        u18 = 7;
 
     elseif i == 2 % 2026Q4
         u4 = 0;
-        u5 = -0.0424;
+        u5 = -0.0414;
         u6 = 0.1082;
         u7 = -0.2683;
         u16 = -0.25;
+        u18 = 3.305;
 
     elseif i == 3 % 2027Q1
-        u4 = 0.156;
-        u5 = 0.1403;
+        u4 = 0.15674;
+        u5 = 0.1424;
         u6 = 0.65;
         u7 = -0.35;
         u16 = -0.15;
+        u18 = 7;
 
     elseif i == 4 % 2027Q2
         u4 = 0.20;
         u5 = 0;
-        u6 = 0.5967;
+        u6 = 0.5992;
         u7 = -0.35;
         u16 = -0.15;
+        u18 = 7;
 
     elseif i == 5 % 2027Q3
         u4 = 0.29721;
         u5 = 0;
         u6 = 0.50;
-        u7 = -0.1329;
+        u7 = -0.1315;
         u16 = -0.08;
+        u18 = 2.9478;
 
     elseif i == 6 % 2027Q4
         u4 = 0;
         u5 = 0;
         u6 = 0.35;
-        u7 = -0.0817;
+        u7 = -0.0816;
         u16 = -0.10;
+        u18 = 0;
 
     else
         u4 = 0;
@@ -136,6 +142,7 @@ for i = 1:length(StartPred:EndPred)
         u6 = 0;
         u7 = 0;
         u16 = 0;
+        u18 = 0;
     end
     
     
@@ -143,7 +150,7 @@ for i = 1:length(StartPred:EndPred)
     u9 = (1 - p.a9_1)*Forecast.DPI_ola(end) + (1 - p.a7_1 - p.a9_2)*Forecast.DPE_ola(end) ...
          + (p.a6_1 - p.a9_3)*Forecast.GFun_ola(end) + (p.a4_1 - p.a9_3)*Forecast.IPub_ola(end) ...
          - (p.a5_1 + p.a9_3)*Forecast.IngT_ola(end) ...
-         + u4 + u6 - u5 - u7;
+         + u4 + u6 - u5 - u7 + u18;
      
     % Quarters that will be exogenized
     SPred = Forecast.GDP_star_ola.Range(end) + 1;
@@ -223,21 +230,9 @@ Vars = [get(MODEL, 'xlist'),  [{'u4'}, {'u5'}, {'u6'}, {'u7'}, {'u9'}, {'u16'}]]
 % Export the data
 databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_GE.csv'), Inf);
 
-%Forecast.u9.plot
-%Forecast.IngT_ratio.plot
-
 table(...
     Forecast.GDP_nom_SM_yoy([qq(2026, 4); qq(2027, 4)]).*100,...
     Forecast.GDP_SM_yoy([qq(2026, 4); qq(2027, 4)]),...
     'VariableNames', {'PIB nominal', 'PIB real'},...
     'RowNames', {'2026Q4', '2027Q4'}...
     )
-
-Forecast.PREM.plot
-Forecast.IPriv_ratio.plot
-Forecast.ITotal_ratio.plot
-
-Forecast.DPI_ratio.plot
-Forecast.GDP_SM_yoy.plot
-
-
