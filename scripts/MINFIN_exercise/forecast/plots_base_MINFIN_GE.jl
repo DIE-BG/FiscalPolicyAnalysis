@@ -30,7 +30,7 @@ mkdir(joinpath("Models", ModelPath, "plots", "forecast", "MINFIN_scenario"))
 # ====== We will plot the series for the model ======
 # Load base scenario data for model 1.5
 base_escenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_GE.csv"), DataFrame; skipto = 12, select = 2:57)
-base_escenario.date = collect(Date(2009, 3):Month(3):Date(2031, 12))
+base_escenario.date = collect(Date(2009, 3):Month(3):Date(2033, 12))
 
 # load variables names
 var_names = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_GE.csv"), DataFrame; limit = 1, select = 2:57)
@@ -105,19 +105,17 @@ for i in 1:length(vars)
     # ===== table =====
     tbl = fig[3, 1] = GridLayout()
 
-    headers = ["Escenario", "2026Q2", "2026Q3", "2026Q4", "2027Q1", "2027Q2", "2027Q3", "2027Q4", "2029Q4", "2031Q4"]
+    headers = ["Escenario", "2026Q2", "2026Q4", "2027Q4", "2029Q4", "2031Q4", "2032Q4", "2033Q4"]
     data = [
             (
                 "Pronóstico\ndatos MINFIN", 
                 base_escenario[base_escenario.date .== Date(2026, 6, 1), var],
-                base_escenario[base_escenario.date .== Date(2026, 9, 1), var],
                 base_escenario[base_escenario.date .== Date(2026, 12, 1), var],
-                base_escenario[base_escenario.date .== Date(2027, 3, 1), var],
-                base_escenario[base_escenario.date .== Date(2027, 6, 1), var],
-                base_escenario[base_escenario.date .== Date(2027, 9, 1), var],
                 base_escenario[base_escenario.date .== Date(2027, 12, 1), var],
                 base_escenario[base_escenario.date .== Date(2029, 12, 1), var],
-                base_escenario[base_escenario.date .== Date(2031, 12, 1), var]
+                base_escenario[base_escenario.date .== Date(2031, 12, 1), var],
+                base_escenario[base_escenario.date .== Date(2032, 12, 1), var],
+                base_escenario[base_escenario.date .== Date(2033, 12, 1), var]
             )
     ]
 

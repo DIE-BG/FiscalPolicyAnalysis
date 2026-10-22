@@ -84,7 +84,7 @@ u16_path = [];
 
 % We define the start and end dates for forecast.
 StartPred = qq(2026,3);
-EndPred = StartPred+21;
+EndPred = StartPred+29;
 
 for i = 1:length(StartPred:EndPred)
     
@@ -134,6 +134,109 @@ for i = 1:length(StartPred:EndPred)
         u6 = 0.35;
         u7 = -0.0816;
         u16 = -0.10;
+        u18 = 0;
+
+    elseif i == 7 % 2028Q1
+        u4 = 0;
+        u5 = 0.10;
+        u6 = -0.05;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 8 % 2028Q2
+        u4 = 0;
+        u5 = 0.10;
+        u6 = -0.10;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 9 % 2028Q3
+        u4 = 0;
+        u5 = 0.25;
+        u6 = -0.25;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 10 % 2028Q4
+        u4 = 0;
+        u5 = 0.35;
+        u6 = -0.25;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 11 % 2029Q1
+        u4 = 0;
+        u5 = 0.10;
+        u6 = -0.20;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 12 % 2029Q2
+
+        u4 = 0;
+        u5 = 0.10;
+        u6 = -0.22;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 13 % 2029Q3
+
+        u4 = 0;
+        u5 = 0.15;
+        u6 = -0.25;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 14 % 2029Q4
+
+        u4 = 0;
+        u5 = 0.15;
+        u6 = -0.30;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 15 % 2030Q1
+
+        u4 = 0;
+        u5 = 0;
+        u6 = 0;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 16 % 2030Q2
+
+        u4 = 0;
+        u5 = 0;
+        u6 = 0;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 17 % 2030Q3
+
+        u4 = 0;
+        u5 = 0;
+        u6 = 0;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 18 % 2030Q4
+
+        u4 = 0;
+        u5 = 0;
+        u6 = 0;
+        u7 = 0;
+        u16 = 0;
         u18 = 0;
 
     else
@@ -236,3 +339,4 @@ table(...
     'VariableNames', {'PIB nominal', 'PIB real'},...
     'RowNames', {'2026Q4', '2027Q4'}...
     )
+%}
