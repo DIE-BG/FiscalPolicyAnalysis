@@ -1,2 +1,28 @@
 *.png
+
 Models/Model_*/forecast/*.csv
+
+# ==========================================
+# Quarto + Reveal.js
+# ==========================================
+
+# Archivos HTML generados
+*.html
+
+# Carpetas de recursos de Quarto
+*_files/
+.quarto/
+
+# Archivos temporales y caché
+*_cache/
+*_freeze/
+.quarto-cache/
+
+# Resultados intermedios
+*.knit.md
+*.utf8.md
+
+# Archivos temporales del editor
+*.swp
+*.swo
+*~
