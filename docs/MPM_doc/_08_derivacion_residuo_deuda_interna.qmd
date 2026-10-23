@@ -1,0 +1,111 @@
+# Derivación algebraica del residuo de deuda interna
+A continuación se desarrolla, paso a paso, el álgebra que conduce al residuo de deuda interna.
+
+## Paso 1. Restricción contable de la deuda
+
+::: {.small style="font-size: 0.76em;"}
+
+Partimos de la ley de movimiento de la deuda total y de su descomposición:
+
+**Ley de movimiento**
+
+$$\widetilde{\left(\frac{DPT}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPT}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}$$
+
+**Composición**
+
+$$\widetilde{\left(\frac{DPT}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}$$
+
+:::
+
+## Paso 1b. Despejar la deuda interna
+
+::: {.small style="font-size: 0.78em;"}
+
+Reemplazamos la deuda total por sus componentes en ambos periodos y despejamos la deuda interna:
+
+::: {.equation-compact style="font-size: 0.88em;"}
+
+$${\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}}=\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}-\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}$$
+
+:::
+
+:::
+
+## Paso 2. Sustituir la definición del déficit
+
+::: {.small style="font-size: 0.78em;"}
+
+La identidad fiscal, rezagada un periodo, expresa el déficit como gasto de funcionamiento más inversión pública menos ingresos. Al sustituirla en la ecuación de comportamiento de la deuda interna:
+
+::: {.equation-compact style="font-size: 0.80em;"}
+
+$$\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=\alpha_{9,1}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\alpha_{9,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\alpha_{9,3}\left[\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}\right]+u_{9,t}$$
+
+:::
+
+:::
+
+## Paso 3. Despejar el residuo $u_{9,t}$
+
+::: {.small style="font-size: 0.78em;"}
+
+Igualamos la expresión de comportamiento con la identidad contable y aislamos el residuo, antes de sustituir las variables de periodo $t$ por sus propios procesos:
+
+::: {.equation-compact style="font-size: 0.70em;"}
+
+$$u_{9,t}=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-\alpha_{9,3}\widetilde{\left(\frac{Def}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}$$
+
+:::
+
+:::
+
+## Paso 4. Sustituir la dinámica de la deuda externa
+
+::: {.small style="font-size: 0.78em;"}
+
+Sustituimos la ecuacion de la deuda pública externa en la expresión del residuo:
+
+
+::: {.equation-compact style="font-size: 0.74em;"}
+
+$$u_{9,t}=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{7,1}-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-\alpha_{9,3}\widetilde{\left(\frac{Def}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}-u_{7,t}$$
+
+:::
+
+:::
+
+## Paso 5. Expandir el déficit en $t-1$ y $t$
+
+::: {.small style="font-size: 0.78em;"}
+
+Sustituimos la identidad fiscal, rezagada y contemporánea, en la expresión del residuo:
+
+::: {.equation-compact style="font-size: 0.49em;"}
+
+$$u_{9,t}=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{7,1}-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-\alpha_{9,3}\left[\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}\right]+\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}-u_{7,t}$$
+
+:::
+
+:::
+
+## Paso 6. Sustituir los procesos fiscales
+
+::: {.small style="font-size: 0.78em;"}
+
+Aplicamos los procesos de la inversión pública, los ingresos y el gasto de funcionamiento en periodo $t$. Al agrupar coeficientes y residuos, obtenemos:
+
+::: {.equation-compact style="font-size: 0.46em;"}
+
+$$u_{9,t}=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{7,1}-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\left(\alpha_{6,1}-\alpha_{9,3}\right)\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\left(\alpha_{4,1}-\alpha_{9,3}\right)\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-\left(\alpha_{5,1}+\alpha_{9,3}\right)\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}+u_{4,t}+u_{6,t}-u_{5,t}-u_{7,t}$$
+
+:::
+
+El resultado final expresa el residuo de la deuda interna en función de rezagos fiscales, la deuda pública y los residuos de las variables exógenas.
+
+:::
+
+## Rol e interpretación del $u_{9,t}$ en el modelo
+
+Este es un término de perturbación que no es libre y que permite que la ecuación de comportamiento de la deuda pública interna sea compatible con la evoluación contable de la deuda total. 
+
+

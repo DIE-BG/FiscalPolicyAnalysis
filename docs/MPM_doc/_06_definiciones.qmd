@@ -1,0 +1,112 @@
+# Definiciones
+
+A continuación se presentan las definiciones contables utilizadas en el modelo.
+
+## Déficit fiscal y deuda pública total
+
+::: {.small style="font-size: 0.74em;"}
+
+**(18) Déficit fiscal**
+
+::: {.equation-compact style="font-size: 0.82em;"}
+
+$$\widetilde{\left(\frac{Def}{PIB}\right)}_{t}=\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}$$
+
+:::
+
+El déficit como proporción del PIB equivale al gasto de funcionamiento más la inversión pública, menos los ingresos totales.
+
+**(19) Ley de movimiento de la deuda pública total**
+
+::: {.equation-compact style="font-size: 0.82em;"}
+
+$$\widetilde{\left(\frac{DPT}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPT}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}$$
+
+:::
+
+::: {.callout-note}
+La ecueción de la Deuda pública total junto al déficit constituyen las identidades contables más importantes del modelo debido a que van a definir como evoluciona el residuo de la deuda pública interna.
+:::
+
+:::
+
+## Composición de la deuda pública total
+
+::: {.small style="font-size: 0.78em;"}
+
+**(20) Composición de la deuda pública total**
+
+::: {.equation-compact style="font-size: 0.82em;"}
+
+$$\widetilde{\left(\frac{DPT}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}$$
+
+:::
+
+La deuda pública total se compone de deuda externa e interna.
+
+:::
+
+## Base monetaria, inversión y deuda consolidada
+
+::: {.small style="font-size: 0.76em;"}
+
+**(21) Base monetaria ampliada**
+
+$$\widetilde{\left(\frac{M_0A}{PIB}\right)}_{t}=\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}$$
+
+Suma los activos externos e internos netos del Banco Central. La base ampliada incluye encaje en moneda extranjera, además de numerario y encaje en moneda nacional.
+
+::: {.callout-note}
+Se incluyen los encajes en moneda nacional y extranjera debido a que el panorama monetario tipo base, publicado por el Banguat, considera estos componentes dentro de la base monetaria que reporta.
+:::
+
+:::
+
+## Inversión total y deuda interna consolidada
+
+::: {.small style="font-size: 0.76em;"}
+
+**(22) Inversión total**
+
+$$\widetilde{\left(\frac{ITotal}{PIB}\right)}_{t}=\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}$$
+
+Es la suma de la inversión pública y privada.
+
+**(23) Deuda pública interna consolidada**
+
+$$\widetilde{\left(\frac{DPIC}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}-\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}$$
+
+Es la deuda pública interna neta de los activos internos netos del Banco Central.
+
+:::
+
+## Deuda consolidada y tipo de cambio real
+
+::: {.small style="font-size: 0.76em;"}
+
+**(24) Deuda pública externa consolidada**
+
+$$\widetilde{\left(\frac{DPEC}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}-\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}$$
+
+Es la deuda pública externa neta de los activos externos netos del Banco Central.
+
+**(25) Deuda pública total consolidada**
+
+$$\widetilde{\left(\frac{DPTC}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPEC}{PIB}\right)}_{t}+\widetilde{\left(\frac{DPIC}{PIB}\right)}_{t}$$
+
+Suma la deuda externa y la interna consolidadas.
+
+:::
+
+## Tipo de cambio real
+
+::: {.small style="font-size: 0.80em;"}
+
+**(26) Tipo de cambio real**
+
+$$\widetilde{z}_{t}=\widetilde{e}_{t}+\widetilde{\pi}^{*}_{t}-\widetilde{\pi}_{t}$$
+
+Relaciona la depreciación nominal con la inflación externa y la inflación doméstica.
+
+:::
+

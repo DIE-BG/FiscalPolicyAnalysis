@@ -1,0 +1,90 @@
+# Aspectos generales del MPM
+
+ Aspectos generales y supuestos principales
+
+
+## Aspectos generales del MPM
+
+La estructura del modelo se divide en variables exógenas —externas e internas— y variables endógenas, estas últimas clasificadas en distintos sectores para modelar las interacciones entre las políticas monetaria y fiscal.
+
+## Aspectos generales del MPM
+
+:::: {.columns}
+
+::: {.column width="35%"}
+### Sectores
+```{mermaid}
+%%| fig-align: center
+
+flowchart LR
+    A("Sectores")
+    B("Gobierno")
+    C("Banco<br/>Central")
+    D("Sector<br/>Privado")
+    E("Sector<br/>Externo")
+
+    A --- B
+    A --- C
+    A --- D
+    A --- E
+
+    classDef sectores fill:#FFFFFF,stroke:#00509D,stroke-width:2px,color:#004080,font-weight:bold;
+
+    class A,B,C,D,E sectores
+
+    linkStyle default stroke:#00509D,stroke-width:1.5px;
+```
+
+:::
+
+::: {.column width="65%"}
+
+El núcleo del modelo está constituido por 17 variables, construidas como desviaciones respecto de sus promedios móviles de cuatro trimestres.
+
+Debido a esta transformación, las variables representadas en sus niveles originales **no convergen necesariamente hacia un estado estacionario fijo**.
+
+:::
+
+::::
+
+
+## Lógica interna del modelo
+
+El modelo puede concebirse como un sistema de dos capas que operan simultáneamente: la primera incorpora las interacciones macroeconómicas relevantes; la segunda transforma los resultados expresados como desviaciones en niveles originales.
+
+![](assets/model_diagram.png){fig-align="center"}
+
+
+## Ejemplo gráfico del funcionamiento del modelo
+
+![Basadas en datos simulados](assets/make_forecast.png){width="95%" fig-align="center"}
+
+::: {style="font-size: 0.65em;"}
+
+Como muestran las gráficas, choques que generan **desviaciones persistentemente positivas** de la inversión pública producen cambios en las desviaciones de otras variables.En última instancia, los niveles de las variables originales se ven alterados, así como **su convergencia de largo plazo**.
+
+:::
+
+
+## Variables del modelo
+
+![](assets/model_variables.png){fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+La política monetaria opera principalmente mediante la tasa de interés líder. Los instrumentos de política fiscal son la inversión pública, los ingresos totales del gobierno, el gasto de funcionamiento y el endeudamiento público externo; estas variables generan la mayor parte del dinamismo del modelo.
+
+:::
+
+
+## Supuestos principales
+
+Los principales supuestos que rigen la dinámica del modelo son:
+
+1. Las depreciaciones cambiarias reales contraen los activos externos netos.
+2. El tipo de cambio nominal responde a los componentes tradicionales de la paridad de tasas de interés (UIP), desde una perspectiva de flujos de capitales.
+3. La prima por riesgo país se ve afectada por dos vías:
+   - Los incrementos de los activos internos y externos netos del Banco Central la reducen.
+   - Los incrementos de la deuda pública interna y externa la elevan.
+4. La inversión total no incluye la variación de existencias.
+

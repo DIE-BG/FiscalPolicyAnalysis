@@ -1,0 +1,12 @@
+# Escenarios de crecimiento económico de largo plazo
+## Crecimiento económico de largo plazo
+
+| Escenario | Crecimiento |
+|:--|--:|
+| Base | 3.8% |
+| Moderado | 4.5% |
+| Optimista | 6.0% |
+
+Para generar estos escenarios se construyó un modelo macroeconómico, cuyas principales características se presentan a continuación.
+
+

@@ -1,0 +1,239 @@
+# Modelo MPM
+Ecuaciones y aspectos relevantes
+
+## Notación del modelo
+
+::: {.small style="font-size: 0.82em;"}
+
+Este es un modelo VAR de 17 ecuaciones, siendo este el núcleo del MPM. Las variables con tilde ($\widetilde{X}$) representan desviaciones respecto de sus promedios móviles de cuatro trimestres; $t-1$ denota un rezago. En cada ecuación, $\alpha_{j,1}$ es un parámetro y $u_{j,t}$ el residuo.
+
+:::
+
+## Variables exógenas
+
+::: {.small style="font-size: 0.72em;"}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**(1) Crecimiento económico externo**
+
+$$\widetilde{y}^{*}_{t}=\alpha_{1,1}\widetilde{y}^{*}_{t-1}+u_{1,t}$$
+
+El crecimiento externo depende de su propio rezago.
+
+**(2) Tasa de interés externa**
+
+$$\widetilde{i}^{*}_{t}=\alpha_{2,1}\widetilde{i}^{*}_{t-1}+u_{2,t}$$
+
+La tasa externa depende de su propio rezago.
+
+:::
+
+::: {.column width="50%"}
+
+**(3) Inflación externa**
+
+$$\widetilde{\pi}^{*}_{t}=\alpha_{3,1}\widetilde{\pi}^{*}_{t-1}+u_{3,t}$$
+
+La inflación externa depende de su propio rezago.
+
+**(4) Inversión pública**
+
+$$\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}=\alpha_{4,1}\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}+u_{4,t}$$
+
+La inversión pública como proporción del PIB depende de su rezago.
+
+:::
+
+::::
+
+:::
+
+## Variables exógenas
+
+::: {.small style="font-size: 0.72em;"}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+**(5) Ingresos totales del gobierno**
+
+$$\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}=\alpha_{5,1}\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}+u_{5,t}$$
+
+Los ingresos totales como proporción del PIB dependen de su rezago.
+
+**(6) Gasto de funcionamiento**
+
+$$\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}=\alpha_{6,1}\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+u_{6,t}$$
+
+El gasto de funcionamiento como proporción del PIB depende de su rezago.
+
+:::
+
+::: {.column width="50%"}
+
+**(7) Deuda pública externa**
+
+$$\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}=\alpha_{7,1}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+u_{7,t}$$
+
+La deuda pública externa como proporción del PIB depende de su rezago.
+
+**(8) Remesas**
+
+$$\widetilde{\left(\frac{Rem}{PIB}\right)}_{t}=\alpha_{8,1}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}+u_{8,t}$$
+
+Las remesas como proporción del PIB siguen un proceso exógeno y dependen de su rezago.
+
+:::
+
+::::
+
+:::
+
+## Gobierno: deuda pública interna
+
+::: {.small style="font-size: 0.78em;"}
+
+**(9) Deuda pública interna**
+
+::: {.equation-compact style="font-size: 0.85em;"}
+
+$$
+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}={} \alpha_{9,1}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1} +\alpha_{9,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1} +\alpha_{9,3}\widetilde{\left(\frac{Def}{PIB}\right)}_{t-1}+u_{9,t}
+$$
+
+:::
+
+El cociente de deuda interna responde a sus rezagos, a la deuda externa y al déficit fiscal como proporción del PIB.
+
+:::
+
+## Banco Central: activos externos netos
+
+::: {.small style="font-size: 0.78em;"}
+
+**(10) Activos externos netos del Banco Central**
+
+::: {.equation-compact style="font-size: 0.85em;"}
+
+$$
+\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}={} \alpha_{10,1}\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1} +\alpha_{10,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1} +\alpha_{10,3}\widetilde{\pi}^{*}_{t-1}+\alpha_{10,4}\widetilde{e}_{t-1} +\alpha_{10,5}\widetilde{\pi}_{t-1}+u_{10,t}
+$$
+
+:::
+
+Dependen de su rezago, de la deuda externa, de la inflación externa y doméstica, y de la depreciación nominal.
+
+:::
+
+## Banco Central: activos internos netos
+
+::: {.small style="font-size: 0.78em;"}
+
+**(11) Activos internos netos del Banco Central**
+
+::: {.equation-compact style="font-size: 0.85em;"}
+
+$$
+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}={} \alpha_{11,1}\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1} +\alpha_{11,2}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1} +\alpha_{11,3}\widetilde{i}_{t-1}+\alpha_{11,4}\widetilde{\pi}_{t-1}+u_{11,t}
+$$
+
+:::
+
+Dependen de su rezago, de la deuda interna, de la tasa líder y de la inflación doméstica.
+
+:::
+
+## Política monetaria y tipo de cambio
+
+::: {.small style="font-size: 0.78em;"}
+
+**(12) Tasa de interés líder (regla de política monetaria)**
+
+$$
+\widetilde{i}_{t}=\alpha_{12,1}\widetilde{i}_{t-1}+\alpha_{12,2}\widetilde{i}^{*}_{t-1}
++\alpha_{12,3}\widetilde{\pi}_{t-1}+\alpha_{12,4}\widetilde{y}_{t-1}+u_{12,t}
+$$
+
+La tasa líder responde a sus propios rezagos, a la tasa externa, a la inflación doméstica y al crecimiento doméstico.
+
+**(13) Depreciación nominal**
+
+$$
+\widetilde{e}_{t}=\alpha_{13,1}\widetilde{e}_{t-1}
++\alpha_{13,2}\widetilde{\left(\frac{DPEC}{PIB}\right)}_{t-1}
++\alpha_{13,3}\left(\widetilde{i}_{t-1}-\widetilde{i}^{*}_{t-1}-\widetilde{\rho}_{t-1}\right)+u_{13,t}
+$$
+
+Depende de su rezago, de la deuda pública externa consolidada ($DPEC/PIB$) y del diferencial entre tasa líder, tasa externa y prima por riesgo país.
+
+
+:::
+
+## Riesgo país e inflación
+
+::: {.small style="font-size: 0.78em;"}
+
+**(14) Prima por riesgo país**
+
+$$
+\widetilde{\rho}_{t}=\alpha_{14,1}\widetilde{\rho}_{t-1}
++\alpha_{14,2}\widetilde{\left(\frac{DPTC}{PIB}\right)}_{t-1}+u_{14,t}
+$$
+
+Depende de su rezago y de la deuda pública total consolidada ($DPTC/PIB$).
+
+**(15) Inflación (curva de Phillips)**
+
+::: {.equation-compact style="font-size: 0.85em;"}
+
+$$
+\widetilde{\pi}_{t}={} \alpha_{15,1}\widetilde{\pi}_{t-1}+\alpha_{15,2}\widetilde{y}_{t-1} +\alpha_{15,3}\widetilde{\pi}^{*}_{t-1} +\alpha_{15,4}\widetilde{e}_{t-1} +\alpha_{15,5}\widetilde{\left(\frac{MO}{PIB}\right)}_{t-1}+u_{15,t}
+$$
+
+:::
+
+La inflación depende de su rezago, del crecimiento doméstico, la inflación externa, la depreciación nominal y la base monetaria ampliada ($MO/PIB$).
+
+:::
+
+## Actividad económica e inversión privada
+
+::: {.small style="font-size: 0.78em;"}
+
+**(16) Crecimiento económico (curva IS)**
+
+::: {.equation-compact style="font-size: 0.85em;"}
+
+$$
+\widetilde{y}_{t}={} \alpha_{16,1}\widetilde{y}_{t-1}+\alpha_{16,2}\widetilde{y}^{*}_{t-1} +\alpha_{16,3}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1} +\alpha_{16,4}\widetilde{\left(\frac{ITotal}{PIB}\right)}_{t-1} +\alpha_{16,5}\widetilde{\left(\frac{MO}{PIB}\right)}_{t-1}+u_{16,t}
+$$
+
+:::
+
+El crecimiento depende de sus rezagos, del crecimiento externo, las remesas, la inversión total y la base monetaria ampliada.
+
+:::
+
+## Inversión privada
+
+::: {.small style="font-size: 0.78em;"}
+
+**(17) Inversión privada**
+
+::: {.equation-compact style="font-size: 0.85em;"}
+
+$$
+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}={} \alpha_{17,1}\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t-1} +\alpha_{17,2}\widetilde{i}_{t-1} +\alpha_{17,3}\widetilde{\left(\frac{DPIC}{PIB}\right)}_{t-1} +\alpha_{17,4}\widetilde{\rho}_{t-1}+u_{17,t}
+$$
+
+:::
+
+Depende de su rezago, de la tasa líder, de la deuda pública interna consolidada ($DPIC/PIB$) y de la prima por riesgo país.
+
+:::
+
+

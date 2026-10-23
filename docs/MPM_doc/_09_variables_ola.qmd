@@ -1,0 +1,115 @@
+# Variables "ola"
+
+## Regla de construcción
+
+::: {.small style="font-size: 0.78em;"}
+
+Primero se construye la serie trimestral de acuerdo con su tipo; luego se resta el promedio móvil rezagado de cuatro trimestres:
+
+$$\widetilde{x}_{t}=x_{t}-\bar{x}_{t-1},\qquad \bar{x}_{t-1}=\frac{1}{4}\sum_{j=t-4}^{t-1}x_{j}$$
+
+Aquí $x_t$ representa la serie ya construida —por ejemplo, una razón al PIB, una tasa de crecimiento o una tasa de inflación—, no necesariamente el stock o flujo bruto.
+
+:::
+
+## Variables stock
+
+::: {.small style="font-size: 0.72em;"}
+
+Sea $S_t$ el saldo de una variable stock y $Y_t=PIB^{nom}_t$ el PIB nominal. La variable ola se contruye como un cociente entre el promedio móvil del saldo y la suma móvil del PIB.
+
+$$S_t=\frac{1}{4}\sum_{h=0}^{3}S_{t-h},\qquad Y_t=\sum_{h=0}^{3}Y_{t-h}$$
+
+$$x_t^{stock}=\frac{S_t}{Y_t},\qquad \widetilde{x}_{t}^{stock}=x_t^{stock}-\frac{1}{4}\sum_{j=t-4}^{t-1}x_j^{stock}$$
+
+Se aplica a deuda pública interna, externa; activos externos e internos netos ($DPI$, $DPE$, $AEN$, $AIN$).
+
+:::
+
+## Variables flujo
+
+::: {.small style="font-size: 0.72em;"}
+
+Para cada flujo, la variable ola se construye como la suma móvil de cuatro trimestres entre la suma móvil del PIB nominal:
+
+$$F_t=\sum_{h=0}^{3}F_{t-h},\qquad Y_t^{(4)}=\sum_{h=0}^{3}Y_{t-h},\qquad r_t^{flujo}=\frac{F_t}{Y_t^{(4)}}$$
+
+$$\widetilde{x}_{t}^{flujo}=x_t^{flujo}-\frac{1}{4}\sum_{j=t-4}^{t-1}x_j^{flujo}$$
+
+Incluye inversión pública y privada, ingresos totales, gasto de funcionamiento, remesas ($IPub$, $IPriv$, $IngT$, $GFun$, $Rem$). 
+
+:::
+
+## Tasas de crecimiento económico
+
+::: {.small style="font-size: 0.76em;"}
+
+Para el PIB real doméstico y el externo, primero se calcula la suma móvil de cuatro trimestres $Y_t=\sum_{h=0}^{3}Y_{t-h}$. La tasa interanual es la variación porcentual de esa suma frente a la suma de un año antes:
+
+$$x_t=100\left(\frac{Y_t}{Y_{t-4}}-1\right),\qquad \widetilde{x}_{t}=x_t-\frac{1}{4}\sum_{j=t-4}^{t-1}x_j$$
+
+La secuencia es: PIB trimestral $\rightarrow$ suma móvil de cuatro trimestres $\rightarrow$ variación interanual $\rightarrow$ desviación respecto del promedio móvil de la tasa.
+
+:::
+
+## Tasas de interés y prima por riesgo país
+
+::: {.small style="font-size: 0.78em;"}
+
+Una vez expresadas en frecuencia trimestral, las tasas se transforman directamente: se resta a cada observación su promedio móvil rezagado de cuatro trimestres.
+
+$$\widetilde{x}_{t}=x_t-\frac{1}{4}\sum_{j=t-4}^{t-1}x_j,\qquad x_t\in\{i_t^{*},i_t,\rho_t\}$$
+
+Corresponde a la tasa de interés externa $i_t^{*}$, la tasa líder doméstica $i_t$ y la prima por riesgo país $\rho_t$.
+
+:::
+
+## Tasas de inflación y depreciación cambiaria
+
+::: {.small style="font-size: 0.72em;"}
+
+A partir de los índices trimestrales de precios y del tipo de cambio nominal $E_t$ (Q/US$), se obtiene primero la variación interanual porcentual:
+
+$$\pi_t=100\left(\frac{IPC_t}{IPC_{t-4}}-1\right),\qquad \pi_t^{*}=100\left(\frac{IPC_t^{*}}{IPC_{t-4}^{*}}-1\right),\qquad e_t=100\left(\frac{E_t}{E_{t-4}}-1\right)$$
+
+Luego, para cada tasa, se resta su propio promedio móvil rezagado:
+
+$$\widetilde{\pi}_{t}=\pi_t-\bar{\pi}_{t-1},\qquad \widetilde{\pi}_{t}^{*}=\pi_t^{*}-\bar{\pi}_{t-1}^{*},\qquad \widetilde{e}_{t}=e_t-\bar{e}_{t-1}$$
+
+La depreciación real se construye directamente a partir de las variables “ola” de depreciación nominal e inflaciones externa y doméstica:
+
+$$\widetilde{z}_{t}=\widetilde{e}_{t}+\widetilde{\pi}_{t}^{*}-\widetilde{\pi}_{t}$$
+
+:::
+
+## Reconstrucción de la serie transformada
+
+::: {.small style="font-size: 0.80em;"}
+
+La serie trimestral sobre la que se aplicó el operador “ola” se recupera sumando el promedio móvil rezagado a la ola pronosticada:
+
+$$x_t=\widetilde{x}_t+\bar{x}_{t-1}$$
+
+En variables stock y flujo, $x_t$ es la razón ya construida con los promedios o sumas móviles descritos arriba.
+
+:::
+
+## Ejemplo para crecimiento económico
+
+![](assets/ola_pltos/GDP.png){fig-align="center"}
+
+## Ejemplo para variables stock
+
+![Etapas finales: cociente y variable ola de deuda pública interna](assets/ola_pltos/DPI_final.png){width="95%"}
+
+## Ejemplo para variables flujo
+
+![Etapas finales: cociente y variable ola de gasto de funcionamiento](assets/ola_pltos/GFun_final.png){width="95%"}
+
+## Ejemplo para tasas de interés
+
+![Construcción de la variable ola para la tasa de interés líder](assets/ola_pltos/i.png){width="95%"}
+
+## Ejemplo para inflación
+
+![Construcción de la variable ola para inflación doméstica](assets/ola_pltos/core_cpi_final.png){width="95%"}

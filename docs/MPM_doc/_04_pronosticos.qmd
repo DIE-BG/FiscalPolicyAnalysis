@@ -1,0 +1,117 @@
+# Pronósticos
+
+Escenarios base, moderado y optimista
+
+## Crecimiento económico doméstico
+
+
+![](assets/slide_12_image_01.png){width="95%" fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+La construccion de los escenarios moderado y optimista responde a una lógica macroeconómica interna, en la que la **política fiscal juega un papel protagónico** en la generación de los cambios estructurales.
+:::
+
+## Deuda pública interna
+
+![](assets/slide_13_image_01.png){width="95%" fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+En los escenarios moderado y optimista, se aprovecha la capacidad de endeudamiento del gobierno **para financiar los proyectos de inversión pública** necesarios en la economía.
+
+:::
+
+## Inversión pública
+![](assets/slide_14_image_01.png){width="95%" fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+Los proyectos de inversión pública inicialmente son financiados por endeudamiento externo.
+
+**Sostener el crecimiento de largo plazo necesita mayores de inversión.**
+
+:::
+
+## Deuda pública interna
+
+![](assets/slide_15_image_01.png){width="95%" fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+A su vez, el aumento de la inversión pública genera **mayores necesidades de financiamiento**, lo que provoca un incremento de deuda púlbica interna.
+
+:::
+
+## Ingresos totales
+
+![](assets/slide_16_image_01.png){width="95%" fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+Dado que el financiamiento de la inversión pública no puede sostenerse exclusivamente mediante deuda, es necesario **incrementar los ingresos del gobierno**. 
+
+*Si no se hace una correccion a los ingresos, la deuda pública interna crece de manera insostenible*.
+
+:::
+
+## Déficit fiscal
+
+![](assets/slide_17_image_01.png){width="95%" fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+Aunque inicialmente el déficit aumenta, este se estabiliza como consecuencia del incremento en los ingresos del gobierno.
+
+:::
+
+## Deuda pública total
+
+![](assets/slide_18_image_01.png){width="95%" fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+En el largo plazo, **aumentan los niveles de endeudamiento total** del gobierno.
+
+:::
+
+## Inflación doméstica
+
+![](assets/slide_19_image_01.png){width="95%" fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+En los escenarios optimista y moderado, el **mayor dinamismo en la actividad económica**, junto con el **incremento de la base monetaria**, provocan que la inflación doméstica aumente durante un periodo de tiempo, pero luego retorna a su valor meta de 4%.
+
+:::
+
+## Tasa de interés líder
+
+![](assets/slide_20_image_01.png){width="95%" fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+La autoridad monetaria incrementa la tasa de interés líder en **respuesta al aumento de la inflación**.
+
+:::
+
+## Inversión privada doméstica
+
+![](assets/slide_21_image_01.png){width="95%" fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+El **efecto crowding out** determina su dinámica de largo plazo, en respuesta al incremento de la deuda pública interna.
+
+:::
+
+## Inversión total doméstica
+
+![](assets/slide_22_image_01.png){width="95%" fig-align="center"}
+
+::: {.small style="font-size: 0.72em"}
+
+No obstante, en el largo plazo, la **inversión total de la economía aumenta**.
+
+:::
+
