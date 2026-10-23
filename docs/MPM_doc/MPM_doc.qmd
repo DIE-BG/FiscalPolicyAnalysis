@@ -24,8 +24,6 @@ format:
 
 {{< include _03_aspectos_generales_mpm.qmd >}}
 
-{{< include _09_variables_ola.qmd >}}
-
 {{< include _04_pronosticos.qmd >}}
 
 {{< include _05_modelo_mpm.qmd >}}
@@ -37,3 +35,5 @@ format:
 {{< include _08_derivacion_residuo_deuda_interna.qmd >}}
 
 {{< include _09_variables_ola.qmd >}}
+
+{{< include _10_estimacion.qmd >}}

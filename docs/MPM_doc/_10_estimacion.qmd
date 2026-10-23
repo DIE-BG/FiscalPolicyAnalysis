@@ -1,0 +1,185 @@
+# Estimación
+
+## Matriz de coeficientes
+
+::: {.equation-compact style="font-size: 0.42em;"}
+
+$$
+A_1=\begin{bmatrix}
+\alpha_{1,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & \alpha_{2,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & \alpha_{3,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & \alpha_{4,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & \alpha_{5,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & \alpha_{6,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & \alpha_{7,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{8,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & \alpha_{9,3} & -\alpha_{9,3} & \alpha_{9,3} & \alpha_{9,2} & 0 & \alpha_{9,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & \alpha_{10,3} & 0 & 0 & 0 & \alpha_{10,2} & 0 & 0 & \alpha_{10,1} & 0 & 0 & \alpha_{10,3} & 0 & -\alpha_{10,3} & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{11,2} & 0 & \alpha_{11,1} & \alpha_{11,3} & 0 & 0 & \alpha_{11,4} & 0 & 0 \\
+0 & \alpha_{12,2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{12,1} & 0 & 0 & \alpha_{12,3} & \alpha_{12,4} & 0 \\
+0 & -\alpha_{13,3} & 0 & 0 & 0 & 0 & \alpha_{13,2} & 0 & 0 & \alpha_{13,2} & 0 & \alpha_{13,3} & \alpha_{13,1} & -\alpha_{13,3} & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & \alpha_{14,2} & 0 & \alpha_{14,2} & -\alpha_{14,2} & -\alpha_{14,2} & 0 & \alpha_{14,1} & 0 & 0 & 0 & 0 \\
+0 & 0 & \alpha_{15,3} & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{15,5} & \alpha_{15,5} & 0 & \alpha_{15,4} & 0 & \alpha_{15,1} & \alpha_{15,2} & 0 \\
+\alpha_{16,1} & 0 & 0 & \alpha_{16,4} & 0 & 0 & 0 & \alpha_{16,3} & 0 & \alpha_{16,5} & \alpha_{16,5} & 0 & 0 & 0 & 0 & \alpha_{16,1} & \alpha_{16,4} \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{17,3} & 0 & -\alpha_{17,3} & \alpha_{17,2} & 0 & \alpha_{17,4} & 0 & 0 & \alpha_{17,1}
+\end{bmatrix}
+$$
+
+:::
+
+## Procedimiento de estimación
+
+Las ecuaciones del modelo se estimaron individualmente mediante Mínimos Cuadrados Ordinarios (OLS), utilizando las variables ola correspondientes.
+
+## Variables que comparten coeficiente
+
+::: {.small style="font-size: 0.82em;"}
+
+En la ecuación de la deuda pública interna, el déficit entra rezagado. La identidad contable expresa el déficit como gasto de funcionamiento más inversión pública menos ingresos totales:
+
+$$
+\widetilde{\left(\frac{Def}{PIB}\right)}_{t-1}=
+\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+
+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-
+\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}
+$$
+
+:::
+
+## Variables que comparten coeficiente
+
+::: {.small style="font-size: 0.82em;"}
+
+Al sustituir esa identidad en la ecuación de deuda pública interna, queda:
+
+::: {.equation-compact style="font-size: 0.78em;"}
+
+$$
+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=
+\alpha_{9,1}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+
+\alpha_{9,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+
+\alpha_{9,3}\left[
+\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+
+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-
+\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}
+\right]+u_{9,t}
+$$
+
+:::
+
+:::
+
+## Variables que comparten coeficiente
+
+::: {.small style="font-size: 0.82em;"}
+
+Al distribuir el coeficiente del déficit, los tres componentes comparten el mismo parámetro estimado, $\alpha_{9,3}$. El signo de los ingresos se mantiene negativo, como en la identidad fiscal:
+
+::: {.equation-compact style="font-size: 0.78em;"}
+
+$$
+\alpha_{9,3}\Bigl[\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}\Bigr]
+=\alpha_{9,3}\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\alpha_{9,3}\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-\alpha_{9,3}\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}
+$$
+
+:::
+
+Así, la fila 9 de $A_1$ refleja un único coeficiente para la contribución del déficit.
+
+:::
+
+## Multiplicadores dinámicos
+
+::: {.small style="font-size: 0.82em;"}
+
+Luego de la estimación es importante observar las dinámicas económicas que postula el modelo. Para ello se analizan los multiplicadores dinámicos, que permiten evaluar cómo las variables del sistema responden a innovaciones reducidas en los distintos componentes del VAR a lo largo del tiempo.
+
+## Multiplicadores dinámicos
+
+Considérese un VAR($p$) con $K$ variables, $y_t\in\mathbb R^K$, e innovaciones de forma reducida $u_t$:
+
+$$
+y_t=A_1y_{t-1}+\cdots+A_py_{t-p}+u_t
+$$
+
+Al apilar las variables y sus rezagos en $Y_t=(y_t',y_{t-1}',\ldots,y_{t-p+1}')'$, el sistema se expresa en forma acompañante como $Y_t=AY_{t-1}+U_t$. Aquí, $A$ es la matriz acompañante, $U_t=(u_t',0,\ldots,0)'$ y $J=[I_K\;0_{K\times K(p-1)}]$ selecciona el bloque correspondiente a $y_t$, de modo que $y_t=JY_t$.
+
+La matriz de multiplicadores dinámicos de forma reducida al horizonte $i$ es:
+
+$$
+\Phi_i=[\phi_{jk,i}]\equiv JA^iJ',\qquad i=0,1,\ldots,H
+$$
+
+:::
+
+## Lectura de los multiplicadores
+
+::: {.small style="font-size: 0.82em;"}
+
+El elemento $\phi_{jk,i}$ mide cuánto cambia la variable $j$ en el periodo $t+i$ ante un aumento unitario en el componente $k$ de $u_t$, manteniendo fijos los demás componentes de la innovación:
+
+$$
+\phi_{jk,i}=\frac{\partial y_{j,t+i}}{\partial u_{k,t}}
+$$
+
+Por tanto, cada columna $k$ de $\Phi_i$ reúne las respuestas de todas las variables a esa perturbación. 
+
+:::
+
+## Aplicación: innovación en la deuda pública interna
+
+::: {.small style="font-size: 0.82em;"}
+
+En este modelo, la deuda pública interna (DPI) ocupa la posición $k=9$ entre las $K=17$ variables. Su respuesta en todos los componentes del sistema al horizonte $i$ se obtiene con la columna 9 de $\Phi_i$:
+
+$$
+\Phi_i e_9=\begin{bmatrix}\phi_{1,9,i} & \cdots & \phi_{17,9,i}\end{bmatrix}',\qquad
+\phi_{j,9,i}=\frac{\partial y_{j,t+i}}{\partial u_{9,t}},\quad j=1,\ldots,17
+$$
+
+Las respuestas que se derivan presentan las respuestas trimestrales para $i=1,\ldots,H$.
+
+:::
+
+## Verificación de la estabilidad del VAR
+
+Aunque los multiplicadores dinámicos son relevantes para analizar las respuestas del sistema a innovaciones reducidas y evaluar su relevancia o consistencia económica, es fundamental verificar que el VAR sea estable. La estabilidad garantiza que las respuestas a las innovaciones no crezcan indefinidamente y que el modelo sea coherente a lo largo del tiempo, especialmente para este modelo cuyos pronósticos son de muy largo plazo.
+
+## Verificación de la estabilidad del VAR
+
+::: {.small style="font-size: 0.82em;"}
+
+Para un VAR($p$), sean $r_j$ las raíces de la ecuación característica:
+
+$$
+\det\left(I_K-A_1z-\cdots-A_pz^p\right)=0
+$$
+
+El VAR es estable si todas cumplen $|r_j|>1$. Equivalentemente, sus inversos $\mu_j=r_j^{-1}$ —los valores propios de la matriz acompañante $A$— deben estar dentro del círculo unitario:
+
+Para un VAR(1), $A=A_1$. Si la condición no se cumple, se aplica el ajuste de contracción descrito a continuación.
+
+:::
+
+## Ajuste de estabilidad por contracción
+
+::: {.small style="font-size: 0.82em;"}
+
+El procediiento de contracción consiste en reducir iterativamente la matriz de coeficientes estimada por OLS hasta que se cumpla el criterio de estabilidad. En cada iteración, la matriz se multiplica por un factor menor que 1:
+
+$$
+A^{(0)}=A_{\mathrm{OLS}},\qquad A^{(i)}=0.99^{i}A^{(i-1)},\quad i=1,2,\ldots
+$$
+
+Cada factor se aplica sobre la matriz ya reducida, por lo que la contracción se acumula. Después de cada contracción, se vuelven a calcular sus valores propios. Se repite el proceso hasta que exista estabilidad en el modelo VAR.
+
+:::
+
+## VAR inestable
+
+![](assets/dynamic_multipliers/var_inestable_choque_DPI.png){width="100%" fig-align="center"}
+
+## VAR con estabilidad forzada
+
+![](assets/dynamic_multipliers/var_estabilizado_choque_DPI.png){width="100%" fig-align="center"}
