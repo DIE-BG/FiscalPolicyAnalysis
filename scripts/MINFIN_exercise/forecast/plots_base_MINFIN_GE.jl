@@ -38,7 +38,7 @@ vars = names(base_escenario)[1:end-1]
 
 # Create the data frame only with historical data
 HistoricalData = @chain base_escenario begin
-    @subset :date .<= Date(2025, 12)
+    @subset :date .<= Date(2026, 6)
 end
 
 # ===== Plot the series =====
@@ -48,16 +48,14 @@ for i in 1:length(vars)
     var = vars[i]
     name = var_names[1, var]
 
-    fig = Figure(size = (1350, 800))
+    fig = Figure(size = (900, 600))
 
     ax = Axis(
         fig[1,1,],
         title = name,
-        subtitle = var,
         titlesize = 25,
-        subtitlesize = 22,
-        xlabelsize = 20,
-        ylabelsize = 20,
+        xlabelsize = 23,
+        ylabelsize = 23,
         xgridvisible = false,
         ygridvisible = false
     )
@@ -67,7 +65,7 @@ for i in 1:length(vars)
         ax,
         datetime2rata.(base_escenario.date),
         base_escenario[:, var],
-        label = "Pronóstico con datos MINFIN",
+        label = "Pronóstico",
         color = :blue
     )
 
@@ -82,7 +80,7 @@ for i in 1:length(vars)
 
     vlines!(
         ax,
-        datetime2rata.(Date(2026, 6)),
+        datetime2rata.(Date(2026, 6, 1)),
         linestyle = :dash,
         color = :black,
         linewidth = 0.75,
@@ -100,15 +98,15 @@ for i in 1:length(vars)
 
     Mudie.dateticks!(ax, first(base_escenario.date):last(base_escenario.date), step = Month(28))
 
-    Legend(fig[2,1], ax, orientation = :horizontal, framevisible = false, padding = (10, 10, 10, 10), spacing = 20, labelsize = 18)
+    Legend(fig[2,1], ax, orientation = :horizontal, framevisible = false, padding = (10, 10, 10, 10), spacing = 20, labelsize = 20)
 
     # ===== table =====
     tbl = fig[3, 1] = GridLayout()
 
-    headers = ["Escenario", "2026Q2", "2026Q4", "2027Q4", "2029Q4", "2031Q4", "2032Q4", "2033Q4"]
+    headers = ["", "2026T2", "2026T4", "2027T4", "2029T4", "2031T4", "2032T4", "2033T4"]
     data = [
             (
-                "Pronóstico\ndatos MINFIN", 
+                "Pronóstico", 
                 base_escenario[base_escenario.date .== Date(2026, 6, 1), var],
                 base_escenario[base_escenario.date .== Date(2026, 12, 1), var],
                 base_escenario[base_escenario.date .== Date(2027, 12, 1), var],
