@@ -20,7 +20,7 @@ format:
 - configurar su formato y metadatos con YAML;
 - crear portada, índice, encabezados y pies de página;
 - escribir secciones, fórmulas, notas, tablas, gráficas y bloques de código;
-- renderizar el documento y comprobar el resultado.
+- generar una salida PDF o HTML y comprobar el resultado.
 
 ## Quarto en tres pasos
 
@@ -47,7 +47,7 @@ quarto render
 ::: {.column width="33%"}
 **3. Salida**
 
-PDF, HTML, Revealjs u otro formato.
+PDF o HTML.
 :::
 
 ::::
@@ -93,7 +93,7 @@ format:
 - `format` elige la salida.
 - Las opciones bajo `pdf` se aplican a esa salida.
 
-## Una fuente, varios formatos
+## Una fuente, PDF y HTML
 
 Un `.qmd` puede prepararse para más de un formato. Las opciones particulares van bajo cada formato:
 
@@ -104,8 +104,6 @@ format:
   pdf:
     toc: true
     number-sections: true
-  revealjs:
-    toc: true
 ````
 
 ## Título y metadatos
@@ -119,7 +117,7 @@ author: "Equipo responsable"
 date: today
 ````
 
-Quarto usa estos campos para componer el bloque de título. En Revealjs, el título y otros metadatos también pueden generar la diapositiva inicial automáticamente.
+Quarto usa estos campos para componer el bloque de título. El estilo y la ubicación del título dependen del formato y de la plantilla.
 
 ## Crear una portada
 
@@ -293,11 +291,10 @@ print("Hola, Quarto")
 
 En tu archivo, indica el lenguaje elegido y habilita la ejecución cuando la necesites. Para que funcione, instala también el lenguaje y sus paquetes.
 
-## Saltos de página y de diapositiva
+## Saltos de página en PDF y HTML
 
 - En PDF/LaTeX, `\clearpage` o `\newpage` fuerza un salto de página; su efecto depende del motor.
-- En HTML, una página se adapta al tamaño de pantalla.
-- En Revealjs, un encabezado `##` inicia otra diapositiva. `---` puede separar diapositivas sin título, fuera de la cabecera YAML.
+- En HTML, el contenido fluye en una página continua. Para impresión, CSS como `break-before: page` puede controlar los cortes.
 
 ## Renderizar y previsualizar
 
@@ -306,11 +303,10 @@ Desde la terminal, ejecuta Quarto sobre el archivo fuente:
 ````bash
 quarto render "informe.qmd" --to html
 quarto render "informe.qmd" --to pdf --output-dir "build/preview"
-quarto render "presentacion.qmd" --to revealjs
 quarto preview "informe.qmd"
 ````
 
-Las comillas protegen rutas con espacios. `quarto preview` sirve para revisar cambios rápidamente; el comando `render` genera el resultado final.
+Las comillas protegen rutas con espacios. `quarto preview` sirve para revisar rápidamente una salida HTML; `quarto render` genera el archivo final. Renderiza el PDF en una carpeta de prueba para no reemplazar una versión existente.
 
 ## Revisar el resultado
 
@@ -339,4 +335,13 @@ La compilación exitosa no garantiza que el documento esté correcto. Abre el re
 3. Inspecciona visualmente el resultado y corrige errores o desbordes.
 4. Revisa enlaces, figuras, referencias, notas y control de versiones.
 5. Comparte o guarda los archivos fuente y recursos requeridos por el proyecto.
+
+## Enlaces de interés
+
+Documentación oficial de Quarto para cada formato:
+
+- Word: [Documentos Word con Quarto](https://quarto.org/docs/output-formats/ms-word)
+- PDF: [Documentos PDF con Quarto](https://quarto.org/docs/output-formats/pdf-basics.html)
+- HTML: [Documentos HTML con Quarto](https://quarto.org/docs/output-formats/html-basics.html)
+- Revealjs: [Presentaciones Revealjs con Quarto](https://quarto.org/docs/presentations/revealjs/)
 
