@@ -1,6 +1,7 @@
+# Imágenes
+*.jpg
+*.jpeg
 *.png
-
-Models/Model_*/forecast/*.csv
 
 # ==========================================
 # Quarto + Reveal.js
