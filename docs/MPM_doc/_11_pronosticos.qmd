@@ -1,0 +1,161 @@
+# Pronósticos
+
+Para comprender el proceso de generación de pronósticos, usaremos un ejemplo práctico del repositorio.
+
+## Archivo `model.mod`
+
+El archivo `scripts/Model_1.4/forecast/model.mod` contiene la especificación del modelo que se carga en IRIS. Los scripts de pronóstico ejecutan primero `setparam.m` y después crean el objeto `MODEL` a partir de esta especificación, asignándole la estructura de parámetros `p`; las rutinas de solución, filtrado y pronóstico están en los archivos MATLAB.
+
+```matlab
+run(fullfile('scripts', ModelPath, 'forecast', 'setparam.m'));
+MODEL = model(fullfile('scripts', ModelPath, 'forecast', 'model.mod'), 'assign', p);
+```
+
+## Variables de medición
+
+Los dos primeros bloques conectan las series observadas con las variables del modelo. En esta versión hay 17 variables de medición y 17 ecuaciones de correspondencia.
+
+```text
+!measurement_variables
+m_GDP_star_SM_yoy,
+...
+
+!measurement_equations
+m_GDP_star_SM_yoy = GDP_star_SM_yoy;
+...
+```
+
+El prefijo `m_` identifica la serie observada. Cada ecuación indica con qué variable del modelo se asocia; por ejemplo, `m_GDP_star_SM_yoy` se vincula con `GDP_star_SM_yoy`.
+
+## Variables de transición y shocks
+
+`!transition-variables` declara 50 variables de transición. Cada identificador puede llevar antes una etiqueta descriptiva en español, entre comillas simples. La lista incluye series observables, variables “ola”, cocientes y variables derivadas.
+
+`!transition-shocks` declara 17 shocks o residuos, identificados como `u1` a `u17` y etiquetados según la ecuación a la que corresponden.
+
+```text
+!transition-variables
+'Tasa de crecimiento interanual de la suma movil de 4T del PIB externo (%)' GDP_star_SM_yoy,
+...
+
+!transition-shocks
+'Residuo del crecimiento económico' u1,
+...
+```
+
+## Parámetros
+
+El bloque `!parameters` declara 41 coeficientes que aparecen en las ecuaciones, desde `a1_1` hasta `a17_4`. Aquí se registran sus nombres; los valores numéricos se asignan en `setparam.m`, que los scripts ejecutan antes de cargar `model.mod`.
+
+```text
+!parameters
+a1_1,
+a2_1,
+...
+a17_4
+```
+
+## Ecuaciones de transición
+
+El bloque `!transition-equations` reúne las ecuaciones y se organiza mediante comentarios en tres grupos:
+
+1. `Construction of ola variables`: transformaciones para construir variables “ola”.
+2. `Model`: las 17 ecuaciones dinámicas del modelo.
+3. `Other important variables`: identidades para formar variables agregadas y cocientes derivados.
+
+Los encabezados `%%` y las líneas que comienzan con `%` sirven para ordenar y comentar el archivo; las declaraciones que IRIS interpreta comienzan con `!`.
+
+## Construcción de las variables “ola”
+
+En la mayoría de los casos, una variable “ola” se construye como el valor actual de una serie menos el promedio de sus cuatro rezagos. Por ejemplo, para el crecimiento doméstico:
+
+```text
+GDP_ola = GDP_SM_yoy - (
+    GDP_SM_yoy{-4} + GDP_SM_yoy{-3}
+    + GDP_SM_yoy{-2} + GDP_SM_yoy{-1}
+) / 4;
+```
+
+La inflación doméstica es una excepción de referencia: el archivo define `pi_ola = pi_yoy - 4;`, es decir, la expresa respecto al valor fijo de 4, no al promedio de cuatro rezagos. Se describe aquí tal como está codificado, sin modificarlo.
+
+## Ecuaciones dinámicas del modelo
+
+En el grupo `Model`, cada ecuación describe la dinámica de una variable “ola” mediante coeficientes, valores rezagados y un shock. En la sintaxis de IRIS, `{-1}` indica el valor del periodo anterior.
+
+```text
+GDP_star_ola = a1_1*GDP_star_ola{-1} + u1;
+```
+
+Este bloque contiene 17 ecuaciones, asociadas a los shocks `u1`–`u17`. Algunas son procesos autorregresivos simples; otras incluyen rezagos de varias variables del modelo.
+
+## Variables agregadas y derivadas
+
+El último grupo define magnitudes construidas a partir de las variables declaradas. Entre ellas están:
+
+- Base monetaria ampliada (`AMB`), como suma de activos externos e internos netos.
+- Tipo de cambio real (`z`), combinando inflación externa, depreciación nominal e inflación doméstica.
+- Deuda consolidada externa, interna y total (`DPEC`, `DPIC` y `DPTC`).
+- Deuda pública total (`DPT`), inversión total (`ITotal`) y déficit (`Def`).
+
+Para varias de estas magnitudes, el archivo define tanto cocientes respecto al PIB como sus versiones “ola”.
+
+## Proceso en `forecast_base.m`
+
+El archivo ejecutable está en `scripts/Model_1.4/forecast/forecast_base.m`. La ruta `Models/Model_1.4/forecast/` es el directorio de salida que crea el código, no la ubicación del `.m`.
+
+El script usa `model.mod` y los parámetros de `setparam.m` para construir el escenario base: carga datos históricos, aplica el filtro de Kalman y simula un trimestre a la vez. Exporta el resultado a `Models/Model_1.4/forecast/forecast_base.csv`.
+
+## 1. Preparar y resolver el modelo
+
+Al inicio, el script limpia el espacio de trabajo, agrega las funciones auxiliares de `src/helpers/forecast` y fija `ModelPath = 'Model_1.4'`. Si la carpeta de salida `Models/Model_1.4/forecast` no existe, la crea.
+
+Luego ejecuta `setparam.m`, carga `model.mod` asignándole el vector de parámetros `p`, calcula el estado estacionario y comprueba sus discrepancias. Si la comprobación no pasa, emite una advertencia; después resuelve el modelo con `solve`.
+
+## 2. Cargar datos y filtrar la historia
+
+El script lee `Models/Model_1.4/data/initial_conditions.csv`. A partir de la lista de variables de medición del modelo, quita el prefijo `m_` para emparejar cada observación con la serie correspondiente y alimentar el filtro de Kalman.
+
+El filtro se aplica al rango histórico de `m_GDP_star_SM_yoy`. De sus resultados, el script conserva la media de las trayectorias de las variables de transición. Después llama a `makeErrors`, que realiza pronósticos de un paso para 65 periodos históricos y obtiene los shocks como diferencias entre la trayectoria filtrada y esos pronósticos.
+
+## 3. Definir el horizonte y los shocks iniciales
+
+El horizonte comienza en `2026Q1`. El código fija `EndPred = StartPred + 123`, por lo que recorre 124 trimestres, hasta `2056Q4`.
+
+En la primera iteración asigna `u5 = 0.35199` y `u16 = -0.733`; `u4` y `u7` se fijan en cero. En las iteraciones posteriores, esos cuatro shocks se fijan en cero. El shock `u9`, en cambio, se vuelve a calcular en cada paso.
+
+## 4. Calcular el shock `u9`
+
+Cada trimestre, `u9` se calcula con los últimos valores de `DPI_ola`, `DPE_ola`, `GFun_ola`, `IPub_ola` e `IngT_ola` y sus coeficientes. El comentario del script indica que el ajuste conserva la identidad contable de deuda interna.
+
+La operación ejecutada dentro del ciclo puede leerse así, con los términos distribuidos en varias líneas para facilitar su lectura:
+
+```matlab
+u9 = (1 - p.a9_1)*Forecast.DPI_ola(end) ...
+   + (1 - p.a7_1 - p.a9_2)*Forecast.DPE_ola(end) ...
+   + (p.a6_1 - p.a9_3)*Forecast.GFun_ola(end) ...
+   + (p.a4_1 - p.a9_3)*Forecast.IPub_ola(end) ...
+   - (p.a5_1 + p.a9_3)*Forecast.IngT_ola(end) ...
+   - u5;
+```
+
+Nota: el comentario previo muestra otra expresión (variables sin sufijo `_ola` y shocks adicionales); el ciclo ejecuta la fórmula mostrada aquí. No se modificó el código.
+
+## 5. Construir el plan de simulación
+
+Para cada paso, `SPred` es el trimestre siguiente al último periodo disponible en `Forecast`. El script crea una base de shocks en cero para `u9`, `u5` y `u16`, la combina con la trayectoria actual y asigna los valores correspondientes al periodo `SPred`.
+
+En el plan de IRIS, `DPI_ola`, `IngT_ola` y `GDP_ola` se resuelven como variables endógenas, mientras que `u9`, `u5` y `u16` se exogenizan para ese trimestre. Así se fija el ajuste por shocks y se obtiene la trayectoria compatible de las variables objetivo.
+
+## 6. Simular un trimestre y actualizar la trayectoria
+
+El script llama a `simulate` para pronosticar un paso, con `anticipate = false` y superposición de la base de datos (`DbOverlay = true`). La base resultante sustituye a `Forecast`; en la siguiente iteración, el ciclo vuelve a calcular `u9` y avanza al trimestre siguiente.
+
+Durante el ciclo también guarda las trayectorias de los shocks `u4`, `u5`, `u7`, `u9` y `u16`. Al finalizar, combina esas trayectorias pronosticadas con los shocks históricos obtenidos antes del horizonte.
+
+## 7. Exportar el escenario base
+
+Para la salida, el script selecciona todas las variables de transición del modelo y añade los shocks `u4`, `u5`, `u7`, `u9` y `u16`. Finalmente escribe esa base en:
+
+```text
+Models/Model_1.4/forecast/forecast_base.csv
+```

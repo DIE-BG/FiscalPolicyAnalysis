@@ -1,0 +1,140 @@
+# Documentación
+
+Los pronósticos del MPM se acompañan de documentación sobre el modelo y su versión vigente. La versión de referencia más reciente es: *Modelo para Proyecciones Macroeconómicas*, versión 1.4.
+
+## Estructura general del documento
+
+El documento inicia con la especificación económica y desarrolla progresivamente sus ecuaciones e identidades.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### 1. Especificación
+
+- Supuestos principales.
+- Variables exógenas y endógenas, clasificadas por sector.
+
+:::
+
+::: {.column width="50%"}
+
+### 2. Definiciones y ecuaciones
+
+- Definiciones contables y sustituciones de variables.
+- Presentación compacta y derivación del residuo $u_{9,t}$.
+
+:::
+
+::::
+
+## Construcción y resultados
+
+Una vez especificado el modelo, el documento define las transformaciones y presenta sus principales resultados.
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### 3. Construcción y formalización
+
+- Variables “ola”, recuperación de variables observables y convenciones.
+- Simplificación notacional y representaciones compacta y matricial.
+
+:::
+
+::: {.column width="50%"}
+
+### 4. Gráficas fundamentales y anexo
+
+- Gráficas del comportamiento y evolución de las variables “ola”.
+- Pronósticos y anexos: matriz de coeficientes y multiplicadores dinámicos.
+
+:::
+
+::::
+
+## Crear un directorio por versión
+
+Al cerrar una nueva versión del MPM, crear un directorio nuevo directamente bajo `docs/`. No reutilizar ni sobrescribir el directorio de una versión anterior.
+
+La carpeta y el archivo principal deben usar el nombre del modelo y el identificador oficial de la versión. Siguiendo el patrón existente, si la nueva versión fuera la 1.5:
+
+```text
+docs/
+└── Modelo de proyecciones Macroeconómicas_1_5/
+    └── Modelo de proyecciones Macroeconómicas_1_5.qmd
+```
+
+## Organizar las gráficas por función
+
+Guardar las gráficas de cada versión en las carpetas correspondientes bajo `figuras/`:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- `figuras/`: imagen de portada, por ejemplo `fig-p001-1.jpg`.
+- `Comportamiento_grafico/`: gráficas de las series y su construcción.
+- `Variables_ola/`: gráficas de las variables “ola”.
+
+:::
+
+::: {.column width="50%"}
+
+- `Pronosticos/`: gráficas de pronósticos y series asociadas.
+- `Multiplicadores_dinamicos/`: gráficas de respuestas dinámicas.
+
+:::
+
+::::
+
+## Vincular las figuras desde el QMD
+
+Las referencias a imágenes deben ser rutas relativas al `.qmd` y apuntar a los archivos guardados en el nuevo directorio. Por ejemplo:
+
+```text
+figuras/Pronosticos/18_GDP_star_ola.png
+```
+
+- Comprobar que cada archivo citado exista en su carpeta.
+- Si se mueve o renombra una figura, actualizar su ruta en el `.qmd`.
+- No dejar referencias a rutas de la versión 1.4 ni a archivos que estén fuera del directorio de la nueva versión.
+
+## Requisito: instalar Quarto
+
+Quarto debe estar instalado en la computadora desde la que se renderizará el documento. El archivo `.qmd` y un editor de texto, por sí solos, no generan el PDF: se necesita Quarto para procesar el documento y producir la salida solicitada.
+
+## Instalar Quarto en Windows
+
+1. Abrir la [página oficial de descargas de Quarto](https://quarto.org/docs/download/) y, en la sección de la versión estable vigente, elegir el instalador de Windows con extensión `.msi`.
+2. Ejecutar el archivo `.msi` descargado y seguir los pasos del asistente de instalación con las opciones predeterminadas.
+3. Al terminar, abrir una ventana nueva de PowerShell o de Terminal de Windows para comprobar la instalación.
+
+## Comprobar la instalación de Quarto
+
+En la terminal nueva, ejecutar:
+
+```powershell
+quarto --version
+quarto check install
+```
+
+El primer comando muestra la versión instalada; el segundo verifica Quarto.
+
+## Preparar la salida PDF
+
+Además de Quarto, para producir PDF se requiere una distribución de LaTeX. La documentación oficial recomienda TinyTeX; se instala una vez desde PowerShell con:
+
+```powershell
+quarto install tinytex
+quarto check
+```
+
+## Renderizar el documento de la nueva versión
+
+Desde la raíz del repositorio, renderizar el `.qmd` de la nueva carpeta.
+
+```bash
+quarto render "docs/Modelo de proyecciones Macroeconómicas_1_4/Modelo de proyecciones Macroeconómicas_1_4.qmd" --to pdf
+```

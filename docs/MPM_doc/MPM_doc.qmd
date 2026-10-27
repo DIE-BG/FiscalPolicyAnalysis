@@ -16,6 +16,39 @@ format:
 
 ## Contenido
 
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.small style="font-size: 0.82em"}
+
+- **01.** Introducción
+- **02.** Escenarios de crecimiento económico de largo plazo
+- **03.** Aspectos generales del MPM
+- **04.** Pronósticos: escenarios base, moderado y optimista
+- **05.** Modelo MPM
+- **06.** Definiciones
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+::: {.small style="font-size: 0.82em"}
+
+- **07.** Presentación ampliada del modelo
+- **08.** Derivación algebraica del residuo de deuda interna
+- **09.** Variables “ola”
+- **10.** Estimación
+- **11.** Pronósticos: `model.mod` y `forecast_base.m`
+- **12.** Documentación
+
+:::
+
+:::
+
+::::
 
 
 {{< include _01_introduccion.qmd >}}
@@ -37,3 +70,7 @@ format:
 {{< include _09_variables_ola.qmd >}}
 
 {{< include _10_estimacion.qmd >}}
+
+{{< include _11_pronosticos.qmd >}}
+
+{{< include _12_documentacion.qmd >}}
