@@ -101,6 +101,29 @@ figuras/Pronosticos/18_GDP_star_ola.png
 - Si se mueve o renombra una figura, actualizar su ruta en el `.qmd`.
 - No dejar referencias a rutas de la versión 1.4 ni a archivos que estén fuera del directorio de la nueva versión.
 
+## Instalar Visual Studio Code en Windows
+
+1. Abre la [guía oficial de instalación](https://code.visualstudio.com/docs/setup/windows) o la [página de descargas](https://code.visualstudio.com/download). Descarga **User Installer** para la arquitectura de tu equipo (x64 en la mayoría; ARM64 para equipos Windows con procesador ARM). La instalación de usuario es la recomendada para la mayoría y no requiere permisos de administrador.
+2. Ejecuta `VSCodeUserSetup-{versión}.exe` y sigue el asistente con las opciones predeterminadas.
+3. Al terminar, cierra y vuelve a abrir PowerShell o Windows Terminal para que se actualice el `PATH`.
+
+## Instalar Git en Windows
+
+1. Abre la [página oficial de Git para Windows](https://git-scm.com/install/windows) y descarga el instalador **x64** o **ARM64**, según la arquitectura del equipo.
+2. Ejecuta el archivo `.exe` y sigue el asistente con las opciones recomendadas. Si aparece la selección del editor predeterminado, puedes elegir Visual Studio Code; para el `PATH`, conserva la opción recomendada para usar Git desde PowerShell y otras aplicaciones.
+3. Al terminar, abre una ventana nueva de PowerShell o Windows Terminal.
+
+## Comprobar Git y Visual Studio Code
+
+En PowerShell o Windows Terminal, comprueba que ambos comandos estén disponibles:
+
+```powershell
+git --version
+code --version
+```
+
+Para abrir en VS Code la carpeta actual del repositorio, sitúate en ella desde la terminal y ejecuta `code .`.
+
 ## Requisito: instalar Quarto
 
 Quarto debe estar instalado en la computadora desde la que se renderizará el documento. El archivo `.qmd` y un editor de texto, por sí solos, no generan el PDF: se necesita Quarto para procesar el documento y producir la salida solicitada.

@@ -40,9 +40,9 @@ format:
 - **07.** Presentación ampliada del modelo
 - **08.** Derivación algebraica del residuo de deuda interna
 - **09.** Variables “ola”
-- **10.** Estimación
-- **11.** Pronósticos: `model.mod` y `forecast_base.m`
-- **12.** Documentación
+- **10.** Documentación
+- **11.** Estimación
+- **12.** Pronósticos: `model.mod` y `forecast_base.m`
 
 :::
 
@@ -69,8 +69,8 @@ format:
 
 {{< include _09_variables_ola.qmd >}}
 
-{{< include _10_estimacion.qmd >}}
+{{< include _10_documentacion.qmd >}}
 
-{{< include _11_pronosticos.qmd >}}
+{{< include _11_estimacion.qmd >}}
 
-{{< include _12_documentacion.qmd >}}
+{{< include _12_pronosticos.qmd >}}
