@@ -25,11 +25,11 @@ format:
         \AtBeginDocument{\renewcommand{\contentsname}{Índice}}
         \pagestyle{fancy}
         \fancyhf{}
-        \fancyhead[L]{\parbox[b]{\textwidth}{Banco de Guatemala\\Departamento de Investigaciones Económicas\\Modelo para Proyecciones Macroecnómicas (versión 1.4)\\22 de julio de 2026}}
+        \fancyhead[L]{\parbox[b]{\textwidth}{Banco de Guatemala\\Departamento de Investigaciones Económicas\\Modelo para Proyecciones Macroeconómicas (versión 1.4)\\22 de julio de 2026}}
         \fancyfoot[C]{\thepage}
         \renewcommand{\headrulewidth}{0.4pt}
         \renewcommand{\footrulewidth}{0pt}
-        \fancypagestyle{plain}{\fancyhf{}\fancyhead[L]{\parbox[b]{\textwidth}{Banco de Guatemala\\Departamento de Investigaciones Económicas\\Modelo para Proyecciones Macroecnómicas (versión 1.4)\\22 de julio de 2026}}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0.4pt}}
+        \fancypagestyle{plain}{\fancyhf{}\fancyhead[L]{\parbox[b]{\textwidth}{Banco de Guatemala\\Departamento de Investigaciones Económicas\\Modelo para Proyecciones Macroeconómicas (versión 1.4)\\22 de julio de 2026}}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0.4pt}}
 ---
 
 ```{=latex}
@@ -56,7 +56,7 @@ format:
 \clearpage
 ```
 
-<!-- PDF v1.4, p. 4 -->
+
 # Supuestos principales
 
 En esta sección se presentan supuestos fundamentales asociados a algunos parámetros del modelo, los cuales se consideran como restricciones en la estimación.
@@ -91,7 +91,6 @@ $\alpha_{13,2}$
 \clearpage
 ```
 
-<!-- PDF v1.4, p. 5 -->
 **Ecuación de prima por riesgo país**
 
 $\alpha_{14,2}$
@@ -112,10 +111,9 @@ $\alpha_{17,2}$ y $\alpha_{17,3}$
 \clearpage
 ```
 
-<!-- PDF v1.4, p. 6 -->
 **Modelo para Proyecciones Macroeconómicas**
 
-A continuación, se presenta el Modelo para Proyecciones Macroeconómicas que incorpora interacciones entre las políticas monetaria y fiscal. Para una compresión clara del mismo, la estructura del modelo se divide en variables exógenas (externas e internas) y variables endógenas, estas últimas clasificadas en distintos sectores:
+A continuación, se presenta el Modelo para Proyecciones Macroeconómicas que incorpora interacciones entre las políticas monetaria y fiscal. Para una comprensión clara del mismo, la estructura del modelo se divide en variables exógenas (externas e internas) y variables endógenas, estas últimas clasificadas en distintos sectores:
 
 - Gobierno
 - Banco Central
@@ -186,7 +184,7 @@ $$
 \widetilde{\left(\frac{Rem}{PIB}\right)}_{t}=\alpha_{8,1}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}+u_{8,t}\tag{8}
 $$
 
-<!-- PDF v1.4, p. 8 -->
+
 # Variables endógenas
 
 Las variables endógenas se clasifican según su sector dentro de la economía doméstica.
@@ -333,7 +331,7 @@ $$
 <!-- PDF v1.4, p. 12 -->
 ## Base monetaria ampliada[^4] {.unnumbered .unlisted}
 
-[^4]: Se domina "base monetaria ampliada" porque incluye el componente "encaje en moneda extranjera", además de los componentes usuales de la base monetaria: numerario en circulación y encaje en moneda nacional.
+[^4]: Se denomina "base monetaria ampliada" porque incluye el componente "encaje en moneda extranjera", además de los componentes usuales de la base monetaria: numerario en circulación y encaje en moneda nacional.
 
 $$
 \widetilde{\left(\frac{M_{0}A}{PIB}\right)}_{t}=\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}\tag{21}
@@ -383,7 +381,7 @@ $$
 \end{aligned}\tag{27}
 $$
 
-## Deuda púbica externa consolidada en ecuación (13) {.unnumbered .unlisted}
+## Deuda pública externa consolidada en ecuación (13) {.unnumbered .unlisted}
 
 Sustituyendo la ecuación (24), rezagada un período, en la ecuación (13), resulta:
 
@@ -407,7 +405,7 @@ $$
 \widetilde{\rho}_{t}=\alpha_{14,1}\widetilde{\rho}_{t-1}+\alpha_{14,2}\left[\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+u_{14,t}\tag{30}
 $$
 
-<!-- PDF v1.4, p. 14 -->
+
 ## Base monetaria ampliada en ecuación (15) {.unnumbered .unlisted}
 
 Sustituyendo la ecuación (21) en la ecuación (15), se obtiene:
@@ -446,7 +444,7 @@ $$
 \widetilde{\left(\frac{DPE}{PIB}\right)}_{t}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}
 $$
 
-<!-- PDF v1.4, p. 15 -->
+
 $$
 \Longrightarrow\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}-\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}\tag{34}
 $$
@@ -493,7 +491,7 @@ $$
 \end{aligned}\tag{36}
 $$
 
-<!-- PDF v1.4, p. 16 -->
+
 Seguidamente, se sustituye la ecuación (18), tanto de manera rezagada como en forma contemporánea, en la ecuación (36):
 
 $$
@@ -528,7 +526,7 @@ $$
 El Modelo para Proyecciones Macroeconómicas puede reescribirse, de manera más compacta (aunque menos intuitiva), mediante las 18 ecuaciones siguientes:
 (1), (2), (3), (4), (5), (6), (7), (8), (27), (10), (11), (12), (28), (30), (31), (32), (33) y (38)
 
-<!-- PDF v1.4, p. 17 -->
+
 A continuación se reproducen las recién referidas ecuaciones, pero esta vez de manera consecutiva y con nueva numeración:
 
 $$
@@ -578,7 +576,7 @@ $$
 \widetilde{\left(\frac{AIN}{PIB}\right)}_{t}=\alpha_{11,1}\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}+\alpha_{11,2}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\alpha_{11,3}\widetilde{i}_{t-1}+\alpha_{11,4}\widetilde{\pi}_{t-1}+u_{11,t}\tag{49}
 $$
 
-<!-- PDF v1.4, p. 18 -->
+
 $$
 \widetilde{i}_{t}=\alpha_{12,1}\widetilde{i}_{t-1}+\alpha_{12,2}\widetilde{i}_{t-1}^{*}+\alpha_{12,3}\widetilde{\pi}_{t-1}+\alpha_{12,4}\widetilde{y}_{t-1}+u_{12,t}\tag{50}
 $$
@@ -645,7 +643,6 @@ $$
 
 A continuación, se aplican estas definiciones a todas las variables del modelo:
 
-<!-- Fuente PDF v1.4, página impresa 20 -->
 
 ## Variables exógenas externas
 
@@ -691,7 +688,6 @@ $$
 \overline{\pi}_{t-1}^{*}=\frac{1}{T}\sum_{j=t-T}^{t-1}\pi_j^{*} \tag{68}
 $$
 
-<!-- Fuente PDF v1.4, página impresa 21 -->
 
 ## Variables exógenas internas
 
@@ -737,7 +733,6 @@ $$
 \overline{\left(\frac{GFun}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{GFun}{PIB}\right)_j \tag{77}
 $$
 
-<!-- Fuente PDF v1.4, página impresa 22 -->
 
 ### Deuda pública externa {.unnumbered .unlisted}
 
@@ -785,7 +780,6 @@ $$
 \overline{\left(\frac{DPI}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{DPI}{PIB}\right)_j \tag{86}
 $$
 
-<!-- Fuente PDF v1.4, página impresa 23 -->
 
 ### Banco central
 
@@ -831,7 +825,6 @@ $$
 \overline{i}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}i_j \tag{95}
 $$
 
-<!-- Fuente PDF v1.4, página impresa 24 -->
 
 ### Sector privado
 
@@ -881,7 +874,6 @@ $$
 
 [^6]: Al colocar la meta de inflación en esta ecuación modelamos el Esquema de Metas Explícitas de Inflación.
 
-<!-- Fuente PDF v1.4, página impresa 25 -->
 
 ### Crecimiento económico {.unnumbered .unlisted}
 
@@ -927,7 +919,6 @@ $$
 \overline{\left(\frac{Def}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{Def}{PIB}\right)_j \tag{113}
 $$
 
-<!-- Fuente PDF v1.4, página impresa 26 -->
 
 ### Deuda pública total {.unnumbered .unlisted}
 
@@ -971,7 +962,6 @@ $$
 \overline{z}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}z_j \tag{122}
 $$
 
-<!-- Fuente PDF v1.4, página impresa 27 -->
 
 ### Deuda pública externa consolidada {.unnumbered .unlisted}
 
@@ -1015,7 +1005,6 @@ $$
 \overline{\left(\frac{DPTC}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{DPTC}{PIB}\right)_j \tag{131}
 $$
 
-<!-- Fuente PDF v1.4, página impresa 28 -->
 
 ### Inversión total {.unnumbered .unlisted}
 
@@ -1045,7 +1034,7 @@ $$
 
 ## Variables stock {.unnumbered .unlisted}
 
-Las variables stock son un promedio móvil de 4 trmestres.
+Las variables stock son un promedio móvil de 4 trimestres.
 
 $$
 \overline{x}_t=\frac{1}{4}\sum_{j=t-4+1}^{t}x_{Q,j} \tag{136}
@@ -1055,7 +1044,6 @@ $$
 
 Las tasas de interés doméstica y externa están definidas como tasas anuales.
 
-<!-- Fuente PDF v1.4, página impresa 29 -->
 
 ## Tasas de crecimiento económico {.unnumbered .unlisted}
 
@@ -1105,7 +1093,6 @@ $$
 y_{10,t}=\widetilde{\left(\frac{AEN}{PIB}\right)}_t \tag{146}
 $$
 
-<!-- Fuente PDF v1.4, página impresa 30 -->
 
 $$
 y_{11,t}=\widetilde{\left(\frac{AIN}{PIB}\right)}_t \tag{147}
@@ -1159,7 +1146,6 @@ $$
 y_{5,t}=\alpha_{5,1}y_{5,t-1}+u_{5,t} \tag{158}
 $$
 
-<!-- Fuente PDF v1.4, página impresa 31 -->
 
 $$
 y_{6,t}=\alpha_{6,1}y_{6,t-1}+u_{6,t} \tag{159}
@@ -1214,7 +1200,6 @@ $$
 \\ &+ (\alpha_{4,1}-\alpha_{9,3})y_{4,t-1}-(\alpha_{5,1}+\alpha_{9,3})y_{5,t-1}+u_{4,t}+u_{6,t}-u_{5,t}-u_{7,t}\end{aligned} \tag{171}
 $$
 
-<!-- Fuente PDF v1.4, página impresa 32 -->
 
 # Representación matricial del modelo
 
@@ -1260,7 +1245,6 @@ La matriz $A_1$ es de dimensiones 17×17 y contiene los coeficientes del modelo.
 \clearpage
 ```
 
-<!-- Fuente PDF v1.4, página impresa 33 -->
 
 ## Matriz de residuos {.unnumbered .unlisted}
 
@@ -1287,7 +1271,6 @@ Debido a que cada variable que forma parte del modelo es el resultado de diversa
 
 **Crecimiento económico externo**
 
-<!-- Página 34 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=419.7pt,height=288.5pt]{figuras/Comportamiento_grafico/GDP_star.png}}\par
@@ -1299,7 +1282,6 @@ Debido a que cada variable que forma parte del modelo es el resultado de diversa
 
 **Tasa de interés externa**
 
-<!-- Página 35 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=393.4pt,height=236.1pt]{figuras/Comportamiento_grafico/i_star.png}}\par
@@ -1311,7 +1293,6 @@ Debido a que cada variable que forma parte del modelo es el resultado de diversa
 
 **Inflación externa**
 
-<!-- Página 36 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/core_cpi_star.png}}\par
@@ -1323,8 +1304,6 @@ Debido a que cada variable que forma parte del modelo es el resultado de diversa
 
 **Inversión pública**
 
-<!-- Página 37 del PDF original -->
-
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/IPub.png}}\par
 ```
@@ -1335,7 +1314,6 @@ Debido a que cada variable que forma parte del modelo es el resultado de diversa
 
 **Ingresos Totales**
 
-<!-- Página 38 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/IngT.png}}\par
@@ -1347,7 +1325,6 @@ Debido a que cada variable que forma parte del modelo es el resultado de diversa
 
 **Gasto de funcionamiento**
 
-<!-- Página 39 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/GFun.png}}\par
@@ -1359,7 +1336,6 @@ Debido a que cada variable que forma parte del modelo es el resultado de diversa
 
 **Deuda pública externa**
 
-<!-- Página 40 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPE.png}}\par
@@ -1371,7 +1347,6 @@ Debido a que cada variable que forma parte del modelo es el resultado de diversa
 
 **Remesas**
 
-<!-- Página 41 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/Rem.png}}\par
@@ -1383,7 +1358,6 @@ Debido a que cada variable que forma parte del modelo es el resultado de diversa
 
 **Deuda pública interna**
 
-<!-- Página 42 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPI.png}}\par
@@ -1397,7 +1371,6 @@ Debido a que cada variable que forma parte del modelo es el resultado de diversa
 
 Esta variable se construye por diferencia siendo la resta entre la Base monetaria ampliada - los activos internos netos\footnote{Puede consultar los datos para base monetaria, encaje en moneda extranjera y activos internos netos}.
 
-<!-- Página 43 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=468.8pt]{figuras/Comportamiento_grafico/AEN.png}}\par
@@ -1409,7 +1382,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Activos internos netos**
 
-<!-- Página 44 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/AIN.png}}\par
@@ -1421,7 +1393,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Tasa de interés líder de política monetaria**
 
-<!-- Página 45 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=393.4pt,height=236.1pt]{figuras/Comportamiento_grafico/i.png}}\par
@@ -1433,7 +1404,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Depreciación nominal**
 
-<!-- Página 46 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/e.png}}\par
@@ -1445,7 +1415,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Prima por Riesgo-País**
 
-<!-- Página 47 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=393.4pt,height=236.1pt]{figuras/Comportamiento_grafico/PREM.png}}\par
@@ -1457,7 +1426,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Inflación doméstica**
 
-<!-- Página 48 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/core_cpi.png}}\par
@@ -1469,7 +1437,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Crecimiento económico**
 
-<!-- Página 49 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=419.7pt,height=288.5pt]{figuras/Comportamiento_grafico/GDP.png}}\par
@@ -1481,7 +1448,7 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Inversión privada\footnote{Esta variable se construyó por diferencia entre la inversión total obtenida de cuentas nacionales menos la inversión pública.}**
 
-<!-- Página 50 del PDF original -->
+
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=480pt,keepaspectratio]{figuras/Comportamiento_grafico/IPriv.png}}\par
@@ -1493,7 +1460,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Base monetaria ampliada**
 
-<!-- Página 51 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/BM.png}}\par
@@ -1505,7 +1471,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Depreciación real**
 
-<!-- Página 52 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=393.4pt,height=236.1pt]{figuras/Comportamiento_grafico/z.png}}\par
@@ -1517,7 +1482,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Deuda pública externa consolidada**
 
-<!-- Página 53 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPEC.png}}\par
@@ -1529,7 +1493,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Deuda pública interna consolidada**
 
-<!-- Página 54 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPIC.png}}\par
@@ -1541,7 +1504,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Deuda pública total consolidada**
 
-<!-- Página 55 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPTC.png}}\par
@@ -1553,7 +1515,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Deuda pública total**
 
-<!-- Página 56 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPT.png}}\par
@@ -1565,7 +1526,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Inversión total**
 
-<!-- Página 57 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/ITotal.png}}\par
@@ -1577,7 +1537,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 **Déficit**
 
-<!-- Página 58 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/Def.png}}\par
@@ -1591,7 +1550,6 @@ Esta variable se construye por diferencia siendo la resta entre la Base monetari
 
 En esta sección se presenta la evolución de cada una de las variables "ola" construidas en la sección anterior.
 
-<!-- Página 59 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/GDP_star.png}}\par
@@ -1603,7 +1561,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 60 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/core_cpi_star.png}}\par
@@ -1615,8 +1572,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 61 del PDF original -->
-
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/IngT.png}}\par
 \vspace{8pt}
@@ -1627,7 +1582,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 62 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/DPE.png}}\par
@@ -1639,7 +1593,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 63 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/DPI.png}}\par
@@ -1651,7 +1604,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 64 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/AIN.png}}\par
@@ -1663,7 +1615,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 65 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/e.png}}\par
@@ -1675,7 +1626,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 66 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/core_cpi.png}}\par
@@ -1687,7 +1637,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 67 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/IPriv.png}}\par
@@ -1699,7 +1648,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 68 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/z.png}}\par
@@ -1711,7 +1659,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 69 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/DPIC.png}}\par
@@ -1723,7 +1670,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 70 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/DPT.png}}\par
@@ -1735,7 +1681,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 \clearpage
 ```
 
-<!-- Página 71 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/Def.png}}\par
@@ -1749,7 +1694,6 @@ En esta sección se presenta la evolución de cada una de las variables "ola" co
 
 Esta sección presenta los pronósticos del modelo. La matriz de coeficientes del mismo está en la sección 14 del documento junto a los multiplicadores dinámicos. Todos los pronósticos parten con fin de historia en 2025Q4.
 
-<!-- Página 72 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/18_GDP_star_ola.png}}\par
@@ -1761,7 +1705,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 73 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/19_i_star_ola.png}}\par
@@ -1773,7 +1716,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 74 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/20_pi_star_ola.png}}\par
@@ -1785,7 +1727,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 75 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/21_IPub_ola.png}}\par
@@ -1797,7 +1738,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 76 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/22_IngT_ola.png}}\par
@@ -1809,7 +1749,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 77 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/23_GFun_ola.png}}\par
@@ -1821,7 +1760,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 78 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/24_DPE_ola.png}}\par
@@ -1833,7 +1771,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 79 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/25_Rem_ola.png}}\par
@@ -1845,7 +1782,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 80 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/26_DPI_ola.png}}\par
@@ -1857,7 +1793,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 81 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/27_AEN_ola.png}}\par
@@ -1869,7 +1804,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 82 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/28_AIN_ola.png}}\par
@@ -1881,7 +1815,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 83 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/29_i_ola.png}}\par
@@ -1893,7 +1826,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 84 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/30_e_ola.png}}\par
@@ -1905,7 +1837,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 85 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/31_PREM_ola.png}}\par
@@ -1917,7 +1848,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 86 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/32_pi_ola.png}}\par
@@ -1929,7 +1859,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 87 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/33_GDP_ola.png}}\par
@@ -1941,7 +1870,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 88 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/34_IPriv_ola.png}}\par
@@ -1953,7 +1881,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 89 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/35_AMB_ola.png}}\par
@@ -1965,7 +1892,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 90 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/36_z_ola.png}}\par
@@ -1977,7 +1903,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 91 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/37_DPEC_ola.png}}\par
@@ -1989,7 +1914,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 92 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/38_DPIC_ola.png}}\par
@@ -2001,7 +1925,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 93 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/39_DPTC_ola.png}}\par
@@ -2013,7 +1936,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 94 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/40_DPT_ola.png}}\par
@@ -2025,7 +1947,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 95 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/41_ITotal_ola.png}}\par
@@ -2037,7 +1958,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 96 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/42_Def_ola.png}}\par
@@ -2049,7 +1969,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 97 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/51_u4.png}}\par
@@ -2059,7 +1978,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 98 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/52_u5.png}}\par
@@ -2071,7 +1989,6 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 \clearpage
 ```
 
-<!-- Página 99 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/54_u9.png}}\par
@@ -2084,15 +2001,12 @@ Esta sección presenta los pronósticos del modelo. La matriz de coeficientes de
 ```
 
 
-<!-- Fuente PDF v1.4, página impresa 100 -->
-
 # Anexos
 
 ## Matriz de coeficientes
 
 Se asignan los coeficientes estimados a la matriz de coeficientes de la sección 10.
 
-<!-- Matriz simbólica de 17×17: copia de la matriz de la página 100, no normalizada contra las ecuaciones compactas. -->
 
 ```{=latex}
 \begin{center}
@@ -2151,8 +2065,6 @@ Se asignan los coeficientes estimados a la matriz de coeficientes de la sección
 
 Multiplicadores dinámicos de las variables "ola" más importante ante choques en los residuos del modelo.
 
-<!-- Página 101 del PDF original -->
-
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/1_GDP_star.png}}\par
 ```
@@ -2160,8 +2072,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 ```{=latex}
 \clearpage
 ```
-
-<!-- Página 102 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=360.0pt,height=420.0pt]{figuras/Multiplicadores_dinamicos/2_i_star.png}}\par
@@ -2171,8 +2081,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 103 del PDF original -->
-
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/3_pi_star.png}}\par
 ```
@@ -2181,7 +2089,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 104 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/4_IPub.png}}\par
@@ -2191,7 +2098,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 105 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/5_IngT.png}}\par
@@ -2201,7 +2107,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 106 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/6_GFun.png}}\par
@@ -2211,7 +2116,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 107 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/7_DPE.png}}\par
@@ -2221,7 +2125,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 108 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=360.0pt,height=420.0pt]{figuras/Multiplicadores_dinamicos/8_Rem.png}}\par
@@ -2231,7 +2134,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 109 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/9_DPI.png}}\par
@@ -2241,7 +2143,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 110 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/10_AEN.png}}\par
@@ -2251,7 +2152,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 111 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/11_AIN.png}}\par
@@ -2261,7 +2161,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 112 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/12_i.png}}\par
@@ -2271,7 +2170,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 113 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/13_e.png}}\par
@@ -2281,7 +2179,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 114 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/14_PREM.png}}\par
@@ -2291,7 +2188,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 115 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/15_pi.png}}\par
@@ -2301,7 +2197,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 116 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/16_GDP.png}}\par
@@ -2311,7 +2206,6 @@ Multiplicadores dinámicos de las variables "ola" más importante ante choques e
 \clearpage
 ```
 
-<!-- Página 117 del PDF original -->
 
 ```{=latex}
 \noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/17_IPriv.png}}\par
