@@ -1,0 +1,351 @@
+---
+title: "Quarto para actualizar el manual del MPM"
+subtitle: "Tutorial práctico para principiantes · Modelo 1.4"
+lang: es
+format:
+  revealjs:
+    slide-number: true
+    center: false
+    transition: none
+    controls: true
+    progress: true
+    width: 1280
+    height: 720
+    code-copy: true
+---
+
+## ¿Qué aprenderás?
+
+Al terminar podrás:
+
+- reconocer qué partes de un archivo `.qmd` controlan su formato;
+- editar texto, secciones, ecuaciones, figuras, notas y saltos de página;
+- renderizar y revisar el manual sin sobrescribir por accidente el PDF versionado;
+- distinguir el formato PDF del manual y Revealjs de esta presentación.
+
+**Público:** personas que no han trabajado antes con Quarto.
+
+## Quarto en una idea
+
+Un archivo **`.qmd`** combina contenido y configuración. Quarto lo transforma en un producto final.
+
+:::: {.columns}
+
+::: {.column width="33%"}
+**1. Fuente**
+
+`documento.qmd`
+
+YAML + Markdown + ecuaciones + instrucciones específicas del formato.
+:::
+
+::: {.column width="33%"}
+**2. Renderizado**
+
+Quarto lee el archivo y aplica el formato elegido.
+
+```text
+quarto render
+```
+:::
+
+::: {.column width="33%"}
+**3. Resultado**
+
+PDF, HTML, presentación Revealjs u otros formatos.
+:::
+
+::::
+
+La fuente editable es el `.qmd`; el PDF o HTML es un resultado generado.
+
+## Primero: abre el archivo correcto
+
+El manual que este tutorial explica es:
+
+```text
+docs/Model_1.4/Modelo de proyecciones Macroeconómicas_1_4.qmd
+```
+
+- Modifica el `.qmd`, no solo el PDF.
+- Las rutas tienen espacios y acentos: consérvalos exactamente.
+- Para comandos de terminal, encierra la ruta entre comillas.
+- No cambies de lugar el archivo ni `figuras/` sin revisar las rutas de las imágenes.
+
+## Mapa del manual 1.4
+
+El archivo tiene **2,319 líneas** y está pensado principalmente para generar un PDF.
+
+1. **Líneas iniciales:** configuración YAML y paquetes LaTeX.
+2. **Inicio:** portada, índice y supuestos.
+3. **Cuerpo:** sectores, definiciones, ecuaciones y representación matricial.
+4. **Parte gráfica:** imágenes de series, variables “ola” y pronósticos.
+5. **Anexos:** matrices y multiplicadores dinámicos.
+
+Hay más de cien referencias a imágenes y numerosos bloques LaTeX. Por eso conviene hacer cambios pequeños y renderizar después de cada grupo de cambios.
+
+## La cabecera YAML: la configuración
+
+La cabecera está entre dos líneas con tres guiones (`---`). En el manual actual define, entre otras cosas, el idioma y la salida PDF:
+
+````yaml
+---
+lang: es
+format:
+  pdf:
+    pdf-engine: pdflatex
+    documentclass: article
+    fontsize: 12pt
+    papersize: letter
+    number-sections: true
+    toc: false
+---
+````
+
+- `format: pdf` prepara el manual para PDF; `pdflatex` es el motor LaTeX.
+- `number-sections: true` numera secciones; `toc: false` apaga el índice automático.
+
+## YAML: espacios e información repetida
+
+YAML depende de la **indentación**. Usa espacios, no tabuladores, y conserva la relación padre–opción:
+
+```yaml
+format:
+  pdf:
+    fontsize: 12pt
+```
+
+En el manual, `geometry` fija márgenes; `include-in-header` carga paquetes y configura encabezado y pie de página (`fancyhdr`).
+
+La versión y la fecha aparecen en más de un lugar: el encabezado de página y la portada. Si cambian, busca y actualiza todas las apariciones pertinentes, no solo una.
+
+## Portada e índice: LaTeX dentro de Quarto
+
+El bloque `{=latex}` envía su contenido directamente a LaTeX. En el manual se usa para diseñar la portada y el índice:
+
+````{.text}
+```{=latex}
+\thispagestyle{empty}
+\begin{center}
+  {\LARGE Banco de Guatemala\par}
+  \includegraphics[width=162pt]{figuras/fig-p001-1.jpg}\par
+  {\LARGE Modelo para Proyecciones Macroeconómicas\par}
+\end{center}
+\clearpage
+\tableofcontents
+\clearpage
+```
+````
+
+Puedes cambiar texto o fecha, pero mantén los comandos y sus llaves balanceados. Este bloque es **específico de PDF/LaTeX**; no se convierte automáticamente en una portada HTML.
+
+## Secciones y subtítulos
+
+En el manual, los encabezados Markdown organizan el contenido y LaTeX los numera:
+
+````markdown
+# Representación matricial del modelo
+
+## Matriz de coeficientes
+
+### Nota metodológica
+````
+
+- `#` inicia una sección principal; `##` y `###` indican niveles inferiores.
+- El texto posterior al símbolo es el título visible.
+- Algunas subsecciones usan `{.unnumbered .unlisted}` para no numerarse ni aparecer en el índice.
+- No uses niveles solo para cambiar el tamaño de letra: respeta la jerarquía.
+
+## Texto, negritas y listas
+
+El cuerpo del archivo utiliza Markdown. Una línea en blanco separa párrafos; dos asteriscos marcan **negrita**.
+
+```markdown
+**Ecuación de activos externos netos**
+
+1. Primer supuesto.
+2. Segundo supuesto:
+   - Primer detalle.
+   - Segundo detalle.
+```
+
+Las listas numeradas son útiles para supuestos y pasos; las viñetas, para elementos sin orden. Mantén la indentación de las sublistas alineada.
+
+## Ecuaciones: dentro del texto y en bloque
+
+Para una variable dentro de una oración, coloca la expresión entre un signo `$` a cada lado: `$y_t$`.
+
+Para una ecuación centrada, usa dos signos `$` en líneas separadas:
+
+````markdown
+La brecha se representa como $\widetilde{x}_t$.
+
+$$
+\widetilde{x}_t = x_t - \overline{x}_{t-1}
+$$
+````
+
+La notación es LaTeX: `_` crea subíndices, `^` superíndices y `{...}` agrupa símbolos. Copia con cuidado comas, signos y nombres de variables.
+
+## Ecuaciones largas y numeración
+
+Para alinear varias líneas, el manual usa `aligned`. El símbolo `&` marca dónde alinear; `\\` inicia otra fila:
+
+````markdown
+$$
+\begin{aligned}
+y_t &= a y_{t-1} + b x_t \\
+    &\quad + u_t
+\end{aligned} \tag{12}
+$$
+````
+
+En muchos bloques se usa `\tag{...}` para escribir el número de ecuación manualmente. Si insertas, eliminas o reordenas ecuaciones, revisa las etiquetas y las referencias posteriores para evitar números duplicados o saltos.
+
+## Notas al pie
+
+El documento combina dos estilos. Markdown permite definir notas con una etiqueta:
+
+````markdown
+Esta afirmación requiere una aclaración.[^nota]
+
+[^nota]: Texto de la aclaración.
+````
+
+También hay notas LaTeX, como `\footnote{Texto de la nota.}`, dentro de contenido matemático o bloques LaTeX.
+
+Usa la sintaxis compatible con el lugar donde editas. No dupliques una nota en ambos estilos y comprueba que el marcador quede junto al texto correcto.
+
+## Gráficas e imágenes
+
+Las imágenes del manual están en `figuras/`, relativa a la carpeta del `.qmd`. El comando central del bloque LaTeX es:
+
+````{.text}
+```{=latex}
+\includegraphics[width=419.7pt,height=288.5pt]
+{figuras/Comportamiento_grafico/GDP_star.png}
+```
+````
+
+Al reemplazar una gráfica:
+
+1. confirma la ruta y el nombre del archivo;
+2. ajusta ancho y alto para evitar recortes;
+3. comprueba variable, unidades y periodo;
+4. renderiza y verifica visualmente el PDF.
+
+## Saltos de página y comentarios
+
+En el manual PDF, `\clearpage` fuerza un salto y termina de colocar las figuras pendientes. El archivo también tiene comentarios como `<!-- Fuente PDF v1.4, página impresa 32 -->`; esos comentarios ayudan a localizar el origen y no se imprimen.
+
+**No confundas:**
+
+- `\clearpage`: salto de página para LaTeX/PDF.
+- `## Título`: nueva diapositiva en Revealjs.
+- `---` dentro de la cabecera: delimita el YAML; fuera de ella también puede separar diapositivas Revealjs.
+
+Un salto de página del PDF no es una instrucción universal de Quarto.
+
+## Bloques LaTeX y matrices
+
+El manual incluye matrices con `bmatrix`, ecuaciones con `equation`, y ajustes como `\resizebox`. Estos bloques están escritos para LaTeX; no son código R o Python ni texto Markdown ordinario.
+
+Al editar una matriz, cuenta filas y columnas y compara la notación con las ecuaciones que representa. En el manual, la matriz simbólica aparece en el cuerpo y de nuevo en anexos; el anexo también contiene una matriz numérica. Si cambia la estructura o los coeficientes, verifica las tres representaciones.
+
+## Cómo están organizadas las figuras
+
+Las figuras se agrupan según el tema: comportamiento de variables, variables “ola”, escenarios de pronóstico y multiplicadores dinámicos. Cerca de cada grupo hay encabezados y comentarios que ayudan a reconocer la gráfica esperada.
+
+Al actualizar una figura, revisa la cadena completa:
+
+**sección → variable → nombre del archivo → ruta → dimensiones → PDF renderizado**
+
+Una ruta válida puede apuntar a una gráfica equivocada; contrasta el título, las unidades, el eje temporal y el escenario con el texto.
+
+## Esta presentación también es un `.qmd`
+
+Su cabecera selecciona `revealjs`; la del manual selecciona `pdf`. El contenido puede usar Markdown en ambos, pero los bloques `{=latex}` del manual están diseñados para PDF.
+
+En Revealjs, los encabezados de nivel 2 crean diapositivas:
+
+````markdown
+## Una diapositiva
+
+Contenido de la diapositiva
+
+## La diapositiva siguiente
+
+Más contenido
+````
+
+Revealjs (Markdown): `![alt](ruta.png)`.
+
+Si conviertes el manual a Revealjs, adapta primero los bloques LaTeX y los saltos de página: no se traducen automáticamente.
+
+## Renderizar el manual sin sobrescribir su PDF
+
+El PDF versionado tiene el mismo nombre base que el `.qmd`. Para evitar reemplazarlo durante una prueba, renderiza a una carpeta temporal separada:
+
+````bash
+quarto render "docs/Model_1.4/Modelo de proyecciones Macroeconómicas_1_4.qmd" \
+  --to pdf \
+  --output-dir "<carpeta-temporal>/mpm-preview"
+````
+
+Sustituye `<carpeta-temporal>` por una ruta que exista o que puedas crear. Ejecuta el comando desde la raíz del repositorio. Para renderizar una presentación Quarto independiente, selecciona su formato Revealjs, no el formato PDF del manual.
+
+## Requisitos y revisión del resultado
+
+- Instala **Quarto CLI**; el editor (por ejemplo, VS Code o RStudio) es una herramienta opcional para editar y previsualizar.
+- Para el PDF de este manual se necesita una distribución de LaTeX compatible con `pdflatex`. La guía oficial recomienda TinyTeX como una opción.
+- Revealjs no necesita compilar LaTeX para generar HTML.
+- Después del render, abre el PDF y revisa portada, índice, ecuaciones, cortes de página, figuras y anexos.
+- Comprueba también que el resultado se guardó en la carpeta temporal prevista.
+
+## Git: comprueba qué verá el repositorio
+
+Antes de cerrar una actualización:
+
+```bash
+git status --short
+git diff --check
+git diff -- "docs/Model_1.4/Modelo de proyecciones Macroeconómicas_1_4.qmd"
+```
+
+En este repositorio, la regla global `*.png` puede hacer que imágenes PNG nuevas o modificadas no aparezcan en `git status`. Comprueba una ruta concreta con:
+
+```bash
+git check-ignore -v "docs/Model_1.4/figuras/ruta/figura.png"
+```
+
+No fuerces la inclusión de archivos ignorados sin confirmar que deben versionarse. Separa cambios del `.qmd`, las figuras y el PDF generado; añade solo los archivos que corresponden al cambio.
+
+## Errores frecuentes: fuente y sintaxis
+
+- **YAML inválido:** corregir la indentación y mantener el par de delimitadores `---`.
+- **Figura ausente:** comprobar ruta, mayúsculas/minúsculas, extensión y nombre con acentos.
+- **LaTeX no compila:** revisar llaves, `\\`, entornos abiertos/cerrados y `\tag{...}`.
+
+## Errores frecuentes: salida y repositorio
+
+- **PDF distinto al esperado:** verifica que no se lea otro `.qmd` ni un PDF anterior.
+- **Una figura no llega a Git:** consulta `.gitignore` con `git check-ignore -v`.
+- **Se ve mal en Revealjs:** busca comandos exclusivos de LaTeX/PDF y adapta el contenido para HTML.
+
+## Flujo seguro para actualizar el manual
+
+1. Abre el `.qmd` y localiza la sección con el encabezado o comentario de página.
+2. Cambia un bloque pequeño; conserva nombres de variables, rutas y numeración.
+3. Renderiza a una carpeta temporal.
+4. Revisa visualmente el PDF y busca errores o referencias rotas.
+5. Comprueba `git diff --check`, `git status` y las imágenes ignoradas.
+6. Guarda en Git únicamente los cambios relacionados y vuelve a renderizar si haces una corrección.
+
+## Recursos oficiales de Quarto
+
+- **Empezar e instalar Quarto:** [quarto.org/docs/get-started](https://quarto.org/docs/get-started/)
+- **PDF y motores LaTeX:** [PDF Engines](https://quarto.org/docs/output-formats/pdf-engine.html)
+- **Presentaciones Revealjs:** [Revealjs](https://quarto.org/docs/presentations/revealjs/)
+- **Markdown en Quarto:** [Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html)
+
+**Idea principal:** edita la fuente `.qmd`, respeta qué sintaxis pertenece a PDF/LaTeX, renderiza una copia de prueba y revisa también las figuras y el control de versiones.
