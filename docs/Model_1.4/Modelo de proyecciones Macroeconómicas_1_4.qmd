@@ -1,0 +1,2319 @@
+---
+lang: es
+format:
+  pdf:
+    pdf-engine: pdflatex
+    documentclass: article
+    fontsize: 12pt
+    papersize: letter
+    geometry:
+      - left=91.8pt
+      - right=91.8pt
+      - top=120pt
+      - bottom=96pt
+      - headheight=53pt
+      - headsep=9pt
+      - footskip=12pt
+    number-sections: true
+    toc: false
+    include-in-header:
+      text: |
+        \usepackage{fancyhdr}
+        \usepackage{graphicx}
+        \usepackage{amsmath,amssymb}
+        \setcounter{MaxMatrixCols}{20}
+        \AtBeginDocument{\renewcommand{\contentsname}{Índice}}
+        \pagestyle{fancy}
+        \fancyhf{}
+        \fancyhead[L]{\parbox[b]{\textwidth}{Banco de Guatemala\\Departamento de Investigaciones Económicas\\Modelo para Proyecciones Macroecnómicas (versión 1.4)\\22 de julio de 2026}}
+        \fancyfoot[C]{\thepage}
+        \renewcommand{\headrulewidth}{0.4pt}
+        \renewcommand{\footrulewidth}{0pt}
+        \fancypagestyle{plain}{\fancyhf{}\fancyhead[L]{\parbox[b]{\textwidth}{Banco de Guatemala\\Departamento de Investigaciones Económicas\\Modelo para Proyecciones Macroecnómicas (versión 1.4)\\22 de julio de 2026}}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0.4pt}}
+---
+
+```{=latex}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{-31pt}
+{\LARGE Banco de Guatemala\par}
+\vspace{3pt}
+{\LARGE Departamento de Investigaciones Económicas\par}
+\vspace{42pt}
+\includegraphics[width=162pt]{figuras/fig-p001-1.jpg}\par
+\vspace{50pt}
+{\LARGE Modelo para Proyecciones Macroeconómicas\par}
+\vspace{0pt}
+{\LARGE (MPM)\par}
+\vspace{6pt}
+{\normalsize versión 1.4\par}
+\vspace{106pt}
+{\large Guatemala 22 de julio de 2026\par}
+\end{center}
+\clearpage
+\renewcommand{\contentsname}{Índice}
+\tableofcontents
+\clearpage
+```
+
+<!-- PDF v1.4, p. 4 -->
+# Supuestos principales
+
+En esta sección se presentan supuestos fundamentales asociados a algunos parámetros del modelo, los cuales se consideran como restricciones en la estimación.
+
+1. Los activos externos netos se contraen ante depreciaciones cambiarias reales.
+2. El tipo de cambio nominal se ve afectado por los componentes de la UIP desde un punto de vista de flujos de capitales:
+   - 2.1 Incrementos de la tasa de interés doméstica aprecian el tipo de cambio nominal.
+   - 2.2 Incrementos de la tasa de interés externa y prima por riesgo país depreciación el tipo de cambio nominal.
+3. El incremento de activos internos y externos netos reduce la prima por riesgo país.
+4. La deuda pública interna y externa incrementan la prima por riesgo país.
+5. La inversión total no incluye la variación de existencias.
+
+Con el propósito de cumplir con los supuestos anteriores y luego de realizarse el proceso de estimación de los parámetros, se modificó el signo de algunos de ellos en las siguientes ecuaciones:
+
+**Ecuación de activos externos netos**
+
+$\alpha_{10,2}$ y $\alpha_{10,5}$
+
+**Ecuación de activos internos netos**
+
+$\alpha_{11,3}$
+
+**Ecuación de tasa de interés de política monetaria**
+
+$\alpha_{12,4}$
+
+**Ecuación de depreciación nominal**
+
+$\alpha_{13,2}$
+
+```{=latex}
+\clearpage
+```
+
+<!-- PDF v1.4, p. 5 -->
+**Ecuación de prima por riesgo país**
+
+$\alpha_{14,2}$
+
+**Ecuación de inflación doméstica**
+
+$\alpha_{15,1}$, $\alpha_{15,4}$ y $\alpha_{15,5}$
+
+**Ecuación del crecimiento económico doméstico**
+
+$\alpha_{16,1}$, $\alpha_{16,3}$ (y reducción de magnitud), $\alpha_{16,5}$ (solo reducción de magnitud)
+
+**Ecuación de inversión privada**
+
+$\alpha_{17,2}$ y $\alpha_{17,3}$
+
+```{=latex}
+\clearpage
+```
+
+<!-- PDF v1.4, p. 6 -->
+**Modelo para Proyecciones Macroeconómicas**
+
+A continuación, se presenta el Modelo para Proyecciones Macroeconómicas que incorpora interacciones entre las políticas monetaria y fiscal. Para una compresión clara del mismo, la estructura del modelo se divide en variables exógenas (externas e internas) y variables endógenas, estas últimas clasificadas en distintos sectores:
+
+- Gobierno
+- Banco Central
+- Sector Privado
+
+Las variables que constituyen el núcleo del modelo son aquellas tildadas con el símbolo $\sim$, las cuales denominamos como variables “ola”, y cuya forma de construcción se detalla en la sección 6. El modelo cuenta con 17 ecuaciones para las variables “ola”, incorporando sus correspondientes residuos ($u$).
+
+# Variables exógenas
+
+## Variables exógenas externas
+
+### Crecimiento económico externo {.unnumbered .unlisted}
+
+$$
+\widetilde{y}_{t}^{*}=\alpha_{1,1}\widetilde{y}_{t-1}^{*}+u_{1,t}\tag{1}
+$$
+
+Donde $\alpha_{1,1}$ es un parámetro y $u_{1,t}$ es el residuo estocástico.[^1]
+
+[^1]: Lo mismo es cierto, de manera análoga, para las demás ecuaciones del modelo.
+
+### Tasa de interés externa {.unnumbered .unlisted}
+
+$$
+\widetilde{i}_{t}^{*}=\alpha_{2,1}\widetilde{i}_{t-1}^{*}+u_{2,t}\tag{2}
+$$
+
+### Inflación externa {.unnumbered .unlisted}
+
+$$
+\widetilde{\pi}_{t}^{*}=\alpha_{3,1}\widetilde{\pi}_{t-1}^{*}+u_{3,t}\tag{3}
+$$
+
+<!-- PDF v1.4, p. 7 -->
+## Variables exógenas internas
+
+En este modelo, la inversión pública, los ingresos totales de gobierno, el gasto de funcionamiento del gobierno y el endeudamiento público externo constituyen los instrumentos esenciales de la Política Fiscal.
+
+### Inversión pública {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}=\alpha_{4,1}\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}+u_{4,t}\tag{4}
+$$
+
+### Ingresos totales {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}=\alpha_{5,1}\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}+u_{5,t}\tag{5}
+$$
+
+### Gasto de funcionamiento {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}=\alpha_{6,1}\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+u_{6,t}\tag{6}
+$$
+
+### Deuda pública externa {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}=\alpha_{7,1}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+u_{7,t}\tag{7}
+$$
+
+### Remesas {.unnumbered .unlisted}
+
+Las remesas familiares que ingresan a la economía se modelan como un proceso exógeno:
+
+$$
+\widetilde{\left(\frac{Rem}{PIB}\right)}_{t}=\alpha_{8,1}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}+u_{8,t}\tag{8}
+$$
+
+<!-- PDF v1.4, p. 8 -->
+# Variables endógenas
+
+Las variables endógenas se clasifican según su sector dentro de la economía doméstica.
+
+## Gobierno
+
+### Deuda pública interna[^2] {.unnumbered .unlisted}
+
+[^2]: La ecuación (9), que caracteriza al cociente de la deuda pública interna a PIB, es una ecuación de comportamiento. Su compatibilidad con la definición contable de la deuda pública se aborda en la sección 4.
+
+$$
+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=\alpha_{9,1}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\alpha_{9,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\alpha_{9,3}\widetilde{\left(\frac{Def}{PIB}\right)}_{t-1}+u_{9,t}\tag{9}
+$$
+
+## Banco Central
+
+### Activos externos netos {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}=\alpha_{10,1}\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\alpha_{10,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\alpha_{10,3}\left(\widetilde{\pi}_{t-1}^{*}+\widetilde{e}_{t-1}-\widetilde{\pi}_{t-1}\right)+u_{10,t}\tag{10}
+$$
+
+Dependen de su rezago y de los rezagos de las variables siguientes:
+
+- $\widetilde{\left(\frac{DPE}{PIB}\right)}$ = Deuda pública externa
+- $\widetilde{\pi}^{*}$ = Inflación externa
+- $\widetilde{e}$ = Depreciación nominal
+- $\widetilde{\pi}$ = Inflación doméstica
+
+<!-- PDF v1.4, p. 9 -->
+### Activos internos netos {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}=\alpha_{11,1}\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}+\alpha_{11,2}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\alpha_{11,3}\widetilde{i}_{t-1}+\alpha_{11,4}\widetilde{\pi}_{t-1}+u_{11,t}\tag{11}
+$$
+
+Dependen su rezago y de los rezagos de las variables siguientes:
+
+- $\widetilde{\left(\frac{DPI}{PIB}\right)}$ = Deuda pública interna
+- $\widetilde{i}$ = Tasa de interés líder de política monetaria
+- $\widetilde{\pi}$ = Inflación doméstica
+
+### Tasa de interés líder de política monetaria (regla de política monetaria) {.unnumbered .unlisted}
+
+$$
+\widetilde{i}_{t}=\alpha_{12,1}\widetilde{i}_{t-1}+\alpha_{12,2}\widetilde{i}_{t-1}^{*}+\alpha_{12,3}\widetilde{\pi}_{t-1}+\alpha_{12,4}\widetilde{y}_{t-1}+u_{12,t}\tag{12}
+$$
+
+Depende de su rezago y de los rezagos de las variables siguientes:
+
+- $\widetilde{i}^{*}$ = Tasa de interés externa
+- $\widetilde{\pi}$ = Inflación doméstica
+- $\widetilde{y}$ = Crecimiento económico doméstico
+
+## Sector privado
+
+### Depreciación nominal {.unnumbered .unlisted}
+
+$$
+\widetilde{e}_{t}=\alpha_{13,1}\widetilde{e}_{t-1}+\alpha_{13,2}\widetilde{\left(\frac{DPEC}{PIB}\right)}_{t-1}+\alpha_{13,3}\left(\widetilde{i}_{t-1}-\widetilde{i}_{t-1}^{*}-\widetilde{\rho}_{t-1}\right)+u_{13,t}\tag{13}
+$$
+
+Depende de su rezago y de los rezagos de las variables siguientes:
+
+- $\widetilde{\left(\frac{DPEC}{PIB}\right)}$ = Deuda pública externa consolidada
+- $\widetilde{i}$ = Tasa de interés líder de política monetaria
+- $\widetilde{i}^{*}$ = Tasa de interés externa
+- $\widetilde{\rho}$ = Prima por riesgo país
+
+<!-- PDF v1.4, p. 10 -->
+### Prima por Riesgo-País {.unnumbered .unlisted}
+
+$$
+\widetilde{\rho}_{t}=\alpha_{14,1}\widetilde{\rho}_{t-1}+\alpha_{14,2}\widetilde{\left(\frac{DPTC}{PIB}\right)}_{t-1}+u_{14,t}\tag{14}
+$$
+
+Depende de su rezago y del rezagos de la siguiente variable:
+
+- $\widetilde{\left(\frac{DPTC}{PIB}\right)}$ = Deuda pública total consolidada
+
+### Inflación (curva de Phillips) {.unnumbered .unlisted}
+
+$$
+\widetilde{\pi}_{t}=\alpha_{15,1}\widetilde{\pi}_{t-1}+\alpha_{15,2}\widetilde{y}_{t-1}+\alpha_{15,3}\widetilde{\pi}_{t-1}^{*}+\alpha_{15,4}\widetilde{e}_{t-1}+\alpha_{15,5}\widetilde{\left(\frac{M_{0}A}{PIB}\right)}_{t-1}+u_{15,t}\tag{15}
+$$
+
+Depende de su rezago y:
+
+- $\widetilde{y}$ = Crecimiento económico doméstico
+- $\widetilde{\pi}^{*}$ = Tasa de inflación externa
+- $\widetilde{e}$ = Depreciación nominal
+- $\widetilde{\left(\frac{M_{0}A}{PIB}\right)}$ = Base monetaria ampliada
+
+### Crecimiento económico (curva IS) {.unnumbered .unlisted}
+
+$$
+\begin{aligned}
+\widetilde{y}_{t}&=\alpha_{16,1}\widetilde{y}_{t-1}+\alpha_{16,2}\widetilde{y}_{t-1}^{*}+\alpha_{16,3}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}\\
+&\quad+\alpha_{16,4}\widetilde{\left(\frac{ITotal}{PIB}\right)}_{t-1}+\alpha_{16,5}\widetilde{\left(\frac{M_{0}A}{PIB}\right)}_{t-1}+u_{16,t}
+\end{aligned}\tag{16}
+$$
+
+Depende de su rezago y de los rezagos de las variables siguientes:
+
+- $\widetilde{y}^{*}$ = Crecimiento económico externo
+- $\widetilde{\left(\frac{ITotal}{PIB}\right)}$ = Inversión total
+- $\widetilde{\left(\frac{M_{0}A}{PIB}\right)}$ = Base monetaria ampliada
+
+<!-- PDF v1.4, p. 11 -->
+### Inversión Privada {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}=\alpha_{17,1}\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t-1}+\alpha_{17,2}\widetilde{i}_{t-1}+\alpha_{17,3}\widetilde{\left(\frac{DPIC}{PIB}\right)}_{t-1}+\alpha_{17,4}\widetilde{\rho}_{t-1}+u_{17,t}\tag{17}
+$$
+
+Depende de su rezago y de los rezagos de las variables siguientes:
+
+- $\widetilde{i}$ = Tasa de interés Líder de Política Monetaria
+- $\widetilde{\left(\frac{DPIC}{PIB}\right)}$ = Deuda pública interna consolidada
+- $\widetilde{\rho}$ = Prima por riesgo país
+
+# Definiciones
+
+A continuación se presentan un conjunto de definiciones separadas del núcleo del modelo.
+
+## Déficit fiscal {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}=\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}\tag{18}
+$$
+
+## Deuda pública total[^3] {.unnumbered .unlisted}
+
+[^3]: La ecuación (19) representa la ley de movimiento de la deuda pública total, en tanto que la ecuación (20) descompone la deuda pública total en un componente externo y otro interno. La compatibilidad de ambas definiciones se explica en la sección 4.
+
+$$
+\widetilde{\left(\frac{DPT}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPT}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}\tag{19}
+$$
+
+$$
+\widetilde{\left(\frac{DPT}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}\tag{20}
+$$
+
+<!-- PDF v1.4, p. 12 -->
+## Base monetaria ampliada[^4] {.unnumbered .unlisted}
+
+[^4]: Se domina "base monetaria ampliada" porque incluye el componente "encaje en moneda extranjera", además de los componentes usuales de la base monetaria: numerario en circulación y encaje en moneda nacional.
+
+$$
+\widetilde{\left(\frac{M_{0}A}{PIB}\right)}_{t}=\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}\tag{21}
+$$
+
+## Inversión Total {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{ITotal}{PIB}\right)}_{t}=\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}\tag{22}
+$$
+
+## Deuda pública interna consolidada {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{DPIC}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}-\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}\tag{23}
+$$
+
+## Deuda pública externa consolidada {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{DPEC}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}-\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}\tag{24}
+$$
+
+## Deuda pública total consolidada {.unnumbered .unlisted}
+
+$$
+\widetilde{\left(\frac{DPTC}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPEC}{PIB}\right)}_{t}+\widetilde{\left(\frac{DPIC}{PIB}\right)}_{t}\tag{25}
+$$
+
+## Tipo de cambio real {.unnumbered .unlisted}
+
+$$
+\widetilde{z}_{t}=\widetilde{e}_{t}+\widetilde{\pi}_{t}^{*}-\widetilde{\pi}_{t}\tag{26}
+$$
+
+<!-- PDF v1.4, p. 13 -->
+# Sustitución de variables
+
+## Déficit fiscal en ecuación (9) {.unnumbered .unlisted}
+
+Sustituyendo la ecuación (18), rezagada un período, en la ecuación (9), se obtiene:
+
+$$
+\begin{aligned}
+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}&=\alpha_{9,1}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\alpha_{9,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}\\
+&\quad+\alpha_{9,3}\left[\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}\right]+u_{9,t}
+\end{aligned}\tag{27}
+$$
+
+## Deuda púbica externa consolidada en ecuación (13) {.unnumbered .unlisted}
+
+Sustituyendo la ecuación (24), rezagada un período, en la ecuación (13), resulta:
+
+$$
+\widetilde{e}_{t}=\alpha_{13,1}\widetilde{e}_{t-1}+\alpha_{13,2}\left[\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}\right]+\alpha_{13,3}\left(\widetilde{i}_{t-1}-\widetilde{i}_{t-1}^{*}-\widetilde{\rho}_{t-1}\right)+u_{13,t}\tag{28}
+$$
+
+## Deuda pública total consolidada en ecuación (14) {.unnumbered .unlisted}
+
+Sustituyendo[^5] las ecuaciones (25) (24) y (23) en la ecuación (14), se obtiene:
+
+[^5]: Secuencialmente y con los rezagos del caso.
+
+$$
+\widetilde{\rho}_{t}=\alpha_{14,1}\widetilde{\rho}_{t-1}+\alpha_{14,2}\left[\widetilde{\left(\frac{DPEC}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{DPIC}{PIB}\right)}_{t-1}\right]+u_{14,t}\tag{29}
+$$
+
+luego:
+
+$$
+\widetilde{\rho}_{t}=\alpha_{14,1}\widetilde{\rho}_{t-1}+\alpha_{14,2}\left[\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+u_{14,t}\tag{30}
+$$
+
+<!-- PDF v1.4, p. 14 -->
+## Base monetaria ampliada en ecuación (15) {.unnumbered .unlisted}
+
+Sustituyendo la ecuación (21) en la ecuación (15), se obtiene:
+
+$$
+\widetilde{\pi}_{t}=\alpha_{15,1}\widetilde{\pi}_{t-1}+\alpha_{15,2}\widetilde{y}_{t-1}+\alpha_{15,3}\widetilde{\pi}_{t-1}^{*}+\alpha_{15,4}\widetilde{e}_{t-1}+\alpha_{15,5}\left[\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+u_{15,t}\tag{31}
+$$
+
+## Inversión total y base monetaria ampliada en ecuación (16) {.unnumbered .unlisted}
+
+Sustituyendo las ecuaciones (22) y (21) en la ecuación (16), obtenemos:
+
+$$
+\begin{aligned}
+\widetilde{y}_{t}&=\alpha_{16,1}\widetilde{y}_{t-1}+\alpha_{16,2}\widetilde{y}_{t-1}^{*}+\alpha_{16,3}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}\\
+&\quad+\alpha_{16,4}\left[\widetilde{\left(\frac{IPubl}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t-1}\right]+\alpha_{16,5}\left[\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+u_{16,t}
+\end{aligned}\tag{32}
+$$
+
+## Deuda pública interna consolidada en ecuación (17) {.unnumbered .unlisted}
+
+Sustituyendo la ecuación (23), rezagada un período, en la ecuación (17), resulta:
+
+$$
+\begin{aligned}
+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}&=\alpha_{17,1}\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t-1}+\alpha_{17,2}\widetilde{i}_{t-1}\\
+&\quad+\alpha_{17,3}\left[\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+\alpha_{17,4}\widetilde{\rho}_{t-1}+u_{17,t}
+\end{aligned}\tag{33}
+$$
+
+## Deuda pública total en (19) {.unnumbered .unlisted}
+
+Sustituyendo la ecuación (20) en la ecuación (19), con y sin rezago, obtenemos:
+
+$$
+\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}
+$$
+
+<!-- PDF v1.4, p. 15 -->
+$$
+\Longrightarrow\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}-\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}\tag{34}
+$$
+
+Luego, sustituyendo la ecuación (9) en la ecuación (33), se tiene:
+
+$$
+\begin{aligned}
+\alpha_{9,1}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\alpha_{9,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\alpha_{9,3}\widetilde{\left(\frac{Def}{PIB}\right)}_{t-1}+u_{9,t}
+&=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}\\
+&\quad-\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}
+\end{aligned}
+$$
+
+Despejando para $u_{9,t}$ y reagrupando:
+
+$$
+\begin{aligned}
+\Longrightarrow u_{9,t}&=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}\\
+&\quad-\alpha_{9,3}\widetilde{\left(\frac{Def}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}
+\end{aligned}\tag{35}
+$$
+
+Ahora, sustituyendo (7) en (34), se obtiene:
+
+$$
+\begin{aligned}
+u_{9,t}&=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}\\
+&\quad-\alpha_{9,3}\widetilde{\left(\frac{Def}{PIB}\right)}_{t-1}-\left[\alpha_{7,1}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+u_{7,t}\right]+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+u_{9,t}&=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}\\
+&\quad-\alpha_{9,3}\widetilde{\left(\frac{Def}{PIB}\right)}_{t-1}-\alpha_{7,1}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-u_{7,t}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\Longrightarrow u_{9,t}&=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{7,1}-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}\\
+&\quad-\alpha_{9,3}\widetilde{\left(\frac{Def}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}-u_{7,t}
+\end{aligned}\tag{36}
+$$
+
+<!-- PDF v1.4, p. 16 -->
+Seguidamente, se sustituye la ecuación (18), tanto de manera rezagada como en forma contemporánea, en la ecuación (36):
+
+$$
+\begin{aligned}
+u_{9,t}&=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{7,1}-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}\\
+&\quad-\alpha_{9,3}\left[\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}\right]\\
+&\quad+\left[\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}\right]-u_{7,t}
+\end{aligned}\tag{37}
+$$
+
+Ahora procedemos a sustituir las ecuaciones (4), (5) y (6) en la ecuación (37):
+
+$$
+\begin{aligned}
+u_{9,t}&=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{7,1}-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}\\
+&\quad-\alpha_{9,3}\left[\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}\right]\\
+&\quad+\bigl\{\left[\alpha_{6,1}\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+u_{6,t}\right]+\left[\alpha_{4,1}\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}+u_{4,t}\right]\\
+&\qquad-\left[\alpha_{5,1}\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}+u_{5,t}\right]\bigr\}-u_{7,1}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\Longrightarrow u_{9,t}&=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{7,1}-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}\\
+&\quad+\left(\alpha_{6,1}-\alpha_{9,3}\right)\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\left(\alpha_{4,1}-\alpha_{9,3}\right)\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}\\
+&\quad-\left(\alpha_{5,1}+\alpha_{9,3}\right)\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}+u_{4,t}+u_{6,t}-u_{5,t}-u_{7,t}
+\end{aligned}\tag{38}
+$$
+
+# Presentación compacta del modelo
+
+El Modelo para Proyecciones Macroeconómicas puede reescribirse, de manera más compacta (aunque menos intuitiva), mediante las 18 ecuaciones siguientes:
+(1), (2), (3), (4), (5), (6), (7), (8), (27), (10), (11), (12), (28), (30), (31), (32), (33) y (38)
+
+<!-- PDF v1.4, p. 17 -->
+A continuación se reproducen las recién referidas ecuaciones, pero esta vez de manera consecutiva y con nueva numeración:
+
+$$
+\widetilde{y}_{t}^{*}=\alpha_{1,1}\widetilde{y}_{t-1}^{*}+u_{1,t}\tag{39}
+$$
+
+$$
+\widetilde{i}_{t}^{*}=\alpha_{2,1}\widetilde{i}_{t-1}^{*}+u_{2,t}\tag{40}
+$$
+
+$$
+\widetilde{\pi}_{t}^{*}=\alpha_{3,1}\widetilde{\pi}_{t-1}^{*}+u_{3,t}\tag{41}
+$$
+
+$$
+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t}=\alpha_{4,1}\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}+u_{4,t}\tag{42}
+$$
+
+$$
+\widetilde{\left(\frac{IngT}{PIB}\right)}_{t}=\alpha_{5,1}\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}+u_{5,t}\tag{43}
+$$
+
+$$
+\widetilde{\left(\frac{GFun}{PIB}\right)}_{t}=\alpha_{6,1}\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+u_{6,t}\tag{44}
+$$
+
+$$
+\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}=\alpha_{7,1}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+u_{7,t}\tag{45}
+$$
+
+$$
+\widetilde{\left(\frac{Rem}{PIB}\right)}_{t}=\alpha_{8,1}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}+u_{8,t}\tag{46}
+$$
+
+$$
+\begin{aligned}
+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}&=\alpha_{9,1}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\alpha_{9,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}\\
+&\quad+\alpha_{9,3}\left[\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}\right]+u_{9,t}
+\end{aligned}\tag{47}
+$$
+
+$$
+\widetilde{\left(\frac{AEN}{PIB}\right)}_{t}=\alpha_{10,1}\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\alpha_{10,2}\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\alpha_{10,3}\widetilde{\pi}_{t-1}^{*}+\alpha_{10,4}\widetilde{e}_{t-1}+\alpha_{10,5}\widetilde{\pi}_{t-1}+u_{10,t}\tag{48}
+$$
+
+$$
+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t}=\alpha_{11,1}\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}+\alpha_{11,2}\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\alpha_{11,3}\widetilde{i}_{t-1}+\alpha_{11,4}\widetilde{\pi}_{t-1}+u_{11,t}\tag{49}
+$$
+
+<!-- PDF v1.4, p. 18 -->
+$$
+\widetilde{i}_{t}=\alpha_{12,1}\widetilde{i}_{t-1}+\alpha_{12,2}\widetilde{i}_{t-1}^{*}+\alpha_{12,3}\widetilde{\pi}_{t-1}+\alpha_{12,4}\widetilde{y}_{t-1}+u_{12,t}\tag{50}
+$$
+
+$$
+\widetilde{e}_{t}=\alpha_{13,1}\widetilde{e}_{t-1}+\alpha_{13,2}\left[\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}\right]+\alpha_{13,3}\left(\widetilde{i}_{t-1}-\widetilde{i}_{t-1}^{*}-\widetilde{\rho}_{t-1}\right)+u_{13,t}\tag{51}
+$$
+
+$$
+\widetilde{\rho}_{t}=\alpha_{14,1}\widetilde{\rho}_{t-1}+\alpha_{14,2}\left[\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}\right]+u_{14,t}\tag{52}
+$$
+
+$$
+\widetilde{\pi}_{t}=\alpha_{15,1}\widetilde{\pi}_{t-1}+\alpha_{15,2}\widetilde{y}_{t-1}+\alpha_{15,3}\widetilde{\pi}_{t-1}^{*}+\alpha_{15,4}\widetilde{e}_{t-1}+\alpha_{15,5}\left[\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+u_{15,t}\tag{53}
+$$
+
+$$
+\begin{aligned}
+\widetilde{y}_{t}&=\alpha_{16,1}\widetilde{y}_{t-1}+\alpha_{16,2}\widetilde{y}_{t-1}^{*}+\alpha_{16,3}\widetilde{\left(\frac{Rem}{PIB}\right)}_{t-1}\\
+&\quad+\alpha_{16,4}\left[\widetilde{\left(\frac{IPubl}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t-1}\right]\\
+&\quad+\alpha_{16,5}\left[\widetilde{\left(\frac{AEN}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+u_{16,t}
+\end{aligned}\tag{54}
+$$
+
+$$
+\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t}=\alpha_{17,1}\widetilde{\left(\frac{IPriv}{PIB}\right)}_{t-1}+\alpha_{17,2}\widetilde{i}_{t-1}+\alpha_{17,3}\left[\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}-\widetilde{\left(\frac{AIN}{PIB}\right)}_{t-1}\right]+\alpha_{17,4}\widetilde{\rho}_{t-1}+u_{17,t}\tag{55}
+$$
+
+$$
+\begin{aligned}
+u_{9,t}&=\left(1-\alpha_{9,1}\right)\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\left(1-\alpha_{7,1}-\alpha_{9,2}\right)\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}\\
+&\quad+\left(\alpha_{6,1}-\alpha_{9,3}\right)\widetilde{\left(\frac{GFun}{PIB}\right)}_{t-1}+\left(\alpha_{4,1}-\alpha_{9,3}\right)\widetilde{\left(\frac{IPub}{PIB}\right)}_{t-1}\\
+&\quad-\left(\alpha_{5,1}+\alpha_{9,3}\right)\widetilde{\left(\frac{IngT}{PIB}\right)}_{t-1}+u_{4,t}+u_{6,t}-u_{5,t}-u_{7,t}
+\end{aligned}\tag{56}
+$$
+
+# Construcción de las variables “ola” y recuperación de variables observables
+
+Una vez expuestas las ecuaciones fundamentales del modelo, el siguiente paso es definir cómo están construidas las variables que lo componen. La estructura general de su construcción se detalla a continuación.
+
+## Definición de variables “ola” {.unnumbered .unlisted}
+
+En la serie histórica, las variables “ola” se construyen como la diferencia entre la variable observable en el periodo t menos el rezago de un promedio móvil de T periodos. Estas variables son las que forman parte del modelo propiamente tal:
+
+$$
+\widetilde{x}_t=x_t-\overline{x}_{t-1} \tag{57}
+$$
+
+## Recuperación de variables observables {.unnumbered .unlisted}
+
+Por su parte, en los pronósticos del modelo, las variables observables son una reconstrucción a partir de los pronósticos de las variables “ola” y constituyen las variables originales de la economía representada por el modelo. Se definen como la suma de la correspondiente variable “ola” en el periodo t y el respectivo rezago de un promedio móvil de T periodos:
+
+$$
+x_t=\widetilde{x}_t+\overline{x}_{t-1} \tag{58}
+$$
+
+## Promedio móvil {.unnumbered .unlisted}
+
+El promedio móvil que aparece en las ecuaciones (56) y (57) se define de la siguiente manera:
+
+$$
+\overline{x}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}x_j \tag{59}
+$$
+
+A continuación, se aplican estas definiciones a todas las variables del modelo:
+
+<!-- Fuente PDF v1.4, página impresa 20 -->
+
+## Variables exógenas externas
+
+### Crecimiento económico externo {.unnumbered .unlisted}
+
+$$
+y_t^{*}=\widetilde{y}_t^{*}+\overline{y}_{t-1}^{*} \tag{60}
+$$
+
+$$
+\widetilde{y}_t^{*}=y_t^{*}-\overline{y}_{t-1}^{*} \tag{61}
+$$
+
+$$
+\overline{y}_{t-1}^{*}=\frac{1}{T}\sum_{j=t-T}^{t-1}y_j^{*} \tag{62}
+$$
+
+### Tasa de interés externa {.unnumbered .unlisted}
+
+$$
+i_t^{*}=\widetilde{i}_t^{*}+\overline{i}_{t-1}^{*} \tag{63}
+$$
+
+$$
+\widetilde{i}_t^{*}=i_t^{*}-\overline{i}_{t-1}^{*} \tag{64}
+$$
+
+$$
+\overline{i}_{t-1}^{*}=\frac{1}{T}\sum_{j=t-T}^{t-1}i_j^{*} \tag{65}
+$$
+
+### Inflación externa {.unnumbered .unlisted}
+
+$$
+\pi_t^{*}=\widetilde{\pi}_t^{*}+\overline{\pi}_{t-1}^{*} \tag{66}
+$$
+
+$$
+\widetilde{\pi}_t^{*}=\pi_t^{*}-\overline{\pi}_{t-1}^{*} \tag{67}
+$$
+
+$$
+\overline{\pi}_{t-1}^{*}=\frac{1}{T}\sum_{j=t-T}^{t-1}\pi_j^{*} \tag{68}
+$$
+
+<!-- Fuente PDF v1.4, página impresa 21 -->
+
+## Variables exógenas internas
+
+### Inversión Pública {.unnumbered .unlisted}
+
+$$
+\left(\frac{IPub}{PIB}\right)_t=\widetilde{\left(\frac{IPub}{PIB}\right)}_t+\overline{\left(\frac{IPub}{PIB}\right)}_{t-1} \tag{69}
+$$
+
+$$
+\widetilde{\left(\frac{IPub}{PIB}\right)}_t=\left(\frac{IPub}{PIB}\right)_t-\overline{\left(\frac{IPub}{PIB}\right)}_{t-1} \tag{70}
+$$
+
+$$
+\overline{\left(\frac{IPub}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{IPub}{PIB}\right)_j \tag{71}
+$$
+
+### Ingresos totales {.unnumbered .unlisted}
+
+$$
+\left(\frac{IngT}{PIB}\right)_t=\widetilde{\left(\frac{IngT}{PIB}\right)}_t+\overline{\left(\frac{IngT}{PIB}\right)}_{t-1} \tag{72}
+$$
+
+$$
+\widetilde{\left(\frac{IngT}{PIB}\right)}_t=\left(\frac{IngT}{PIB}\right)_t-\overline{\left(\frac{IngT}{PIB}\right)}_{t-1} \tag{73}
+$$
+
+$$
+\overline{\left(\frac{IngT}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{IngT}{PIB}\right)_j \tag{74}
+$$
+
+### Gasto en funcionamiento del Gobierno {.unnumbered .unlisted}
+
+$$
+\left(\frac{GFun}{PIB}\right)_t=\widetilde{\left(\frac{GFun}{PIB}\right)}_t+\overline{\left(\frac{GFun}{PIB}\right)}_{t-1} \tag{75}
+$$
+
+$$
+\widetilde{\left(\frac{GFun}{PIB}\right)}_t=\left(\frac{GFun}{PIB}\right)_t-\overline{\left(\frac{GFun}{PIB}\right)}_{t-1} \tag{76}
+$$
+
+$$
+\overline{\left(\frac{GFun}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{GFun}{PIB}\right)_j \tag{77}
+$$
+
+<!-- Fuente PDF v1.4, página impresa 22 -->
+
+### Deuda pública externa {.unnumbered .unlisted}
+
+$$
+\left(\frac{DPE}{PIB}\right)_t=\widetilde{\left(\frac{DPE}{PIB}\right)}_t+\overline{\left(\frac{DPE}{PIB}\right)}_{t-1} \tag{78}
+$$
+
+$$
+\widetilde{\left(\frac{DPE}{PIB}\right)}_t=\left(\frac{DPE}{PIB}\right)_t-\overline{\left(\frac{DPE}{PIB}\right)}_{t-1} \tag{79}
+$$
+
+$$
+\overline{\left(\frac{DPE}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{DPE}{PIB}\right)_j \tag{80}
+$$
+
+### Remesas {.unnumbered .unlisted}
+
+$$
+\left(\frac{Rem}{PIB}\right)_t=\widetilde{\left(\frac{Rem}{PIB}\right)}_t+\overline{\left(\frac{Rem}{PIB}\right)}_{t-1} \tag{81}
+$$
+
+$$
+\widetilde{\left(\frac{Rem}{PIB}\right)}_t=\left(\frac{Rem}{PIB}\right)_t-\overline{\left(\frac{Rem}{PIB}\right)}_{t-1} \tag{82}
+$$
+
+$$
+\overline{\left(\frac{Rem}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{Rem}{PIB}\right)_j \tag{83}
+$$
+
+## Variables endógenas
+
+### Gobierno
+
+### Deuda pública interna {.unnumbered .unlisted}
+
+$$
+\left(\frac{DPI}{PIB}\right)_t=\widetilde{\left(\frac{DPI}{PIB}\right)}_t+\overline{\left(\frac{DPI}{PIB}\right)}_{t-1} \tag{84}
+$$
+
+$$
+\widetilde{\left(\frac{DPI}{PIB}\right)}_t=\left(\frac{DPI}{PIB}\right)_t-\overline{\left(\frac{DPI}{PIB}\right)}_{t-1} \tag{85}
+$$
+
+$$
+\overline{\left(\frac{DPI}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{DPI}{PIB}\right)_j \tag{86}
+$$
+
+<!-- Fuente PDF v1.4, página impresa 23 -->
+
+### Banco central
+
+### Activos externos netos {.unnumbered .unlisted}
+
+$$
+\left(\frac{AEN}{PIB}\right)_t=\widetilde{\left(\frac{AEN}{PIB}\right)}_t+\overline{\left(\frac{AEN}{PIB}\right)}_{t-1} \tag{87}
+$$
+
+$$
+\widetilde{\left(\frac{AEN}{PIB}\right)}_t=\left(\frac{AEN}{PIB}\right)_t-\overline{\left(\frac{AEN}{PIB}\right)}_{t-1} \tag{88}
+$$
+
+$$
+\overline{\left(\frac{AEN}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{AEN}{PIB}\right)_j \tag{89}
+$$
+
+### Activos internos netos {.unnumbered .unlisted}
+
+$$
+\left(\frac{AIN}{PIB}\right)_t=\widetilde{\left(\frac{AIN}{PIB}\right)}_t+\overline{\left(\frac{AIN}{PIB}\right)}_{t-1} \tag{90}
+$$
+
+$$
+\widetilde{\left(\frac{AIN}{PIB}\right)}_t=\left(\frac{AIN}{PIB}\right)_t-\overline{\left(\frac{AIN}{PIB}\right)}_{t-1} \tag{91}
+$$
+
+$$
+\overline{\left(\frac{AEN}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{AEN}{PIB}\right)_j \tag{92}
+$$
+
+### Tasa de interés líder de política monetaria {.unnumbered .unlisted}
+
+$$
+i_t=\widetilde{i}_t+\overline{i}_{t-1} \tag{93}
+$$
+
+$$
+\widetilde{i}_t=i_t-\overline{i}_{t-1} \tag{94}
+$$
+
+$$
+\overline{i}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}i_j \tag{95}
+$$
+
+<!-- Fuente PDF v1.4, página impresa 24 -->
+
+### Sector privado
+
+### Depreciación nominal {.unnumbered .unlisted}
+
+$$
+e_t=\widetilde{e}_t+\overline{e}_{t-1} \tag{96}
+$$
+
+$$
+\widetilde{e}_t=e_t-\overline{e}_{t-1} \tag{97}
+$$
+
+$$
+\overline{e}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}e_j \tag{98}
+$$
+
+### Prima por riesgo-país {.unnumbered .unlisted}
+
+$$
+\rho_t=\widetilde{\rho}_t+\overline{\rho}_{t-1} \tag{99}
+$$
+
+$$
+\widetilde{\rho}_t=\rho_t-\overline{\rho}_{t-1} \tag{100}
+$$
+
+$$
+\overline{\rho}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\rho_j \tag{101}
+$$
+
+### Inflación {.unnumbered .unlisted}
+
+$$
+\pi_t=\widetilde{\pi}_t+\overline{\pi}_{t-1} \tag{102}
+$$
+
+$$
+\widetilde{\pi}_t=\pi_t-\overline{\pi}_{t-1} \tag{103}
+$$
+
+$$
+\overline{\pi}_{t-1}=4 \tag{104}
+$$
+
+[^6]
+
+[^6]: Al colocar la meta de inflación en esta ecuación modelamos el Esquema de Metas Explícitas de Inflación.
+
+<!-- Fuente PDF v1.4, página impresa 25 -->
+
+### Crecimiento económico {.unnumbered .unlisted}
+
+$$
+y_t=\widetilde{y}_t+\overline{y}_{t-1} \tag{105}
+$$
+
+$$
+\widetilde{y}_t=y_t-\overline{y}_{t-1} \tag{106}
+$$
+
+$$
+\overline{y}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}y_j \tag{107}
+$$
+
+### Inversión privada {.unnumbered .unlisted}
+
+$$
+\left(\frac{IPriv}{PIB}\right)_t=\widetilde{\left(\frac{IPriv}{PIB}\right)}_t+\overline{\left(\frac{IPriv}{PIB}\right)}_{t-1} \tag{108}
+$$
+
+$$
+\widetilde{\left(\frac{IPriv}{PIB}\right)}_t=\left(\frac{IPriv}{PIB}\right)_t-\overline{\left(\frac{IPriv}{PIB}\right)}_{t-1} \tag{109}
+$$
+
+$$
+\overline{\left(\frac{IPriv}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{IPriv}{PIB}\right)_j \tag{110}
+$$
+
+### Otras definiciones
+
+### Déficit fiscal {.unnumbered .unlisted}
+
+$$
+\left(\frac{Def}{PIB}\right)_t=\widetilde{\left(\frac{Def}{PIB}\right)}_t+\overline{\left(\frac{Def}{PIB}\right)}_{t-1} \tag{111}
+$$
+
+$$
+\widetilde{\left(\frac{Def}{PIB}\right)}_t=\left(\frac{Def}{PIB}\right)_t-\overline{\left(\frac{Def}{PIB}\right)}_{t-1} \tag{112}
+$$
+
+$$
+\overline{\left(\frac{Def}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{Def}{PIB}\right)_j \tag{113}
+$$
+
+<!-- Fuente PDF v1.4, página impresa 26 -->
+
+### Deuda pública total {.unnumbered .unlisted}
+
+$$
+\left(\frac{DPT}{PIB}\right)_t=\widetilde{\left(\frac{DPT}{PIB}\right)}_t+\overline{\left(\frac{DPT}{PIB}\right)}_{t-1} \tag{114}
+$$
+
+$$
+\widetilde{\left(\frac{DPT}{PIB}\right)}_t=\left(\frac{DPT}{PIB}\right)_t-\overline{\left(\frac{DPT}{PIB}\right)}_{t-1} \tag{115}
+$$
+
+$$
+\overline{\left(\frac{DPT}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{DPT}{PIB}\right)_j \tag{116}
+$$
+
+### Base monetaria ampliada {.unnumbered .unlisted}
+
+$$
+\left(\frac{M_{0}A}{PIB}\right)_t=\widetilde{\left(\frac{M_{0}A}{PIB}\right)}_t+\overline{\left(\frac{M_{0}A}{PIB}\right)}_{t-1} \tag{117}
+$$
+
+$$
+\widetilde{\left(\frac{M_{0}A}{PIB}\right)}_t=\left(\frac{M_{0}A}{PIB}\right)_t-\overline{\left(\frac{M_{0}A}{PIB}\right)}_{t-1} \tag{118}
+$$
+
+$$
+\overline{\left(\frac{M_{0}A}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{M_{0}A}{PIB}\right)_j \tag{119}
+$$
+
+### Tipo de cambio real {.unnumbered .unlisted}
+
+$$
+z_t=\widetilde{z}_t+\overline{z}_{t-1} \tag{120}
+$$
+
+$$
+\widetilde{z}_t=z_t-\overline{z}_{t-1} \tag{121}
+$$
+
+$$
+\overline{z}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}z_j \tag{122}
+$$
+
+<!-- Fuente PDF v1.4, página impresa 27 -->
+
+### Deuda pública externa consolidada {.unnumbered .unlisted}
+
+$$
+\left(\frac{DPEC}{PIB}\right)_t=\widetilde{\left(\frac{DPEC}{PIB}\right)}_t+\overline{\left(\frac{DPEC}{PIB}\right)}_{t-1} \tag{123}
+$$
+
+$$
+\widetilde{\left(\frac{DPEC}{PIB}\right)}_t=\left(\frac{DPEC}{PIB}\right)_t-\overline{\left(\frac{DPEC}{PIB}\right)}_{t-1} \tag{124}
+$$
+
+$$
+\overline{\left(\frac{DPEC}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{DPEC}{PIB}\right)_j \tag{125}
+$$
+
+### Deuda pública interna consolidada {.unnumbered .unlisted}
+
+$$
+\left(\frac{DPIC}{PIB}\right)_t=\widetilde{\left(\frac{DPIC}{PIB}\right)}_t+\overline{\left(\frac{DPIC}{PIB}\right)}_{t-1} \tag{126}
+$$
+
+$$
+\widetilde{\left(\frac{DPIC}{PIB}\right)}_t=\left(\frac{DPIC}{PIB}\right)_t-\overline{\left(\frac{DPIC}{PIB}\right)}_{t-1} \tag{127}
+$$
+
+$$
+\overline{\left(\frac{DPIC}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{DPIC}{PIB}\right)_j \tag{128}
+$$
+
+### Deuda pública total consolidada {.unnumbered .unlisted}
+
+$$
+\left(\frac{DPTC}{PIB}\right)_t=\widetilde{\left(\frac{DPTC}{PIB}\right)}_t+\overline{\left(\frac{DPTC}{PIB}\right)}_{t-1} \tag{129}
+$$
+
+$$
+\widetilde{\left(\frac{DPTC}{PIB}\right)}_t=\left(\frac{DPTC}{PIB}\right)_t-\overline{\left(\frac{DPTC}{PIB}\right)}_{t-1} \tag{130}
+$$
+
+$$
+\overline{\left(\frac{DPTC}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{DPTC}{PIB}\right)_j \tag{131}
+$$
+
+<!-- Fuente PDF v1.4, página impresa 28 -->
+
+### Inversión total {.unnumbered .unlisted}
+
+$$
+\left(\frac{ITotal}{PIB}\right)_t=\widetilde{\left(\frac{ITotal}{PIB}\right)}_t+\overline{\left(\frac{ITotal}{PIB}\right)}_{t-1} \tag{132}
+$$
+
+$$
+\widetilde{\left(\frac{ITotal}{PIB}\right)}_t=\left(\frac{ITotal}{PIB}\right)_t-\overline{\left(\frac{ITotal}{PIB}\right)}_{t-1} \tag{133}
+$$
+
+$$
+\overline{\left(\frac{ITotal}{PIB}\right)}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}\left(\frac{ITotal}{PIB}\right)_j \tag{134}
+$$
+
+# Algunas convenciones
+
+En esta sección se presentan algunas convenciones adoptadas respecto al tratamiento de variables de flujo, stock, tasas de interés y tasas de variación.
+
+## Variables flujo {.unnumbered .unlisted}
+
+Este tipo de variables se tratan como la suma móvil de 4 trimestres.
+
+$$
+x_t=\sum_{j=t-4+1}^{t}x_{Q,j} \tag{135}
+$$
+
+## Variables stock {.unnumbered .unlisted}
+
+Las variables stock son un promedio móvil de 4 trmestres.
+
+$$
+\overline{x}_t=\frac{1}{4}\sum_{j=t-4+1}^{t}x_{Q,j} \tag{136}
+$$
+
+## Tasas de interés {.unnumbered .unlisted}
+
+Las tasas de interés doméstica y externa están definidas como tasas anuales.
+
+<!-- Fuente PDF v1.4, página impresa 29 -->
+
+## Tasas de crecimiento económico {.unnumbered .unlisted}
+
+Esta variable se define como la variación interanual de la suma móvil de 4 trimestres del PIB.
+
+# Simplificación notacional
+
+Para simplificar la notación del modelo, se introducen las definiciones siguientes:
+
+$$
+y_{1,t}=\widetilde{y}_t^{*} \tag{137}
+$$
+
+$$
+y_{2,t}=\widetilde{i}_t^{*} \tag{138}
+$$
+
+$$
+y_{3,t}=\widetilde{\pi}_t^{*} \tag{139}
+$$
+
+$$
+y_{4,t}=\widetilde{\left(\frac{IPub}{PIB}\right)}_t \tag{140}
+$$
+
+$$
+y_{5,t}=\widetilde{\left(\frac{IngT}{PIB}\right)}_t \tag{141}
+$$
+
+$$
+y_{6,t}=\widetilde{\left(\frac{GFun}{PIB}\right)}_t \tag{142}
+$$
+
+$$
+y_{7,t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_t \tag{143}
+$$
+
+$$
+y_{8,t}=\widetilde{\left(\frac{Rem}{PIB}\right)}_t \tag{144}
+$$
+
+$$
+y_{9,t}=\widetilde{\left(\frac{DPI}{PIB}\right)}_t \tag{145}
+$$
+
+$$
+y_{10,t}=\widetilde{\left(\frac{AEN}{PIB}\right)}_t \tag{146}
+$$
+
+<!-- Fuente PDF v1.4, página impresa 30 -->
+
+$$
+y_{11,t}=\widetilde{\left(\frac{AIN}{PIB}\right)}_t \tag{147}
+$$
+
+$$
+y_{12,t}=\widetilde{i}_t \tag{148}
+$$
+
+$$
+y_{13,t}=\widetilde{e}_t \tag{149}
+$$
+
+$$
+y_{14,t}=\widetilde{\rho}_t \tag{150}
+$$
+
+$$
+y_{15,t}=\widetilde{\pi}_t \tag{151}
+$$
+
+$$
+y_{16,t}=\widetilde{y}_t \tag{152}
+$$
+
+$$
+y_{17,t}=\widetilde{\left(\frac{IPriv}{PIB}\right)}_t \tag{153}
+$$
+
+# Representación compacta y simplificada del modelo
+
+Sustituyendo las ecuaciones (121) a (137) en el modelo compacto (ecuaciones (38) a (55)), se obtiene la versión compacta y simplificada del modelo, como sigue:
+
+$$
+y_{1,t}=\alpha_{1,1}y_{1,t-1}+u_{1,t} \tag{154}
+$$
+
+$$
+y_{2,t}=\alpha_{2,1}y_{2,t-1}+u_{2,t} \tag{155}
+$$
+
+$$
+y_{3,t}=\alpha_{3,1}y_{3,t-1}+u_{3,t} \tag{156}
+$$
+
+$$
+y_{4,t}=\alpha_{4,1}y_{4,t-1}+u_{4,t} \tag{157}
+$$
+
+$$
+y_{5,t}=\alpha_{5,1}y_{5,t-1}+u_{5,t} \tag{158}
+$$
+
+<!-- Fuente PDF v1.4, página impresa 31 -->
+
+$$
+y_{6,t}=\alpha_{6,1}y_{6,t-1}+u_{6,t} \tag{159}
+$$
+
+$$
+y_{7,t}=\alpha_{7,1}y_{7,t-1}+u_{7,t} \tag{160}
+$$
+
+$$
+y_{8,t}=\alpha_{8,1}y_{8,t-1}+u_{8,t} \tag{161}
+$$
+
+$$
+y_{9,t}=\alpha_{9,1}y_{9,t-1}+\alpha_{9,2}y_{7,t-1}+\alpha_{9,3}(y_{6,t-1}+y_{4,t-1}-y_{5,t-1})+u_{9,t} \tag{162}
+$$
+
+$$
+y_{10,t}=\alpha_{10,1}y_{10,t-1}+\alpha_{10,2}y_{7,t-1}+\alpha_{10,3}y_{3,t-1}+\alpha_{10,4}y_{13,t-1}+\alpha_{10,5}y_{15,t-1}+u_{10,t} \tag{163}
+$$
+
+$$
+y_{11,t}=\alpha_{11,1}y_{11,t-1}+\alpha_{11,2}y_{9,t-1}+\alpha_{11,3}y_{12,t-1}+\alpha_{11,4}y_{15,t-1}+u_{11,t} \tag{164}
+$$
+
+$$
+y_{12,t}=\alpha_{12,1}y_{12,t-1}+\alpha_{12,2}y_{2,t-1}+\alpha_{12,3}y_{15,t-1}+\alpha_{12,4}y_{16,t-1}+u_{12,t} \tag{165}
+$$
+
+$$
+y_{13,t}=\alpha_{13,1}y_{13,t-1}+\alpha_{13,2}(y_{7,t-1}-y_{10,t-1})+\alpha_{13,3}(y_{12,t-1}-y_{2,t-1}-y_{14,t-1})+u_{13,t} \tag{166}
+$$
+
+$$
+y_{14,t}=\alpha_{14,1}y_{14,t-1}+\alpha_{14,2}(y_{9,t-1}-y_{11,t-1}+y_{7,t-1}-y_{10,t-1})+u_{14,t} \tag{167}
+$$
+
+$$
+y_{15,t}=\alpha_{15,1}y_{15,t-1}+\alpha_{15,2}y_{16,t-1}+\alpha_{15,3}y_{3,t-1}+\alpha_{15,4}y_{13,t-1}+\alpha_{15,5}(y_{10,t-1}+y_{11,t-1})+u_{15,t} \tag{168}
+$$
+
+$$
+y_{16,t}=\alpha_{16,1}y_{16,t-1}+\alpha_{16,2}y_{1,t-1}+\alpha_{16,3}y_{8,t-1}+\alpha_{16,4}(y_{4,t-1}+y_{17,t-1})+\alpha_{16,5}(y_{10,t-1}+y_{11,t-1})+u_{16,t} \tag{169}
+$$
+
+$$
+y_{17,t}=\alpha_{17,1}y_{17,t-1}+\alpha_{17,2}y_{12,t-1}+\alpha_{17,3}(y_{9,t-1}-y_{11,t-1})+\alpha_{17,4}y_{14,t-1}+u_{17,t} \tag{170}
+$$
+
+$$
+\begin{aligned}u_{9,t}&=(1-\alpha_{9,1})y_{9,t-1}+(1-\alpha_{7,1}-\alpha_{9,2})y_{7,t-1}+(\alpha_{6,1}-\alpha_{9,3})y_{6,t-1}
+\\ &+ (\alpha_{4,1}-\alpha_{9,3})y_{4,t-1}-(\alpha_{5,1}+\alpha_{9,3})y_{5,t-1}+u_{4,t}+u_{6,t}-u_{5,t}-u_{7,t}\end{aligned} \tag{171}
+$$
+
+<!-- Fuente PDF v1.4, página impresa 32 -->
+
+# Representación matricial del modelo
+
+Partiendo de las ecuaciones presentadas en la sección 9, a continuación se representa el modelo en forma matricial.
+
+## Matriz de variables del modelo en forma compacta y simplificada {.unnumbered .unlisted}
+
+Donde $\mathbf{y}_t$ es un vector de dimensión 17×1, conteniendo las variables definidas en la sección anterior.
+
+$$
+\mathbf{y}_t=\begin{bmatrix}y_{1,t}\\y_{2,t}\\\vdots\\y_{17,t}\end{bmatrix} \tag{172}
+$$
+
+## Matriz de coeficientes {.unnumbered .unlisted}
+
+La matriz $A_1$ es de dimensiones 17×17 y contiene los coeficientes del modelo. Es importante hacer notar que el modelo tiene expresiones del tipo $\alpha_{9,3}(y_{6,t-1}+y_{4,t-1}-y_{5,t-1})$ (ecuación 145) e indica que las variables $y_{6,t}$, $y_{4,t}$, y $y_{5,t}$ comparten el mismo coeficiente y en el caso de $y_{5,t}$ este se encuentra con el signo negativo. Este tipo de expresiones se puede representar de forma apropiada en la matriz de coeficientes mostrada a continuación:
+
+```{=latex}
+\begin{equation}\tag{173}
+\resizebox{0.88\textwidth}{!}{$\displaystyle A_1=\begin{bmatrix}
+\alpha_{1,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & \alpha_{2,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & \alpha_{3,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & \alpha_{4,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & \alpha_{5,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & \alpha_{6,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & \alpha_{7,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{8,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & \alpha_{9,3} & -\alpha_{9,3} & \alpha_{9,3} & \alpha_{9,2} & 0 & \alpha_{9,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & \alpha_{10,3} & 0 & 0 & 0 & \alpha_{10,2} & 0 & 0 & \alpha_{10,1} & 0 & 0 & \alpha_{10,3} & 0 & -\alpha_{10,3} & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{11,2} & 0 & \alpha_{11,1} & \alpha_{11.3} & 0 & 0 & \alpha_{11,4} & 0 & 0 \\
+0 & \alpha_{12,2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{12,1} & 0 & 0 & \alpha_{12,3} & \alpha_{12,4} & 0 \\
+0 & -\alpha_{13,3} & 0 & 0 & 0 & 0 & \alpha_{13,2} & 0 & 0 & \alpha_{13,2} & 0 & \alpha_{13,3} & \alpha_{13,1} & -\alpha_{13,3} & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & \alpha_{14,2} & 0 & \alpha_{14,2} & -\alpha_{14,2} & -\alpha_{14,2} & 0 & 0 & \alpha_{14,1} & 0 & 0 & 0 \\
+0 & 0 & \alpha_{15,3} & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{15,5} & \alpha_{15,5} & 0 & \alpha_{15,4} & 0 & \alpha_{15,1} & \alpha_{15,2} & 0 \\
+\alpha_{16,1} & 0 & 0 & \alpha_{16,4} & 0 & 0 & 0 & \alpha_{16,3} & 0 & \alpha_{16,5} & \alpha_{16,5} & 0 & 0 & 0 & 0 & \alpha_{16,1} & \alpha_{16,4} \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{17,3} & 0 & -\alpha_{17,3} & \alpha_{17,2} & 0 & \alpha_{17,4} & 0 & 0 & \alpha_{17,1}
+\end{bmatrix}$}
+\end{equation}
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Fuente PDF v1.4, página impresa 33 -->
+
+## Matriz de residuos {.unnumbered .unlisted}
+
+El vector $\mathbf{u}_t$ es de dimensiones 17×1 y contiene los residuos del modelo.
+
+$$
+\mathbf{u}_t=\begin{bmatrix}u_{1,t}\\u_{2,t}\\\vdots\\u_{17,t}\end{bmatrix} \tag{174}
+$$
+
+Finalmente el modelo se presenta mediante de forma matricial de la siguiente manera:
+
+$$
+\mathbf{y}_t=A_1\mathbf{y}_{t-1}+\mathbf{u}_t \tag{175}
+$$
+
+
+```{=latex}
+\clearpage
+```
+
+# Comportamiento gráfico de las variables
+
+Debido a que cada variable que forma parte del modelo es el resultado de diversas transformaciones\footnote{Abordado con detalle en las secciones 6 y 7.}, las gráficas presentadas en esta sección muestran la evolución de sus componentes más básicos hasta mostrar la evolución en el tiempo de la variable "ola" en cuestión.
+
+**Crecimiento económico externo**
+
+<!-- Página 34 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=419.7pt,height=288.5pt]{figuras/Comportamiento_grafico/GDP_star.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Tasa de interés externa**
+
+<!-- Página 35 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=393.4pt,height=236.1pt]{figuras/Comportamiento_grafico/i_star.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Inflación externa**
+
+<!-- Página 36 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/core_cpi_star.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Inversión pública**
+
+<!-- Página 37 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/IPub.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Ingresos Totales**
+
+<!-- Página 38 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/IngT.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Gasto de funcionamiento**
+
+<!-- Página 39 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/GFun.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Deuda pública externa**
+
+<!-- Página 40 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPE.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Remesas**
+
+<!-- Página 41 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/Rem.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Deuda pública interna**
+
+<!-- Página 42 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPI.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Activos externos netos**
+
+Esta variable se construye por diferencia siendo la resta entre la Base monetaria ampliada - los activos internos netos\footnote{Puede consultar los datos para base monetaria, encaje en moneda extranjera y activos internos netos}.
+
+<!-- Página 43 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=468.8pt]{figuras/Comportamiento_grafico/AEN.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Activos internos netos**
+
+<!-- Página 44 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/AIN.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Tasa de interés líder de política monetaria**
+
+<!-- Página 45 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=393.4pt,height=236.1pt]{figuras/Comportamiento_grafico/i.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Depreciación nominal**
+
+<!-- Página 46 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/e.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Prima por Riesgo-País**
+
+<!-- Página 47 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=393.4pt,height=236.1pt]{figuras/Comportamiento_grafico/PREM.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Inflación doméstica**
+
+<!-- Página 48 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/core_cpi.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Crecimiento económico**
+
+<!-- Página 49 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=419.7pt,height=288.5pt]{figuras/Comportamiento_grafico/GDP.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Inversión privada\footnote{Esta variable se construyó por diferencia entre la inversión total obtenida de cuentas nacionales menos la inversión pública.}**
+
+<!-- Página 50 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=480pt,keepaspectratio]{figuras/Comportamiento_grafico/IPriv.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Base monetaria ampliada**
+
+<!-- Página 51 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/BM.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Depreciación real**
+
+<!-- Página 52 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=393.4pt,height=236.1pt]{figuras/Comportamiento_grafico/z.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Deuda pública externa consolidada**
+
+<!-- Página 53 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPEC.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Deuda pública interna consolidada**
+
+<!-- Página 54 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPIC.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Deuda pública total consolidada**
+
+<!-- Página 55 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPTC.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Deuda pública total**
+
+<!-- Página 56 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/DPT.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Inversión total**
+
+<!-- Página 57 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/ITotal.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+**Déficit**
+
+<!-- Página 58 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=377.8pt,height=524.8pt]{figuras/Comportamiento_grafico/Def.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+# Evolución de las variables "ola"
+
+En esta sección se presenta la evolución de cada una de las variables "ola" construidas en la sección anterior.
+
+<!-- Página 59 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/GDP_star.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/i_star.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 60 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/core_cpi_star.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/IPub.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 61 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/IngT.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/GFun.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 62 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/DPE.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/Rem.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 63 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/DPI.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/AEN.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 64 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/AIN.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/i.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 65 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/e.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/PREM.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 66 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/core_cpi.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/GDP.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 67 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/IPriv.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/BM.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 68 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/z.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/DPEC.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 69 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/DPIC.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/DPTC.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 70 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/DPT.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/ITotal.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 71 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=337.5pt,height=225.0pt]{figuras/Variables_ola/Def.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+# Pronósticos
+
+Esta sección presenta los pronósticos del modelo. La matriz de coeficientes del mismo está en la sección 14 del documento junto a los multiplicadores dinámicos. Todos los pronósticos parten con fin de historia en 2025Q4.
+
+<!-- Página 72 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/18_GDP_star_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/1_GDP_star_SM_yoy.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 73 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/19_i_star_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/2_i_star.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 74 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/20_pi_star_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/3_pi_star_yoy.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 75 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/21_IPub_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/4_IPub_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 76 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/22_IngT_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/5_IngT_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 77 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/23_GFun_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/6_Gfun_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 78 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/24_DPE_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/7_DPE_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 79 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/25_Rem_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/8_Rem_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 80 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/26_DPI_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/9_DPI_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 81 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/27_AEN_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/10_AEN_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 82 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/28_AIN_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/11_AIN_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 83 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/29_i_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/12_i.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 84 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/30_e_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/13_e_yoy.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 85 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/31_PREM_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/14_PREM.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 86 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/32_pi_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/15_pi_yoy.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 87 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/33_GDP_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/16_GDP_SM_yoy.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 88 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/34_IPriv_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/17_IPriv_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 89 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/35_AMB_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/43_AMB_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 90 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/36_z_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/44_z.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 91 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/37_DPEC_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/45_DPEC_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 92 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/38_DPIC_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/46_DPIC_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 93 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/39_DPTC_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/47_DPTC_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 94 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/40_DPT_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/48_DPT_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 95 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/41_ITotal_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/49_ITotal_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 96 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/42_Def_ola.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/50_Def_ratio.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 97 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/51_u4.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 98 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/52_u5.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/53_u7.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 99 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/54_u9.png}}\par
+\vspace{8pt}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=405.0pt,height=240.0pt]{figuras/Pronosticos/55_u16.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+
+<!-- Fuente PDF v1.4, página impresa 100 -->
+
+# Anexos
+
+## Matriz de coeficientes
+
+Se asignan los coeficientes estimados a la matriz de coeficientes de la sección 10.
+
+<!-- Matriz simbólica de 17×17: copia de la matriz de la página 100, no normalizada contra las ecuaciones compactas. -->
+
+```{=latex}
+\begin{center}
+\resizebox{\textwidth}{!}{$\displaystyle A_1=\begin{bmatrix}
+\alpha_{1,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & \alpha_{2,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & \alpha_{3,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & \alpha_{4,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & \alpha_{5,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & \alpha_{6,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & \alpha_{7,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{8,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & \alpha_{9,3} & -\alpha_{9,3} & \alpha_{9,3} & \alpha_{9,2} & 0 & \alpha_{9,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & \alpha_{10,3} & 0 & 0 & 0 & \alpha_{10,2} & 0 & 0 & \alpha_{10,1} & 0 & 0 & \alpha_{10,3} & 0 & -\alpha_{10,3} & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{11,2} & 0 & \alpha_{11,1} & \alpha_{11.3} & 0 & 0 & \alpha_{11,4} & 0 & 0 \\
+0 & \alpha_{12,2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{12,1} & 0 & 0 & \alpha_{12,3} & \alpha_{12,4} & 0 \\
+0 & -\alpha_{13,3} & 0 & 0 & 0 & 0 & \alpha_{13,2} & 0 & 0 & \alpha_{13,2} & 0 & \alpha_{13,3} & \alpha_{13,1} & -\alpha_{13,3} & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & \alpha_{14,2} & 0 & \alpha_{14,2} & -\alpha_{14,2} & -\alpha_{14,2} & 0 & 0 & \alpha_{14,1} & 0 & 0 & 0 \\
+0 & 0 & \alpha_{15,3} & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{15,5} & \alpha_{15,5} & 0 & \alpha_{15,4} & 0 & \alpha_{15,1} & \alpha_{15,2} & 0 \\
+\alpha_{16,1} & 0 & 0 & \alpha_{16,4} & 0 & 0 & 0 & \alpha_{16,3} & 0 & \alpha_{16,5} & \alpha_{16,5} & 0 & 0 & 0 & 0 & \alpha_{16,1} & \alpha_{16,4} \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{17,3} & 0 & -\alpha_{17,3} & \alpha_{17,2} & 0 & \alpha_{17,4} & 0 & 0 & \alpha_{17,1}
+\end{bmatrix}$}
+\end{center}
+```
+
+```{=latex}
+\begin{center}
+\resizebox{\textwidth}{!}{$\displaystyle A_1=\begin{bmatrix}
+0.5254 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0.6032 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0.5696 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0.5408 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0.5468 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0.5347 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0.5965 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.6684 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0.06505 & -0.06504 & 0.06504 & 0.0165 & 0 & 0.6339 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & -0.000177 & 0 & 0 & 0 & 0.0332 & 0 & 0 & 0.5687 & 0 & 0 & -0.000177 & 0 & 0.000177 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.0639 & 0 & 0.5687 & -0.05236 & 0 & 0 & -0.00852 & 0 & 0 \\
+0 & 0.1687 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -0.3403 & 0 & 0 & 0.11045 & 0.0004 & 0 \\
+0 & 0.1774 & 0 & 0 & 0 & 0 & -1.000189 & 0 & 0 & 1.000189 & 0 & -0.17738 & 0.54195 & 0.17738 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0.1046 & 0 & 0.1046 & -0.1046 & -0.1046 & 0 & 0 & 0.3646 & 0 & 0 & 0 \\
+0 & 0 & 0.63812 & 0 & 0 & 0 & 0 & 0 & 0 & 0.14569 & 0.14569 & 0 & 0.08134 & 0 & 0.46771 & 0.112918 & 0 \\
+0.2444 & 0 & 0 & 0.1842 & 0 & 0 & 0 & 0.04222 & 0 & 0.023885 & 0.023885 & 0 & 0 & 0 & 0 & 0.81933 & 0.1842 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -0.0917 & 0 & 0.0917 & -0.00377 & 0 & -0.11923 & 0 & 0 & 0.5863
+\end{bmatrix}$}
+\end{center}
+```
+
+
+```{=latex}
+\clearpage
+```
+
+## Multiplicadores dinámicos
+
+Multiplicadores dinámicos de las variables "ola" más importante ante choques en los residuos del modelo.
+
+<!-- Página 101 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/1_GDP_star.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 102 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=360.0pt,height=420.0pt]{figuras/Multiplicadores_dinamicos/2_i_star.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 103 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/3_pi_star.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 104 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/4_IPub.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 105 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/5_IngT.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 106 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/6_GFun.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 107 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/7_DPE.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 108 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=360.0pt,height=420.0pt]{figuras/Multiplicadores_dinamicos/8_Rem.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 109 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/9_DPI.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 110 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/10_AEN.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 111 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/11_AIN.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 112 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/12_i.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 113 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/13_e.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 114 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/14_PREM.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 115 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/15_pi.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 116 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/16_GDP.png}}\par
+```
+
+```{=latex}
+\clearpage
+```
+
+<!-- Página 117 del PDF original -->
+
+```{=latex}
+\noindent\makebox[\textwidth][c]{\includegraphics[width=404.7pt,height=472.1pt]{figuras/Multiplicadores_dinamicos/17_IPriv.png}}\par
+```
+
