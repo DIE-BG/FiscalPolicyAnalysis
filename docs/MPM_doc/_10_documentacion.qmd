@@ -62,8 +62,8 @@ La carpeta y el archivo principal deben usar el nombre del modelo y el identific
 
 ```text
 docs/
-└── Modelo de proyecciones Macroeconómicas_1_5/
-    └── Modelo de proyecciones Macroeconómicas_1_5.qmd
+└── Model_1.4/
+    └── Modelo de proyecciones Macroeconómicas_1_4.qmd
 ```
 
 ## Organizar las gráficas por función
@@ -99,7 +99,7 @@ figuras/Pronosticos/18_GDP_star_ola.png
 
 - Comprobar que cada archivo citado exista en su carpeta.
 - Si se mueve o renombra una figura, actualizar su ruta en el `.qmd`.
-- No dejar referencias a rutas de la versión 1.4 ni a archivos que estén fuera del directorio de la nueva versión.
+- Comprobar que las figuras correspondan a la versión del modelo que se esté trabajando.
 
 ## Instalar Visual Studio Code en Windows
 
@@ -121,8 +121,6 @@ En PowerShell o Windows Terminal, comprueba que ambos comandos estén disponible
 git --version
 code --version
 ```
-
-Para abrir en VS Code la carpeta actual del repositorio, sitúate en ella desde la terminal y ejecuta `code .`.
 
 ## Requisito: instalar Quarto
 

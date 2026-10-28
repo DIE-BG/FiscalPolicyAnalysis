@@ -64,7 +64,7 @@ title: "Informe de ejemplo"
 author: "Nombre Apellido"
 date: today
 lang: es
-format: html
+format: pdf
 ---
 
 # Introducción
@@ -104,6 +104,8 @@ format:
   pdf:
     toc: true
     number-sections: true
+  docx:
+    toc: true
 ````
 
 ## Título y metadatos
@@ -301,9 +303,9 @@ En tu archivo, indica el lenguaje elegido y habilita la ejecución cuando la nec
 Desde la terminal, ejecuta Quarto sobre el archivo fuente:
 
 ````bash
-quarto render "informe.qmd" --to html
-quarto render "informe.qmd" --to pdf --output-dir "build/preview"
-quarto preview "informe.qmd"
+quarto render "docs/Model_1.4/Modelo de proyecciones Macroeconómicas_1_4.qmd" --to html
+quarto render "docs/Model_1.4/Modelo de proyecciones Macroeconómicas_1_4.qmd" --to pdf 
+quarto preview "docs/Model_1.4/Modelo de proyecciones Macroeconómicas_1_4.qmd"
 ````
 
 Las comillas protegen rutas con espacios. `quarto preview` sirve para revisar rápidamente una salida HTML; `quarto render` genera el archivo final. Renderiza el PDF en una carpeta de prueba para no reemplazar una versión existente.
