@@ -1,0 +1,131 @@
+---
+title: "Datos y transformaciones de las variables del modelo MPM"
+lang: es
+format:
+  pdf:
+    pdf-engine: xelatex
+    toc: true
+    number-sections: true
+    colorlinks: true
+    geometry: margin=22mm
+    fontsize: 10pt
+---
+
+# Alcance y notación
+
+Este documento presenta las fuentes de datos utilizadas en el modelo MPM y formaliza las operaciones que llevan las observaciones originales a las series trimestrales y a su representación como variable ola. Se incluyen las identidades contables derivadas necesarias para construir las variables. Las frecuencias se refieren al calendario de observación; no se supone una conversión que no esté especificada para la serie de origen.
+
+Sea $t$ un trimestre calendario y sean $m=1,2,3$ sus tres meses. Las variables con subíndice $m$ son mensuales; las variables con subíndice $t$ son trimestrales. Se denota por $Y_t^{nom}$ el PIB nominal trimestral, por $Y_t$ el PIB real doméstico y por $Y_t^*$ el PIB real de Estados Unidos. Las tasas porcentuales se expresan en puntos porcentuales.
+
+# Fuentes y frecuencia de observación
+
+## Series de Estados Unidos
+
+| Variable representada | Fuente y frecuencia original | Uso en la transformación |
+|:--|:--|:--|
+| PIB real externo, $Y^*$ | [FRED: GDPC1](https://fred.stlouisfed.org/series/GDPC1)[1]. Trimestral; miles de millones de dólares encadenados de 2017, ajustados estacionalmente y expresados a tasa anual (SAAR). | Se utiliza como serie trimestral de nivel; la tasa de crecimiento se obtiene mediante la variación interanual de sumas móviles de cuatro trimestres. |
+| Tasa de interés externa, $i^*$ | [FRED: DFF](https://fred.stlouisfed.org/series/DFF)[2]. Diaria, calendario de siete días; porcentaje no ajustado estacionalmente. | La serie utilizada en el análisis está disponible en frecuencia mensual y trimestral. La regla de conversión desde la observación diaria no queda especificada; por ello no se atribuye aquí una regla de promedio o de cierre. |
+| Índice de precios externo, $P^*$ | [FRED: PCEPILFE](https://fred.stlouisfed.org/series/PCEPILFE)[3]. Mensual; índice 2017=100, ajustado estacionalmente. | La serie trimestral del índice se utiliza para calcular la variación porcentual interanual. La conversión de frecuencia previa a su uso trimestral no queda especificada. |
+
+## Series del Banco de Guatemala
+
+| Variable representada | Fuente enlazada | Frecuencia de observación y tratamiento principal |
+|:--|:--|:--|
+| Inversión pública, $IPub$ | [Inversión de capital](https://banguat.gob.gt/page/de-capital-0)[4] | Mensual; flujo que se suma dentro de cada trimestre. |
+| Ingresos totales, $IngT$ | [Ingresos totales](https://banguat.gob.gt/page/totales-1)[5] | Mensual; flujo que se suma dentro de cada trimestre. |
+| Gasto de funcionamiento, $GFun$ | [Gasto de funcionamiento](https://banguat.gob.gt/page/de-funcionamiento)[6] | Mensual; flujo que se suma dentro de cada trimestre. |
+| Deuda pública externa, $DPE$ | [Deuda del Gobierno Central](https://banguat.gob.gt/page/del-gobierno-central)[7] | Mensual; se convierte a moneda local con el tipo de cambio mensual y se promedia dentro del trimestre. |
+| Remesas, $Rem$ | [Remesas](https://banguat.gob.gt/page/anos-2002-2026)[8] | Mensual; se convierten a moneda local con el tipo de cambio mensual y se suman dentro del trimestre. |
+| Deuda pública interna, $DPI$ | [Deuda pública interna mensual](https://banguat.gob.gt/page/mensual-2)[9] | Mensual; saldo promediado dentro del trimestre. |
+| Activos externos netos, $AEN$ | [Base monetaria](https://banguat.gob.gt/page/base-monetaria)[10], [encaje en moneda extranjera](https://banguat.gob.gt/page/en-moneda-extranjera-0)[11] y [posición neta con el sector público](https://banguat.gob.gt/page/posicion-neta-del-banco-de-guatemala-con-el-sector-publico)[12] | Se deriva de la base monetaria y los activos internos netos. Los componentes mensuales se agregan según su naturaleza antes de volver a calcular la identidad trimestral. |
+| Activos internos netos, $AIN$ | [Posición neta con el sector público](https://banguat.gob.gt/page/posicion-neta-del-banco-de-guatemala-con-el-sector-publico)[12] | Mensual; saldo promediado dentro del trimestre. |
+| Tasa de interés líder, $i$ | [Indicadores del Banco de Guatemala](https://banguat.gob.gt/indicadoresgt/)[13] | Mensual; tasa promediada dentro del trimestre. |
+| Tipo de cambio nominal, $e$ | [Tipo de cambio](https://www.banguat.gob.gt/tipo_cambio)[14] | Observaciones diarias: se toma la última observación de cada mes y se promedian los tres valores mensuales para obtener el dato trimestral. |
+| PIB real doméstico, $Y$, PIB nominal, $Y^{nom}$, e inversión total, $ITotal$ | [Cuentas Nacionales Trimestrales, año de referencia 2013](https://banguat.gob.gt/page/sistema-de-cuentas-nacionales-trimestrales-ano-de-referencia-2013)[15] | Series trimestrales; se incorporan sin una agregación adicional. La inversión privada se deriva como inversión total menos inversión pública. |
+
+# Construcción de las series mensuales y trimestrales
+
+## Tipo de cambio y conversión a moneda local
+
+Sea $e_d$ el tipo de cambio observado en el día $d$. Para cada mes $m$ se selecciona la última observación diaria disponible:
+
+$$
+e_m=e_{d^*(m)},\qquad d^*(m)=\max\{d:\ d\text{ pertenece al mes }m\}.
+$$
+
+Antes de la disponibilidad del tipo de cambio de referencia, a partir del 2 de diciembre de 2006, se utiliza el promedio de los tipos de cambio de compra y de venta. El saldo mensual de deuda externa y el flujo mensual de remesas, cuando están expresados en moneda extranjera, se convierten a moneda local mediante:
+
+$$
+DPE_m^{loc}=\operatorname{redondear}(e_mDPE_m^{ext},2),\qquad
+Rem_m^{loc}=\operatorname{redondear}(e_mRem_m^{ext},2).
+$$
+
+El tipo de cambio que entra a cada trimestre es el promedio de los tres tipos de cambio mensuales de cierre, no el promedio de todas las observaciones diarias del trimestre:
+
+$$
+e_t=\frac{1}{3}\sum_{r=1}^{3}e_{t,r}.
+$$
+
+## Agregación mensual a trimestral
+
+Los flujos se acumulan dentro del trimestre. Para $F\in\{IPub,IngT,GFun,Rem\}$:
+
+$$
+F_t=\sum_{r=1}^{3}F_{t,r}.
+$$
+
+Los saldos y las tasas observados mensualmente se representan por el promedio aritmético de las tres observaciones mensuales. Esta regla se aplica a $DPI$, $DPE$, $AIN$, la base monetaria $BM$, el índice de precios doméstico, la tasa líder $i$, la prima por riesgo $PREM$ y el tipo de cambio mensual de cierre:
+
+$$
+X_t=\frac{1}{3}\sum_{r=1}^{3}X_{t,r}.
+$$
+
+En particular, la deuda externa se promedia después de convertir cada observación mensual a moneda local. El PIB real, el PIB nominal, la inversión total y las series externas ya disponibles en frecuencia trimestral se utilizan como tales; para las series externas no se presume una regla de agregación no documentada.
+
+Para formar una observación trimestral de una serie mensual se requieren datos de sus tres meses. Las series se alinean sobre las fechas trimestrales comunes y no se interpolan los valores ausentes. La vectorización de las matrices mensuales omite las celdas faltantes y construye una secuencia mensual consecutiva desde el primer año observado; esto presupone que los faltantes corresponden a meses fuera del tramo observado y no a huecos internos de la serie.
+
+## Identidades contables y variables derivadas
+
+Los activos externos netos se calculan como diferencia entre la base monetaria y los activos internos netos:
+
+$$
+AEN_t=BM_t-AIN_t.
+$$
+
+La inversión privada se obtiene como residuo de la inversión total:
+
+$$
+IPriv_t=ITotal_t-IPub_t.
+$$
+
+Las medidas de deuda consolidada y la deuda pública total se definen como:
+
+$$
+DPEC_t=DPE_t-AEN_t,\qquad
+DPIC_t=DPI_t-AIN_t,
+$$
+
+$$
+DPTC_t=DPEC_t+DPIC_t,\qquad
+DPT_t=DPE_t+DPI_t.
+$$
+
+Las identidades se aplican a los componentes trimestrales. La consolidación resta de cada saldo de deuda el activo financiero correspondiente; $DPT$ es la suma no consolidada de deuda interna y externa.
+
+# Fuentes consultadas
+
+- [1] [FRED: Real Gross Domestic Product (GDPC1)](https://fred.stlouisfed.org/series/GDPC1)
+- [2] [FRED: Federal Funds Effective Rate (DFF)](https://fred.stlouisfed.org/series/DFF)
+- [3] [FRED: PCE Excluding Food and Energy (PCEPILFE)](https://fred.stlouisfed.org/series/PCEPILFE)
+- [4] [Banco de Guatemala: inversión de capital](https://banguat.gob.gt/page/de-capital-0)
+- [5] [Banco de Guatemala: ingresos totales](https://banguat.gob.gt/page/totales-1)
+- [6] [Banco de Guatemala: gasto de funcionamiento](https://banguat.gob.gt/page/de-funcionamiento)
+- [7] [Banco de Guatemala: deuda del Gobierno Central](https://banguat.gob.gt/page/del-gobierno-central)
+- [8] [Banco de Guatemala: remesas](https://banguat.gob.gt/page/anos-2002-2026)
+- [9] [Banco de Guatemala: deuda pública interna mensual](https://banguat.gob.gt/page/mensual-2)
+- [10] [Banco de Guatemala: base monetaria](https://banguat.gob.gt/page/base-monetaria)
+- [11] [Banco de Guatemala: encaje en moneda extranjera](https://banguat.gob.gt/page/en-moneda-extranjera-0)
+- [12] [Banco de Guatemala: posición neta con el sector público](https://banguat.gob.gt/page/posicion-neta-del-banco-de-guatemala-con-el-sector-publico)
+- [13] [Banco de Guatemala: indicadores](https://banguat.gob.gt/indicadoresgt/)
+- [14] [Banco de Guatemala: tipo de cambio](https://www.banguat.gob.gt/tipo_cambio)
+- [15] [Banco de Guatemala: Cuentas Nacionales Trimestrales](https://banguat.gob.gt/page/sistema-de-cuentas-nacionales-trimestrales-ano-de-referencia-2013)
