@@ -55,7 +55,7 @@ format:
 \tableofcontents
 \clearpage
 ```
-
+  
 
 # Supuestos principales
 
