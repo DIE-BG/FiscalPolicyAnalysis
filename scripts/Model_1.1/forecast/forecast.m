@@ -1,9 +1,9 @@
 %% Load the model in the matlab workspace
 clear all;
 % Load the parameters
-run(fullfile('Models', 'Model_1.1', 'forecast', 'setparam.m'));
+run(fullfile('Models', 'Model_1.1', 'Initial_setup', 'setparam.m'));
 % Creación del objeto "model", en el workspace, asignación de parámetros y solución.
-MODEL = model(fullfile('Models', 'Model_1.1', 'forecast', 'model.mod'), 'assign', p);
+MODEL = model(fullfile('Models', 'Model_1.1', 'Initial_setup', 'model.mod'), 'assign', p);
 MODEL = sstate(MODEL,'growth=',true,'MaxFunEvals',1000,'display=','off');
 [flag,discrep,eqtn] = chksstate(MODEL);
 
