@@ -2,7 +2,7 @@
 This script performs a forecast for the baseline scenario of the model and includes shocks to fiscal variables to reproduce
 the projected path of the fiscal variables.
 
-To compare the projected path of the fiscal variables with the model's baseline forecast run the scripts/Model_1.5/Minfin exercise/GE_table.m script.
+To compare the projected path of the fiscal variables with the model's baseline forecast run the scripts/MINFIN_exercise/Minfin exercise/GE_table.m script.
 %}
 %% Load the model in the matlab workspace
 clc;
@@ -13,7 +13,7 @@ irisstartup;
 % add necesary functions to make the series of errors
 addpath('src/helpers/forecast');
 
-ModelPath = 'Model_1.5';
+ModelPath = 'MINFIN_exercise';
 
 % Check if forecas folder exists
 if ~isfolder(fullfile('Models', ModelPath, 'forecast'))
@@ -83,73 +83,169 @@ u7_path = [];
 u16_path = [];
 
 % We define the start and end dates for forecast.
-StartPred = qq(2026,1);
-EndPred = StartPred+23;
+StartPred = qq(2026,3);
+EndPred = StartPred+29;
 
 for i = 1:length(StartPred:EndPred)
     
-    if i == 1 % 2026Q1
-        u4 = 0.12072;
-        u5 = 0.352;
-        u6 = -0.306;
-        u7 = -0.413;
-        u16 = -0.733;
+    if i == 1 % 2026Q3
+        u4 = -0.04216;
+        u5 = -0.08;
+        u6 = 0.1726;
+        u7 = -0.4827;
+        u16 = -0.45;
+        u18 = 7;
 
-    elseif i == 2 %2026Q2
+    elseif i == 2 % 2026Q4
         u4 = 0;
-        u5 = -0.023;
-        u6 = 0.6693;
-        u7 = 0;
-        u16 = 0;
+        u5 = -0.0414;
+        u6 = 0.1082;
+        u7 = -0.2683;
+        u16 = -0.25;
+        u18 = 3.305;
 
-    elseif i == 3 %2026Q3
-        u4 = 0.3425;
-        u5 = -0.3397;
-        u6 = 0.80;
-        u7 = -0.377;
-        u16 = 0;
+    elseif i == 3 % 2027Q1
+        u4 = 0.15674;
+        u5 = 0.1424;
+        u6 = 0.65;
+        u7 = -0.35;
+        u16 = -0.15;
+        u18 = 7;
 
-    elseif i == 4 %2026Q4
-        u4 = 0;
-        u5 = -0.11;
+    elseif i == 4 % 2027Q2
+        u4 = 0.20;
+        u5 = 0;
+        u6 = 0.5992;
+        u7 = -0.35;
+        u16 = -0.15;
+        u18 = 7;
+
+    elseif i == 5 % 2027Q3
+        u4 = 0.29721;
+        u5 = 0;
         u6 = 0.50;
+        u7 = -0.1315;
+        u16 = -0.08;
+        u18 = 2.9478;
+
+    elseif i == 6 % 2027Q4
+        u4 = 0;
+        u5 = 0;
+        u6 = 0.35;
+        u7 = -0.0816;
+        u16 = -0.10;
+        u18 = 0;
+
+    elseif i == 7 % 2028Q1
+        u4 = 0;
+        u5 = 0.10;
+        u6 = -0.05;
         u7 = 0;
         u16 = 0;
+        u18 = 0;
 
-    elseif i == 5 %2027Q1
-        u4 = 0.0918;
-        u5 = -0.0569;
-        u6 = 0.17699;
-        u7 = -0.6361;
+    elseif i == 8 % 2028Q2
+        u4 = 0;
+        u5 = 0.10;
+        u6 = -0.10;
+        u7 = 0;
         u16 = 0;
+        u18 = 0;
 
-    elseif i == 6 %2027Q2
+    elseif i == 9 % 2028Q3
+        u4 = 0;
+        u5 = 0.25;
+        u6 = -0.25;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 10 % 2028Q4
+        u4 = 0;
+        u5 = 0.35;
+        u6 = -0.25;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 11 % 2029Q1
+        u4 = 0;
+        u5 = 0.10;
+        u6 = -0.20;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 12 % 2029Q2
+
+        u4 = 0;
+        u5 = 0.10;
+        u6 = -0.22;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 13 % 2029Q3
+
+        u4 = 0;
+        u5 = 0.15;
+        u6 = -0.25;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 14 % 2029Q4
+
+        u4 = 0;
+        u5 = 0.15;
+        u6 = -0.30;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 15 % 2030Q1
+
         u4 = 0;
         u5 = 0;
         u6 = 0;
         u7 = 0;
         u16 = 0;
+        u18 = 0;
 
-    elseif i == 7 %2027Q3
-        u4 = 0;
-        u5 = 0.213;
-        u6 = 0.6203;
-        u7 = -0.214;
-        u16 = 0;
+    elseif i == 16 % 2030Q2
 
-    elseif i == 8 %2027Q4
         u4 = 0;
         u5 = 0;
         u6 = 0;
         u7 = 0;
         u16 = 0;
+        u18 = 0;
+
+    elseif i == 17 % 2030Q3
+
+        u4 = 0;
+        u5 = 0;
+        u6 = 0;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
+
+    elseif i == 18 % 2030Q4
+
+        u4 = 0;
+        u5 = 0;
+        u6 = 0;
+        u7 = 0;
+        u16 = 0;
+        u18 = 0;
 
     else
         u4 = 0;
         u5 = 0;
         u6 = 0;
-        u7 = 0; 
+        u7 = 0;
         u16 = 0;
+        u18 = 0;
     end
     
     
@@ -157,7 +253,7 @@ for i = 1:length(StartPred:EndPred)
     u9 = (1 - p.a9_1)*Forecast.DPI_ola(end) + (1 - p.a7_1 - p.a9_2)*Forecast.DPE_ola(end) ...
          + (p.a6_1 - p.a9_3)*Forecast.GFun_ola(end) + (p.a4_1 - p.a9_3)*Forecast.IPub_ola(end) ...
          - (p.a5_1 + p.a9_3)*Forecast.IngT_ola(end) ...
-         + u4 + u6 - u5 - u7;
+         + u4 + u6 - u5 - u7 + u18;
      
     % Quarters that will be exogenized
     SPred = Forecast.GDP_star_ola.Range(end) + 1;
@@ -243,3 +339,4 @@ table(...
     'VariableNames', {'PIB nominal', 'PIB real'},...
     'RowNames', {'2026Q4', '2027Q4'}...
     )
+%}

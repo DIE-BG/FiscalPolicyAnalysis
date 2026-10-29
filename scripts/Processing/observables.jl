@@ -157,7 +157,7 @@ for name in observable_names
     output_data[!, Symbol(name)] = Float64[observables[name][index] for index in valid_indices]
 end
 
-output_path = datadir("observables.csv")
+output_path = datadir("initial_conditions.csv")
 mkpath(dirname(output_path))
 CSV.write(output_path, output_data)
 println("File created: $(output_path)")

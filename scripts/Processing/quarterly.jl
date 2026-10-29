@@ -24,7 +24,7 @@ FRED.date = Date.(FRED.date, "dd/mm/yyyy")
 # Quarterly Flow variables
 data_dict_quarterly = Dict()
 # Quarterly public investment
-data_dict_quarterly["IPub"] = Quarterly(Monthly_data[:, [:date, :Ipub]]; method = :sum)
+data_dict_quarterly["IPub"] = Quarterly(Monthly_data[:, [:date, :IPub]]; method = :sum)
 # Quarterly total revenues
 data_dict_quarterly["IngT"] = Quarterly(Monthly_data[:, [:date, :IngT]]; method = :sum)
 # Quarterly fobernment operating expenses
