@@ -1,9 +1,9 @@
 %% Load the model in the matlab workspace
 clear all;
 % Load the parameters
-run(fullfile('Models', 'Model_1.0', 'forecast_shrinking_2', 'setparam.m'));
+run(fullfile('Models', 'Model_1.0', 'Initial_setup_forecast_shrinking_2', 'setparam.m'));
 % Creación del objeto "model", en el workspace, asignación de parámetros y solución.
-MODEL = model(fullfile('Models', 'Model_1.0', 'forecast_shrinking_2', 'model.mod'), 'assign', p);
+MODEL = model(fullfile('Models', 'Model_1.0', 'Initial_setup_forecast_shrinking_2', 'model.mod'), 'assign', p);
 MODEL = sstate(MODEL,'growth=',true,'MaxFunEvals',1000,'display=','off');
 [flag,discrep,eqtn] = chksstate(MODEL);
 
