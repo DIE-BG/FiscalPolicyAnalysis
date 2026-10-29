@@ -12,8 +12,23 @@ errors that have been added.
 
 function F_errors = makeErrors(F_struct, MODEL)
 
-    startForecast = qq(2009, 4);
-    numPeriods = 65;
+    ipubRange = F_struct.IPub_ratio.Range;
+    if isempty(ipubRange)
+        error('makeErrors:EmptyIPubRatio', ...
+            'F_struct.IPub_ratio must have a non-empty date range.');
+    end
+
+    % Four preceding quarters are needed to form the first one-step-ahead forecast.
+    startForecast = ipubRange(1) + 4;
+    endForecast = ipubRange(end);
+
+    if startForecast > endForecast
+        error('makeErrors:InsufficientHistory', ...
+            ['F_struct.IPub_ratio must span at least five quarters: ' ...
+             'four for history and one to forecast.']);
+    end
+
+    numPeriods = endForecast - startForecast + 1;
 
     namesToSave = get(MODEL, 'xlist');  % List of variables we will get the one stpet ahead forecast
 
