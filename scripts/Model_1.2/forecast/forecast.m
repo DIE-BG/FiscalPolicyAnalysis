@@ -11,9 +11,9 @@ else
 end
     
 % Load the parameters
-run(fullfile('scripts', 'Model_1.2', 'forecast', 'setparam.m'));
+run(fullfile('Models', 'Model_1.2', 'forecast', 'setparam.m'));
 % Creación del objeto "model", en el workspace, asignación de parámetros y solución.
-MODEL = model(fullfile('scripts', 'Model_1.2', 'forecast', 'model.mod'), 'assign', p);
+MODEL = model(fullfile('Models', 'Model_1.2', 'forecast', 'model.mod'), 'assign', p);
 MODEL = sstate(MODEL,'growth=',true,'MaxFunEvals',1000,'display=','off');
 [flag,discrep,eqtn] = chksstate(MODEL);
 
@@ -46,7 +46,7 @@ F = F.mean;
 %% Forecast
 % We define the start and end dates for forecast.
 StartPred = qq(2025,4);
-EndPred = qq(2025,4)+124;
+EndPred = qq(2056,4);
 
 % Simulación, utilizando el model (g) y la base de datos (d) 
 Forecast = simulate(MODEL, F, StartPred:EndPred, 'Deviation=', false, 'anticipate=',false);
