@@ -16,9 +16,9 @@ else
 end
     
 % Load the parameters
-run(fullfile('scripts', ModelPath, 'forecast', 'setparam.m'));
+run(fullfile('scripts', ModelPath, 'Initial_setup', 'setparam.m'));
 % Creación del objeto "model", en el workspace, asignación de parámetros y solución.
-MODEL = model(fullfile('scripts', ModelPath, 'forecast', 'model.mod'), 'assign', p);
+MODEL = model(fullfile('scripts', ModelPath, 'Initial_setup', 'model.mod'), 'assign', p);
 MODEL = sstate(MODEL,'growth=',true,'MaxFunEvals',1000,'display=','off');
 [flag,discrep,eqtn] = chksstate(MODEL);
 
