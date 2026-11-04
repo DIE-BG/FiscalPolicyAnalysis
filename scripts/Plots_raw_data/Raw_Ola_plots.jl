@@ -61,7 +61,7 @@ CSV.write(datadir("processing", "ola_variables.csv"), dict_to_dataframe(ola_dict
 PlotRatioFlowVariable(
     Mdata,  
     Qdata, 
-    ["IngT", "Ipub", "GFun", "Rem"]; 
+    ["IngT", "IPub", "GFun", "Rem"]; 
     varnames = ["Ingresos Totales", "Inversión pública", "Gasto en funcionamiento", "Remesas"], 
     savepath = joinpath("ola", "flows"),
     T = 4
