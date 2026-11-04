@@ -52,8 +52,6 @@ F = F.mean * get(MODEL, 'xlist');
 % using the makeErrros function to get the errors by difference
 F = makeErrors(F, MODEL);
 
-databank.toCSV(F, "history.csv", Inf)
-
 %% Forecast with a shock in u9 period by period and a u5 one period shock
 %{
     We will make forecast one step ahead. For each period, we force the
