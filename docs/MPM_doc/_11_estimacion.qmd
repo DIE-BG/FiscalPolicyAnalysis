@@ -95,22 +95,6 @@ Así, la fila 9 de $A_1$ refleja un único coeficiente para la contribución del
 
 Luego de la estimación es importante observar las dinámicas económicas que postula el modelo. Para ello se analizan los multiplicadores dinámicos, que permiten evaluar cómo las variables del sistema responden a innovaciones reducidas en los distintos componentes del VAR a lo largo del tiempo.
 
-## Multiplicadores dinámicos
-
-Considérese un VAR($p$) con $K$ variables, $y_t\in\mathbb R^K$, e innovaciones de forma reducida $u_t$:
-
-$$
-y_t=A_1y_{t-1}+\cdots+A_py_{t-p}+u_t
-$$
-
-Al apilar las variables y sus rezagos en $Y_t=(y_t',y_{t-1}',\ldots,y_{t-p+1}')'$, el sistema se expresa en forma acompañante como $Y_t=AY_{t-1}+U_t$. Aquí, $A$ es la matriz acompañante, $U_t=(u_t',0,\ldots,0)'$ y $J=[I_K\;0_{K\times K(p-1)}]$ selecciona el bloque correspondiente a $y_t$, de modo que $y_t=JY_t$.
-
-La matriz de multiplicadores dinámicos de forma reducida al horizonte $i$ es:
-
-$$
-\Phi_i=[\phi_{jk,i}]\equiv JA^iJ',\qquad i=0,1,\ldots,H
-$$
-
 :::
 
 ## Lectura de los multiplicadores
@@ -124,21 +108,6 @@ $$
 $$
 
 Por tanto, cada columna $k$ de $\Phi_i$ reúne las respuestas de todas las variables a esa perturbación. 
-
-:::
-
-## Aplicación: innovación en la deuda pública interna
-
-::: {.small style="font-size: 0.82em;"}
-
-En este modelo, la deuda pública interna (DPI) ocupa la posición $k=9$ entre las $K=17$ variables. Su respuesta en todos los componentes del sistema al horizonte $i$ se obtiene con la columna 9 de $\Phi_i$:
-
-$$
-\Phi_i e_9=\begin{bmatrix}\phi_{1,9,i} & \cdots & \phi_{17,9,i}\end{bmatrix}',\qquad
-\phi_{j,9,i}=\frac{\partial y_{j,t+i}}{\partial u_{9,t}},\quad j=1,\ldots,17
-$$
-
-Las respuestas que se derivan presentan las respuestas trimestrales para $i=1,\ldots,H$.
 
 :::
 
