@@ -13,7 +13,7 @@ format:
 
 # Alcance y notación
 
-Este documento presenta las fuentes de datos utilizadas en el modelo MPM y formaliza las operaciones que llevan las observaciones originales a las series trimestrales y a su representación como variable ola. Se incluyen las identidades contables derivadas necesarias para construir las variables. Las frecuencias se refieren al calendario de observación; no se supone una conversión que no esté especificada para la serie de origen.
+Este documento presenta las fuentes de datos utilizadas en el modelo MPM y formaliza las operaciones que llevan las observaciones originales a las series trimestrales y a su representación como variable ola. Se incluyen las identidades contables derivadas necesarias para construir las variables.
 
 Sea $t$ un trimestre calendario y sean $m=1,2,3$ sus tres meses. Las variables con subíndice $m$ son mensuales; las variables con subíndice $t$ son trimestrales. Se denota por $Y_t^{nom}$ el PIB nominal trimestral, por $Y_t$ el PIB real doméstico y por $Y_t^*$ el PIB real de Estados Unidos. Las tasas porcentuales se expresan en puntos porcentuales.
 
@@ -92,7 +92,7 @@ $$
 AEN_t=BM_t-AIN_t.
 $$
 
-La inversión privada se obtiene como residuo de la inversión total:
+La inversión privada se obtiene como residuo de la inversión total^[La inversion total es la formacion bruta de capital fijo proveniente de cuentas nacionales]:
 
 $$
 IPriv_t=ITotal_t-IPub_t.
@@ -128,4 +128,5 @@ Las identidades se aplican a los componentes trimestrales. La consolidación res
 - [12] [Banco de Guatemala: posición neta con el sector público](https://banguat.gob.gt/page/posicion-neta-del-banco-de-guatemala-con-el-sector-publico)
 - [13] [Banco de Guatemala: indicadores](https://banguat.gob.gt/indicadoresgt/)
 - [14] [Banco de Guatemala: tipo de cambio](https://www.banguat.gob.gt/tipo_cambio)
-- [15] [Banco de Guatemala: Cuentas Nacionales Trimestrales](https://banguat.gob.gt/page/sistema-de-cuentas-nacionales-trimestrales-ano-de-referencia-2013)
+- [15] [Banco de Guatemala: Cuentas Nacionales Trimestrales, empalme base 2001 - 2013](https://banguat.gob.gt/page/sistema-de-cuentas-nacionales-trimestrales-ano-de-referencia-2013)
+- [16] [Banco de Guatemala: Cuentas Nacionales Trimestrales, base 2013](https://banguat.gob.gt/page/sistema-de-cuentas-nacionales-trimestrales-ano-de-referencia-2013)
