@@ -12,7 +12,7 @@ Output:
 %}
 
 % Model_path
-ModelPath = 'Model_1.5';
+ModelPath = 'MINFIN';
 ProjectRoot = fileparts(fileparts(fileparts(fileparts(mfilename('fullpath')))));
 
 % Load data of nominal GDP. NameRow is explicit for compatibility with the
@@ -25,16 +25,16 @@ GDP_n = databank.fromCSV( ...
 %% Transform the data into the required format
 % nominal GDP
 % expand the data to include the forecast period
-GDP_n.GDP_nom_SM(qq(2025, 1):qq(2031, 4)) = 0;
+GDP_n.GDP_nom_SM(qq(2025, 1):qq(2027, 4)) = 0;
 
 % using the model's forecast of nominal GDP growth rate to recover the nominal GDP series
-for i = qq(2025, 1):qq(2031, 4)
+for i = qq(2025, 1):qq(2027, 4)
     GDP_n.GDP_nom_SM(i) = GDP_n.GDP_nom_SM(i-4) * (1 + Forecast.GDP_nom_SM_yoy(i));
 end
 
 %% using the nominal GDP series to recover the series of the fiscal accounts
 fiscal_accounts = struct();
-dates_range = qq(2025, 1):qq(2031, 4);
+dates_range = qq(2025, 1):qq(2027, 4);
 
 % Curly-brace indexing preserves the IRIS Series class; parenthesis
 % indexing would extract a numeric array instead.
@@ -51,12 +51,40 @@ fiscal_accounts.GFun = ...
     GDP_nom_SM .* Forecast.Gfun_ratio{dates_range}/100;
 fiscal_accounts.DPI = ...
     GDP_nom_SM .* Forecast.DPI_ratio{dates_range}/100;
-fiscal_accounts.Def = ...
-    GDP_nom_SM .* Forecast.Def_ratio(dates_range)/100;
-
-fiscal_accounts.DPE_diff = fiscal_accounts.DPE.diff(-4);
-fiscal_accounts.DPI_diff = fiscal_accounts.DPI.diff(-4);
 
 
-%% Export the fiscal accounts data
-databank.toCSV(fiscal_accounts, fullfile('Models', 'MINFIN_exercise', 'forecast', 'fiscal_accounts2.csv'), Inf);
+%% Create the change in the DPE variable
+DPE_change = [
+    fiscal_accounts.DPE(qq(2026, 4)) - fiscal_accounts.DPE(qq(2025, 4)); 
+    fiscal_accounts.DPE(qq(2027, 4)) - fiscal_accounts.DPE(qq(2026, 4));
+];
+
+DPI_change = [
+    fiscal_accounts.DPI(qq(2026, 4)) - fiscal_accounts.DPI(qq(2025, 4)); 
+    fiscal_accounts.DPI(qq(2027, 4)) - fiscal_accounts.DPI(qq(2026, 4));
+];
+%% Summary table for year-end quarters
+table_dates = [qq(2026, 4); qq(2027, 4)];
+
+fiscal_accounts_table = table( ...
+    [30617.98;  36386.11],...
+    fiscal_accounts.IPub(table_dates), ...
+    [30617.98;  36386.11] - fiscal_accounts.IPub(table_dates), ...
+    [126389.20;   137860.90],...
+    fiscal_accounts.IngT(table_dates), ...
+    [126389.20;   137860.90] - fiscal_accounts.IngT(table_dates), ...
+    [1983.79; -391.43], ...
+    DPE_change, ...
+    [1983.79; -391.43] - DPE_change, ...
+    [119437.30;  139200.94], ...
+    fiscal_accounts.GFun(table_dates), ...
+    [119437.30;  139200.94] - fiscal_accounts.GFun(table_dates), ...
+    [24098.90;   37869.48], ...
+    DPI_change, ...
+    [24098.90;   37869.48] - DPI_change, ...
+    'VariableNames', {'IPub minfin', 'IPub', 'IPub diff', 'IngT minfin', 'IngT', 'IngT diff', 'DPE minfin', 'DPE', 'DPE diff', 'GFun minfin', 'GFun', 'GFun diff', 'DPI minfin', 'DPI', 'DPI diff'}, ...
+    'RowNames', {'2026Q4', '2027Q4'} ...
+);
+
+format bank
+disp(fiscal_accounts_table)

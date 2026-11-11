@@ -13,7 +13,7 @@ irisstartup;
 % add necesary functions to make the series of errors
 addpath('src/helpers/forecast');
 
-ModelPath = 'MINFIN_exercise';
+ModelPath = 'MINFIN';
 
 % Check if forecas folder exists
 if ~isfolder(fullfile('Models', ModelPath, 'forecast'))
@@ -84,7 +84,7 @@ u16_path = [];
 
 % We define the start and end dates for forecast.
 StartPred = qq(2026,3);
-EndPred = qq(2033, 4);
+EndPred = StartPred+29;
 
 for i = 1:length(StartPred:EndPred)
     
@@ -105,36 +105,36 @@ for i = 1:length(StartPred:EndPred)
         u18 = 3.305;
 
     elseif i == 3 % 2027Q1
-        u4 = 0.15674;
-        u5 = 0.1424;
-        u6 = 0.65;
+        u4 = 0.15534;
+        u5 = 0.1505;
+        u6 = 0.25;
         u7 = -0.35;
         u16 = -0.15;
         u18 = 7;
 
     elseif i == 4 % 2027Q2
-        u4 = 0.20;
+        u4 = 0;
         u5 = 0;
-        u6 = 0.5992;
+        u6 = 0.30;
         u7 = -0.35;
         u16 = -0.15;
         u18 = 7;
 
     elseif i == 5 % 2027Q3
-        u4 = 0.29721;
+        u4 = 0.23211;
         u5 = 0;
-        u6 = 0.50;
-        u7 = -0.1315;
+        u6 = 0.2834;
+        u7 = -0.121;
         u16 = -0.08;
         u18 = 2.9478;
 
     elseif i == 6 % 2027Q4
         u4 = 0;
         u5 = 0;
-        u6 = 0.35;
-        u7 = -0.0816;
+        u6 = 0.28415;
+        u7 = -0.083;
         u16 = -0.10;
-        u18 = 0;
+        u18 = 1.12;
 
     elseif i == 7 % 2028Q1
         u4 = 0;
@@ -145,7 +145,7 @@ for i = 1:length(StartPred:EndPred)
         u18 = 0;
 
     elseif i == 8 % 2028Q2
-        u4 = 0;
+        u4 = 0.05;
         u5 = 0.10;
         u6 = -0.10;
         u7 = 0;
@@ -154,7 +154,7 @@ for i = 1:length(StartPred:EndPred)
 
     elseif i == 9 % 2028Q3
         u4 = 0;
-        u5 = 0.25;
+        u5 = 0;%0.25;
         u6 = -0.25;
         u7 = 0;
         u16 = 0;
@@ -162,7 +162,7 @@ for i = 1:length(StartPred:EndPred)
 
     elseif i == 10 % 2028Q4
         u4 = 0;
-        u5 = 0.35;
+        u5 = 0;%0.35;
         u6 = -0.25;
         u7 = 0;
         u16 = 0;
@@ -170,7 +170,7 @@ for i = 1:length(StartPred:EndPred)
 
     elseif i == 11 % 2029Q1
         u4 = 0;
-        u5 = 0.10;
+        u5 = 0;%0.10;
         u6 = -0.20;
         u7 = 0;
         u16 = 0;
@@ -179,7 +179,7 @@ for i = 1:length(StartPred:EndPred)
     elseif i == 12 % 2029Q2
 
         u4 = 0;
-        u5 = 0.10;
+        u5 = 0;%0.10;
         u6 = -0.22;
         u7 = 0;
         u16 = 0;
@@ -188,7 +188,7 @@ for i = 1:length(StartPred:EndPred)
     elseif i == 13 % 2029Q3
 
         u4 = 0;
-        u5 = 0.15;
+        u5 = 0;%0.15;
         u6 = -0.25;
         u7 = 0;
         u16 = 0;
@@ -197,7 +197,7 @@ for i = 1:length(StartPred:EndPred)
     elseif i == 14 % 2029Q4
 
         u4 = 0;
-        u5 = 0.15;
+        u5 = 0;%0.15;
         u6 = -0.30;
         u7 = 0;
         u16 = 0;
@@ -331,7 +331,7 @@ Forecast.GDP_nom_SM_yoy = ...
 Vars = [get(MODEL, 'xlist'),  [{'u4'}, {'u5'}, {'u6'}, {'u7'}, {'u9'}, {'u16'}]];
 
 % Export the data
-databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_GE.csv'), Inf);
+databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_GE_ejec_electoral.csv'), Inf);
 
 table(...
     Forecast.GDP_nom_SM_yoy([qq(2026, 4); qq(2027, 4)]).*100,...

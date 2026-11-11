@@ -13,7 +13,7 @@ irisstartup;
 % add necesary functions to make the series of errors
 addpath('src/helpers/forecast');
 
-ModelPath = 'MINFIN_exercise';
+ModelPath = 'MINFIN';
 
 % Check if forecas folder exists
 if ~isfolder(fullfile('Models', ModelPath, 'forecast'))
@@ -105,9 +105,9 @@ for i = 1:length(StartPred:EndPred)
         u18 = 3.305;
 
     elseif i == 3 % 2027Q1
-        u4 = 0.15534;
-        u5 = 0.1505;
-        u6 = 0.25;
+        u4 = 0.10874;
+        u5 = 0.152;
+        u6 = 0.15;
         u7 = -0.35;
         u16 = -0.15;
         u18 = 7;
@@ -115,7 +115,7 @@ for i = 1:length(StartPred:EndPred)
     elseif i == 4 % 2027Q2
         u4 = 0;
         u5 = 0;
-        u6 = 0.30;
+        u6 = 0.25;
         u7 = -0.35;
         u16 = -0.15;
         u18 = 7;
@@ -123,7 +123,7 @@ for i = 1:length(StartPred:EndPred)
     elseif i == 5 % 2027Q3
         u4 = 0.23211;
         u5 = 0;
-        u6 = 0.2834;
+        u6 = 0.25;
         u7 = -0.121;
         u16 = -0.08;
         u18 = 2.9478;
@@ -132,13 +132,13 @@ for i = 1:length(StartPred:EndPred)
         u4 = 0;
         u5 = 0;
         u6 = 0.28415;
-        u7 = -0.083;
+        u7 = -0.0816;
         u16 = -0.10;
-        u18 = 1.12;
+        u18 = 1.381;
 
     elseif i == 7 % 2028Q1
         u4 = 0;
-        u5 = 0.10;
+        u5 = 0;%0.10;
         u6 = -0.05;
         u7 = 0;
         u16 = 0;
@@ -146,7 +146,7 @@ for i = 1:length(StartPred:EndPred)
 
     elseif i == 8 % 2028Q2
         u4 = 0.05;
-        u5 = 0.10;
+        u5 = 0;%0.10;
         u6 = -0.10;
         u7 = 0;
         u16 = 0;
@@ -331,7 +331,7 @@ Forecast.GDP_nom_SM_yoy = ...
 Vars = [get(MODEL, 'xlist'),  [{'u4'}, {'u5'}, {'u6'}, {'u7'}, {'u9'}, {'u16'}]];
 
 % Export the data
-databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_GE_ejec_electoral.csv'), Inf);
+databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast', 'forecast_GE_ejec_total.csv'), Inf);
 
 table(...
     Forecast.GDP_nom_SM_yoy([qq(2026, 4); qq(2027, 4)]).*100,...

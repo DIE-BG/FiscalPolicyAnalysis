@@ -9,7 +9,7 @@ using CSV, DataFrames, DataFramesMeta, Dates
 using Mudie
 using TerminalPager
 
-ModelPath = "MINFIN_exercise"
+ModelPath = "MINFIN"
 
 # ===== Check if the forecast plots folder exists, if not, create it =====
 if !isdir(joinpath("Models", ModelPath, "plots", "forecast"))
