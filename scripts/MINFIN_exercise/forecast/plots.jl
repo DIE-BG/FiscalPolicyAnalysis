@@ -9,7 +9,7 @@ using CSV, DataFrames, DataFramesMeta, Dates
 using Mudie
 using TerminalPager
 
-ModelPath = "Model_1.5"
+ModelPath = "MINFIN_exercise"
 
 # ===== Check if the forecast plots folder exists, if not, create it =====
 if !isdir(joinpath("Models", ModelPath, "plots", "forecast"))
@@ -22,36 +22,36 @@ else
 end
 
 # Create the folder for the base scenario
-mkdir(joinpath("Models", ModelPath, "plots", "forecast", "scenarios"))
+mkdir(joinpath("Models", ModelPath, "plots", "forecast", "scenarios_MINFIN_ejec"))
 
 # ====== We will plot the series for the model ======
 # Load free forecast data
-base_scenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_base.csv"), DataFrame; skipto = 12, select = 2:56)
-base_scenario.date = collect(Date(2009, 3):Month(3):Date(2056, 12))
+base_scenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_GE.csv"), DataFrame; skipto = 12, select = 2:56)
+base_scenario.date = collect(Date(2009, 3):Month(3):Date(2033, 12))
 
 # load variables names
-var_names = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_base.csv"), DataFrame; limit = 1, select = 2:56)
+var_names = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_GE.csv"), DataFrame; limit = 1, select = 2:56)
 vars = names(base_scenario)[1:end-1]
 
 # Load moderate scenario data
-moderate_scenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_moderate.csv"), DataFrame; skipto = 12, select = 2:56)
-moderate_scenario.date = collect(Date(2009, 3):Month(3):Date(2056, 12))
+moderate_scenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_GE_ejec_total.csv"), DataFrame; skipto = 12, select = 2:56)
+moderate_scenario.date = collect(Date(2009, 3):Month(3):Date(2033, 12))
 
 # Load optimistic scenario data
-optimistic_scenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_optimistic.csv"), DataFrame; skipto = 12, select = 2:56)
-optimistic_scenario.date = collect(Date(2009, 3):Month(3):Date(2056, 12))
+optimistic_scenario = CSV.read(joinpath("Models", ModelPath, "forecast", "forecast_GE_ejec_electoral.csv"), DataFrame; skipto = 12, select = 2:56)
+optimistic_scenario.date = collect(Date(2009, 3):Month(3):Date(2033, 12))
 
 # Create the data frame only with historical data
 HistoricalData = @chain base_scenario begin
-    @subset :date .<= Date(2025, 12)
+    @subset :date .<= Date(2026, 6)
 end
 
 forecastmoderate = @chain moderate_scenario begin
-    @subset :date .>= Date(2025, 12)
+    @subset :date .>= Date(2026, 6)
 end
 
 forecastoptimistic = @chain optimistic_scenario begin
-    @subset :date .>= Date(2025, 12)
+    @subset :date .>= Date(2026, 6)
 end
 
 # ===== Plot the series =====
@@ -81,7 +81,7 @@ for i in 1:length(vars)
         ax,
         datetime2rata.(moderate_scenario.date),
         moderate_scenario[:, var],
-        label = "Escenario moderado",
+        label = "Promedio histórico de ejecución",
         color = "#bd5e5e"
     )
 
@@ -90,7 +90,7 @@ for i in 1:length(vars)
         ax,
         datetime2rata.(optimistic_scenario.date),
         optimistic_scenario[:, var],
-        label = "Escenario optimista",
+        label = "Promedio de ejecución años electorales",
         color = "#7acf74"
     )
 
@@ -114,7 +114,7 @@ for i in 1:length(vars)
 
     vlines!(
         ax,
-        datetime2rata.(Date(2025, 12)),
+        datetime2rata.(Date(2026, 6)),
         linestyle = :dash,
         color = :black,
         linewidth = 0.75,
@@ -137,42 +137,39 @@ for i in 1:length(vars)
     # ===== table =====
     tbl = fig[3, 1] = GridLayout()
 
-    headers = ["Escenario", "2025Q4", "2026Q1", "2026Q2", "2026Q3", "2026Q4", "2036Q4", "2046Q4", "2056Q1"]
+    headers = ["Escenario", "2026T2", "2026T4", "2027T4", "2029T4", "2031T4", "2032T4", "2033T4"]
     data = [
             (
-                "base", 
-                base_scenario[base_scenario.date .== Date(2025, 12, 1), var],
-                base_scenario[base_scenario.date .== Date(2026, 3, 1), var],
+                "Base", 
                 base_scenario[base_scenario.date .== Date(2026, 6, 1), var],
-                base_scenario[base_scenario.date .== Date(2026, 9, 1), var],
                 base_scenario[base_scenario.date .== Date(2026, 12, 1), var],
-                base_scenario[base_scenario.date .== Date(2036, 12, 1), var],
-                base_scenario[base_scenario.date .== Date(2046, 12, 1), var],
-                base_scenario[base_scenario.date .== Date(2056, 12, 1), var]
+                base_scenario[base_scenario.date .== Date(2027, 12, 1), var],
+                base_scenario[base_scenario.date .== Date(2029, 12, 1), var],
+                base_scenario[base_scenario.date .== Date(2031, 12, 1), var],
+                base_scenario[base_scenario.date .== Date(2032, 12, 1), var],
+                base_scenario[base_scenario.date .== Date(2033, 12, 1), var]
             ),
 
             (
-                "moderado", 
-                moderate_scenario[moderate_scenario.date .== Date(2025, 12, 1), var],
-                moderate_scenario[moderate_scenario.date .== Date(2026, 3, 1), var],
+                "Promedio \nhistórico", 
                 moderate_scenario[moderate_scenario.date .== Date(2026, 6, 1), var],
-                moderate_scenario[moderate_scenario.date .== Date(2026, 9, 1), var],
                 moderate_scenario[moderate_scenario.date .== Date(2026, 12, 1), var],
-                moderate_scenario[moderate_scenario.date .== Date(2036, 12, 1), var],
-                moderate_scenario[moderate_scenario.date .== Date(2046, 12, 1), var],
-                moderate_scenario[moderate_scenario.date .== Date(2056, 12, 1), var]
+                moderate_scenario[moderate_scenario.date .== Date(2027, 12, 1), var],
+                moderate_scenario[moderate_scenario.date .== Date(2029, 12, 1), var],
+                moderate_scenario[moderate_scenario.date .== Date(2031, 12, 1), var],
+                moderate_scenario[moderate_scenario.date .== Date(2032, 12, 1), var],
+                moderate_scenario[moderate_scenario.date .== Date(2033, 12, 1), var]
             ),
             
             (
-                "optimista", 
-                optimistic_scenario[optimistic_scenario.date .== Date(2025, 12, 1), var],
-                optimistic_scenario[optimistic_scenario.date .== Date(2026, 3, 1), var],
+                "Promedio \nelectoral", 
                 optimistic_scenario[optimistic_scenario.date .== Date(2026, 6, 1), var],
-                optimistic_scenario[optimistic_scenario.date .== Date(2026, 9, 1), var],
                 optimistic_scenario[optimistic_scenario.date .== Date(2026, 12, 1), var],
-                optimistic_scenario[optimistic_scenario.date .== Date(2036, 12, 1), var],
-                optimistic_scenario[optimistic_scenario.date .== Date(2046, 12, 1), var],
-                optimistic_scenario[optimistic_scenario.date .== Date(2056, 12, 1), var]
+                optimistic_scenario[optimistic_scenario.date .== Date(2027, 12, 1), var],
+                optimistic_scenario[optimistic_scenario.date .== Date(2029, 12, 1), var],
+                optimistic_scenario[optimistic_scenario.date .== Date(2031, 12, 1), var],
+                optimistic_scenario[optimistic_scenario.date .== Date(2032, 12, 1), var],
+                optimistic_scenario[optimistic_scenario.date .== Date(2033, 12, 1), var]
             ),
     ]
 
@@ -198,6 +195,6 @@ for i in 1:length(vars)
 
     resize_to_layout!(fig)
 
-    save(joinpath("Models",ModelPath, "plots", "forecast", "scenarios", string(i)*"_"*var*".png"), fig, px_per_unit = 2)
+    save(joinpath("Models",ModelPath, "plots", "forecast", "scenarios_MINFIN_ejec", string(i)*"_"*var*".png"), fig, px_per_unit = 2)
 
 end
