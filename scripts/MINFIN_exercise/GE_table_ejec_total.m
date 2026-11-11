@@ -12,7 +12,7 @@ Output:
 %}
 
 % Model_path
-ModelPath = 'Model_1.5';
+ModelPath = 'MINFIN_exercise';
 ProjectRoot = fileparts(fileparts(fileparts(fileparts(mfilename('fullpath')))));
 
 % Load data of nominal GDP. NameRow is explicit for compatibility with the
