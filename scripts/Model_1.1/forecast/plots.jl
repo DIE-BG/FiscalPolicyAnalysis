@@ -8,7 +8,6 @@ using DrWatson
 using CairoMakie
 using CSV, DataFrames, DataFramesMeta, Dates
 using Mudie
-using TerminalPager
 
 ##### We will plot the series for the model only exogenize the variable u9
 # Load free forecast data

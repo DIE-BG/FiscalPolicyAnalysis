@@ -7,7 +7,6 @@ using DrWatson
 using CairoMakie
 using CSV, DataFrames, DataFramesMeta, Dates
 using Mudie
-using TerminalPager
 
 ModelPath = "Model_1.3"
 

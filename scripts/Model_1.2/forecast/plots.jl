@@ -9,7 +9,6 @@ using DrWatson
 using CairoMakie
 using CSV, DataFrames, DataFramesMeta, Dates
 using Mudie
-using TerminalPager
 
 # ===== Check if the forecast plots folder exists, if not, create it =====
     if !isdir(joinpath("Models", "Model_1.2", "plots", "forecast"))
