@@ -10,29 +10,29 @@ format:
 
 El presente documento sirve de guía para la construcción de los escenarios de pronósticos utilizando información de cuentas fiscales del Ministerio de Finanzas Públicas de Guatemala, construidos sobre la base del Modelo para Proyecciones Macroeconómicas (MPM). 
 
-La construcción de los escenarios de pronósticos pretende mostrar cual sería la dinámica de la variable de crecimiento económico, inversión privada y total dado el comportamiento del gasto del gobierno, sus ingresos y decisiones de endeudamiento, es decir, se "anclan" variables fiscales y se observa la dinámica del resto de variables.
+La construcción de los escenarios de pronósticos pretende mostrar cuál sería la dinámica de la variable de crecimiento económico, inversión privada y total dado el comportamiento del gasto del gobierno, sus ingresos y decisiones de endeudamiento, es decir, se "anclan" variables fiscales y se observa la dinámica del resto de variables.
 
-Además de lo anterior, se añaden dos ejercicios con el proposito de que los lectores generen confianza y dominio sobre este tipo de esecenarios.
+Además de lo anterior, se añaden dos ejercicios con el propósito de que los lectores generen confianza y dominio sobre este tipo de escenarios.
 
-Finalmente, los escenarios se construyen sobre una versión del MPM que se modificó especificamente para garantizar características con las cuales debían cumplir los pronósticos.
+Finalmente, los escenarios se construyen sobre una versión del MPM que se modificó específicamente para garantizar características con las cuales debían cumplir los pronósticos.
 
 # Descripción de los escenarios de pronósticos
-Los pronósticos del modelo MPM utilizando información de variables fiscales han sugrido dentro del contexto de ampliar el entendiiento de como las dinámicas fiscales manifestadas en el proyecto del presupuesto de ingresos y gastos del gobierno de Guatemala podrían afectar a ciertas variables de interés, como lo son el crecimiento económico, la inversión privada y total, o el déficit fiscal.
+Los pronósticos del modelo MPM utilizando información de variables fiscales han surgido dentro del contexto de ampliar el entendimiento de cómo las dinámicas fiscales manifestadas en el proyecto del presupuesto de ingresos y gastos del gobierno de Guatemala podrían afectar a ciertas variables de interés, como lo son el crecimiento económico, la inversión privada y total, o el déficit fiscal.
 
 En este sentido, se toman las cuentas fiscales de **gastos de funcionamiento**, **inversión pública**, **ingresos totales**, **deuda pública interna** y **deuda pública externa** del proyecto del presupuesto y, mediante una *"ingeniería de choques"* sobre las **variables ola** del modelo, se pretende que los pronósticos del modelo MPM empaten lo mejor posible con los datos tomados del proyecto del presupuesto.
 
 Decimos que es una *ingeniería de choques* debido a que el modelo no funciona con datos expresados en millones de quetzales^[Esta es la información extraída del proyecto del presupuesto], por lo cual las variables ola deben tomar una dinámica, motivada por los choques dados al modelo, que sea consistente con estos valores nominales. 
 
-En este punto se hace necesario resaltar un aspecto importante de estos escenarios, y es el hecho de que para obtener los valores nominales pronósticados por el modelo es necesario tomar una postura frente al PIB nominal. Para "deducir" el PIB nominal del modelo se parte de datos observados de PIB nominal, se asume que estos crecerán a una tasa igual a la suma de la tasa de creimiento del PIB real mas la tasa de inflación (ambas pronósticas por el modelo) y el mismo es proyectado hacia adelante. De esta forma los cocientes sobre PIB nominal pronósticados por el modelo pueden recuperarse a partir de una simple multiplicación.
+En este punto se hace necesario resaltar un aspecto importante de estos escenarios, y es el hecho de que para obtener los valores nominales pronosticados por el modelo es necesario tomar una postura frente al PIB nominal. Para "deducir" el PIB nominal del modelo se parte de datos observados de PIB nominal, se asume que estos crecerán a una tasa igual a la suma de la tasa de crecimiento del PIB real más la tasa de inflación (ambas pronósticas por el modelo) y el mismo es proyectado hacia adelante. De esta forma los cocientes sobre PIB nominal pronosticados por el modelo pueden recuperarse a partir de una simple multiplicación.
 
 # Descripción general de la versión del modelo
-La presente versión del modelo aun no cuenta con un identificador particular, pero para fines del documento nos vamos a referir a ella como versión MINFIN. Dicha versión debe garantizar que el efecto *crwoding-out* no sea importante dentro de los pronósticos de inversión privada^[Lo que provocaría que la inersión privada se despromara y con ella el crecimiento económico.], además de generar un pronóstico de crecimiento económico en torno a un 4%. 
+La presente versión del modelo aún no cuenta con un identificador particular, pero para fines del documento nos vamos a referir a ella como versión MINFIN. Dicha versión debe garantizar que el efecto *crowding-out* no sea importante dentro de los pronósticos de inversión privada^[Lo que provocaría que la inversión privada se desplomara y con ella el crecimiento económico.], además de generar un pronóstico de crecimiento económico en torno a un 4%. 
 
-La versión MIFIN se diferencia fundamentalmente de la versión 1.5 en cuatro aspectos fundamentales:
+La versión MINFIN se diferencia fundamentalmente de la versión 1.5 en cuatro aspectos fundamentales:
 
 ## 1 Reducción del choque de deuda pública externa
 
-El residuo $u_{9, t}$ juega un rol preponderante en la dinámica de los pronósticos de la deuda pública interna y en ultima instancia en el crecimiento económico a traves del efecto de la deuda pública interna en la inversión privada. Además, este residuo es el que permite garantizar, en el primer horizonte de pronóstico, la identidad contable del déficit fiscal. Pese a lo anterior, la dinámica de las variables fiscales utilizadas en distintas pruebas mostró que el modelo toma una dinámica de deuda explosiva afectando seriamente el crecimiento económico. Por este motivo se decidió *"filtrar"* su efecto multiplicandolo por un valor de 0.10^[La multiplicación por este factor fue arbiraria y no responde a ningun aspecto técnico.].
+El residuo $u_{9, t}$ juega un rol preponderante en la dinámica de los pronósticos de la deuda pública interna y en última instancia en el crecimiento económico a través del efecto de la deuda pública interna en la inversión privada. Además, este residuo es el que permite garantizar, en el primer horizonte de pronóstico, la identidad contable del déficit fiscal. Pese a lo anterior, la dinámica de las variables fiscales utilizadas en distintas pruebas mostró que el modelo toma una dinámica de deuda explosiva afectando seriamente el crecimiento económico. Por este motivo se decidió *"filtrar"* su efecto multiplicándolo por un valor de 0.10^[La multiplicación por este factor fue arbitraria y no responde a ningún aspecto técnico.].
 
 $$
 \left(\frac{\widetilde{DPI}}{PIB}\right)_{t}
@@ -47,18 +47,18 @@ $$
 $$
 
 ## 2 Reducción de la persistencia del crecimiento económico doméstico
-Dado el hecho de que la economía guatemalte ha crecido por encima de su nivel promedio histórico (3.5%) los pronósticos de crecimiento económico doméstico tienden a crecer sustancialmente en los primeros periodos de pronóstico. Por tal motivo los pronósticos del modelo en el horizonte de pronóstico crecían por encima del 4%.
+Dado el hecho de que la economía guatemalteca ha crecido por encima de su nivel promedio histórico (3.5%) los pronósticos de crecimiento económico doméstico tienden a crecer sustancialmente en los primeros periodos de pronóstico. Por tal motivo los pronósticos del modelo en el horizonte de pronóstico crecían por encima del 4%.
 
 El valor del coeficiente asociado al componente autorregresivo del crecimiento económico doméstico se redujo de 0.81933 a 0.29933.
 
-## 3 Sencibilidad de la inversión privada
-Con el propósito de reducir el efecto *crowding-out* se redujo la sencbilidad de la inversión privada a la deuda pública interna y a la prima por riesgo país, contrayendo sus parámetros en el modelo a una décima parte de su valor original.
+## 3 Sensibilidad de la inversión privada
+Con el propósito de reducir el efecto *crowding-out* se redujo la sensibilidad de la inversión privada a la deuda pública interna y a la prima por riesgo país, contrayendo sus parámetros en el modelo a una décima parte de su valor original.
 
-- Sencibilidad a la deuda pública interna: Version 1.5 -0.06165, version MINFIN -0.00916
-- Sencibilidad a la prima por riesgo país: Version 1.5 -0.11923, version MINFIN -0.01192
+- Sensibilidad a la deuda pública interna: Versión 1.5 -0.06165, versión MINFIN -0.00916
+- Sensibilidad a la prima por riesgo país: Versión 1.5 -0.11923, versión MINFIN -0.01192
 
 ## 4 Incorporación de un choque externo al modelo
-Los pronósticos generados por el modelo que hacen uso de las cuentas fiscales deben deben coincidir, para los años considerados, con los valores de las cuentas fiscales utilizadas. Esto se consigue relativamente bien mediante la modificaicón de los choques de las variables fiscales, a excepción de la variable de deuda pública interna. Dado que esta variable incorpora un choque $u_{9, t}$ el cual está determinado por una ecuación de comportamiento, fue necesario agregar un "choque" extra en el proceso de anclaje de los choques para asegurar que la deuda pública interna coincida con los valores de las cuentas fiscales provistos por el Ministerio de Finanzas Públicas.
+Los pronósticos generados por el modelo que hacen uso de las cuentas fiscales deben coincidir, para los años considerados, con los valores de las cuentas fiscales utilizadas. Esto se consigue relativamente bien mediante la modificación de los choques de las variables fiscales, a excepción de la variable de deuda pública interna. Dado que esta variable incorpora un choque $u_{9, t}$ el cual está determinado por una ecuación de comportamiento, fue necesario agregar un "choque" extra en el proceso de anclaje de los choques para asegurar que la deuda pública interna coincida con los valores de las cuentas fiscales provistos por el Ministerio de Finanzas Públicas.
 
 $$
 \begin{aligned}
@@ -128,7 +128,7 @@ La segunda sección carga los datos históricos desde `Models/MINFIN/data/initia
 
 ### Pronósticos con choques trimestre a trimestre
 
-Esta seccion es la parte central de la construcción del escenario. En ella se define el horizonte de pronóstico desde 2026Q3 hasta 2033Q4. El ciclo recorre estos 30 trimestres y genera el pronóstico de un período a la vez, utilizando en cada iteración la información disponible hasta el trimestre anterior.
+Esta sección es la parte central de la construcción del escenario. En ella se define el horizonte de pronóstico desde 2026Q3 hasta 2033Q4. El ciclo recorre estos 30 trimestres y genera el pronóstico de un período a la vez, utilizando en cada iteración la información disponible hasta el trimestre anterior.
 
 #### Choques de 2026 y 2027
 
@@ -152,7 +152,7 @@ elseif i == 2 % 2026Q4
     u18 = 3.305;
 ```
 
-Los choques `u4`, `u5`, `u6` y `u7` afectan directamente las variables ola de inversión pública, ingresos totales, gasto de funcionamiento y deuda pública externa, respectivamente. El choque `u16` afecta directamente la variable ola de crecimiento económico doméstico^[Se supone que el PIB caerá para retornar a valores mas consistentes con la historia de la economía guatemalteca]. Por su parte, `u18` es un ajuste adicional que el script incorpora al cálculo de `u9`, el choque de deuda pública interna; es por así decirlo, un chqoue externo al modelo.
+Los choques `u4`, `u5`, `u6` y `u7` afectan directamente las variables ola de inversión pública, ingresos totales, gasto de funcionamiento y deuda pública externa, respectivamente. El choque `u16` afecta directamente la variable ola de crecimiento económico doméstico^[Se supone que el PIB caerá para retornar a valores más consistentes con la historia de la economía guatemalteca]. Por su parte, `u18` es un ajuste adicional que el script incorpora al cálculo de `u9`, el choque de deuda pública interna; es por así decirlo, un choque externo al modelo.
 
 En conjunto, los valores de 2026Q3 y 2026Q4 buscan que las variables fiscales del modelo, al expresarse en términos nominales, se aproximen a los valores del cierre fiscal de 2026 presentados en el cuadro 1. De la misma forma, los choques establecidos en los cuatro trimestres de 2027 persiguen que los resultados al cierre de ese año se aproximen los expuestos en el cuadro 2.
 
