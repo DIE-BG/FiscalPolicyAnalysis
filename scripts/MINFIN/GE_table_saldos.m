@@ -20,7 +20,7 @@ ProjectRoot = fileparts(fileparts(fileparts(fileparts(mfilename('fullpath')))));
 GDP_n = databank.fromCSV( ...
     fullfile(ProjectRoot, 'Models', ModelPath, 'data', 'GDP_nom_SM.csv'), ...
     'NameRow=', 1 ...
-);
+    );
 
 %% Transform the data into the required format
 % nominal GDP
@@ -59,4 +59,4 @@ fiscal_accounts.DPI_diff = fiscal_accounts.DPI.diff(-4);
 
 
 %% Export the fiscal accounts data
-databank.toCSV(fiscal_accounts, fullfile('Models', 'MINFIN_exercise', 'forecast', 'fiscal_accounts.csv'), Inf);
+databank.toCSV(fiscal_accounts, fullfile('Models', 'MINFIN', 'forecast', 'fiscal_accounts.csv'), Inf);
