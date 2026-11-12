@@ -248,7 +248,10 @@ disp(fiscal_accounts_table)
 
 Las columnas identificadas con `minfin` contienen las cifras de referencia; las columnas con el nombre de la variable contienen los resultados del modelo; y las columnas identificadas con `diff` muestran la diferencia calculada como cifra de referencia menos resultado del modelo. De esta manera es posible evaluar qué tan cercanos son los valores nominales pronosticados por el MPM a los contenidos en las cuentas fiscales del presupuesto. Para 2026 se utiliza la estimación de cierre fiscal y para 2027 el proyecto de presupuesto presentados anteriormente.
 
-# Ejercicio 1
+# Ejercicios
+A continuación se presentan dos ejercicios basados en los requerimientos hechos por la Gerencia Económica del Banco de Guatemala orientados a alimentar el dictamen técnico del proyecto del presupuesto de ingresos y egresos para el año 2027. Para realizar dichos ejercicios situarse en la rama `MINFIN_exercise` del repositorio `FiscalPolicyAnalysis` y crear su rama correspondiente.
+
+## Ejercicio 1
 
 Con el propósito de practicar la construcción de escenarios de pronósticos, supongamos que se cuenta con una nueva estimación del cierre fiscal de 2026 y con un proyecto de presupuesto para 2027 distinto al presentado en los cuadros 1 y 2. A partir de esta información, construya un escenario que permita evaluar el comportamiento del crecimiento económico y de la inversión privada y total, y el déficit fiscal hasta el año 2033.
 
@@ -268,7 +271,7 @@ Las cifras del siguiente cuadro son **hipotéticas** y se presentan únicamente 
 
 La restricción fundamental al final del escenario de pronóstico es que el déficit fiscal se encuentre en torno al 2% del PIB.
 
-# Ejercicio 2
+## Ejercicio 2
 
 Tomando como base las cifras del cuadro 3 y el escenario construido en el ejercicio 1, supongamos que el Gobierno no ejecuta la totalidad de lo presupuestado para 2027. Para estudiar este caso se deberán construir dos escenarios adicionales de pronóstico, uno por cada supuesto de ejecución presupuestaria:
 
