@@ -27,3 +27,6 @@
 *.swp
 *.swo
 *~
+
+# Ignore temporal files (and directories)
+tmp
