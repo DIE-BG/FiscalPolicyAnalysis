@@ -1,0 +1,297 @@
+---
+title: "Ejercicios de pronósticos usando información de cuentas fiscales"
+lang: es
+format:
+  pdf:
+    toc: false
+---
+
+# Introducción
+
+El presente documento sirve de guía para la construcción de los escenarios de pronósticos utilizando información de cuentas fiscales del Ministerio de Finanzas Públicas de Guatemala, construidos sobre la base del Modelo para Proyecciones Macroeconómicas (MPM). 
+
+La construcción de los escenarios de pronósticos pretende mostrar cual sería la dinámica de la variable de crecimiento económico, inversión privada y total dado el comportamiento del gasto del gobierno, sus ingresos y decisiones de endeudamiento, es decir, se "anclan" variables fiscales y se observa la dinámica del resto de variables.
+
+Además de lo anterior, se añaden dos ejercicios con el proposito de que los lectores generen confianza y dominio sobre este tipo de esecenarios.
+
+Finalmente, los escenarios se construyen sobre una versión del MPM que se modificó especificamente para garantizar características con las cuales debían cumplir los pronósticos.
+
+# Descripción de los escenarios de pronósticos
+Los pronósticos del modelo MPM utilizando información de variables fiscales han sugrido dentro del contexto de ampliar el entendiiento de como las dinámicas fiscales manifestadas en el proyecto del presupuesto de ingresos y gastos del gobierno de Guatemala podrían afectar a ciertas variables de interés, como lo son el crecimiento económico, la inversión privada y total, o el déficit fiscal.
+
+En este sentido, se toman las cuentas fiscales de **gastos de funcionamiento**, **inversión pública**, **ingresos totales**, **deuda pública interna** y **deuda pública externa** del proyecto del presupuesto y, mediante una *"ingeniería de choques"* sobre las **variables ola** del modelo, se pretende que los pronósticos del modelo MPM empaten lo mejor posible con los datos tomados del proyecto del presupuesto.
+
+Decimos que es una *ingeniería de choques* debido a que el modelo no funciona con datos expresados en millones de quetzales^[Esta es la información extraída del proyecto del presupuesto], por lo cual las variables ola deben tomar una dinámica, motivada por los choques dados al modelo, que sea consistente con estos valores nominales. 
+
+En este punto se hace necesario resaltar un aspecto importante de estos escenarios, y es el hecho de que para obtener los valores nominales pronósticados por el modelo es necesario tomar una postura frente al PIB nominal. Para "deducir" el PIB nominal del modelo se parte de datos observados de PIB nominal, se asume que estos crecerán a una tasa igual a la suma de la tasa de creimiento del PIB real mas la tasa de inflación (ambas pronósticas por el modelo) y el mismo es proyectado hacia adelante. De esta forma los cocientes sobre PIB nominal pronósticados por el modelo pueden recuperarse a partir de una simple multiplicación.
+
+# Descripción general de la versión del modelo
+La presente versión del modelo aun no cuenta con un identificador particular, pero para fines del documento nos vamos a referir a ella como versión MINFIN. Dicha versión debe garantizar que el efecto *crwoding-out* no sea importante dentro de los pronósticos de inversión privada^[Lo que provocaría que la inersión privada se despromara y con ella el crecimiento económico.], además de generar un pronóstico de crecimiento económico en torno a un 4%. 
+
+La versión MIFIN se diferencia fundamentalmente de la versión 1.5 en cuatro aspectos fundamentales:
+
+## 1 Reducción del choque de deuda pública externa
+
+El residuo $u_{9, t}$ juega un rol preponderante en la dinámica de los pronósticos de la deuda pública interna y en ultima instancia en el crecimiento económico a traves del efecto de la deuda pública interna en la inversión privada. Además, este residuo es el que permite garantizar, en el primer horizonte de pronóstico, la identidad contable del déficit fiscal. Pese a lo anterior, la dinámica de las variables fiscales utilizadas en distintas pruebas mostró que el modelo toma una dinámica de deuda explosiva afectando seriamente el crecimiento económico. Por este motivo se decidió *"filtrar"* su efecto multiplicandolo por un valor de 0.10^[La multiplicación por este factor fue arbiraria y no responde a ningun aspecto técnico.].
+
+$$
+\left(\frac{\widetilde{DPI}}{PIB}\right)_{t}
+=
+\alpha_{9,1}\left(\frac{\widetilde{DPI}}{PIB}\right)_{t-1}
++
+\alpha_{9,2}\left(\frac{\widetilde{DPE}}{PIB}\right)_{t-1}
++
+\alpha_{9,3}\left(\frac{\widetilde{Def}}{PIB}\right)_{t-1}
++
+0.10 * u_{9,t}
+$$
+
+## 2 Reducción de la persistencia del crecimiento económico doméstico
+Dado el hecho de que la economía guatemalte ha crecido por encima de su nivel promedio histórico (3.5%) los pronósticos de crecimiento económico doméstico tienden a crecer sustancialmente en los primeros periodos de pronóstico. Por tal motivo los pronósticos del modelo en el horizonte de pronóstico crecían por encima del 4%.
+
+El valor del coeficiente asociado al componente autorregresivo del crecimiento económico doméstico se redujo de 0.81933 a 0.29933.
+
+## 3 Sencibilidad de la inversión privada
+Con el propósito de reducir el efecto *crowding-out* se redujo la sencbilidad de la inversión privada a la deuda pública interna y a la prima por riesgo país, contrayendo sus parámetros en el modelo a una décima parte de su valor original.
+
+- Sencibilidad a la deuda pública interna: Version 1.5 -0.06165, version MINFIN -0.00916
+- Sencibilidad a la prima por riesgo país: Version 1.5 -0.11923, version MINFIN -0.01192
+
+## 4 Incorporación de un choque externo al modelo
+Los pronósticos generados por el modelo que hacen uso de las cuentas fiscales deben deben coincidir, para los años considerados, con los valores de las cuentas fiscales utilizadas. Esto se consigue relativamente bien mediante la modificaicón de los choques de las variables fiscales, a excepción de la variable de deuda pública interna. Dado que esta variable incorpora un choque $u_{9, t}$ el cual está determinado por una ecuación de comportamiento, fue necesario agregar un "choque" extra en el proceso de anclaje de los choques para asegurar que la deuda pública interna coincida con los valores de las cuentas fiscales provistos por el Ministerio de Finanzas Públicas.
+
+$$
+\begin{aligned}
+u_{9,t} ={}& (1 - \alpha_{9,1})
+\left(\frac{\widetilde{DPI}}{PIB}\right)_{t-1}
++ (1 - \alpha_{7,1} - \alpha_{9,2})
+\left(\frac{\widetilde{DPE}}{PIB}\right)_{t-1} \\
+&+ (\alpha_{6,1} - \alpha_{9,3})
+\left(\frac{\widetilde{GFun}}{PIB}\right)_{t-1}
++ (\alpha_{4,1} - \alpha_{9,3})
+\left(\frac{\widetilde{IPub}}{PIB}\right)_{t-1} \\
+&- (\alpha_{5,1} + \alpha_{9,3})
+\left(\frac{\widetilde{IngT}}{PIB}\right)_{t-1}
++ u_{4,t} + u_{6,t} - u_{5,t} - u_{7,t} + u_{18,t}.
+\end{aligned}
+$$
+
+# Mecánica de construcción de los escenarios
+
+Los scripts utilizados para la generación de los escenarios de pronóstico se encuentran en el directorio 'scripts/MINFIN'. Primero se cuenta con un script que genera los pronósticos y luego otro script que genera una tabla donde se compara el valor nominal de variable fiscal pronosticada por el modelo con los datos del proyecto del presupuesto.
+
+## script de pronósticos
+Para la explicación de la mecánica utilizada en el script de pronósticos vamos a usar de ejemplo el script 'scripts/MINFIN/forecast_base_GE.m' el cual contiene los pronósticos colocados en el Anexo número 12 del dictamen técnico del proyecto del presupuesto 2027 del Banco de Guatemala.
+
+Dichos pronósticos suponen el siguiente comportamiento de las variables fiscales para el año 2026.
+
+**Cuadro 1**  
+**Estimación del cierre fiscal**  
+**Año 2026**
+
+| Cuenta fiscal            | Millones de Q. |
+|:-------------------------|---------------:|
+| Ingresos totales         |      126,389.2 |
+| Gasto de funcionamiento |      119,437.3 |
+| Inversión pública        |       30,618.0 |
+| Deuda pública externa    |        1,983.8 |
+| Deuda pública interna    |       24,098.9 |
+
+Fuente: Ministerio de Finanzas Públicas
+
+{{< pagebreak >}}
+
+Mientras que para el año 2026 se supone la siguiente dinámica fiscal:
+
+**Cuadro 2**  
+**Proyecto de Presupuesto General de**  
+**Ingresos y Egresos del Estado**  
+**Año 2027**
+
+| Cuenta fiscal            | Millones de Q. |
+|:-------------------------|---------------:|
+| Ingresos totales         |      137,860.9 |
+| Gasto de funcionamiento  |      147,583.7 |
+| Inversión pública        |       38,577.3 |
+| Deuda pública externa    |         -415.0 |
+| Deuda pública interna    |       40,150.0 |
+
+Fuente: Ministerio de Finanzas Públicas
+
+A continuación se describen las secciones del script de pronósticos, haciendo énfasis en la forma en que se incorporan los choques para construir el escenario fiscal.
+
+### Carga del modelo y datos
+
+La primera sección prepara el entorno de trabajo de MATLAB e inicia IRIS. Luego selecciona la versión `MINFIN`, carga los parámetros definidos en `Models/MINFIN/Initial_setup/setparam.m` y construye el modelo utilizando el archivo `Models/MINFIN/Initial_setup/model.mod`.
+
+La segunda sección carga los datos históricos desde `Models/MINFIN/data/initial_conditions.csv`. Con estos datos, la sección del filtro de Kalman prepara las variables de medición y obtiene una estimación de las variables del modelo para el período histórico.
+
+### Pronósticos con choques trimestre a trimestre
+
+Esta seccion es la parte central de la construcción del escenario. En ella se define el horizonte de pronóstico desde 2026Q3 hasta 2033Q4. El ciclo recorre estos 30 trimestres y genera el pronóstico de un período a la vez, utilizando en cada iteración la información disponible hasta el trimestre anterior.
+
+#### Choques de 2026 y 2027
+
+El ciclo incorpora un condicional `if` que asigna los valores de los choques que se utilizarán en la simulación. Por ejemplo, para los dos últimos trimestres de 2026 el script utiliza:
+
+```matlab
+if i == 1 % 2026Q3
+    u4 = -0.04216;
+    u5 = -0.08;
+    u6 = 0.1726;
+    u7 = -0.4827;
+    u16 = -0.45;
+    u18 = 7;
+
+elseif i == 2 % 2026Q4
+    u4 = 0;
+    u5 = -0.0414;
+    u6 = 0.1082;
+    u7 = -0.2683;
+    u16 = -0.25;
+    u18 = 3.305;
+```
+
+Los choques `u4`, `u5`, `u6` y `u7` afectan directamente las variables ola de inversión pública, ingresos totales, gasto de funcionamiento y deuda pública externa, respectivamente. El choque `u16` afecta directamente la variable ola de crecimiento económico doméstico^[Se supone que el PIB caerá para retornar a valores mas consistentes con la historia de la economía guatemalteca]. Por su parte, `u18` es un ajuste adicional que el script incorpora al cálculo de `u9`, el choque de deuda pública interna; es por así decirlo, un chqoue externo al modelo.
+
+En conjunto, los valores de 2026Q3 y 2026Q4 buscan que las variables fiscales del modelo, al expresarse en términos nominales, se aproximen a los valores del cierre fiscal de 2026 presentados en el cuadro 1. De la misma forma, los choques establecidos en los cuatro trimestres de 2027 persiguen que los resultados al cierre de ese año se aproximen los expuestos en el cuadro 2.
+
+El condicional también establece choques para algunos trimestres de 2028 y 2029. Los ajustes realizados en estos años son al gasto de funcionamiento e ingresos totales, con el propósito de garantizar que el déficit fiscal se aproxime a un valor cercano al 2%^[El valor de déficit que históricamente ha sostenido el Banguat como un déficit de equilibrio para Guatemala.]. A partir de 2030Q1 asigna cero a `u4`, `u5`, `u6`, `u7`, `u16` y `u18`.
+
+#### Cálculo del choque de deuda pública interna
+
+Una vez establecidos los choques del trimestre, el script calcula `u9` usando los últimos valores disponibles de las variables ola fiscales, los parámetros del modelo y los choques seleccionados.
+
+```matlab
+u9 = (1 - p.a9_1)*Forecast.DPI_ola(end) ...
+   + (1 - p.a7_1 - p.a9_2)*Forecast.DPE_ola(end) ...
+   + (p.a6_1 - p.a9_3)*Forecast.GFun_ola(end) ...
+   + (p.a4_1 - p.a9_3)*Forecast.IPub_ola(end) ...
+   - (p.a5_1 + p.a9_3)*Forecast.IngT_ola(end) ...
+   + u4 + u6 - u5 - u7 + u18;
+```
+
+### Crecimiento nominal
+
+Al terminar el ciclo, el script calcula la tasa de crecimiento del PIB nominal como la suma de las tasas de crecimiento del PIB real y de inflación pronosticadas, dividida entre 100. Esta tasa queda disponible en `Forecast` para recuperar posteriormente los valores nominales de las cuentas fiscales.
+
+## Script de datos nominales
+Continuando con nuestra explicación, tomamos de referencia el script 'scripts/MINFIN/GE_table.m'. Este script se encarga de generar los pronósticos del PIB nominal y obtener los valores nominales de las variables fiscales de interés.
+
+Para ello, el script utiliza la estructura `Forecast` generada por el script de pronósticos. Por lo tanto, es necesario que se ejecute previamente `scripts\MINFIN\forecast_base_GE.m` antes de ejecutar `GE_table.m`. En particular, el script utiliza los cocientes fiscales sobre PIB y la tasa de crecimiento del PIB nominal contenidos en `Forecast`.
+
+### Pronóstico del PIB nominal
+
+Primero se carga la serie histórica de la suma móvil de cuatro trimestres del PIB nominal desde `Models/MINFIN/data/GDP_nom_SM.csv`. Luego se amplía la serie para el período comprendido entre 2025Q1 y 2027Q4 y se calcula el valor nominal de cada trimestre utilizando el valor de cuatro trimestres atrás y la tasa de crecimiento interanual del PIB nominal obtenida en el script de pronósticos.
+
+### Recuperación de los valores nominales de las cuentas fiscales
+
+Una vez obtenida la serie de PIB nominal, se recuperan los valores nominales de las variables fiscales de interés: inversión pública, ingresos totales, gasto de funcionamiento y deuda pública externa e interna. Para cada variable se multiplica el PIB nominal por el cociente sobre PIB y el resultado se divide entre 100, debido a que los cocientes del modelo están expresados en porcentaje.
+
+De esta forma se obtiene la estructura `fiscal_accounts`, que contiene las series nominales de las cuentas fiscales para el período comprendido entre 2025Q1 y 2027Q4. En el caso de las variables de deuda, estas series representan saldos y todavía no los cambios anuales que se compararán con las cifras del presupuesto.
+
+### Cálculo del cambio en la deuda pública externa e interna
+
+Las variables de deuda pública externa e interna son *stocks*: representan el saldo de deuda en un momento determinado. Por su parte, las cifras de endeudamiento que se utilizan para la comparación con el presupuesto corresponden a flujos. Por este motivo, se calcula el cambio de cada saldo entre el cierre de un año y el cierre del año anterior.
+
+```matlab
+%% Create the change in the DPE variable
+DPE_change = [
+    fiscal_accounts.DPE(qq(2026, 4)) - fiscal_accounts.DPE(qq(2025, 4));
+    fiscal_accounts.DPE(qq(2027, 4)) - fiscal_accounts.DPE(qq(2026, 4));
+];
+
+DPI_change = [
+    fiscal_accounts.DPI(qq(2026, 4)) - fiscal_accounts.DPI(qq(2025, 4));
+    fiscal_accounts.DPI(qq(2027, 4)) - fiscal_accounts.DPI(qq(2026, 4));
+];
+```
+
+Así, el primer valor de `DPE_change` representa el cambio de la deuda pública externa entre los cierres de 2025 y 2026, mientras que el segundo representa el cambio entre los cierres de 2026 y 2027. La misma operación se realiza para la deuda pública interna en `DPI_change`. 
+
+### Comparación con las cuentas fiscales del presupuesto
+
+En la sección final se construye una tabla para los cierres de 2026 y 2027. Para cada cuenta fiscal se colocan el valor contenido en las cuentas fiscales utilizadas, el valor nominal calculado a partir de los pronósticos del MPM y la diferencia entre ambos.
+
+```matlab
+%% Summary table for year-end quarters
+table_dates = [qq(2026, 4); qq(2027, 4)];
+
+fiscal_accounts_table = table( ...
+    [30617.98; 38577.30], ...
+    fiscal_accounts.IPub(table_dates), ...
+    [30617.98; 38577.30] - fiscal_accounts.IPub(table_dates), ...
+    [126389.20; 137860.90], ...
+    fiscal_accounts.IngT(table_dates), ...
+    [126389.20; 137860.90] - fiscal_accounts.IngT(table_dates), ...
+    [1983.79; -415.00], ...
+    DPE_change, ...
+    [1983.79; -415.00] - DPE_change, ...
+    [119437.30; 147583.70], ...
+    fiscal_accounts.GFun(table_dates), ...
+    [119437.30; 147583.70] - fiscal_accounts.GFun(table_dates), ...
+    [24098.90; 40150], ...
+    DPI_change, ...
+    [24098.90; 40150] - DPI_change, ...
+    'VariableNames', { ...
+        'IPub minfin', 'IPub', 'IPub diff', ...
+        'IngT minfin', 'IngT', 'IngT diff', ...
+        'DPE minfin', 'DPE', 'DPE diff', ...
+        'GFun minfin', 'GFun', 'GFun diff', ...
+        'DPI minfin', 'DPI', 'DPI diff'}, ...
+    'RowNames', {'2026Q4', '2027Q4'} ...
+);
+
+format bank
+disp(fiscal_accounts_table)
+```
+
+Las columnas identificadas con `minfin` contienen las cifras de referencia; las columnas con el nombre de la variable contienen los resultados del modelo; y las columnas identificadas con `diff` muestran la diferencia calculada como cifra de referencia menos resultado del modelo. De esta manera es posible evaluar qué tan cercanos son los valores nominales pronosticados por el MPM a los contenidos en las cuentas fiscales del presupuesto. Para 2026 se utiliza la estimación de cierre fiscal y para 2027 el proyecto de presupuesto presentados anteriormente.
+
+# Ejercicio 1
+
+Con el propósito de practicar la construcción de escenarios de pronósticos, supongamos que se cuenta con una nueva estimación del cierre fiscal de 2026 y con un proyecto de presupuesto para 2027 distinto al presentado en los cuadros 1 y 2. A partir de esta información, construya un escenario que permita evaluar el comportamiento del crecimiento económico y de la inversión privada y total, y el déficit fiscal hasta el año 2033.
+
+Las cifras del siguiente cuadro son **hipotéticas** y se presentan únicamente para fines del ejercicio.
+
+**Cuadro 3**  
+**Cuentas fiscales para el ejercicio 1**  
+**Millones de quetzales**
+
+| Cuenta fiscal                    |    2026 |    2027 |
+|:---------------------------------|--------:|--------:|
+| Ingresos totales                 | 127,000.0 | 140,000.0 |
+| Gasto de funcionamiento          | 120,000.0 | 149,000.0 |
+| Inversión pública                |  31,000.0 |  39,000.0 |
+| Deuda pública externa            |   2,300.0 |     500.0 |
+| Deuda pública interna            |  24,500.0 |  41,000.0 |
+
+La restricción fundamental al final del escenario de pronóstico es que el déficit fiscal se encuentre en torno al 2% del PIB.
+
+# Ejercicio 2
+
+Tomando como base las cifras del cuadro 3 y el escenario construido en el ejercicio 1, supongamos que el Gobierno no ejecuta la totalidad de lo presupuestado para 2027. Para estudiar este caso se deberán construir dos escenarios adicionales de pronóstico, uno por cada supuesto de ejecución presupuestaria:
+
+1. **Ejecución promedio histórica:** 93.27%.
+2. **Ejecución promedio en años electorales:** 94.32%.
+
+Para ambos escenarios se mantienen sin cambios las cifras de 2026 y los ingresos totales de 2027 del cuadro 3. Únicamente para 2027 se multiplican el gasto de funcionamiento, la inversión pública y la deuda pública externa e interna por el porcentaje de ejecución correspondiente.
+
+{{< pagebreak >}}
+
+Por ejemplo, para obtener el gasto de funcionamiento bajo el supuesto de ejecución promedio histórica se multiplica Q149,000.0 millones por 0.9327. Aplicando el mismo procedimiento a las cuatro cuentas se obtienen las siguientes cifras:
+
+**Cuadro 4**  
+**Cuentas fiscales de 2027 bajo distintos supuestos de ejecución**  
+**Millones de quetzales**
+
+| Cuenta fiscal                   | Ejercicio 1 | 93.27% | 94.32% |
+|:--------------------------------|------------:|-------:|-------:|
+| Ingresos totales                | 140,000.00 | 140,000.00 | 140,000.00 |
+| Gasto de funcionamiento        | 149,000.00 | 138,972.30 | 140,536.80 |
+| Inversión pública               |  39,000.00 |  36,375.30 |  36,784.80 |
+| Cambio de deuda pública externa |     500.00 |     466.35 |     471.60 |
+| Cambio de deuda pública interna |  41,000.00 |  38,240.70 |  38,671.20 |
+
+Al finalizar el ejercicio de pronóstico generar un script que compare la trayectoria de los tres escenarios de pronóstico.
+
