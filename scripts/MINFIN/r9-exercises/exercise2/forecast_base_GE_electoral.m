@@ -38,7 +38,7 @@ end
 
 MODEL = solve(MODEL,'error=',true);
 
-%% Load the historical data
+%% Load the electoral data
 d = databank.fromCSV(fullfile('Models', ModelPath, 'data', 'initial_conditions.csv'));
 
 %% Kalman filter
@@ -77,7 +77,7 @@ F = makeErrors(F, MODEL);
 % stock of debt.
 Minfin.dates = [qq(2026, 4), qq(2027, 4)];
 Minfin.IPub = [31000; 39000*0.9432];
-Minfin.IngT = [127000; 140000*0.9432];
+Minfin.IngT = [127000; 140000];
 Minfin.GFun = [120000; 149000*0.9432];
 Minfin.DPE  = [2300; 500*0.9432];
 Minfin.DPI  = [24500; 41000*0.9432];
@@ -379,7 +379,7 @@ Forecast.GDP_nom_SM_yoy = ...
 Vars = [get(MODEL, 'xlist'),  [{'u4'}, {'u5'}, {'u6'}, {'u7'}, {'u9'}, {'u16'}]];
 
 % Export the data
-databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast','r9_exercises', 'forecast_GE_historical.csv'), Inf);
+databank.toCSV(Forecast*Vars, fullfile('Models', ModelPath, 'forecast','r9_exercises', 'forecast_GE_electoral.csv'), Inf);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHECKING THE FISCAL ACCOUNTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %{
@@ -468,7 +468,7 @@ fiscal_accounts.GDP_SM_yoy = comment(fiscal_accounts.GDP_SM_yoy, 'Crecimiento in
 fiscal_accounts.GDP_nom_SM = comment(fiscal_accounts.GDP_nom_SM, 'PIB nominal, suma móvil de 4 trimestres (millones de Q)');
 
 %% Export the fiscal accounts, real GDP and deficit
-databank.toCSV(fiscal_accounts, fullfile('Models', ModelPath, 'forecast', 'r9_exercises', 'fiscal_accounts_historical.csv'), Inf);
+databank.toCSV(fiscal_accounts, fullfile('Models', ModelPath, 'forecast', 'r9_exercises', 'fiscal_accounts_electoral.csv'), Inf);
 
 %% Summary table for year-end quarters
 table_dates = Minfin.dates(:);
