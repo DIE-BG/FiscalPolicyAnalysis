@@ -155,3 +155,11 @@ Con estos choques se obtiene:
 |----------------------------|-------:|-------:|-------:|-------:|
 | Ejecución histórica        | 3.27   | 1.98   | 2.02   | 2.00   |
 | Ejecución electoral        | 3.45   | 2.61   | 2.00   | 2.00   |
+
+# Trayectoria del déficit fiscal
+
+![Déficit fiscal (% del PIB): ejercicio 1](figs/50_Def_ratio_base.png){#fig-def-ej1}
+
+![Déficit fiscal (% del PIB): ejercicio 2, ejecución promedio histórica (93.27%)](figs/50_Def_ratio_historical.png){#fig-def-historica}
+
+![Déficit fiscal (% del PIB): ejercicio 2, ejecución promedio en años electorales (94.32%)](figs/50_Def_ratio_electoral.png){#fig-def-electoral}
