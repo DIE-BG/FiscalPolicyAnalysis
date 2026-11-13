@@ -72,189 +72,290 @@ F = makeErrors(F, MODEL);
     In order to mantain the accounting equation for total domestic debt.
 %}
 
-% Database copy. This data base will store the one step ahead forecast
-Forecast = F;
-u9_path = [];
+% MINFIN figures of the exercise (Cuadro 3, millions of quetzales). IPub,
+% IngT and GFun are annual flows; DPE and DPI are annual changes in the
+% stock of debt.
+Minfin.dates = [qq(2026, 4), qq(2027, 4)];
+Minfin.IPub = [31000; 39000];
+Minfin.IngT = [127000; 140000];
+Minfin.GFun = [120000; 149000];
+Minfin.DPE  = [2300; 500];
+Minfin.DPI  = [24500; 41000];
 
-u4_path = [];
-u5_path = [];
-u6_path = [];
-u7_path = [];
-u16_path = [];
+% Load data of nominal GDP. NameRow is explicit for compatibility with the
+% unquoted "Variables ->" header in this CSV and IRIS 2019.
+GDP_n = databank.fromCSV( ...
+    fullfile('Models', ModelPath, 'data', 'GDP_nom_SM.csv'), ...
+    'NameRow=', 1 ...
+    );
 
 % We define the start and end dates for forecast.
 StartPred = qq(2026,3);
 EndPred = qq(2033, 4);
 
-for i = 1:length(StartPred:EndPred)
+%{
+    Automatic adjustment of the 2027Q4 shocks. Each pass runs the whole
+    forecast, measures diff = MINFIN - model in 2027Q4 and corrects the
+    shocks of that quarter with
 
-    if i == 1 % 2026Q3
-        u4 = -0.04216;
-        u5 = -0.08;
-        u6 = 0.1726;
-        u7 = -0.4827;
-        u16 = -0.45;
-        u18 = 7;
+        du = 100*diff/Y                                  (u4, u5, u6, u7)
+        du18 = 1000*diff_DPI/Y - (du4 + du6 - du5 - du7)
 
-    elseif i == 2 % 2026Q4
-        u4 = 0.0382;
-        u5 = 0.0195;
-        u6 = 0.1644;
-        u7 = -0.2368;
-        u16 = -0.25;
-        u18 = 3.703;
+    where Y is the nominal GDP of 2027Q4. The values written in the if
+    block are the starting point; the loop adds the correction to them.
+%}
+Tadj = qq(2027, 4);                     % quarter whose shocks are adjusted
+iAdj = round(Tadj - StartPred) + 1;     % its position in the loop (i == 6)
+kAdj = find(Minfin.dates == Tadj);      % its position in Minfin
+adj = struct('u4', 0, 'u5', 0, 'u6', 0, 'u7', 0, 'u18', 0);
+tol = 0.5;                              % millions of quetzales
+maxPass = 10;
+converged = false;
 
-    elseif i == 3 % 2027Q1
-        u4 = 0.15808;
-        u5 = 0.1424;
-        u6 = 0.65;
-        u7 = -0.35;
-        u16 = -0.15;
-        u18 = 7;
+for pass = 1:maxPass
 
-    elseif i == 4 % 2027Q2
-        u4 = 0.20134;
-        u5 = 0;
-        u6 = 0.5992;
-        u7 = -0.35;
-        u16 = -0.15;
-        u18 = 7;
+    % Database copy. This data base will store the one step ahead forecast
+    Forecast = F;
+    u9_path = [];
 
-    elseif i == 5 % 2027Q3
-        u4 = 0.29851;
-        u5 = 0;
-        u6 = 0.50;
-        u7 = -0.1315;
-        u16 = -0.08;
-        u18 = 2.9478;
+    u4_path = [];
+    u5_path = [];
+    u6_path = [];
+    u7_path = [];
+    u16_path = [];
+    u18_path = [];
 
-    elseif i == 6 % 2027Q4
-        u4 = 0.00065;
-        u5 = 0;
-        u6 = 0.35;
-        u7 = -0.0816;
-        u16 = -0.10;
-        u18 = 0;
+    for i = 1:length(StartPred:EndPred)
 
-    elseif i == 7 % 2028Q1
-        u4 = 0;
-        u5 = 0.10;
-        u6 = -0.05;
-        u7 = 0;
-        u16 = 0;
-        u18 = 0;
+        if i == 1 % 2026Q3
+            u4 = -0.04216;
+            u5 = -0.08;
+            u6 = 0.1726;
+            u7 = -0.4827;
+            u16 = -0.45;
+            u18 = 7;
 
-    elseif i == 8 % 2028Q2
-        u4 = 0;
-        u5 = 0.10;
-        u6 = -0.10;
-        u7 = 0;
-        u16 = 0;
-        u18 = 0;
+        elseif i == 2 % 2026Q4
+            u4 = 0.0382;
+            u5 = 0.0195;
+            u6 = 0.1644;
+            u7 = -0.2368;
+            u16 = -0.25;
+            u18 = 3.703;
 
-    elseif i == 9 % 2028Q3
-        u4 = 0;
-        u5 = 0.25;
-        u6 = -0.25;
-        u7 = 0;
-        u16 = 0;
-        u18 = 0;
+        elseif i == 3 % 2027Q1
+            u4 = 0.1;
+            u5 = 0.05;
+            u6 = 0.45;
+            u7 = -0.15;
+            u16 = -0.15;
+            u18 = 7;
 
-    elseif i == 10 % 2028Q4
-        u4 = 0;
-        u5 = 0.35;
-        u6 = -0.25;
-        u7 = 0;
-        u16 = 0;
-        u18 = 0;
+        elseif i == 4 % 2027Q2
+            u4 = 0.1;
+            u5 = 0.05;
+            u6 = 0.45;
+            u7 = -0.15;
+            u16 = -0.15;
+            u18 = 7;
 
-    elseif i == 11 % 2029Q1
-        u4 = 0;
-        u5 = 0.10;
-        u6 = -0.20;
-        u7 = 0;
-        u16 = 0;
-        u18 = 0;
+        elseif i == 5 % 2027Q3
+            u4 = 0.1;
+            u5 = 0.05;
+            u6 = 0.45;
+            u7 = -0.15;
+            u16 = -0.1;
+            u18 = 2.9478;
 
-    elseif i == 12 % 2029Q2
+        elseif i == 6 % 2027Q4
+            u4 = 0;
+            u5 = 0;
+            u6 = 0.35;
+            u7 = -0.0816;
+            u16 = -0.10;
+            u18 = 0;
 
-        u4 = 0;
-        u5 = 0.10;
-        u6 = -0.22;
-        u7 = 0;
-        u16 = 0;
-        u18 = 0;
+        elseif i == 7 % 2028Q1
+            u4 = 0;
+            u5 = 0.10;
+            u6 = -0.05;
+            u7 = 0;
+            u16 = 0;
+            u18 = 0;
 
-    elseif i == 13 % 2029Q3
+        elseif i == 8 % 2028Q2
+            u4 = 0;
+            u5 = 0.10;
+            u6 = -0.10;
+            u7 = 0;
+            u16 = 0;
+            u18 = 0;
 
-        u4 = 0;
-        u5 = 0.15;
-        u6 = -0.25;
-        u7 = 0;
-        u16 = 0;
-        u18 = 0;
+        elseif i == 9 % 2028Q3
+            u4 = 0;
+            u5 = 0.25;
+            u6 = -0.25;
+            u7 = 0;
+            u16 = 0;
+            u18 = 0;
 
-    elseif i == 14 % 2029Q4
+        elseif i == 10 % 2028Q4
+            u4 = 0;
+            u5 = 0.35;
+            u6 = -0.25;
+            u7 = 0;
+            u16 = 0;
+            u18 = 0;
 
-        u4 = 0;
-        u5 = 0.15;
-        u6 = -0.30;
-        u7 = 0;
-        u16 = 0;
-        u18 = 0;
+        elseif i == 11 % 2029Q1
+            u4 = 0;
+            u5 = 0.10;
+            u6 = -0.20;
+            u7 = 0;
+            u16 = 0;
+            u18 = 0;
 
-    else % 2030Q1 onwards: no shocks
+        elseif i == 12 % 2029Q2
 
-        u4 = 0;
-        u5 = 0;
-        u6 = 0;
-        u7 = 0;
-        u16 = 0;
-        u18 = 0;
+            u4 = 0;
+            u5 = 0.10;
+            u6 = -0.22;
+            u7 = 0;
+            u16 = 0;
+            u18 = 0;
+
+        elseif i == 13 % 2029Q3
+
+            u4 = 0;
+            u5 = 0.15;
+            u6 = -0.25;
+            u7 = 0;
+            u16 = 0;
+            u18 = 0;
+
+        elseif i == 14 % 2029Q4
+
+            u4 = 0;
+            u5 = 0.15;
+            u6 = -0.09;
+            u7 = 0;
+            u16 = 0;
+            u18 = 0;
+
+        else % 2030Q1 onwards: no shocks
+
+            u4 = 0;
+            u5 = 0;
+            u6 = 0;
+            u7 = 0;
+            u16 = 0;
+            u18 = 0;
+
+        end
+
+        % Correction of the 2027Q4 shocks computed by the adjustment loop
+        if i == iAdj
+            u4 = u4 + adj.u4;
+            u5 = u5 + adj.u5;
+            u6 = u6 + adj.u6;
+            u7 = u7 + adj.u7;
+            u18 = u18 + adj.u18;
+        end
+
+        % u9 residuel from the data and forecast
+        u9 = (1 - p.a9_1)*Forecast.DPI_ola(end) + (1 - p.a7_1 - p.a9_2)*Forecast.DPE_ola(end) ...
+            + (p.a6_1 - p.a9_3)*Forecast.GFun_ola(end) + (p.a4_1 - p.a9_3)*Forecast.IPub_ola(end) ...
+            - (p.a5_1 + p.a9_3)*Forecast.IngT_ola(end) ...
+            + u4 + u6 - u5 - u7 + u18;
+
+        % Quarter that will be simulated
+        SPred = Forecast.GDP_star_ola.Range(end) + 1;
+
+        % zero data base of shocks
+        shocks = zerodb(MODEL, Forecast.GDP_star_ola.Range(1):Forecast.GDP_star_ola.Range(end))*{'u9', 'u4', 'u5', 'u6', 'u7', 'u16'};
+
+        % Combine the data base with intial conditions and shocks
+        Forecast = dboverlay(Forecast,shocks);
+
+        % Shocks of the SPred quarter
+        Forecast.u9(SPred) = u9;
+        Forecast.u4(SPred) = u4;
+        Forecast.u5(SPred) = u5;
+        Forecast.u6(SPred) = u6;
+        Forecast.u7(SPred) = u7;
+        Forecast.u16(SPred) = u16;
+
+        % simulation One Step Ahead
+        Forecast_OSAH = simulate(MODEL,...
+            Forecast,...
+            SPred,...
+            'anticipate',false,...
+            'DbOverlay=', true);
+
+        Forecast = Forecast_OSAH;
+
+        u9_path(i) = u9;
+        u4_path(i) = u4;
+        u5_path(i) = u5;
+        u6_path(i) = u6;
+        u7_path(i) = u7;
+        u16_path(i) = u16;
+        u18_path(i) = u18;
 
     end
 
+    % Nominal GDP implied by this pass (Y of 2027Q4 and of 2026Q4)
+    g_nom = (Forecast.GDP_SM_yoy + Forecast.pi_yoy)/100;
+    Y_nom = GDP_n.GDP_nom_SM;
+    for t = qq(2025, 1):Tadj
+        Y_nom(t) = Y_nom(t-4) * (1 + g_nom(t));
+    end
+    Y = Y_nom(Tadj);
+    Y_lag = Y_nom(Tadj-4);
 
-    % u9 residuel from the data and forecast
-    u9 = (1 - p.a9_1)*Forecast.DPI_ola(end) + (1 - p.a7_1 - p.a9_2)*Forecast.DPE_ola(end) ...
-        + (p.a6_1 - p.a9_3)*Forecast.GFun_ola(end) + (p.a4_1 - p.a9_3)*Forecast.IPub_ola(end) ...
-        - (p.a5_1 + p.a9_3)*Forecast.IngT_ola(end) ...
-        + u4 + u6 - u5 - u7 + u18;
+    % diff = MINFIN - model in 2027Q4 (DPE and DPI as annual change of the stock)
+    gap.IPub = Minfin.IPub(kAdj) - Y*Forecast.IPub_ratio(Tadj)/100;
+    gap.IngT = Minfin.IngT(kAdj) - Y*Forecast.IngT_ratio(Tadj)/100;
+    gap.GFun = Minfin.GFun(kAdj) - Y*Forecast.Gfun_ratio(Tadj)/100;
+    gap.DPE  = Minfin.DPE(kAdj) - (Y*Forecast.DPE_ratio(Tadj) - Y_lag*Forecast.DPE_ratio(Tadj-4))/100;
+    gap.DPI  = Minfin.DPI(kAdj) - (Y*Forecast.DPI_ratio(Tadj) - Y_lag*Forecast.DPI_ratio(Tadj-4))/100;
 
-    % Quarter that will be simulated
-    SPred = Forecast.GDP_star_ola.Range(end) + 1;
+    fprintf('Pass %d | diff 2027Q4: IPub %9.2f  IngT %9.2f  GFun %9.2f  DPE %9.2f  DPI %9.2f\n', ...
+        pass, gap.IPub, gap.IngT, gap.GFun, gap.DPE, gap.DPI);
 
-    % zero data base of shocks
-    shocks = zerodb(MODEL, Forecast.GDP_star_ola.Range(1):Forecast.GDP_star_ola.Range(end))*{'u9', 'u4', 'u5', 'u6', 'u7', 'u16'};
+    if max(abs(cell2mat(struct2cell(gap)))) < tol
+        converged = true;
+        break
+    end
 
-    % Combine the data base with intial conditions and shocks
-    Forecast = dboverlay(Forecast,shocks);
+    % du = diff*100/Y, added to the correction of the 2027Q4 shocks
+    du4 = 100*gap.IPub/Y;
+    du5 = 100*gap.IngT/Y;
+    du6 = 100*gap.GFun/Y;
+    du7 = 100*gap.DPE/Y;
+    du18 = 1000*gap.DPI/Y - (du4 + du6 - du5 - du7);
 
-    % Shocks of the SPred quarter
-    Forecast.u9(SPred) = u9;
-    Forecast.u4(SPred) = u4;
-    Forecast.u5(SPred) = u5;
-    Forecast.u6(SPred) = u6;
-    Forecast.u7(SPred) = u7;
-    Forecast.u16(SPred) = u16;
-
-    % simulation One Step Ahead
-    Forecast_OSAH = simulate(MODEL,...
-        Forecast,...
-        SPred,...
-        'anticipate',false,...
-        'DbOverlay=', true);
-
-    Forecast = Forecast_OSAH;
-
-    u9_path(i) = u9;
-    u4_path(i) = u4;
-    u5_path(i) = u5;
-    u6_path(i) = u6;
-    u7_path(i) = u7;
-    u16_path(i) = u16;
+    adj.u4 = adj.u4 + du4;
+    adj.u5 = adj.u5 + du5;
+    adj.u6 = adj.u6 + du6;
+    adj.u7 = adj.u7 + du7;
+    adj.u18 = adj.u18 + du18;
 
 end
+
+if ~converged
+    warning('The 2027Q4 shocks did not converge after %d passes.', maxPass);
+end
+
+% Shocks of 2027Q4 actually used (copy them into the if block if you want
+% to fix them by hand)
+fprintf('\n2027Q4 shocks:\n');
+fprintf('        u4 = %.5f;\n', u4_path(iAdj));
+fprintf('        u5 = %.5f;\n', u5_path(iAdj));
+fprintf('        u6 = %.5f;\n', u6_path(iAdj));
+fprintf('        u7 = %.5f;\n', u7_path(iAdj));
+fprintf('        u16 = %.5f;\n', u16_path(iAdj));
+fprintf('        u18 = %.5f;\n\n', u18_path(iAdj));
 
 Forecast.u9(qq(2009, 1):StartPred) = F.u9;
 Forecast.u9(StartPred:EndPred) = u9_path;
@@ -294,25 +395,8 @@ Output:
     fiscal_accounts    IRIS databank whose fields are quarterly Series.
 %}
 
-% MINFIN figures of the exercise (Cuadro 3, millions of quetzales). IPub,
-% IngT and GFun are annual flows; DPE and DPI are annual changes in the
-% stock of debt.
-Minfin.dates = [qq(2026, 4), qq(2027, 4)];
-Minfin.IPub = [31000; 39000];
-Minfin.IngT = [127000; 140000];
-Minfin.GFun = [120000; 149000];
-Minfin.DPE  = [2300; 500];
-Minfin.DPI  = [24500; 41000];
-
-% Model_path
-ModelPath = 'MINFIN';
-
-% Load data of nominal GDP. NameRow is explicit for compatibility with the
-% unquoted "Variables ->" header in this CSV and IRIS 2019.
-GDP_n = databank.fromCSV( ...
-    fullfile('Models', ModelPath, 'data', 'GDP_nom_SM.csv'), ...
-    'NameRow=', 1 ...
-    );
+% Minfin (Cuadro 3) and GDP_n (nominal GDP data) are loaded before the
+% forecast section, since the 2027Q4 adjustment loop uses them.
 
 %% Transform the data into the required format
 % nominal GDP

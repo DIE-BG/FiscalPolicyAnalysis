@@ -1,0 +1,129 @@
+---
+title: "Ideas para la resolución de los ejercicios "
+subtitle: "*Corrigendum: Una revisión del proceso"
+author: [Rodrigo Chang, Rubí Ramírez]
+date: last-modified
+date-format: long
+lang: es
+execute: 
+  daemon: 372000
+  cache: false
+  freeze: false
+  fig-width: 0.5
+  echo: false
+format:
+  html: 
+    toc: true
+    code-fold: true
+    number-sections: true
+    fig-width: 0.5
+  pdf: 
+    number-sections: true
+    toc: false
+    fig-format: png
+    keep-tex: true 
+  docx:
+    number-sections: true
+    toc: false
+    fig-dpi: 200
+    df-print: paged
+    echo: false
+    link-bibliography: true
+    link-citations: true
+crossref: 
+  title-delim: "."
+---
+
+# Ejercicio 1
+
+Para el primer ejercicio inicio con el anclaje de los choques para 2026Q3 y 2026Q4, que son los siguientes:
+
+|choques de política fiscal| |
+|--------------------------|-------------|
+| u_4 | -0.04216;|
+|u_5 | -0.08;|
+|u_6 | 0.1726;|
+|u_7 | -0.4827;|
+| u_16 | -0.45;|
+|u_18 | 7;|
+
+Para 2026Q4:
+
+
+|choques de política fiscal| |
+|--------------------------|-------------|
+|u_4 | 0.0382;|
+|u_5 | 0.0195;|
+|u_6 | 0.1644;|
+|u_7 | -0.2368;|
+|u_16 | -0.25;|
+|u_18 | 3.703;|
+
+La idea es utilizar la definición de las variables ola de Inversión Pública, Gastos de Funcionamiento, Ingresos de Funcionamiento y Deuda pública externa, y la ecuación de la política fiscal para obtener los choques de política fiscal, que solo responden a sus propios rezagos y a los choques de política fiscal.
+
+
+$$
+X^{ola}(t) = \text{ratio}_X(t) - \tfrac{1}{4}\textstyle\sum_{s=1}^{4}\text{ratio}_X(t-s)$$
+
+
+$$
+X^{ola}(t) = a_X \, X^{ola}(t-1) + u_X(t)
+$$
+
+Resolviendo para el ratio en $t$ se obtiene la ecuación de política fiscal:
+
+$$
+\text{ratio}_X(t) = a_X X^{ola}(t-1) + \tfrac{1}{4}\textstyle\sum_{s=1}^{4}\text{ratio}_X(t-s) + u_X(t)
+$$
+
+Pero lo que nos interesa es la variable nominal con la que se puede restar la meta del MINFIN, que es la siguiente:
+
+$$
+X^{nom}(t) = \frac{Y(t) \cdot \text{ratio}_X(t)}{100}
+$$
+
+$Y(t)$ es el PIB nominal (suma de 4 trimestres).
+
+$$
+X^{nom}(t) = \frac{Y(t) \cdot (a_X X^{ola}(t-1) + \tfrac{1}{4}\textstyle\sum_{s=1}^{4}\text{ratio}_X(t-s) + u_X(t))}{100}
+$$
+
+La diferencia entre la meta del MINFIN y la variable nominal, en millones de quetzales, indica cuánto debe ajustarse el choque de política fiscal para que la variable nominal cumpla con la meta del MINFIN:
+
+$$
+X^{meta}(t) - X^{nom}(t) = X^{meta}(t) -\frac{Y(t) \cdot (a_X X^{ola}(t-1) + \tfrac{1}{4}\textstyle\sum_{s=1}^{4}\text{ratio}_X(t-s) + u_X(t))}{100} 
+$$
+
+Despejando para $u_X(t)$ se obtiene la ecuación que permite calcular el choque de política fiscal:
+
+$$
+u_X(t) = \frac{100}{Y(t)} \cdot X^{meta}(t) - a_X X^{ola}(t-1) - \tfrac{1}{4}\textstyle\sum_{s=1}^{4}\text{ratio}_X(t-s)
+$$
+
+Como $Y(t)$, $X^{ola}(t-1)$ y los ratios rezagados no dependen del choque de $t$, la expresión anterior se puede escribir en términos del choque que ya se tiene y de la diferencia con la meta:
+
+$$
+u_X^{nuevo}(t) = u_X^{actual}(t) + \frac{100}{Y(t)} \cdot \left(X^{meta}(t) - X^{nom}(t)\right)
+$$
+
+
+Ahora para el año 2027 la idea es repartir los choques de los trimestres de $Q1-Q4$ de acuerdo a lo que parezca "razonable" de acuerdo a la manera en la que se han ejecutado las variables de política fiscal en la historia. Lo más razonable es no iniciar con choques muy grandes en los primeros trimestre para el Gasto de FUncionamiento y la Inversión, porque han tendido a crecer hacia finales del año.
+
+Los choques para 2027 son los siguientes:
+
+| Choques de política fiscal | 2027Q1 | 2027Q2 | 2027Q3 | 2027Q4 |
+|----------------------------|-------:|-------:|-------:|-------:|
+| $u_4$    | 0.10  | 0.10  | 0.10   | 0.28060  |
+| $u_5$    | 0.05  | 0.05  | 0.05   | 0.14148  |
+| $u_6$    | 0.45  | 0.45  | 0.45   | 0.74114  |
+| $u_7$    | -0.15 | -0.15 | -0.15  | -0.31862 |
+| $u_{16}$ | -0.15 | -0.15 | -0.10  | -0.10    |
+| $u_{18}$ | 7     | 7     | 2.9478 | 1.78194  |
+
+
+Para establecer que el déficit converja a $2%$ se mueve el choque de Ingresos Totales 2029Q4.
+
+# Ejercicio 2
+
+Para el ejercicio 2 se utiliza la misma idea que en el ejercicio 1 pero lo que cambia es la meta del MINFIN de acuerdo a su desempeño histórico y en año electoral. Y los ajustes de los choques son de acuerdo a esa meta.
+
