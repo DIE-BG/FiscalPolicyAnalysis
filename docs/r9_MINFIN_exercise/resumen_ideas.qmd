@@ -39,12 +39,14 @@ Para el primer ejercicio inicio con el anclaje de los choques para 2026Q3 y 2026
 
 | Choques de política fiscal | 2026Q3 | 2026Q4 |
 |----------------------------|-------:|-------:|
-| $u_4$    | -0.04216 | 0.0382  |
-| $u_5$    | -0.08    | 0.0195  |
-| $u_6$    | 0.1726   | 0.1644  |
-| $u_7$    | -0.4827  | -0.2368 |
-| $u_{16}$ | -0.45    | -0.25   |
-| $u_{18}$ | 7        | 3.703   |
+| $u_4$    | 0.00244  | 0.00244  |
+| $u_5$    | -0.0266  | -0.0266  |
+| $u_6$    | 0.16693  | 0.16693  |
+| $u_7$    | -0.35047 | -0.35047 |
+| $u_{16}$ | -0.45    | -0.25    |
+| $u_{18}$ | 5.25     | 5.25     |
+
+Como 2026Q1 y 2026Q2 ya son datos observados y los choques históricos del modelo no muestran un patrón estacional (su promedio por trimestre es prácticamente cero), se impone el mismo choque en 2026Q3 y 2026Q4. Los cinco choques ($u_4$, $u_5$, $u_6$, $u_7$ y $u_{18}$) se resuelven de forma simultánea para que la Inversión Pública, los Ingresos Totales, el Gasto de Funcionamiento y la variación de la deuda pública externa e interna de 2026 coincidan con las cifras del MINFIN; el choque al PIB ($u_{16}$) se mantiene fijo. Con estos choques el déficit de 2026 es 2.39% del PIB.
 
 La idea es utilizar la definición de las variables ola de Inversión Pública, Gastos de Funcionamiento, Ingresos Totales y Deuda pública externa, y la ecuación de la política fiscal para obtener los choques de política fiscal, que solo responden a sus propios rezagos y a los choques de política fiscal.
 
@@ -94,69 +96,77 @@ u_X^{nuevo}(t) = u_X^{actual}(t) + \frac{100}{Y(t)} \cdot \left(X^{meta}(t) - X^
 $$
 
 
-Ahora para el año 2027 la idea es repartir los choques de los trimestres de $Q1-Q4$ de acuerdo a lo que parezca "razonable" de acuerdo a la manera en la que se han ejecutado las variables de política fiscal en la historia. Lo más razonable es no iniciar con choques muy grandes en los primeros trimestre para el Gasto de FUncionamiento y la Inversión, porque han tendido a crecer hacia finales del año.
+Ahora para el año 2027 la idea es repartir los choques de los trimestres de $Q1-Q4$ de acuerdo a lo que parezca "razonable" de acuerdo a la manera en la que se han ejecutado las variables de política fiscal en la historia. Lo más razonable es no iniciar con choques muy grandes en los primeros trimestres para el Gasto de Funcionamiento y la Inversión, porque han tendido a crecer hacia finales del año. Los choques de 2027Q1 a 2027Q3 se fijan a mano y los de 2027Q4 se obtienen con el ajuste automático del script, que aplica la fórmula anterior para que las cifras de 2027 coincidan con las del MINFIN.
 
 Los choques para 2027 son los siguientes:
 
 | Choques de política fiscal | 2027Q1 | 2027Q2 | 2027Q3 | 2027Q4 |
 |----------------------------|-------:|-------:|-------:|-------:|
-| $u_4$    | 0.10  | 0.10  | 0.10   | 0.28060  |
-| $u_5$    | 0.05  | 0.05  | 0.05   | 0.14148  |
-| $u_6$    | 0.45  | 0.45  | 0.45   | 0.74114  |
-| $u_7$    | -0.15 | -0.15 | -0.15  | -0.31862 |
+| $u_4$    | 0.10  | 0.10  | 0.10   | 0.27456  |
+| $u_5$    | 0.05  | 0.05  | 0.05   | 0.13493  |
+| $u_6$    | 0.25  | 0.35  | 0.55   | 0.89240  |
+| $u_7$    | -0.15 | -0.15 | -0.15  | -0.33284 |
 | $u_{16}$ | -0.15 | -0.15 | -0.10  | -0.10    |
-| $u_{18}$ | 7     | 7     | 2.9478 | 1.78194  |
+| $u_{18}$ | 7     | 7     | 2.9478 | 2.40633  |
 
 
-Para establecer que el déficit converja a 2% se mueve el choque de Gasto de Funcionamiento de 2029Q4 ($u_6 = -0.09$).
+Para que el déficit converja a 2% se ajustan los choques de 2028 y 2029. El último choque que se mueve es el de Gasto de Funcionamiento de 2029Q4 ($u_6 = -0.04$):
+
+| Choque | 2028Q1 | 2028Q2 | 2028Q3 | 2028Q4 | 2029Q1 | 2029Q2 | 2029Q3 | 2029Q4 |
+|--------|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|
+| $u_5$  | 0.10  | 0.10  | 0.25  | 0.35  | 0.10  | 0.10  | 0.15  | 0.15  |
+| $u_6$  | -0.05 | -0.10 | -0.25 | -0.25 | -0.20 | -0.22 | -0.25 | -0.04 |
 
 # Ejercicio 2
 
-Para el ejercicio 2 se utiliza la misma idea que en el ejercicio 1, pero cambian las metas del MINFIN para 2027: el gasto de funcionamiento, la inversión pública y la deuda pública externa e interna se multiplican por la tasa de ejecución (histórica o en años electorales). Los ingresos totales de 2027 y todas las cifras de 2026 se mantienen como en el ejercicio 1, por lo que los choques de 2026 son los mismos y $u_5$ de 2027Q1 a 2027Q3 se deja igual que en el ejercicio 1 ($u_5 = 0.05$).
+Para el ejercicio 2 se utiliza la misma idea que en el ejercicio 1, pero cambian las metas del MINFIN para 2027: el gasto de funcionamiento, la inversión pública y la deuda pública externa e interna se multiplican por la tasa de ejecución (histórica o en años electorales). Los ingresos totales de 2027 y todas las cifras de 2026 se mantienen como en el ejercicio 1, por lo que los choques de 2026Q3 y 2026Q4 son los mismos que en el ejercicio 1 y $u_5$ de 2027Q1 a 2027Q3 se deja igual ($u_5 = 0.05$).
 
 ## Ejecución promedio histórica (93.27%)
 
 | Choques de política fiscal | 2027Q1 | 2027Q2 | 2027Q3 | 2027Q4 |
 |----------------------------|-------:|-------:|-------:|-------:|
-| $u_4$    | 0.04  | 0.04  | 0.04   | 0.17848  |
-| $u_5$    | 0.05  | 0.05  | 0.05   | 0.14619  |
-| $u_6$    | 0.20  | 0.20  | 0.20   | 0.39351  |
-| $u_7$    | -0.15 | -0.15 | -0.15  | -0.31802 |
+| $u_4$    | 0.06  | 0.07  | 0.08   | 0.10225  |
+| $u_5$    | 0.05  | 0.05  | 0.05   | 0.13735  |
+| $u_6$    | 0.10  | 0.15  | 0.20   | 0.50633  |
+| $u_7$    | -0.15 | -0.15 | -0.15  | -0.33404 |
 | $u_{16}$ | -0.15 | -0.15 | -0.10  | -0.10    |
-| $u_{18}$ | 7     | 7     | 2.9478 | 2.08906  |
+| $u_{18}$ | 7     | 7     | 2.9478 | 2.35134  |
 
 ## Ejecución promedio en años electorales (94.32%)
 
 | Choques de política fiscal | 2027Q1 | 2027Q2 | 2027Q3 | 2027Q4 |
 |----------------------------|-------:|-------:|-------:|-------:|
-| $u_4$    | 0.06  | 0.07  | 0.08   | 0.14611  |
-| $u_5$    | 0.05  | 0.05  | 0.05   | 0.14394  |
-| $u_6$    | 0.20  | 0.20  | 0.20   | 0.53594  |
-| $u_7$    | -0.15 | -0.15 | -0.15  | -0.31931 |
+| $u_4$    | 0.06  | 0.07  | 0.08   | 0.14010  |
+| $u_5$    | 0.05  | 0.05  | 0.05   | 0.13735  |
+| $u_6$    | 0.10  | 0.17  | 0.36   | 0.51076  |
+| $u_7$    | -0.15 | -0.15 | -0.15  | -0.33356 |
 | $u_{16}$ | -0.15 | -0.15 | -0.10  | -0.10    |
-| $u_{18}$ | 7     | 7     | 2.9478 | 2.12354  |
+| $u_{18}$ | 7     | 7     | 2.9478 | 2.32978  |
 
 Los choques de 2027Q4 son los que resultan del ajuste automático del script.
 
 ## Convergencia del déficit a 2%
 
-Como en ambos incisos la meta de ingresos de 2027 es la misma que en el ejercicio 1 pero el gasto es menor, el déficit de 2027 es más bajo y se necesita menos en 2028–2029. Para que el déficit converja a 2% se ajustan los choques de ingresos ($u_5$) y de gasto de funcionamiento ($u_6$) de esos años:
+Como en ambos incisos la meta de ingresos de 2027 es la misma que en el ejercicio 1 pero el gasto es menor, el déficit de 2027 es más bajo y se necesita un ajuste menor en 2028–2029. Para que el déficit converja a 2% se ajustan los choques de ingresos ($u_5$) y de gasto de funcionamiento ($u_6$) de esos años:
 
 | Choque | Inciso | 2028Q1 | 2028Q2 | 2028Q3 | 2028Q4 | 2029Q1 | 2029Q2 | 2029Q3 | 2029Q4 |
 |--------|--------|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|
-| $u_5$ | Histórica | 0.10  | 0.10  | 0.25  | 0.35  | 0.10  | 0.10  | 0.10  | 0.09  |
+| $u_5$ | Histórica | 0.10  | 0.10  | 0.10  | 0.10  | 0.10  | 0.10  | 0.10  | 0.09  |
 | $u_5$ | Electoral | 0.04  | 0.04  | 0.10  | 0.13  | 0.04  | 0.04  | 0.05  | 0.05  |
-| $u_6$ | Histórica | -0.05 | -0.10 | -0.25 | -0.25 | -0.01 | 0.02  | 0.15  | 0.35  |
+| $u_6$ | Histórica | -0.05 | -0.10 | -0.25 | -0.25 | -0.01 | 0.02  | 0.03  | 0.04  |
 | $u_6$ | Electoral | -0.05 | -0.10 | -0.25 | -0.25 | -0.10 | -0.15 | -0.10 | -0.12 |
 
-Con estos choques se obtiene:
+# Resultados
 
-| Déficit fiscal (% del PIB) | 2027Q4 | 2028Q4 | 2030Q4 | 2033Q4 |
-|----------------------------|-------:|-------:|-------:|-------:|
-| Ejecución histórica        | 3.27   | 1.98   | 2.02   | 2.00   |
-| Ejecución electoral        | 3.45   | 2.61   | 2.00   | 2.00   |
+Con estos choques el déficit fiscal converge a 2% del PIB en los tres escenarios:
 
-# Trayectoria del déficit fiscal
+| Déficit fiscal (% del PIB) | 2026Q4 | 2027Q4 | 2028Q4 | 2029Q4 | 2030Q4 | 2033Q4 |
+|----------------------------|-------:|-------:|-------:|-------:|-------:|-------:|
+| Ejercicio 1                | 2.39   | 4.44   | 3.15   | 2.09   | 2.01   | 2.00   |
+| Ejecución histórica        | 2.39   | 3.27   | 2.35   | 2.03   | 2.00   | 2.00   |
+| Ejecución electoral        | 2.39   | 3.45   | 2.61   | 2.03   | 2.00   | 2.00   |
+
+## Trayectoria del déficit fiscal
 
 ![Déficit fiscal (% del PIB): ejercicio 1](figs/50_Def_ratio_base.png){#fig-def-ej1}
 
