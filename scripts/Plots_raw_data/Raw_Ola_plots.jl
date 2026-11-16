@@ -36,7 +36,7 @@ Mdata = CSV.read(datadir("processing", "Monthly_data.csv"), DataFrame)
 
 # ===== Exporting all the "ola" variables from our quarter data frame. =====
 # Creating the "ola" variables
-RatiosFlows = OlaRatiosFlowDict(Qdata, ["IngT", "IPub", "IPriv", "GFun", "Rem", "ITotal"], T = 4)
+RatiosFlows = OlaRatiosFlowDict(Qdata, ["IngT", "IPub", "IPriv", "GFun", "Rem", "ITotal", "Def"], T = 4)
 RatiosStocks = OlaRatiosStockDict(Qdata, ["DPI", "DPE", "AEN", "AIN", "DPEC", "DPIC", "DPTC", "DPT", "BM"], T = 4)
 GrowthVariables = OlaGrowthDict(Qdata, ["GDP", "GDP_star"]; T = 4)
 PercentageRateVariables = OlaPercentageRateDict(Qdata, ["e", "core_cpi", "core_cpi_star"]; T = 4)
@@ -61,8 +61,8 @@ CSV.write(datadir("processing", "ola_variables.csv"), dict_to_dataframe(ola_dict
 PlotRatioFlowVariable(
     Mdata,  
     Qdata, 
-    ["IngT", "IPub", "GFun", "Rem"]; 
-    varnames = ["Ingresos Totales", "Inversión pública", "Gasto en funcionamiento", "Remesas"], 
+    ["IngT", "IPub", "GFun", "Rem", "Def"]; 
+    varnames = ["Ingresos Totales", "Inversión pública", "Gasto en funcionamiento", "Remesas", "Déficit fiscal"], 
     savepath = joinpath("ola", "flows"),
     T = 4
     )
@@ -144,7 +144,7 @@ PlotOla(
     [
         "IngT", "IPub", "GFun", "IPriv", "DPI", "DPE", "Rem", "AEN", 
         "AIN", "GDP", "GDP_star", "e", "core_cpi", "core_cpi_star", "i", "i_star", "PREM",
-        "BM", "z", "DPEC", "DPIC", "DPTC", "DPT", "ITotal"
+        "BM", "z", "DPEC", "DPIC", "DPTC", "DPT", "ITotal", "Def"
     ]; 
     varnames = [
                     "Ingresos Totales (%)", 
@@ -163,7 +163,8 @@ PlotOla(
                     "Deuda pública interna consolidada (%)",
                     "Deuda pública total consolidada (%)",
                     "Deuda pública total (%)",
-                    "Inversión total (%)"
+                    "Inversión total (%)",
+                    "Déficit fiscal (%)"
                 ],
     savepath = joinpath("ola", "ola")
 )
