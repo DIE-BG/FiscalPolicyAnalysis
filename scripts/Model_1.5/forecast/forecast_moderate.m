@@ -2,6 +2,8 @@
 clc;
 clear all;
 
+irisstartup
+
 % add necesary functions to make the series of errors
 addpath('src/helpers/forecast');
 
