@@ -86,7 +86,7 @@ $\alpha_{12,4}$
 
 **Ecuación de depreciación nominal**
 
-$\alpha_{13,2}$
+$\alpha_{13,2}$ y $\alpha_{13,3}$
 
 ```{=latex}
 \clearpage
@@ -452,7 +452,7 @@ $$
 \Longrightarrow\widetilde{\left(\frac{DPI}{PIB}\right)}_{t}=\widetilde{\left(\frac{DPE}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{DPI}{PIB}\right)}_{t-1}+\widetilde{\left(\frac{Def}{PIB}\right)}_{t}-\widetilde{\left(\frac{DPE}{PIB}\right)}_{t}\tag{34}
 $$
 
-Luego, sustituyendo la ecuación (9) en la ecuación (33), se tiene:
+Luego, sustituyendo la ecuación (9) en la ecuación (34), se tiene:
 
 $$
 \begin{aligned}
@@ -471,7 +471,7 @@ $$
 \end{aligned}\tag{35}
 $$
 
-Ahora, sustituyendo (7) en (34), se obtiene:
+Ahora, sustituyendo (7) en (35), se obtiene:
 
 $$
 \begin{aligned}
@@ -638,7 +638,7 @@ $$
 
 ## Promedio móvil {.unnumbered .unlisted}
 
-El promedio móvil que aparece en las ecuaciones (56) y (57) se define de la siguiente manera:
+El promedio móvil que aparece en las ecuaciones (57) y (58) se define de la siguiente manera:
 
 $$
 \overline{x}_{t-1}=\frac{1}{T}\sum_{j=t-T}^{t-1}x_j \tag{59}
@@ -1127,7 +1127,7 @@ $$
 
 # Representación compacta y simplificada del modelo
 
-Sustituyendo las ecuaciones (121) a (137) en el modelo compacto (ecuaciones (38) a (55)), se obtiene la versión compacta y simplificada del modelo, como sigue:
+Sustituyendo las ecuaciones (137) a (153) en el modelo compacto (ecuaciones (39) a (56)), se obtiene la versión compacta y simplificada del modelo, como sigue:
 
 $$
 y_{1,t}=\alpha_{1,1}y_{1,t-1}+u_{1,t} \tag{154}
@@ -1206,7 +1206,7 @@ $$
 
 # Representación matricial del modelo
 
-Partiendo de las ecuaciones presentadas en la sección 9, a continuación se representa el modelo en forma matricial.
+Partiendo de las ecuaciones presentadas en la sección 10, a continuación se representa el modelo en forma matricial.
 
 ## Matriz de variables del modelo en forma compacta y simplificada {.unnumbered .unlisted}
 
@@ -1218,11 +1218,11 @@ $$
 
 ## Matriz de coeficientes {.unnumbered .unlisted}
 
-La matriz $A_1$ es de dimensiones 17×17 y contiene los coeficientes del modelo. Es importante hacer notar que el modelo tiene expresiones del tipo $\alpha_{9,3}(y_{6,t-1}+y_{4,t-1}-y_{5,t-1})$ (ecuación 145) e indica que las variables $y_{6,t}$, $y_{4,t}$, y $y_{5,t}$ comparten el mismo coeficiente y en el caso de $y_{5,t}$ este se encuentra con el signo negativo. Este tipo de expresiones se puede representar de forma apropiada en la matriz de coeficientes mostrada a continuación:
+La matriz $A_1$ es de dimensiones 17×17 y contiene los coeficientes del modelo. Es importante hacer notar que el modelo tiene expresiones del tipo $\alpha_{9,3}(y_{6,t-1}+y_{4,t-1}-y_{5,t-1})$ (ecuación 162) e indica que las variables $y_{6,t}$, $y_{4,t}$, y $y_{5,t}$ comparten el mismo coeficiente y en el caso de $y_{5,t}$ este se encuentra con el signo negativo. Este tipo de expresiones se puede representar de forma apropiada en la matriz de coeficientes mostrada a continuación:
 
 ```{=latex}
-\begin{equation}\tag{173}
-\resizebox{0.88\textwidth}{!}{$\displaystyle A_1=\begin{bmatrix}
+\newsavebox{\AoneBox}
+\sbox{\AoneBox}{$\displaystyle A_1=\begin{bmatrix}
 \alpha_{1,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
 0 & \alpha_{2,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
 0 & 0 & \alpha_{3,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -1233,14 +1233,16 @@ La matriz $A_1$ es de dimensiones 17×17 y contiene los coeficientes del modelo.
 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{8,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
 0 & 0 & 0 & \alpha_{9,3} & -\alpha_{9,3} & \alpha_{9,3} & \alpha_{9,2} & 0 & \alpha_{9,1} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
 0 & 0 & \alpha_{10,3} & 0 & 0 & 0 & \alpha_{10,2} & 0 & 0 & \alpha_{10,1} & 0 & 0 & \alpha_{10,3} & 0 & -\alpha_{10,3} & 0 & 0 \\
-0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{11,2} & 0 & \alpha_{11,1} & \alpha_{11.3} & 0 & 0 & \alpha_{11,4} & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{11,2} & 0 & \alpha_{11,1} & \alpha_{11,3} & 0 & 0 & \alpha_{11,4} & 0 & 0 \\
 0 & \alpha_{12,2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{12,1} & 0 & 0 & \alpha_{12,3} & \alpha_{12,4} & 0 \\
-0 & -\alpha_{13,3} & 0 & 0 & 0 & 0 & \alpha_{13,2} & 0 & 0 & \alpha_{13,2} & 0 & \alpha_{13,3} & \alpha_{13,1} & -\alpha_{13,3} & 0 & 0 & 0 \\
+0 & -\alpha_{13,3} & 0 & 0 & 0 & 0 & \alpha_{13,2} & 0 & 0 & -\alpha_{13,2} & 0 & \alpha_{13,3} & \alpha_{13,1} & -\alpha_{13,3} & 0 & 0 & 0 \\
 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{14,2} & 0 & \alpha_{14,2} & -\alpha_{14,2} & -\alpha_{14,2} & 0 & 0 & \alpha_{14,1} & 0 & 0 & 0 \\
 0 & 0 & \alpha_{15,3} & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{15,5} & \alpha_{15,5} & 0 & \alpha_{15,4} & 0 & \alpha_{15,1} & \alpha_{15,2} & 0 \\
-\alpha_{16,1} & 0 & 0 & \alpha_{16,4} & 0 & 0 & 0 & \alpha_{16,3} & 0 & \alpha_{16,5} & \alpha_{16,5} & 0 & 0 & 0 & 0 & \alpha_{16,1} & \alpha_{16,4} \\
+\alpha_{16,2} & 0 & 0 & \alpha_{16,4} & 0 & 0 & 0 & \alpha_{16,3} & 0 & \alpha_{16,5} & \alpha_{16,5} & 0 & 0 & 0 & 0 & \alpha_{16,1} & \alpha_{16,4} \\
 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \alpha_{17,3} & 0 & -\alpha_{17,3} & \alpha_{17,2} & 0 & \alpha_{17,4} & 0 & 0 & \alpha_{17,1}
 \end{bmatrix}$}
+\begin{equation}\tag{173}
+\resizebox{0.88\textwidth}{!}{\usebox{\AoneBox}}
 \end{equation}
 ```
 
@@ -1257,10 +1259,38 @@ $$
 \mathbf{u}_t=\begin{bmatrix}u_{1,t}\\u_{2,t}\\\vdots\\u_{17,t}\end{bmatrix} \tag{174}
 $$
 
-Finalmente el modelo se presenta mediante de forma matricial de la siguiente manera:
+## Matriz de seleccion de los residuos {.unnumbered .unlisted}
+
+Dado que el residuo de la deuda pública externa ($u_{7,t}$) afecta de forma contemporánea a los activos externos netos (ecuación 10) y a los activos internos netos (ecuación 11), los residuos no ingresan al sistema mediante la identidad, sino a través de la matriz $J$, de dimensiones 17×17. Esta es la matriz identidad con un 1 adicional en la posición (10,7) y el parámetro $\gamma$ en la posición (11,7), es decir, $J=I_{17}+e_{10}e_7'+\gamma\,e_{11}e_7'$:
+
+```{=latex}
+\begin{equation}\tag{175}
+\resizebox{0.88\textwidth}{!}{\makebox[\wd\AoneBox][c]{$\displaystyle J=\begin{bmatrix}
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & \gamma & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1
+\end{bmatrix}$}}
+\end{equation}
+```
+
+Finalmente el modelo se presenta en forma matricial de la siguiente manera:
 
 $$
-\mathbf{y}_t=A_1\mathbf{y}_{t-1}+\mathbf{u}_t \tag{175}
+\mathbf{y}_t=A_1\mathbf{y}_{t-1}+J\mathbf{u}_t \tag{176}
 $$
 
 
@@ -2050,7 +2080,7 @@ Se asignan los coeficientes estimados a la matriz de coeficientes de la sección
 0 & 0 & -0.000177 & 0 & 0 & 0 & 0.0332 & 0 & 0 & 0.5687 & 0 & 0 & -0.000177 & 0 & 0.000177 & 0 & 0 \\
 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.0639 & 0 & 0.5687 & -0.05236 & 0 & 0 & -0.00852 & 0 & 0 \\
 0 & 0.1687 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -0.3403 & 0 & 0 & 0.11045 & 0.0004 & 0 \\
-0 & 0.1774 & 0 & 0 & 0 & 0 & -1.000189 & 0 & 0 & 1.000189 & 0 & -0.17738 & 0.54195 & 0.17738 & 0 & 0 & 0 \\
+0 & 0.1774 & 0 & 0 & 0 & 0 & 1.000189 & 0 & 0 & -1.000189 & 0 & -0.17738 & 0.54195 & 0.17738 & 0 & 0 & 0 \\
 0 & 0 & 0 & 0 & 0 & 0 & 0.1046 & 0 & 0.1046 & -0.1046 & -0.1046 & 0 & 0 & 0.3646 & 0 & 0 & 0 \\
 0 & 0 & 0.63812 & 0 & 0 & 0 & 0 & 0 & 0 & 0.14569 & 0.14569 & 0 & 0.08134 & 0 & 0.46771 & 0.112918 & 0 \\
 0.2444 & 0 & 0 & 0.1842 & 0 & 0 & 0 & 0.04222 & 0 & 0.023885 & 0.023885 & 0 & 0 & 0 & 0 & 0.81933 & 0.1842 \\
