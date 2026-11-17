@@ -30,3 +30,6 @@
 
 # Ignore temporal files (and directories)
 tmp
+
+# Permitir la figura de portada de la documentacion de cada version del modelo
+!docs/Model_*/figuras/fig-p001-1.jpg
