@@ -148,4 +148,4 @@ Label(
     halign = :left
 )
 
-save(plotsdir("ola", "CPI", "z.png"), fig, px_per_unit = 2.0)
+save(plotsdir("plots", "ola", "CPI", "z.png"), fig, px_per_unit = 2.0)

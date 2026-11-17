@@ -48,8 +48,9 @@ function PlotOla(Oladata::DataFrame, variables::Vector{String}; varnames::Vector
         fig
 
         # export figure
-        isdir(plotsdir(savepath)) ? "The $(plotsdir(savepath)) exists" : mkdir(plotsdir(savepath))
-        save(plotsdir(savepath, var*".png"), fig, px_per_unit=2.0)
+        # create the output directory if it does not exist
+        isdir(savepath) || mkpath(savepath)
+        save(joinpath(savepath, var*".png"), fig, px_per_unit=2.0)
     end
 
 end

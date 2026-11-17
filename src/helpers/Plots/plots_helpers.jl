@@ -317,8 +317,9 @@ function PlotRatioFlowVariable(
             fig
 
             # export figure
-            isdir(plotsdir(savepath)) ? "The $(plotsdir(savepath)) exists" : mkdir(plotsdir(savepath))
-            save(plotsdir(savepath, var*".png"), fig, px_per_unit=2.0)
+            # create the output directory if it does not exist
+            isdir(savepath) || mkpath(savepath)
+            save(joinpath(savepath, var*".png"), fig, px_per_unit=2.0)
 
     end
 
@@ -592,8 +593,9 @@ function PlotRatioStockVariable(
             fig
 
             # export figure
-            isdir(plotsdir(savepath)) ? "The $(plotsdir(savepath)) exists" : mkdir(plotsdir(savepath))
-            save(plotsdir(savepath, var*".png"), fig, px_per_unit=2.0)
+            # create the output directory if it does not exist
+            isdir(savepath) || mkpath(savepath)
+            save(joinpath(savepath, var*".png"), fig, px_per_unit=2.0)
 
     end
 
@@ -738,8 +740,9 @@ function PlotGrowthVariable(
         fig
 
         # export figure
-        isdir(plotsdir(savepath)) ? "The $(plotsdir(savepath)) exists" : mkdir(plotsdir(savepath))
-        save(plotsdir(savepath, var*".png"), fig, px_per_unit=2.0)
+        # create the output directory if it does not exist
+        isdir(savepath) || mkpath(savepath)
+        save(joinpath(savepath, var*".png"), fig, px_per_unit=2.0)
 
     end
 end
@@ -932,8 +935,9 @@ function PlotPercentageRateVariable(
             fig
 
             # export figure
-            isdir(plotsdir(savepath)) ? "The $(plotsdir(savepath)) exists" : mkdir(plotsdir(savepath))
-            save(plotsdir(savepath, var*".png"), fig, px_per_unit=2.0)
+            # create the output directory if it does not exist
+            isdir(savepath) || mkpath(savepath)
+            save(joinpath(savepath, var*".png"), fig, px_per_unit=2.0)
 
     end
 end
@@ -1109,8 +1113,9 @@ function SimpleVariables(
             fig
 
             # export figure
-            isdir(plotsdir(savepath)) ? "The $(plotsdir(savepath)) exists" : mkdir(plotsdir(savepath))
-            save(plotsdir(savepath, var*".png"), fig, px_per_unit=2.0)
+            # create the output directory if it does not exist
+            isdir(savepath) || mkpath(savepath)
+            save(joinpath(savepath, var*".png"), fig, px_per_unit=2.0)
 
     end
 end
@@ -1367,8 +1372,9 @@ function PlotRatioFlowIPriv(
             fig
 
             # export figure
-            isdir(plotsdir(savepath)) ? "The $(plotsdir(savepath)) exists" : mkdir(plotsdir(savepath))
-            save(plotsdir(savepath, var*".png"), fig, px_per_unit=2.0)
+            # create the output directory if it does not exist
+            isdir(savepath) || mkpath(savepath)
+            save(joinpath(savepath, var*".png"), fig, px_per_unit=2.0)
 
     end
 

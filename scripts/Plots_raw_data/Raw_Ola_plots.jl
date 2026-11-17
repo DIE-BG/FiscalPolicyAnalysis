@@ -63,7 +63,7 @@ PlotRatioFlowVariable(
     Qdata, 
     ["IngT", "IPub", "GFun", "Rem", "Def"]; 
     varnames = ["Ingresos Totales", "Inversión pública", "Gasto en funcionamiento", "Remesas", "Déficit fiscal"], 
-    savepath = joinpath("ola", "flows"),
+    savepath = plotsdir("plots", "ola", "flows"),
     T = 4
     )
 
@@ -71,7 +71,7 @@ PlotRatioFlowIPriv(
     Qdata, 
     ["IPriv", "ITotal"]; 
     varnames = ["Inversión Privada", "Inversion total"], 
-    savepath = joinpath("ola", "flows"),
+    savepath = plotsdir("plots", "ola", "flows"),
     T = 4
 )
 
@@ -81,7 +81,7 @@ PlotGrowthVariable(
     varnames = ["PIB doméstico", "PIB Trimestral de Estados Unidos"],
     subtitles = ["Millones de quetzales \nAño de referencia 2013", "Miles de millones de dólares \nAño de referencia 2017"],
     olatitles = ["Crecimiento económico", "Crecimiento económico externo"],
-    savepath = joinpath("ola", "growth"),
+    savepath = plotsdir("plots", "ola", "growth"),
     T = 4
 )
 
@@ -101,7 +101,7 @@ PlotRatioStockVariable(
                     "Deuda pública total",
                     "Base Monetaria Ampliada"
                     ], 
-    savepath = joinpath("ola", "stocks"),
+    savepath = plotsdir("plots", "ola", "stocks"),
     T = 4
     )
 
@@ -113,7 +113,7 @@ PlotPercentageRateVariable(
     ["e", "core_cpi", "core_cpi_star"]; 
     varnames = ["Tipo de cambio nominal (Q/US\$)", "IPC subyacente Guatemala (RMSE 2026 B)", "IPC PCE subyacente EE.UU"],
     olatitles = ["Tipo de cambio nominal", "Inflación doméstica", "Inflación externa"],
-    savepath = joinpath("ola", "CPI"),
+    savepath = plotsdir("plots", "ola", "CPI"),
     T = 4
 )
 
@@ -124,7 +124,7 @@ SimpleVariables(
     ["i", "i_star", "PREM"]; 
     varnames = ["Tasa de interés líder", "Tasa de interés efectiva de fondos federales", "Prima por riesgo-país"],
     olatitles = ["Tasa de interés líder", "Tasa de interés externa", "Prima por riesgo-país"],
-    savepath = joinpath("ola", "i"),
+    savepath = plotsdir("plots", "ola", "i"),
     T = 4
 )
 
@@ -166,5 +166,5 @@ PlotOla(
                     "Inversión total (%)",
                     "Déficit fiscal (%)"
                 ],
-    savepath = joinpath("ola", "ola")
+    savepath = plotsdir("plots", "ola", "ola")
 )
